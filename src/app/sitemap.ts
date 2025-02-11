@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: 'https://rgbatohex.com/tools/rgba-to-hsl',
+      url: 'https://rgbatohex.com/tools/rgb-to-hsl',
       lastModified: new Date().toISOString(),
       changeFrequency: 'daily',
       priority: 0.8,
