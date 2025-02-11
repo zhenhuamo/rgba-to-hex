@@ -5,6 +5,18 @@ export interface RGBA {
   a: number;
 }
 
+export interface HSL {
+  h: number;
+  s: number;
+  l: number;
+}
+
+export interface RGB {
+  r: number;
+  g: number;
+  b: number;
+}
+
 export const rgbaToHex = ({ r, g, b }: RGBA): string => {
   const toHex = (n: number): string => {
     const hex = Math.round(n).toString(16);
@@ -59,4 +71,82 @@ export const isValidRgba = ({ r, g, b, a }: RGBA): boolean => {
     b >= 0 && b <= 255 &&
     a >= 0 && a <= 1
   );
-}; 
+};
+
+export function rgbaToHsl({ r, g, b }: RGBA): HSL {
+  // Convert RGB to [0, 1] range
+  const rNorm = r / 255;
+  const gNorm = g / 255;
+  const bNorm = b / 255;
+
+  const max = Math.max(rNorm, gNorm, bNorm);
+  const min = Math.min(rNorm, gNorm, bNorm);
+  let h = 0;
+  let s = 0;
+  const l = (max + min) / 2;
+
+  if (max !== min) {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+
+    switch (max) {
+      case rNorm:
+        h = (gNorm - bNorm) / d + (gNorm < bNorm ? 6 : 0);
+        break;
+      case gNorm:
+        h = (bNorm - rNorm) / d + 2;
+        break;
+      case bNorm:
+        h = (rNorm - gNorm) / d + 4;
+        break;
+    }
+
+    h /= 6;
+  }
+
+  // Convert to degrees and percentages
+  return {
+    h: Math.round(h * 360),
+    s: Math.round(s * 100),
+    l: Math.round(l * 100)
+  };
+}
+
+export function rgbToHsl({ r, g, b }: RGB): HSL {
+  // Convert RGB to [0, 1] range
+  const rNorm = r / 255;
+  const gNorm = g / 255;
+  const bNorm = b / 255;
+
+  const max = Math.max(rNorm, gNorm, bNorm);
+  const min = Math.min(rNorm, gNorm, bNorm);
+  let h = 0;
+  let s = 0;
+  const l = (max + min) / 2;
+
+  if (max !== min) {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+
+    switch (max) {
+      case rNorm:
+        h = (gNorm - bNorm) / d + (gNorm < bNorm ? 6 : 0);
+        break;
+      case gNorm:
+        h = (bNorm - rNorm) / d + 2;
+        break;
+      case bNorm:
+        h = (rNorm - gNorm) / d + 4;
+        break;
+    }
+
+    h /= 6;
+  }
+
+  // Convert to degrees and percentages
+  return {
+    h: Math.round(h * 360),
+    s: Math.round(s * 100),
+    l: Math.round(l * 100)
+  };
+} 
