@@ -17,6 +17,13 @@ export interface RGB {
   b: number;
 }
 
+export interface CMYK {
+  c: number; // Cyan (0-100)
+  m: number; // Magenta (0-100)
+  y: number; // Yellow (0-100)
+  k: number; // Key/Black (0-100)
+}
+
 export const rgbaToHex = ({ r, g, b }: RGBA): string => {
   const toHex = (n: number): string => {
     const hex = Math.round(n).toString(16);
@@ -148,5 +155,38 @@ export function rgbToHsl({ r, g, b }: RGB): HSL {
     h: Math.round(h * 360),
     s: Math.round(s * 100),
     l: Math.round(l * 100)
+  };
+}
+
+export function rgbToCmyk(rgb: { r: number; g: number; b: number }): CMYK {
+  // Normalize RGB values to 0-1 range
+  const r = rgb.r / 255;
+  const g = rgb.g / 255;
+  const b = rgb.b / 255;
+
+  // Find the maximum value among RGB
+  const k = 1 - Math.max(r, g, b);
+  
+  // If k is 1, then the color is black
+  if (k === 1) {
+    return {
+      c: 0,
+      m: 0,
+      y: 0,
+      k: 100
+    };
+  }
+
+  // Calculate CMY values
+  const c = (1 - r - k) / (1 - k);
+  const m = (1 - g - k) / (1 - k);
+  const y = (1 - b - k) / (1 - k);
+
+  // Convert to percentages and round to 2 decimal places
+  return {
+    c: Math.round(c * 100 * 100) / 100,
+    m: Math.round(m * 100 * 100) / 100,
+    y: Math.round(y * 100 * 100) / 100,
+    k: Math.round(k * 100 * 100) / 100
   };
 } 
