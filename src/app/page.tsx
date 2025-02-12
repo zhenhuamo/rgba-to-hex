@@ -5,7 +5,7 @@ import Image from 'next/image';
 import ColorInput from '@/components/ColorInput';
 import ColorPreview from '@/components/ColorPreview';
 import { rgbaToHex, isValidRgba } from '@/utils/colorConverter';
-import Link from 'next/link';
+import Navigation from '@/components/Navigation';
 
 export default function Home() {
   const [rgba, setRgba] = useState({
@@ -14,8 +14,6 @@ export default function Home() {
     b: 255,
     a: 1
   });
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleChange = (key: keyof typeof rgba) => (value: number) => {
     const newRgba = { ...rgba, [key]: value };
@@ -36,71 +34,7 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-12">
         {/* Navigation Bar */}
-        <nav className="max-w-2xl mx-auto mb-8">
-          <div className="flex justify-center items-center space-x-6">
-            <Link 
-              href="/" 
-              className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium px-4 py-2"
-            >
-              RGBA to HEX
-            </Link>
-            <div className="relative">
-              <button 
-                className="flex items-center space-x-1 px-4 py-2 rounded-lg text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-300 font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                onMouseEnter={() => setIsMenuOpen(true)}
-              >
-                <span>More Tools</span>
-                <svg 
-                  className={`w-4 h-4 transform transition-transform duration-200 ${isMenuOpen ? 'rotate-180' : ''}`}
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {isMenuOpen && (
-                <div 
-                  className="absolute w-56 right-0 mt-1 pt-2 pb-2 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-200"
-                  style={{ 
-                    marginTop: '0.5rem',
-                    zIndex: 50,
-                  }}
-                  onMouseEnter={() => setIsMenuOpen(true)}
-                  onMouseLeave={() => {
-                    // 添加延迟，让用户有足够时间移动到菜单项
-                    setTimeout(() => setIsMenuOpen(false), 200);
-                  }}
-                >
-                  <div className="py-1">
-                    <Link 
-                      href="/tools/hex-to-rgba" 
-                      className="flex items-center space-x-2 px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-green-500"></span>
-                      <span>HEX to RGBA</span>
-                    </Link>
-                    <Link 
-                      href="/tools/rgb-to-hsl" 
-                      className="flex items-center space-x-2 px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-purple-500"></span>
-                      <span>RGB to HSL</span>
-                    </Link>
-                    <Link 
-                      href="/tools/rgb-to-cmyk" 
-                      className="flex items-center space-x-2 px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-cyan-500"></span>
-                      <span>RGB to CMYK</span>
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </nav>
+        <Navigation />
 
         {/* Original Tool Section */}
         <div className="max-w-2xl mx-auto mb-16">

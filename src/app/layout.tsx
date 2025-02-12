@@ -18,9 +18,19 @@ export const metadata: Metadata = {
   description: "Convert RGBA to HEX color codes instantly with our free online tool. Easy-to-use RGBA to hexadecimal converter with real-time preview. Perfect for web developers and designers.",
   keywords: "rgba to hex, color converter, hex color codes, rgba converter, color tool, web development, design tools, rgba to hexadecimal, color conversion, free color converter",
   icons: {
-    icon: '/rgb.svg',
-    apple: '/rgb.svg',
+    icon: [
+      { url: '/rgb.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: '32x32' }
+    ],
+    shortcut: '/rgb.svg',
+    apple: [
+      { url: '/rgb.svg', sizes: '180x180', type: 'image/svg+xml' }
+    ],
+    other: [
+      { rel: 'mask-icon', url: '/rgb.svg', color: '#000000' }
+    ]
   },
+  manifest: '/manifest.json',
   openGraph: {
     title: "RGBA to HEX Color Converter | Free Online Tool",
     description: "Convert RGBA to HEX color codes instantly with our free online tool. Easy-to-use RGBA to hexadecimal converter with real-time preview. Perfect for web developers and designers.",

@@ -1,0 +1,17 @@
+{
+  "name": "RGBA to HEX Color Converter",
+  "short_name": "RGBA to HEX",
+  "description": "Convert RGBA to HEX color codes instantly with our free online tool.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/rgb.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+} 
