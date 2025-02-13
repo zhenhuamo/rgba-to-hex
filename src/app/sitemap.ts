@@ -38,5 +38,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.7,
     },
+    {
+      url: 'https://rgbatohex.com/blog/hex-to-rgba-converter',
+      lastModified: new Date().toISOString(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
   ];
 } 

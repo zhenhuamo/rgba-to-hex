@@ -12,6 +12,14 @@ export default function Blog() {
       date: '2024-02-11',
       readTime: '8 min read',
       category: 'Color Conversion',
+    },
+    {
+      title: 'HEX to RGBA Color Converter: In-Depth Guide',
+      description: 'Master hexadecimal to RGBA color conversion with our comprehensive guide. Understand transparency, color theory, and implementation techniques for web development.',
+      link: '/blog/hex-to-rgba-converter',
+      date: '2024-02-12',
+      readTime: '10 min read',
+      category: 'Color Conversion',
     }
   ];
 
