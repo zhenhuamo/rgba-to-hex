@@ -20,6 +20,14 @@ export default function Blog() {
       date: '2024-02-12',
       readTime: '10 min read',
       category: 'Color Conversion',
+    },
+    {
+      title: 'HSL to HEX Color Converter: Complete Guide',
+      description: 'Learn how to convert HSL colors to hexadecimal format with our comprehensive guide. Understand color theory, implementation details, and best practices for web development.',
+      link: '/blog/hsl-to-hex-converter',
+      date: '2024-02-13',
+      readTime: '15 min read',
+      category: 'Color Conversion',
     }
   ];
 
