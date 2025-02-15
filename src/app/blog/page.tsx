@@ -28,6 +28,14 @@ export default function Blog() {
       date: '2024-02-13',
       readTime: '15 min read',
       category: 'Color Conversion',
+    },
+    {
+      title: 'CMYK to HEX Color Converter: Professional Guide',
+      description: 'Master CMYK to HEX color conversion with our comprehensive guide. Learn about print-to-web color conversion, Adobe compatibility, and professional implementation techniques.',
+      link: '/blog/cmyk-to-hex-converter',
+      date: '2024-02-14',
+      readTime: '12 min read',
+      category: 'Color Conversion',
     }
   ];
 
@@ -57,7 +65,11 @@ export default function Blog() {
                 key={index}
                 className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 transition-transform hover:scale-[1.02]"
               >
-                <Link href={post.link}>
+                <Link 
+                  href={post.link}
+                  className="block"
+                  prefetch={true}
+                >
                   <div className="space-y-4">
                     <div className="flex justify-between items-start">
                       <h2 className="text-2xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">

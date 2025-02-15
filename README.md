@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# RGBA to HEX Color Converter
 
-## Getting Started
+🎨 Visit: [rgbatohex.com](https://rgbatohex.com/)
 
-First, run the development server:
+## Overview
+
+A professional online color conversion tool that provides multiple color format conversions. Key features include:
+
+- RGBA to HEX conversion
+- HEX to RGBA conversion
+- HSL to HEX conversion
+- CMYK to HEX conversion
+- RGB to HSL conversion
+- RGB to CMYK conversion
+
+### Key Features
+
+- 🔄 Real-time color preview
+- 📊 Professional color management
+- 🎯 Transparency support
+- 🎨 Professional color scheme suggestions
+- ♿ WCAG 2.0 accessibility compliance
+- 📱 Responsive design for all devices
+
+### Tech Stack
+
+- Next.js 15
+- React
+- TypeScript
+- Tailwind CSS
+- Vercel deployment
+
+## Local Development
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Online Tools
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [RGBA to HEX Converter](https://rgbatohex.com/)
+- [HEX to RGBA Converter](https://rgbatohex.com/tools/hex-to-rgba)
+- [HSL to HEX Converter](https://rgbatohex.com/tools/hsl-to-hex)
+- [CMYK to HEX Converter](https://rgbatohex.com/tools/cmyk-to-hex)
+- [RGB to HSL Converter](https://rgbatohex.com/tools/rgb-to-hsl)
+- [RGB to CMYK Converter](https://rgbatohex.com/tools/rgb-to-cmyk)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Blog Articles
 
-## Learn More
+We provide detailed technical articles explaining the principles and implementation of various color conversions:
 
-To learn more about Next.js, take a look at the following resources:
+- [Complete Guide to RGBA to HEX Conversion](https://rgbatohex.com/blog/rgba-to-hex-converter)
+- [Understanding HEX to RGBA Conversion](https://rgbatohex.com/blog/hex-to-rgba-converter)
+- [HSL to HEX Conversion Tutorial](https://rgbatohex.com/blog/hsl-to-hex-converter)
+- [Professional Guide to CMYK to HEX](https://rgbatohex.com/blog/cmyk-to-hex-converter)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+We welcome Pull Requests to improve this project. Here's how to contribute:
 
-## Deploy on Vercel
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT License - See [LICENSE](LICENSE) file for details

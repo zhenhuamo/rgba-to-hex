@@ -24,6 +24,13 @@ export interface CMYK {
   k: number; // Key/Black (0-100)
 }
 
+export interface ColorSystemInfo {
+  pantone?: string;
+  isInGamut: boolean;
+  printabilityScore: number;
+  nearestPrintableColor?: CMYK;
+}
+
 export const rgbaToHex = ({ r, g, b }: RGBA): string => {
   const toHex = (n: number): string => {
     const hex = Math.round(n).toString(16);
@@ -233,4 +240,89 @@ export function hslToHex(hsl: HSL): string {
   };
 
   return '#' + toHex(rgb.r) + toHex(rgb.g) + toHex(rgb.b);
+}
+
+export function cmykToRgb(cmyk: CMYK): { r: number; g: number; b: number } {
+  const { c, m, y, k } = cmyk;
+  
+  // Normalize values to 0-1 range
+  const cyan = c / 100;
+  const magenta = m / 100;
+  const yellow = y / 100;
+  const key = k / 100;
+
+  // Convert CMYK to RGB
+  const r = Math.round(255 * (1 - cyan) * (1 - key));
+  const g = Math.round(255 * (1 - magenta) * (1 - key));
+  const b = Math.round(255 * (1 - yellow) * (1 - key));
+
+  return { r, g, b };
+}
+
+export function cmykToHex(cmyk: CMYK): string {
+  const rgb = cmykToRgb(cmyk);
+  return rgbaToHex({ ...rgb, a: 1 });
+}
+
+// 检查颜色是否在打印色域内
+export function checkColorGamut(cmyk: CMYK): boolean {
+  const totalInk = cmyk.c + cmyk.m + cmyk.y + cmyk.k;
+  // 标准印刷通常建议总墨量不超过300%
+  return totalInk <= 300;
+}
+
+// 计算打印适用性评分 (0-100)
+export function calculatePrintScore(cmyk: CMYK): number {
+  const totalInk = cmyk.c + cmyk.m + cmyk.y + cmyk.k;
+  const inkScore = Math.max(0, 100 - Math.abs(totalInk - 240) / 3);
+  
+  // 检查各个通道是否在合理范围内
+  const channelScores = [cmyk.c, cmyk.m, cmyk.y, cmyk.k].map(value => {
+    if (value <= 90) return 100;
+    return Math.max(0, 100 - (value - 90) * 2);
+  });
+
+  // 综合评分
+  return Math.round(
+    (inkScore + channelScores.reduce((a, b) => a + b, 0) / 4) / 2
+  );
+}
+
+// 查找最近的Pantone色值
+export function findNearestPantone(cmyk: CMYK): string {
+  // 这里应该有一个完整的Pantone色库对照表
+  // 这里只是示例实现
+  const pantoneColors = [
+    { name: 'PANTONE 485 C', c: 0, m: 95, y: 100, k: 0 },
+    { name: 'PANTONE 2925 C', c: 85, m: 21, y: 0, k: 0 },
+    { name: 'PANTONE 7739 C', c: 85, m: 0, y: 100, k: 0 },
+    // ... 更多Pantone色值
+  ];
+
+  let nearestColor = pantoneColors[0];
+  let smallestDifference = Number.MAX_VALUE;
+
+  pantoneColors.forEach(color => {
+    const difference = 
+      Math.abs(color.c - cmyk.c) +
+      Math.abs(color.m - cmyk.m) +
+      Math.abs(color.y - cmyk.y) +
+      Math.abs(color.k - cmyk.k);
+
+    if (difference < smallestDifference) {
+      smallestDifference = difference;
+      nearestColor = color;
+    }
+  });
+
+  return nearestColor.name;
+}
+
+// 获取色彩系统信息
+export function getColorSystemInfo(cmyk: CMYK): ColorSystemInfo {
+  return {
+    pantone: findNearestPantone(cmyk),
+    isInGamut: checkColorGamut(cmyk),
+    printabilityScore: calculatePrintScore(cmyk)
+  };
 } 
