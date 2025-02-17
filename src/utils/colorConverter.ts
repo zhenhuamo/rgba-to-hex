@@ -242,21 +242,24 @@ export function hslToHex(hsl: HSL): string {
   return '#' + toHex(rgb.r) + toHex(rgb.g) + toHex(rgb.b);
 }
 
-export function cmykToRgb(cmyk: CMYK): { r: number; g: number; b: number } {
-  const { c, m, y, k } = cmyk;
-  
-  // Normalize values to 0-1 range
+export function cmykToRgb({ c, m, y, k }: CMYK): RGB {
+  // 将 CMYK 值从百分比转换为小数 (0-1)
   const cyan = c / 100;
   const magenta = m / 100;
   const yellow = y / 100;
   const key = k / 100;
 
-  // Convert CMYK to RGB
+  // 计算 RGB 值
   const r = Math.round(255 * (1 - cyan) * (1 - key));
   const g = Math.round(255 * (1 - magenta) * (1 - key));
   const b = Math.round(255 * (1 - yellow) * (1 - key));
 
-  return { r, g, b };
+  // 确保值在 0-255 范围内
+  return {
+    r: Math.min(255, Math.max(0, r)),
+    g: Math.min(255, Math.max(0, g)),
+    b: Math.min(255, Math.max(0, b))
+  };
 }
 
 export function cmykToHex(cmyk: CMYK): string {

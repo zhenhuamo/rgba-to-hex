@@ -6,6 +6,7 @@ import Link from 'next/link';
 import HexInput from '@/components/HexInput';
 import RgbaDisplay from '@/components/RgbaDisplay';
 import { hexToRgba, RGBA } from '@/utils/colorConverter';
+import Navigation from '@/components/Navigation';
 
 export default function HexToRgba() {
   const [hexValue, setHexValue] = useState('#FFFFFF');
@@ -20,16 +21,7 @@ export default function HexToRgba() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-12">
         {/* Navigation Bar */}
-        <nav className="max-w-2xl mx-auto mb-8">
-          <div className="flex justify-center space-x-6">
-            <Link href="/" className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-300 font-medium">
-              RGBA to HEX
-            </Link>
-            <Link href="/tools/hex-to-rgba" className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 font-medium">
-              HEX to RGBA
-            </Link>
-          </div>
-        </nav>
+        <Navigation />
 
         {/* Main Tool Section */}
         <div className="max-w-2xl mx-auto mb-16">

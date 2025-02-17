@@ -6,6 +6,7 @@ import Link from 'next/link';
 import RgbInput from '@/components/RgbInput';
 import CmykDisplay from '@/components/CmykDisplay';
 import { rgbToCmyk, CMYK } from '@/utils/colorConverter';
+import Navigation from '@/components/Navigation';
 
 export default function RgbToCmyk() {
   const [rgbValue, setRgbValue] = useState({ r: 255, g: 255, b: 255 });
@@ -20,13 +21,7 @@ export default function RgbToCmyk() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-8">
         {/* Navigation Bar */}
-        <nav className="max-w-2xl mx-auto mb-6">
-          <div className="flex justify-center">
-            <Link href="/" className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-300 font-medium">
-              Color Converter Tools
-            </Link>
-          </div>
-        </nav>
+        <Navigation />
 
         {/* 转换工具区域 - 首屏显示 */}
         <div className="max-w-2xl mx-auto mb-16">

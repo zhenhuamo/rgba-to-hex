@@ -15,6 +15,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: 'https://rgbatohex.com/tools/hsl-to-hex',
+      lastModified: new Date().toISOString(),
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
+      url: 'https://rgbatohex.com/tools/cmyk-to-hex',
+      lastModified: new Date().toISOString(),
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
       url: 'https://rgbatohex.com/tools/rgb-to-hsl',
       lastModified: new Date().toISOString(),
       changeFrequency: 'daily',
@@ -22,6 +34,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: 'https://rgbatohex.com/tools/rgb-to-cmyk',
+      lastModified: new Date().toISOString(),
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
+      url: 'https://rgbatohex.com/tools/cmyk-to-rgb',
       lastModified: new Date().toISOString(),
       changeFrequency: 'daily',
       priority: 0.8,
@@ -50,5 +68,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.7,
     },
+    {
+      url: 'https://rgbatohex.com/blog/cmyk-to-hex-converter',
+      lastModified: new Date().toISOString(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    }
   ];
 } 
