@@ -36,6 +36,14 @@ export default function Blog() {
       date: '2024-02-14',
       readTime: '12 min read',
       category: 'Color Conversion',
+    },
+    {
+      title: 'RGB to CMYK Color Converter: Professional Guide',
+      description: 'Master RGB to CMYK color conversion with our comprehensive guide. Learn about digital-to-print color conversion, professional software integration, and color management techniques.',
+      link: '/blog/rgb-to-cmyk-converter',
+      date: '2024-02-15',
+      readTime: '15 min read',
+      category: 'Color Conversion',
     }
   ];
 

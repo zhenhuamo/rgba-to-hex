@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import RgbInput from '@/components/RgbInput';
 import CmykDisplay from '@/components/CmykDisplay';
 import { rgbToCmyk, CMYK } from '@/utils/colorConverter';

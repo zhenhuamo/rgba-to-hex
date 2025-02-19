@@ -73,6 +73,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date().toISOString(),
       changeFrequency: 'weekly',
       priority: 0.7,
+    },
+    {
+      url: 'https://rgbatohex.com/blog/rgb-to-cmyk-converter',
+      lastModified: new Date().toISOString(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
     }
   ];
 } 
