@@ -11,6 +11,7 @@ export default function Navigation() {
     { name: 'RGB to HSL', href: '/tools/rgb-to-hsl', color: 'bg-purple-500' },
     { name: 'RGB to CMYK', href: '/tools/rgb-to-cmyk', color: 'bg-cyan-500' },
     { name: 'CMYK to RGB', href: '/tools/cmyk-to-rgb', color: 'bg-yellow-500' },
+    { name: 'Color Contrast Checker', href: '/tools/color-contrast', color: 'bg-indigo-500' },
   ];
 
   return (
