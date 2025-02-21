@@ -44,6 +44,14 @@ export default function Blog() {
       date: '2024-02-15',
       readTime: '15 min read',
       category: 'Color Conversion',
+    },
+    {
+      title: 'CMYK to RGB Converter: Complete Color Code Guide',
+      description: 'Master CMYK to RGB conversion with our comprehensive guide. Learn about color codes, Photoshop techniques, Illustrator workflows, and programming implementations in Python and Java.',
+      link: '/blog/cmyk-to-rgb-converter',
+      date: '2024-02-20',
+      readTime: '15 min read',
+      category: 'Color Conversion',
     }
   ];
 
