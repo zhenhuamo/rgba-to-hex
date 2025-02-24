@@ -52,6 +52,16 @@ export default function Blog() {
       date: '2024-02-20',
       readTime: '15 min read',
       category: 'Color Conversion',
+    },
+    {
+      title: "Color Contrast Checker: Essential Tool for Web Accessibility",
+      description: "Learn how to use our color contrast checker tool to ensure your web designs meet WCAG accessibility standards. Discover best practices for creating accessible color combinations.",
+      link: "/blog/color-contrast-checker",
+      date: "2024-03-20",
+      readTime: "8 min read",
+      category: "Accessibility",
+      image: "/images/blog/color-contrast.jpg",
+      tags: ["accessibility", "WCAG", "color contrast", "web design", "UI/UX"]
     }
   ];
 
