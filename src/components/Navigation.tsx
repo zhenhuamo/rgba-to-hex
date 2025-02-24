@@ -12,6 +12,7 @@ export default function Navigation() {
     { name: 'RGB to CMYK', href: '/tools/rgb-to-cmyk', color: 'bg-cyan-500' },
     { name: 'CMYK to RGB', href: '/tools/cmyk-to-rgb', color: 'bg-yellow-500' },
     { name: 'Color Contrast Checker', href: '/tools/color-contrast', color: 'bg-indigo-500' },
+    { name: 'Color Palette', href: '/tools/palette-generator', color: 'bg-pink-500' },
   ];
 
   return (

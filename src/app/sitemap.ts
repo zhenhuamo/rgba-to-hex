@@ -79,6 +79,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date().toISOString(),
       changeFrequency: 'weekly',
       priority: 0.7,
-    }
+    },
+    {
+      url: 'https://rgbatohex.com/tools/palette-generator',
+      lastModified: new Date().toISOString(),
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+
   ];
 } 
