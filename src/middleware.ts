@@ -12,7 +12,8 @@ export function middleware(request: NextRequest) {
     request.nextUrl.pathname.startsWith('/tools/hsl-to-hex-converter') ||
     request.nextUrl.pathname.startsWith('/tools/cmyk-to-hex-converter') ||
     request.nextUrl.pathname.startsWith('/tools/rgb-to-hsl-converter') ||
-    request.nextUrl.pathname.startsWith('/tools/rgb-to-cmyk-converter')
+    request.nextUrl.pathname.startsWith('/tools/rgb-to-cmyk-converter') ||
+    request.nextUrl.pathname.startsWith('/tools/cmyk-to-rgb-converter')
   ) {
     response.headers.set('X-Frame-Options', 'ALLOWALL');
     response.headers.set('Content-Security-Policy', "frame-ancestors *");
@@ -33,6 +34,7 @@ export const config = {
     '/tools/cmyk-to-hex-converter',
     '/tools/rgb-to-hsl-converter',
     '/tools/rgb-to-cmyk-converter',
+    '/tools/cmyk-to-rgb-converter',
     '/((?!api|_next/static|_next/image|favicon.ico).*)'
   ],
 }; 
