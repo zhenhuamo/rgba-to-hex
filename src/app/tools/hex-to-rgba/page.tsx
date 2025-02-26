@@ -289,6 +289,77 @@ const hexToRgba = (hex) => {
               </div>
             </div>
           </div>
+
+          {/* Embed This Tool on Your Website Section */}
+          <div className="mt-12 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
+            <h2 className="text-2xl font-bold mb-6">Embed This Tool on Your Website</h2>
+            
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
+              You can easily embed this HEX to RGBA converter tool into your own website, blog, or online application. Simply copy the iframe code below and paste it into your HTML:
+            </p>
+            
+            <div className="relative">
+              <pre className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg overflow-x-auto">
+                <code>{`<iframe 
+  src="https://rgbatohex.com/tools/hex-to-rgba-converter?embed=true" 
+  width="100%" 
+  height="500" 
+  style="border:none;border-radius:12px;overflow:hidden;" 
+  title="HEX to RGBA Color Converter"
+></iframe>`}</code>
+              </pre>
+              <button
+                onClick={() => {
+                  const code = `<iframe src="https://rgbatohex.com/tools/hex-to-rgba-converter?embed=true" width="100%" height="500" style="border:none;border-radius:12px;overflow:hidden;" title="HEX to RGBA Color Converter"></iframe>`;
+                  navigator.clipboard.writeText(code);
+                }}
+                className="absolute top-3 right-3 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md text-sm"
+              >
+                Copy Code
+              </button>
+            </div>
+            
+            <h3 className="text-xl font-semibold mt-8 mb-4">Custom Embed Options</h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              You can customize the initial HEX color value of the embedded tool using URL parameters:
+            </p>
+            
+            <ul className="space-y-2 text-gray-600 dark:text-gray-300 list-disc list-inside mb-6">
+              <li><strong>defaultColor</strong>: Initial HEX color value (e.g., FF0000 for red)</li>
+            </ul>
+            
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              For example, to set red (#FF0000) as the initial color:
+            </p>
+            
+            <pre className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg overflow-x-auto mb-6">
+              <code>{`<iframe 
+  src="https://rgbatohex.com/tools/hex-to-rgba-converter?embed=true&defaultColor=FF0000" 
+  width="100%" 
+  height="500" 
+  style="border:none;border-radius:12px;overflow:hidden;" 
+  title="HEX to RGBA Color Converter - Red"
+></iframe>`}</code>
+            </pre>
+            
+            <h3 className="text-xl font-semibold mt-6 mb-4">Embed Example</h3>
+            <div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg">
+              <h4 className="text-lg font-medium mb-4">Embedded in a CSS Tutorial</h4>
+              <div className="border border-gray-300 dark:border-gray-600 rounded-lg p-6 bg-white dark:bg-gray-800">
+                <h5 className="text-lg font-medium mb-4">Working with Transparency in Modern CSS</h5>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  Modern web design often requires semi-transparent elements for overlays, cards, and UI components. Convert your solid HEX colors to RGBA to add transparency with the tool below:
+                </p>
+                <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-2 mb-4">
+                  <div className="text-xs text-gray-500 mb-1">HEX to RGBA Converter (Example Embed)</div>
+                  <div className="bg-gray-50 dark:bg-gray-900 h-10 animate-pulse rounded"></div>
+                </div>
+                <p className="text-gray-600 dark:text-gray-300 mt-4">
+                  Try converting your brand colors to RGBA with different alpha values to create layered UI elements with visual hierarchy.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

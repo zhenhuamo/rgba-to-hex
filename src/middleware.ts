@@ -8,7 +8,8 @@ export function middleware(request: NextRequest) {
   // Allow embedding tool pages from all origins
   if (
     request.nextUrl.pathname.startsWith('/tools/color-converter') ||
-    request.nextUrl.pathname.startsWith('/tools/hex-to-rgba-converter')
+    request.nextUrl.pathname.startsWith('/tools/hex-to-rgba-converter') ||
+    request.nextUrl.pathname.startsWith('/tools/hsl-to-hex-converter')
   ) {
     response.headers.set('X-Frame-Options', 'ALLOWALL');
     response.headers.set('Content-Security-Policy', "frame-ancestors *");
@@ -25,6 +26,7 @@ export const config = {
   matcher: [
     '/tools/color-converter',
     '/tools/hex-to-rgba-converter',
+    '/tools/hsl-to-hex-converter',
     '/((?!api|_next/static|_next/image|favicon.ico).*)'
   ],
 }; 
