@@ -1,21 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import RgbInput from '@/components/RgbInput';
-import CmykDisplay from '@/components/CmykDisplay';
-import { rgbToCmyk, CMYK } from '@/utils/colorConverter';
 import Navigation from '@/components/Navigation';
 
 export default function RgbToCmyk() {
-  const [rgbValue, setRgbValue] = useState({ r: 255, g: 255, b: 255 });
-  const [cmykValue, setCmykValue] = useState<CMYK | null>(null);
-
-  useEffect(() => {
-    const cmyk = rgbToCmyk(rgbValue);
-    setCmykValue(cmyk);
-  }, [rgbValue]);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-8">
@@ -36,18 +24,44 @@ export default function RgbToCmyk() {
             </p>
           </div>
 
-          {/* 转换工具 */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 backdrop-blur-sm bg-opacity-50 dark:bg-opacity-50">
-            <RgbInput value={rgbValue} onChange={setRgbValue} />
-            <div className="h-32 rounded-xl shadow-inner transition-colors duration-200 relative overflow-hidden my-6">
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundColor: `rgb(${rgbValue.r}, ${rgbValue.g}, ${rgbValue.b})`
+          {/* 嵌入独立转换器 */}
+          <div className="w-full mb-6">
+            <iframe 
+              src="/tools/rgb-to-cmyk-converter?embed=true" 
+              className="w-full border-none rounded-2xl shadow-xl"
+              height="650"
+              title="RGB to CMYK Color Converter"
+              loading="lazy"
+            />
+          </div>
+
+          {/* 嵌入指南部分 */}
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6">
+            <h2 className="text-xl font-bold mb-4">Embed This Tool on Your Website</h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              You can easily add this RGB to CMYK converter to your own website by copying the code below:
+            </p>
+            
+            <div className="relative">
+              <pre className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg overflow-x-auto text-sm">
+                <code>{`<iframe 
+  src="https://rgbatohex.com/tools/rgb-to-cmyk-converter?embed=true" 
+  width="100%" 
+  height="650" 
+  style="border:none;border-radius:12px;overflow:hidden;" 
+  title="RGB to CMYK Color Converter"
+></iframe>`}</code>
+              </pre>
+              <button
+                onClick={() => {
+                  const code = `<iframe src="https://rgbatohex.com/tools/rgb-to-cmyk-converter?embed=true" width="100%" height="650" style="border:none;border-radius:12px;overflow:hidden;" title="RGB to CMYK Color Converter"></iframe>`;
+                  navigator.clipboard.writeText(code);
                 }}
-              />
+                className="absolute top-3 right-3 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md text-sm"
+              >
+                Copy Code
+              </button>
             </div>
-            <CmykDisplay cmyk={cmykValue} />
           </div>
 
           {/* 快速功能说明 */}
