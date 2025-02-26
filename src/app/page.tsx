@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 
@@ -325,7 +324,7 @@ export default function Home() {
                 <h3 className="text-xl font-semibold mb-4">Integration Benefits</h3>
                 <ul className="space-y-2 text-gray-600 dark:text-gray-300">
                   <li>• <span className="font-medium">Zero Maintenance:</span> Tool updates automatically</li>
-                  <li>• <span className="font-medium">Performance:</span> Lightweight embed that won't slow your site</li>
+                  <li>• <span className="font-medium">Performance:</span> Lightweight embed that won&apos;t slow your site</li>
                   <li>• <span className="font-medium">Responsive:</span> Adapts to container width</li>
                   <li>• <span className="font-medium">Accessibility:</span> Fully accessible interface</li>
                   <li>• <span className="font-medium">No Dependencies:</span> Works with any website platform</li>
@@ -346,7 +345,7 @@ export default function Home() {
               <h3 className="text-xl font-semibold mb-4">Implementation Example</h3>
               <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  Here's how the tool might look embedded in a blog post about web design:
+                  Here&apos;s how the tool might look embedded in a blog post about web design:
                 </p>
                 <div className="border border-gray-300 dark:border-gray-600 rounded-lg p-6 bg-white dark:bg-gray-800">
                   <h4 className="text-lg font-medium mb-4">Working with Transparent Colors in CSS</h4>
