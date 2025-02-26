@@ -105,6 +105,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,
-    }
+    },
+    {
+      url: 'https://rgbatohex.com/tools/hex-to-rgba-converter',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
   ];
 } 

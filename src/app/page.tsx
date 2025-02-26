@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Navigation from '@/components/Navigation';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -362,6 +363,23 @@ export default function Home() {
                   </p>
                 </div>
               </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-3">More Embeddable Tools</h3>
+              <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+                <li>
+                  <Link href="/tools/hex-to-rgba-converter" className="text-blue-500 hover:text-blue-600">
+                    HEX to RGBA Converter
+                  </Link>
+                  <p className="text-sm mt-1">
+                    Convert HEX color codes to RGBA values with transparency support.
+                  </p>
+                  <pre className="bg-gray-100 dark:bg-gray-700 p-2 rounded mt-1 text-sm overflow-x-auto">
+                    <code>{`<iframe src="https://rgbatohex.com/tools/hex-to-rgba-converter?embed=true" width="100%" height="500" style="border:none;border-radius:12px;" title="HEX to RGBA Color Converter"></iframe>`}</code>
+                  </pre>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

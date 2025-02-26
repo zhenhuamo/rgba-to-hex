@@ -5,8 +5,11 @@ export function middleware(request: NextRequest) {
   // Get response object
   const response = NextResponse.next();
   
-  // Allow embedding tool page from all origins
-  if (request.nextUrl.pathname.startsWith('/tools/color-converter')) {
+  // Allow embedding tool pages from all origins
+  if (
+    request.nextUrl.pathname.startsWith('/tools/color-converter') ||
+    request.nextUrl.pathname.startsWith('/tools/hex-to-rgba-converter')
+  ) {
     response.headers.set('X-Frame-Options', 'ALLOWALL');
     response.headers.set('Content-Security-Policy', "frame-ancestors *");
   } else {
@@ -19,5 +22,9 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/tools/color-converter', '/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: [
+    '/tools/color-converter',
+    '/tools/hex-to-rgba-converter',
+    '/((?!api|_next/static|_next/image|favicon.ico).*)'
+  ],
 }; 
