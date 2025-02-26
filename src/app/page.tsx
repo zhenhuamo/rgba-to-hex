@@ -2,34 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import ColorInput from '@/components/ColorInput';
-import ColorPreview from '@/components/ColorPreview';
-import { rgbaToHex, isValidRgba } from '@/utils/colorConverter';
 import Navigation from '@/components/Navigation';
 
 export default function Home() {
-  const [rgba, setRgba] = useState({
-    r: 255,
-    g: 255,
-    b: 255,
-    a: 1
-  });
-
-  const handleChange = (key: keyof typeof rgba) => (value: number) => {
-    const newRgba = { ...rgba, [key]: value };
-    if (isValidRgba(newRgba)) {
-      setRgba(newRgba);
-    }
-  };
-
-  const copyToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText(rgbaToHex(rgba));
-    } catch (err) {
-      console.error('Failed to copy:', err);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-12">
@@ -57,69 +32,16 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Color preview and control area */}
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 backdrop-blur-sm bg-opacity-50 dark:bg-opacity-50 space-y-6 mb-6">
-            {/* Color preview */}
-            <div className="h-32 rounded-xl shadow-inner transition-colors duration-200 relative overflow-hidden"
-              style={{
-                backgroundColor: `rgba(${rgba.r}, ${rgba.g}, ${rgba.b}, ${rgba.a})`
-              }}
-            >
-              {/* Checkerboard background */}
-              <div className="absolute inset-0 grid grid-cols-8 grid-rows-4">
-                {Array.from({ length: 32 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className={`${
-                      (Math.floor(i / 8) + (i % 8)) % 2 === 0
-                        ? 'bg-gray-200'
-                        : 'bg-white'
-                    } opacity-50`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* RGBA input controls */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <ColorInput
-                label="Red (R)"
-                value={rgba.r}
-                onChange={handleChange('r')}
-                min={0}
-                max={255}
-              />
-              <ColorInput
-                label="Green (G)"
-                value={rgba.g}
-                onChange={handleChange('g')}
-                min={0}
-                max={255}
-              />
-              <ColorInput
-                label="Blue (B)"
-                value={rgba.b}
-                onChange={handleChange('b')}
-                min={0}
-                max={255}
-              />
-              <ColorInput
-                label="Alpha (A)"
-                value={rgba.a}
-                onChange={handleChange('a')}
-                min={0}
-                max={1}
-                step={0.01}
-              />
-            </div>
+          {/* 使用iframe嵌入颜色转换工具 */}
+          <div className="w-full">
+            <iframe 
+              src="/tools/color-converter?embed=true" 
+              className="w-full border-none rounded-2xl shadow-xl"
+              height="600"
+              title="RGBA to HEX Color Converter"
+              loading="lazy"
+            />
           </div>
-
-          {/* Color preview component */}
-          <ColorPreview
-            rgba={rgba}
-            hexColor={rgbaToHex(rgba)}
-            onCopy={copyToClipboard}
-          />
         </div>
 
         {/* SEO Content Section */}
@@ -337,6 +259,108 @@ export default function Home() {
                     <li>• Check accessibility for inclusive design</li>
                     <li>• Save commonly used colors for consistency</li>
                   </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Embed Instructions - New Section */}
+          <div className="bg-white dark:bg-gray-800/50 rounded-xl p-8 mb-12">
+            <h2 className="text-2xl font-bold mb-6">Embed This Tool On Your Website</h2>
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
+              The RGBA to HEX Color Converter can be easily embedded on any website, allowing your users to convert colors without leaving your site.
+              Simply copy the code below and paste it into your HTML.
+            </p>
+            
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold mb-4">Embed Code</h3>
+              <div className="relative">
+                <pre className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-sm overflow-x-auto mb-2">
+                  <code>{`<iframe 
+  src="https://rgbatohex.com/tools/color-converter?embed=true" 
+  width="100%" 
+  height="600" 
+  style="border:none;border-radius:12px;overflow:hidden;" 
+  title="RGBA to HEX Color Converter"
+></iframe>`}</code>
+                </pre>
+                <button 
+                  className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm"
+                  onClick={() => {
+                    const code = `<iframe src="https://rgbatohex.com/tools/color-converter?embed=true" width="100%" height="600" style="border:none;border-radius:12px;overflow:hidden;" title="RGBA to HEX Color Converter"></iframe>`;
+                    navigator.clipboard.writeText(code);
+                  }}
+                >
+                  Copy Code
+                </button>
+              </div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-xl font-semibold mb-4">Customization Options</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  You can customize the embedded tool by adding parameters to the URL:
+                </p>
+                <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+                  <li>
+                    <span className="font-medium">Default Color:</span>
+                    <pre className="bg-gray-100 dark:bg-gray-700 p-2 rounded mt-1 text-sm">?defaultColor=FF5500FF</pre>
+                    <p className="text-sm mt-1">Sets initial color values (RRGGBBAA format)</p>
+                  </li>
+                  <li>
+                    <span className="font-medium">Embed Mode:</span>
+                    <pre className="bg-gray-100 dark:bg-gray-700 p-2 rounded mt-1 text-sm">?embed=true</pre>
+                    <p className="text-sm mt-1">Optimizes display for embedded contexts</p>
+                  </li>
+                  <li>
+                    <span className="font-medium">Theme Override:</span>
+                    <pre className="bg-gray-100 dark:bg-gray-700 p-2 rounded mt-1 text-sm">?theme=light</pre>
+                    <p className="text-sm mt-1">Force light or dark theme (light/dark)</p>
+                  </li>
+                </ul>
+              </div>
+              
+              <div>
+                <h3 className="text-xl font-semibold mb-4">Integration Benefits</h3>
+                <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+                  <li>• <span className="font-medium">Zero Maintenance:</span> Tool updates automatically</li>
+                  <li>• <span className="font-medium">Performance:</span> Lightweight embed that won't slow your site</li>
+                  <li>• <span className="font-medium">Responsive:</span> Adapts to container width</li>
+                  <li>• <span className="font-medium">Accessibility:</span> Fully accessible interface</li>
+                  <li>• <span className="font-medium">No Dependencies:</span> Works with any website platform</li>
+                </ul>
+                
+                <h3 className="text-xl font-semibold mt-8 mb-4">Common Use Cases</h3>
+                <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+                  <li>• Design tool collections and resources</li>
+                  <li>• Web development tutorial sites</li>
+                  <li>• Creative agency websites</li>
+                  <li>• Design systems documentation</li>
+                  <li>• Educational platforms for web design</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className="mt-8">
+              <h3 className="text-xl font-semibold mb-4">Implementation Example</h3>
+              <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  Here's how the tool might look embedded in a blog post about web design:
+                </p>
+                <div className="border border-gray-300 dark:border-gray-600 rounded-lg p-6 bg-white dark:bg-gray-800">
+                  <h4 className="text-lg font-medium mb-4">Working with Transparent Colors in CSS</h4>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    When designing modern interfaces, you often need to work with transparency. 
+                    Use the tool below to convert RGBA colors to hexadecimal format with alpha channel support:
+                  </p>
+                  <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-2 mb-4">
+                    <div className="text-xs text-gray-500 mb-1">RGBA to HEX Converter (Embedded Tool)</div>
+                    <div className="bg-gray-50 dark:bg-gray-900 h-10 animate-pulse rounded"></div>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300 mt-4">
+                    With this tool, you can easily create semi-transparent colors for overlays, shadows, and modern UI elements.
+                  </p>
                 </div>
               </div>
             </div>

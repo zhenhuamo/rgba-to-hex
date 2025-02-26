@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://color-tools.com'; // 替换为你的实际域名
+  const baseUrl = 'https://rgbatohex.com.com'; // 替换为你的实际域名
 
   return [
     {
