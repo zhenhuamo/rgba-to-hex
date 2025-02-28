@@ -11,12 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${baseUrl}/tools/rgba-to-hex`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/tools/hex-to-rgba`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
@@ -35,6 +29,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/tools/rgb-to-hsl`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/tools/rgb-to-cmyk`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
@@ -47,13 +47,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/tools/color-contrast`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/tools/palette-generator`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/tools/color-contrast`,  // 添加颜色对比度检查工具
+      url: `${baseUrl}/tools/gradient-generator`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/tools/color-blindness-simulator`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
@@ -101,10 +113,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
     {
-      url: `${baseUrl}/blog/color-contrast-checker`,  // 添加颜色对比度检查工具的博客
+      url: `${baseUrl}/blog/color-contrast-checker`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,
-    },
+    }
   ];
 } 
