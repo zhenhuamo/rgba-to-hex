@@ -16,11 +16,11 @@ export default function GradientGeneratorPage() {
         <meta property="og:title" content="Gradient Color Generator | Create Beautiful CSS Gradients" />
         <meta property="og:description" content="Free online gradient generator tool. Create beautiful CSS gradients for your websites, apps, and UI designs." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://yourwebsite.com/gradient-generator" />
+        <meta property="og:url" content="https://rgbatohex.com/gradient-generator" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Gradient Color Generator | Create Beautiful CSS Gradients" />
         <meta name="twitter:description" content="Free online tool to create beautiful CSS gradients for your projects" />
-        <link rel="canonical" href="https://yourwebsite.com/gradient-generator" />
+        <link rel="canonical" href="https://rgbatohex.com/gradient-generator" />
       </Head>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
@@ -79,11 +79,11 @@ export default function GradientGeneratorPage() {
                   
                   <div className="relative">
                     <pre className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg overflow-x-auto text-sm">
-                      <code>{`<iframe src="https://yourwebsite.com/tools/gradient-generator-tool?embed=true" width="100%" height="800" style="border:none;border-radius:12px;overflow:hidden;" title="Gradient Color Generator"></iframe>`}</code>
+                      <code>{`<iframe src="https://rgbatohex.com/tools/gradient-generator-tool?embed=true" width="100%" height="800" style="border:none;border-radius:12px;overflow:hidden;" title="Gradient Color Generator"></iframe>`}</code>
                     </pre>
                     <button
                       onClick={() => {
-                        const code = `<iframe src="https://yourwebsite.com/tools/gradient-generator-tool?embed=true" width="100%" height="800" style="border:none;border-radius:12px;overflow:hidden;" title="Gradient Color Generator"></iframe>`;
+                        const code = `<iframe src="https://rgbatohex.com/tools/gradient-generator-tool?embed=true" width="100%" height="800" style="border:none;border-radius:12px;overflow:hidden;" title="Gradient Color Generator"></iframe>`;
                         navigator.clipboard.writeText(code);
                       }}
                       className="absolute top-3 right-3 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md text-sm"

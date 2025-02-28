@@ -16,7 +16,8 @@ export default function Navigation() {
     { name: 'CMYK to RGB', href: '/tools/cmyk-to-rgb', color: 'bg-yellow-500' },
     { name: 'Color Contrast Checker', href: '/tools/color-contrast', color: 'bg-indigo-500' },
     { name: 'Color Palette', href: '/tools/palette-generator', color: 'bg-pink-500' },
-    { name: 'Gradient Generator', href: '/tools/gradient-generator', color: 'bg-blue-500' }
+    { name: 'Gradient Generator', href: '/tools/gradient-generator', color: 'bg-blue-500' },
+    { name: 'Color Blindness Simulator', href: '/tools/color-blindness-simulator', color: 'bg-teal-500' }
   ];
 
   // Add scroll detection
@@ -136,8 +137,6 @@ export default function Navigation() {
             >
               Blog
             </Link>
-
-            {/* Call to action button */}
           </div>
 
           {/* Mobile menu button */}
@@ -210,16 +209,6 @@ export default function Navigation() {
             >
               Blog
             </Link>
-            
-            <div className="pt-2">
-              <a
-                href="/contact"
-                className="block w-full text-center bg-gradient-to-r from-blue-500 to-indigo-600 text-white px-4 py-3 rounded-lg font-medium hover:opacity-90"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Contact Us
-              </a>
-            </div>
           </div>
         </div>
       )}
