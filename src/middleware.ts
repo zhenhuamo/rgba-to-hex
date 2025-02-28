@@ -16,7 +16,8 @@ export function middleware(request: NextRequest) {
     request.nextUrl.pathname.startsWith('/tools/cmyk-to-rgb-converter') ||
     request.nextUrl.pathname.startsWith('/tools/color-contrast-checker') ||
     request.nextUrl.pathname.startsWith('/tools/gradient-generator-tool') ||
-    request.nextUrl.pathname.startsWith('/tools/color-blindness-simulator')
+    request.nextUrl.pathname.startsWith('/tools/color-blindness-simulator') ||
+    request.nextUrl.pathname.startsWith('/tools/image-color-extractor')
   ) {
     response.headers.set('X-Frame-Options', 'ALLOWALL');
     response.headers.set('Content-Security-Policy', "frame-ancestors *");
@@ -41,6 +42,7 @@ export const config = {
     '/tools/color-contrast-checker',
     '/tools/gradient-generator-tool',
     '/tools/color-blindness-simulator',
+    '/tools/image-color-extractor',
     '/((?!api|_next/static|_next/image|favicon.ico).*)'
   ],
 };

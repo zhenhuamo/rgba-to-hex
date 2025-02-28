@@ -17,7 +17,8 @@ export default function Navigation() {
     { name: 'Color Contrast Checker', href: '/tools/color-contrast', color: 'bg-indigo-500' },
     { name: 'Color Palette', href: '/tools/palette-generator', color: 'bg-pink-500' },
     { name: 'Gradient Generator', href: '/tools/gradient-generator', color: 'bg-blue-500' },
-    { name: 'Color Blindness Simulator', href: '/tools/color-blindness-simulator', color: 'bg-teal-500' }
+    { name: 'Color Blindness Simulator', href: '/tools/color-blindness-simulator', color: 'bg-teal-500' },
+    { name: 'Image Color Extractor', href: '/tools/image-color-extractor', color: 'bg-rose-500' }
   ];
 
   // Add scroll detection
