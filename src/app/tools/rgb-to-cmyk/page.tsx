@@ -27,7 +27,7 @@ export default function RgbToCmyk() {
           {/* 嵌入独立转换器 */}
           <div className="w-full mb-6">
             <iframe 
-              src="/tools/rgb-to-cmyk-converter?embed=true" 
+              src="/tools/rgb-to-cmyk-converter?embed=true&r=52&g=120&b=205" 
               className="w-full border-none rounded-2xl shadow-xl"
               height="650"
               title="RGB to CMYK Color Converter"
@@ -45,7 +45,7 @@ export default function RgbToCmyk() {
             <div className="relative">
               <pre className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg overflow-x-auto text-sm">
                 <code>{`<iframe 
-  src="https://rgbatohex.com/tools/rgb-to-cmyk-converter?embed=true" 
+  src="https://rgbatohex.com/tools/rgb-to-cmyk-converter?embed=true&r=52&g=120&b=205&showShare=true" 
   width="100%" 
   height="650" 
   style="border:none;border-radius:12px;overflow:hidden;" 
@@ -54,7 +54,7 @@ export default function RgbToCmyk() {
               </pre>
               <button
                 onClick={() => {
-                  const code = `<iframe src="https://rgbatohex.com/tools/rgb-to-cmyk-converter?embed=true" width="100%" height="650" style="border:none;border-radius:12px;overflow:hidden;" title="RGB to CMYK Color Converter"></iframe>`;
+                  const code = `<iframe src="https://rgbatohex.com/tools/rgb-to-cmyk-converter?embed=true&r=52&g=120&b=205&showShare=true" width="100%" height="650" style="border:none;border-radius:12px;overflow:hidden;" title="RGB to CMYK Color Converter"></iframe>`;
                   navigator.clipboard.writeText(code);
                 }}
                 className="absolute top-3 right-3 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md text-sm"
