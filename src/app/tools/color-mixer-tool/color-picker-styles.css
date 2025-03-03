@@ -1,0 +1,89 @@
+/* Custom react-colorful styles */
+.react-colorful {
+  width: 100% !important;
+  height: 200px !important;
+  border-radius: 10px;
+}
+
+/* Ensure color selection area fills container */
+.react-colorful__saturation {
+  border-radius: 10px 10px 0 0 !important;
+  border-bottom: none !important;
+  height: 165px !important;
+}
+
+/* Ensure color bar fills width */
+.react-colorful__hue {
+  height: 35px !important;
+  border-radius: 0 0 10px 10px !important;
+}
+
+/* Improve pointer styles */
+.react-colorful__saturation-pointer,
+.react-colorful__hue-pointer {
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  border: 2px solid white !important;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 0 5px rgba(0, 0, 0, 0.5) !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.react-colorful__hue-pointer {
+  width: 20px !important;
+}
+
+/* Fix container styles */
+.color-picker-container {
+  width: 100%;
+  max-width: 300px;
+  position: relative;
+  margin: 0 auto;
+  flex-grow: 1;
+}
+
+.hex-input-container {
+  flex-grow: 1;
+}
+
+/* Preset color styles */
+.color-preset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(35px, 1fr));
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.color-preset-item {
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.color-preset-item:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+}
+
+.color-preset-item.active {
+  border: 2px solid #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+/* Tab styles */
+.color-picker-tab {
+  font-weight: medium;
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.color-picker-tab.active {
+  border-bottom: 2px solid #3b82f6;
+  color: #3b82f6;
+} 

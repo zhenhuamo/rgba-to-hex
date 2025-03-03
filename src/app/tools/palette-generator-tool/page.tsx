@@ -3,7 +3,7 @@
 
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { HexColorPicker } from 'react-colorful';
 import { toast } from 'sonner';
 import { Toaster } from 'sonner';
@@ -12,6 +12,7 @@ import harmoniesPlugin from 'colord/plugins/harmonies';
 import a11yPlugin from 'colord/plugins/a11y';
 import mixPlugin from 'colord/plugins/mix';
 import namesPlugin from 'colord/plugins/names';
+import '../color-mixer-tool/color-picker-styles.css'; // 导入颜色选择器样式
 
 // 扩展 TypeScript 类型，解决方法不存在的错误
 declare module 'colord' {
@@ -765,7 +766,7 @@ export default function PaletteGeneratorTool() {
                       {isColorPickerOpen && (
                         <div className="absolute top-full left-0 mt-2 z-10">
                           <div className="fixed inset-0" onClick={() => setIsColorPickerOpen(false)}></div>
-                          <div className="relative z-20">
+                          <div className="relative z-20 color-picker-container" style={{ width: '240px', height: '234px' }}>
                             <HexColorPicker
                               color={baseColor}
                               onChange={handleBaseColorChange}

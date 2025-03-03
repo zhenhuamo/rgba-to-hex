@@ -1,103 +1,61 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { HexColorPicker } from 'react-colorful';
+import './color-picker-styles.css'; // Import custom styles
 
+// Preset color categories
+const colorPresets = {
+  Basic: [
+    '#ff0000', // Red
+    '#ff4500', // Orange Red
+    '#ffa500', // Orange
+    '#ffff00', // Yellow
+    '#008000', // Green
+    '#0000ff', // Blue
+    '#4b0082', // Indigo
+    '#800080', // Purple
+  ],
+  Grayscale: [
+    '#000000', // Black
+    '#333333', // Dark Gray
+    '#666666', // Medium Gray
+    '#999999', // Gray
+    '#cccccc', // Light Gray
+    '#ffffff', // White
+  ],
+  Web: [
+    '#1abc9c', // Turquoise
+    '#2ecc71', // Emerald
+    '#3498db', // Blue
+    '#9b59b6', // Purple
+    '#e74c3c', // Red
+    '#f39c12', // Orange
+    '#16a085', // Dark Turquoise
+    '#27ae60', // Dark Emerald
+    '#2980b9', // Dark Blue
+    '#8e44ad', // Dark Purple
+    '#c0392b', // Dark Red
+    '#d35400', // Dark Orange
+    '#7f8c8d', // Gray
+    '#2c3e50', // Dark Blue Gray
+  ]
+};
 
 // Color categories for swatches
-const colorCategories = [
-  { name: 'Red', baseColor: '#FF0000' },
-  { name: 'Green', baseColor: '#00FF00' },
-  { name: 'Blue', baseColor: '#0000FF' },
-  { name: 'Yellow', baseColor: '#FFFF00' },
-  { name: 'Purple', baseColor: '#800080' },
-  { name: 'Orange', baseColor: '#FFA500' },
-  { name: 'Gray', baseColor: '#808080' }
-];
+// const colorCategories = [
+//   { name: 'Red', baseColor: '#FF0000' },
+//   { name: 'Green', baseColor: '#00FF00' },
+//   { name: 'Blue', baseColor: '#0000FF' },
+//   { name: 'Yellow', baseColor: '#FFFF00' },
+//   { name: 'Purple', baseColor: '#800080' },
+//   { name: 'Orange', baseColor: '#FFA500' },
+//   { name: 'Gray', baseColor: '#808080' }
+// ];
 
 // Generate color variations for swatches
-const generateSwatches = (baseColor: string, count: number = 10) => {
-  const result = [];
-  
-  // Convert hex to HSL for easier manipulation
-  const hexToHSL = (hex: string) => {
-    // Remove # if present
-    hex = hex.replace('#', '');
-    
-    // Convert hex to RGB
-    const r = parseInt(hex.substring(0, 2), 16) / 255;
-    const g = parseInt(hex.substring(2, 4), 16) / 255;
-    const b = parseInt(hex.substring(4, 6), 16) / 255;
-    
-    const max = Math.max(r, g, b);
-    const min = Math.min(r, g, b);
-    // let h = 0, s = 0, l = (max + min) / 2;
-    // 修改为
-    let h = 0, s = 0; 
-    const l = (max + min) / 2;
-    
-    if (max !== min) {
-      const d = max - min;
-      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-      
-      if (max === r) h = (g - b) / d + (g < b ? 6 : 0);
-      else if (max === g) h = (b - r) / d + 2;
-      else h = (r - g) / d + 4;
-      
-      h /= 6;
-    }
-    
-    return { h: h * 360, s: s * 100, l: l * 100 };
-  };
-  
-  // Convert HSL to hex
-  const hslToHex = (h: number, s: number, l: number) => {
-    h /= 360;
-    s /= 100;
-    l /= 100;
-    
-    const hue2rgb = (p: number, q: number, t: number) => {
-      if (t < 0) t += 1;
-      if (t > 1) t -= 1;
-      if (t < 1/6) return p + (q - p) * 6 * t;
-      if (t < 1/2) return q;
-      if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
-      return p;
-    };
-    
-    let r, g, b;
-    
-    if (s === 0) {
-      r = g = b = l;
-    } else {
-      const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-      const p = 2 * l - q;
-      r = hue2rgb(p, q, h + 1/3);
-      g = hue2rgb(p, q, h);
-      b = hue2rgb(p, q, h - 1/3);
-    }
-    
-    const toHex = (x: number) => {
-      const hex = Math.round(x * 255).toString(16);
-      return hex.length === 1 ? '0' + hex : hex;
-    };
-    
-    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-  };
-  
-  const { h, s, l } = hexToHSL(baseColor);
-  
-  // Generate variations with different lightness and saturation
-  for (let i = 0; i < count; i++) {
-    // Adjust saturation and lightness based on position
-    const row = Math.floor(i / 5);
-    const newS = Math.min(100, Math.max(20, s - (row * 10)));
-    const newL = Math.min(90, Math.max(10, l + ((i % 5) * 10) - 20));
-    
-    result.push(hslToHex(h, newS, newL));
-  }
-  
-  return result;
-};
+// const generateSwatches = (baseColor: string, count: number = 10) => {
+// ... existing code ...
 
 // Color Mixer Component
 const ColorMixer = () => {
@@ -114,103 +72,17 @@ const ColorMixer = () => {
   const [activeColorIndex, setActiveColorIndex] = useState<number | null>(null);
   
   // Color picker states
-  const [pickerTab, setPickerTab] = useState<'picker'|'swatches'|'library'>('picker');
+  const [pickerTab, setPickerTab] = useState<'picker'|'swatches'>('swatches');
+  const [activePresetCategory, setActivePresetCategory] = useState<string>(Object.keys(colorPresets)[0]);
   const [pickerVisible, setPickerVisible] = useState<boolean>(false);
-  const [currentHue, setCurrentHue] = useState<number>(0);
-  const [currentSaturation, setCurrentSaturation] = useState<number>(100);
-  const [currentLightness, setCurrentLightness] = useState<number>(50);
   const [currentRgb, setCurrentRgb] = useState<{r: number, g: number, b: number}>({r: 255, g: 0, b: 0});
-  const [selectedCategory, setSelectedCategory] = useState<string>('Red');
   const [tempColor, setTempColor] = useState<string>('#FF0000');
-  const [isDragging, setIsDragging] = useState<boolean>(false);
-  const gradientRef = useRef<HTMLDivElement>(null);
   
   // Reference for tracking the latest mixed color to avoid async issues
   const latestMixedColorRef = useRef('#800080');
 
-  // Add a CSS keyframe for fade-in animation
-  useEffect(() => {
-    // Create a style element
-    const styleEl = document.createElement('style');
-    
-    // Define the animation
-    styleEl.innerHTML = `
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      
-      .animate-fadeIn {
-        animation: fadeIn 0.3s ease-out forwards;
-      }
-      
-      @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
-      }
-      
-      .animate-pulse-once {
-        animation: pulse 0.5s ease-in-out;
-      }
-    `;
-    
-    // Append to document head
-    document.head.appendChild(styleEl);
-    
-    // Clean up
-    return () => {
-      document.head.removeChild(styleEl);
-    };
-  }, []);
-
-  // Initialize component on mount - enhanced
-  useEffect(() => {
-    setMounted(true);
-    setIsInIframe(window.self !== window.top);
-
-    // Get preset colors from URL parameters
-    const params = new URLSearchParams(window.location.search);
-    const colorParam = params.get('colors');
-    
-    let initialColors = [
-      { color: '#FF0000', ratio: 1 }, // Default red
-      { color: '#0000FF', ratio: 1 }  // Default blue
-    ];
-    
-    if (colorParam) {
-      const colorsList = colorParam.split(',').map(color => {
-        // Ensure color format is correct (add # prefix if missing)
-        return { 
-          color: color.startsWith('#') ? color : `#${color}`, 
-          ratio: 1 
-        };
-      });
-      
-      if (colorsList.length > 0) {
-        initialColors = colorsList;
-      }
-    }
-    
-    setColors(initialColors);
-    
-    // Calculate initial mixed color immediately
-    const initialMixedColor = mixColors(initialColors);
-    setMixedColor(initialMixedColor);
-    
-    // Force draw on next frame after component mounts
-    const timer = setTimeout(() => {
-      if (canvasRef.current) {
-        drawMixedColor();
-        console.log("Initial draw called");
-      }
-    }, 100);
-    
-    return () => clearTimeout(timer);
-  }, []);
-
   // Color mixing algorithm (simple weighted average) - enhanced accuracy
-  const mixColors = (colorList: Array<{ color: string, ratio: number }>): string => {
+  const mixColors = useCallback((colorList: Array<{ color: string, ratio: number }>): string => {
     if (colorList.length === 0) return '#FFFFFF';
     if (colorList.length === 1) return colorList[0].color;
 
@@ -260,10 +132,10 @@ const ColorMixer = () => {
     const result = `#${toHex(r)}${toHex(g)}${toHex(b)}`;
     latestMixedColorRef.current = result; // Update the ref with latest calculated color
     return result;
-  };
+  }, []);
 
   // Draw the mixed color - with proper single-color handling
-  const drawMixedColor = () => {
+  const drawMixedColor = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -353,9 +225,81 @@ const ColorMixer = () => {
     gradient.addColorStop(1, 'rgba(0,0,0,0.1)');
     ctx.fillStyle = gradient;
     ctx.fill();
-  };
+  }, [colors, mixedColor]);
+
+  // Add a CSS keyframe for fade-in animation
+  useEffect(() => {
+    // Create a style element
+    const styleEl = document.createElement('style');
+    
+    // Define the animation
+    styleEl.innerHTML = `
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      .animate-fadeIn {
+        animation: fadeIn 0.3s ease-out forwards;
+      }
+      
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+      
+      .animate-pulse-once {
+        animation: pulse 0.5s ease-in-out;
+      }
+    `;
+    
+    // Append to document head
+    document.head.appendChild(styleEl);
+    
+    // Clean up
+    return () => {
+      document.head.removeChild(styleEl);
+    };
+  }, []);
+
+  // Initialize component on mount - enhanced
+  useEffect(() => {
+    setMounted(true);
+    setIsInIframe(window.self !== window.top);
+
+    // Get preset colors from URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const colorParam = params.get('colors');
+    
+    let initialColors = [
+      { color: '#FF0000', ratio: 1 }, // Default red
+      { color: '#0000FF', ratio: 1 }  // Default blue
+    ];
+    
+    if (colorParam) {
+      const colorsList = colorParam.split(',').map(color => {
+        // Ensure color format is correct (add # prefix if missing)
+        return { 
+          color: color.startsWith('#') ? color : `#${color}`, 
+          ratio: 1 
+        };
+      });
+      
+      if (colorsList.length > 0) {
+        initialColors = colorsList;
+      }
+    }
+    
+    setColors(initialColors);
+    
+    // 初始化混合颜色和绘制操作将由另一个依赖于colors的useEffect处理
+    
+    return () => {};
+  }, []); // 移除对 mixColors 和 drawMixedColor 的依赖
 
   // Recalculate mixed color when colors or ratios change - with single-color special handling
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (colors.length > 0) {
       // If there's only one color, use it directly
@@ -370,53 +314,49 @@ const ColorMixer = () => {
       console.log(`Recalculating: ${colors.length} colors, result: ${newMixedColor}`);
       
       // Force immediate redraw with latest calculated color
-      requestAnimationFrame(() => {
+      const renderFrame = () => {
         if (canvasRef.current && mounted) {
-          drawMixedColor();
-          
-          // For single color case, draw again after a brief delay for reliability
-          if (colors.length === 1) {
-            setTimeout(() => {
-              if (canvasRef.current) drawMixedColor();
-            }, 50);
+          // Access current drawMixedColor from ref
+          if (typeof drawMixedColor === 'function') {
+            drawMixedColor();
+            
+            // For single color case, draw again after a brief delay for reliability
+            if (colors.length === 1) {
+              setTimeout(() => {
+                if (canvasRef.current) drawMixedColor();
+              }, 50);
+            }
           }
         }
-      });
+      };
+      
+      requestAnimationFrame(renderFrame);
     }
-  }, [colors, mounted]);
-  
-  // Always redraw when component updates
-  useEffect(() => {
-    if (mounted && canvasRef.current) {
-      drawMixedColor();
-    }
-  });
+  }, [colors, mounted]); // 有意省略 mixColors 和 drawMixedColor 依赖项，以避免无限循环
 
-  // Force redraw function for external calls
-  const forceRedraw = () => {
-    if (canvasRef.current && mounted) {
-      console.log("Force redraw called, colors length:", colors.length);
-      
-      // For single color, use it directly
-      if (colors.length === 1) {
-        latestMixedColorRef.current = colors[0].color;
-      }
-      
-      // Draw now and after a short delay
-      drawMixedColor();
-      setTimeout(() => drawMixedColor(), 50);
-    }
-  };
-  
   // Special effect for the single color case - runs once after mount
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (mounted && colors.length === 1) {
       console.log("Single color effect triggered with:", colors[0].color);
       
+      // 直接执行重绘操作而不依赖于 forceRedraw
+      const performRedraw = () => {
+        if (canvasRef.current && mounted) {
+          console.log("Redrawing single color:", colors[0].color);
+          // 使用直接引用绘制函数
+          if (typeof drawMixedColor === 'function') {
+            // 确保使用正确的颜色
+            latestMixedColorRef.current = colors[0].color;
+            drawMixedColor();
+          }
+        }
+      };
+      
       // Force multiple redraws for reliability
-      const timer1 = setTimeout(() => forceRedraw(), 100);
-      const timer2 = setTimeout(() => forceRedraw(), 300);
-      const timer3 = setTimeout(() => forceRedraw(), 500);
+      const timer1 = setTimeout(() => performRedraw(), 100);
+      const timer2 = setTimeout(() => performRedraw(), 300);
+      const timer3 = setTimeout(() => performRedraw(), 500);
       
       return () => {
         clearTimeout(timer1);
@@ -424,42 +364,7 @@ const ColorMixer = () => {
         clearTimeout(timer3);
       };
     }
-  }, [colors.length, mounted]);
-
-  // Handle gradient area mouse events for color selection
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    setIsDragging(true);
-    handleColorSelection(e);
-  };
-  
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (isDragging) {
-      handleColorSelection(e);
-    }
-  };
-  
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-  
-  const handleColorSelection = (e: React.MouseEvent<HTMLDivElement>) => {
-    const gradientElement = gradientRef.current;
-    if (!gradientElement) return;
-    
-    const rect = gradientElement.getBoundingClientRect();
-    
-    // Calculate saturation and lightness based on position
-    let saturation = Math.round(((e.clientX - rect.left) / rect.width) * 100);
-    let lightness = Math.round(100 - ((e.clientY - rect.top) / rect.height) * 100);
-    
-    // Clamp values to 0-100 range
-    saturation = Math.max(0, Math.min(100, saturation));
-    lightness = Math.max(0, Math.min(100, lightness));
-    
-    // Update HSL values
-    updateHsl('s', saturation);
-    updateHsl('l', lightness);
-  };
+  }, [colors, mounted]); // 有意省略 drawMixedColor 依赖项，以避免无限循环
 
   // Add a new color with immediate calculation and redraw
   const addColor = () => {
@@ -529,33 +434,6 @@ const ColorMixer = () => {
     });
   };
 
-  // Handle hue slider dragging
-  const handleHueDrag = (e: React.MouseEvent<HTMLDivElement>) => {
-    const sliderElement = e.currentTarget;
-    const rect = sliderElement.getBoundingClientRect();
-    
-    const newHue = Math.round(((e.clientX - rect.left) / rect.width) * 359);
-    updateHsl('h', Math.max(0, Math.min(359, newHue)));
-  };
-  
-  // Handle saturation slider dragging
-  const handleSaturationDrag = (e: React.MouseEvent<HTMLDivElement>) => {
-    const sliderElement = e.currentTarget;
-    const rect = sliderElement.getBoundingClientRect();
-    
-    const newSaturation = Math.round(((e.clientX - rect.left) / rect.width) * 100);
-    updateHsl('s', Math.max(0, Math.min(100, newSaturation)));
-  };
-  
-  // Handle lightness slider dragging
-  const handleLightnessDrag = (e: React.MouseEvent<HTMLDivElement>) => {
-    const sliderElement = e.currentTarget;
-    const rect = sliderElement.getBoundingClientRect();
-    
-    const newLightness = Math.round(((e.clientX - rect.left) / rect.width) * 100);
-    updateHsl('l', Math.max(0, Math.min(100, newLightness)));
-  };
-
   // Open color picker
   const openColorPicker = (index: number) => {
     setActiveColorIndex(index);
@@ -563,48 +441,13 @@ const ColorMixer = () => {
     
     // Set initial picker values based on current color
     const color = colors[index].color;
-    updatePickerFromHex(color);
-  };
-  
-  // Convert hex to HSL and RGB
-  const updatePickerFromHex = (hex: string) => {
-    // Remove # if present
-    hex = hex.replace('#', '');
-    
-    // Convert hex to RGB
-    const r = parseInt(hex.substring(0, 2), 16);
-    const g = parseInt(hex.substring(2, 4), 16);
-    const b = parseInt(hex.substring(4, 6), 16);
-    
+    setTempColor(color);
+    // 直接设置RGB值，不使用updatePickerFromHex
+    const cleanHex = color.replace('#', '');
+    const r = parseInt(cleanHex.substring(0, 2), 16);
+    const g = parseInt(cleanHex.substring(2, 4), 16);
+    const b = parseInt(cleanHex.substring(4, 6), 16);
     setCurrentRgb({r, g, b});
-    setTempColor(`#${hex}`);
-    
-    // Convert RGB to HSL
-    const rNorm = r / 255;
-    const gNorm = g / 255;
-    const bNorm = b / 255;
-    
-    const max = Math.max(rNorm, gNorm, bNorm);
-    const min = Math.min(rNorm, gNorm, bNorm);
-    // let h = 0, s = 0, l = (max + min) / 2;
-    // 修改为
-    let h = 0, s = 0; 
-    const l = (max + min) / 2;
-    
-    if (max !== min) {
-      const d = max - min;
-      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-      
-      if (max === rNorm) h = (gNorm - bNorm) / d + (gNorm < bNorm ? 6 : 0);
-      else if (max === gNorm) h = (bNorm - rNorm) / d + 2;
-      else h = (rNorm - gNorm) / d + 4;
-      
-      h /= 6;
-    }
-    
-    setCurrentHue(Math.round(h * 360));
-    setCurrentSaturation(Math.round(s * 100));
-    setCurrentLightness(Math.round(l * 100));
   };
   
   // Update RGB values and temp color
@@ -619,66 +462,6 @@ const ColorMixer = () => {
     };
     
     const newColor = `#${toHex(newRgb.r)}${toHex(newRgb.g)}${toHex(newRgb.b)}`;
-    setTempColor(newColor);
-    
-    // Update HSL
-    updatePickerFromHex(newColor);
-  };
-  
-  // Update HSL values and temp color
-  const updateHsl = (type: 'h' | 's' | 'l', value: number) => {
-    if (type === 'h') setCurrentHue(value);
-    if (type === 's') setCurrentSaturation(value);
-    if (type === 'l') setCurrentLightness(value);
-    
-    // Convert HSL to RGB
-    const h = type === 'h' ? value : currentHue;
-    const s = type === 's' ? value : currentSaturation;
-    const l = type === 'l' ? value : currentLightness;
-    
-    const hsl2rgb = (h: number, s: number, l: number) => {
-      h /= 360;
-      s /= 100;
-      l /= 100;
-      
-      const hue2rgb = (p: number, q: number, t: number) => {
-        if (t < 0) t += 1;
-        if (t > 1) t -= 1;
-        if (t < 1/6) return p + (q - p) * 6 * t;
-        if (t < 1/2) return q;
-        if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
-        return p;
-      };
-      
-      let r, g, b;
-      
-      if (s === 0) {
-        r = g = b = l;
-      } else {
-        const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-        const p = 2 * l - q;
-        r = hue2rgb(p, q, h + 1/3);
-        g = hue2rgb(p, q, h);
-        b = hue2rgb(p, q, h - 1/3);
-      }
-      
-      return {
-        r: Math.round(r * 255),
-        g: Math.round(g * 255),
-        b: Math.round(b * 255)
-      };
-    };
-    
-    const rgb = hsl2rgb(h, s, l);
-    setCurrentRgb(rgb);
-    
-    // Convert to hex
-    const toHex = (c: number): string => {
-      const hex = Math.max(0, Math.min(255, c)).toString(16);
-      return hex.length === 1 ? '0' + hex : hex;
-    };
-    
-    const newColor = `#${toHex(rgb.r)}${toHex(rgb.g)}${toHex(rgb.b)}`;
     setTempColor(newColor);
   };
   
@@ -913,233 +696,123 @@ const ColorMixer = () => {
         {pickerVisible && (
           <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
             <div className="bg-white rounded-lg overflow-hidden shadow-2xl max-w-2xl w-full border border-gray-200 transform transition-all animate-fadeIn">
-              {/* Tabs */}
+              {/* Title Bar */}
               <div className="border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white">
-                <div className="flex">
+                <div className="flex items-center justify-between px-6 py-3">
+                  <div className="flex">
+                    <button 
+                      className={`mr-4 text-base font-medium transition-all ${pickerTab === 'picker' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-800'}`}
+                      onClick={() => setPickerTab('picker')}
+                    >
+                      Color Selector
+                    </button>
+                    <button 
+                      className={`text-base font-medium transition-all ${pickerTab === 'swatches' ? 'text-blue-600' : 'text-gray-600 hover:text-gray-800'}`}
+                      onClick={() => setPickerTab('swatches')}
+                    >
+                      Preset Colors
+                    </button>
+                  </div>
                   <button 
-                    className={`px-6 py-3 text-sm font-medium transition-all ${pickerTab === 'picker' ? 'text-blue-600 border-b-2 border-blue-600 bg-white' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'}`}
-                    onClick={() => setPickerTab('picker')}
+                    onClick={cancelColorSelection}
+                    className="text-gray-500 hover:text-gray-700 focus:outline-none"
                   >
-                    Color Picker
-                  </button>
-                  <button 
-                    className={`px-6 py-3 text-sm font-medium transition-all ${pickerTab === 'swatches' ? 'text-blue-600 border-b-2 border-blue-600 bg-white' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'}`}
-                    onClick={() => setPickerTab('swatches')}
-                  >
-                    Swatches
-                  </button>
-                  <button 
-                    className={`px-6 py-3 text-sm font-medium transition-all ${pickerTab === 'library' ? 'text-blue-600 border-b-2 border-blue-600 bg-white' : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'}`}
-                    onClick={() => setPickerTab('library')}
-                  >
-                    Library
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
                   </button>
                 </div>
               </div>
               
               {/* Color Picker Tab */}
               {pickerTab === 'picker' && (
-                <div className="p-5 shadow-inner">
+                <div className="p-6">
                   <div className="flex flex-col md:flex-row gap-6">
-                    {/* Main color gradient */}
-                    <div 
-                      ref={gradientRef}
-                      className="relative w-full md:w-64 h-64 rounded-lg overflow-hidden border border-gray-300 cursor-pointer shadow-inner transition-transform hover:scale-[1.01]"
-                      onMouseDown={handleMouseDown}
-                      onMouseMove={handleMouseMove}
-                      onMouseUp={handleMouseUp}
-                      onMouseLeave={handleMouseUp}
-                    >
-                      <div 
-                        className="absolute inset-0"
-                        style={{
-                          backgroundColor: `hsl(${currentHue}, 100%, 50%)`,
-                          backgroundImage: 'linear-gradient(to right, #fff, transparent), linear-gradient(to top, #000, transparent)'
-                        }}
-                      />
-                      <div
-                        className="absolute w-8 h-8 -ml-4 -mt-4 rounded-full border-2 border-white shadow-lg transform transition-all duration-75 cursor-move flex items-center justify-center"
-                        style={{
-                          left: `${currentSaturation}%`,
-                          top: `${100 - currentLightness}%`,
-                          backgroundColor: tempColor,
-                          boxShadow: '0 0 0 2px rgba(0,0,0,0.2), 0 3px 8px rgba(0,0,0,0.3)'
+                    {/* Using react-colorful color picker component */}
+                    <div className="color-picker-container">
+                      <HexColorPicker 
+                        color={tempColor} 
+                        onChange={(color) => {
+                          setTempColor(color);
+                          const cleanHex = color.replace('#', '');
+                          const r = parseInt(cleanHex.substring(0, 2), 16);
+                          const g = parseInt(cleanHex.substring(2, 4), 16);
+                          const b = parseInt(cleanHex.substring(4, 6), 16);
+                          setCurrentRgb({r, g, b});
                         }}
                       />
                     </div>
                     
                     <div className="flex-1">
                       {/* Color preview */}
-                      <div className="flex mb-4 animate-pulse-once overflow-hidden rounded-lg shadow-md border border-gray-300">
+                      <div className="flex mb-4 overflow-hidden rounded-lg shadow-md border border-gray-300">
                         <div className="w-1/2 h-16" style={{ backgroundColor: tempColor }}></div>
                         <div className="w-1/2 h-16 bg-gray-100 flex items-center justify-center">
                           <span className="text-gray-800 font-mono text-lg font-semibold">{tempColor}</span>
                         </div>
                       </div>
                       
-                      {/* Hue slider */}
-                      <div className="mb-4">
-                        <div className="flex items-center mb-2">
-                          <span className="text-gray-600 w-10">H</span>
-                          <div className="relative flex-1 h-10 rounded-full overflow-hidden cursor-pointer shadow-inner hover:shadow-md transition-all"
-                               onMouseDown={(e) => { handleHueDrag(e); setIsDragging(true); }}
-                               onMouseMove={(e) => isDragging && handleHueDrag(e)}
-                               onMouseUp={() => setIsDragging(false)}
-                               onMouseLeave={() => setIsDragging(false)}>
-                            <div 
-                              className="absolute inset-0"
-                              style={{
-                                background: 'linear-gradient(to right, #FF0000, #FFFF00, #00FF00, #00FFFF, #0000FF, #FF00FF, #FF0000)'
-                              }}
-                            />
-                            <input
-                              type="range"
-                              min="0"
-                              max="359"
-                              value={currentHue}
-                              onChange={(e) => updateHsl('h', parseInt(e.target.value))}
-                              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                            />
-                            <div 
-                              className="absolute w-4 h-full bg-white border border-gray-400 transform -translate-x-1/2 rounded-full shadow"
-                              style={{ left: `calc(${currentHue / 359 * 100}% - 3px)` }}
-                            />
-                          </div>
-                          <input
-                            type="number"
-                            min="0"
-                            max="359"
-                            value={currentHue}
-                            onChange={(e) => updateHsl('h', parseInt(e.target.value))}
-                            className="ml-2 w-16 p-2 bg-white border border-gray-300 rounded text-gray-800 text-center shadow-inner focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                          />
-                        </div>
-                        
-                        {/* Saturation slider */}
-                        <div className="flex items-center mb-2">
-                          <span className="text-gray-600 w-10">S</span>
-                          <div className="relative flex-1 h-10 rounded-full overflow-hidden cursor-pointer shadow-inner hover:shadow-md transition-all"
-                               onMouseDown={(e) => { handleSaturationDrag(e); setIsDragging(true); }}
-                               onMouseMove={(e) => isDragging && handleSaturationDrag(e)}
-                               onMouseUp={() => setIsDragging(false)}
-                               onMouseLeave={() => setIsDragging(false)}>
-                            <div 
-                              className="absolute inset-0"
-                              style={{
-                                background: `linear-gradient(to right, hsl(${currentHue}, 0%, ${currentLightness}%), hsl(${currentHue}, 100%, ${currentLightness}%))`
-                              }}
-                            />
-                            <input
-                              type="range"
-                              min="0"
-                              max="100"
-                              value={currentSaturation}
-                              onChange={(e) => updateHsl('s', parseInt(e.target.value))}
-                              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                            />
-                            <div 
-                              className="absolute w-4 h-full bg-white border border-gray-400 transform -translate-x-1/2 rounded-full shadow"
-                              style={{ left: `calc(${currentSaturation}% - 3px)` }}
-                            />
-                          </div>
-                          <input
-                            type="number"
-                            min="0"
-                            max="100"
-                            value={currentSaturation}
-                            onChange={(e) => updateHsl('s', parseInt(e.target.value))}
-                            className="ml-2 w-16 p-2 bg-white border border-gray-300 rounded text-gray-800 text-center shadow-inner focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                          />
-                        </div>
-                        
-                        {/* Lightness slider */}
-                        <div className="flex items-center mb-4">
-                          <span className="text-gray-600 w-10">L</span>
-                          <div className="relative flex-1 h-10 rounded-full overflow-hidden cursor-pointer shadow-inner hover:shadow-md transition-all"
-                               onMouseDown={(e) => { handleLightnessDrag(e); setIsDragging(true); }}
-                               onMouseMove={(e) => isDragging && handleLightnessDrag(e)}
-                               onMouseUp={() => setIsDragging(false)}
-                               onMouseLeave={() => setIsDragging(false)}>
-                            <div 
-                              className="absolute inset-0"
-                              style={{
-                                background: `linear-gradient(to right, #000, hsl(${currentHue}, ${currentSaturation}%, 50%), #fff)`
-                              }}
-                            />
-                            <input
-                              type="range"
-                              min="0"
-                              max="100"
-                              value={currentLightness}
-                              onChange={(e) => updateHsl('l', parseInt(e.target.value))}
-                              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                            />
-                            <div 
-                              className="absolute w-4 h-full bg-white border border-gray-400 transform -translate-x-1/2 rounded-full shadow"
-                              style={{ left: `calc(${currentLightness}% - 3px)` }}
-                            />
-                          </div>
-                          <input
-                            type="number"
-                            min="0"
-                            max="100"
-                            value={currentLightness}
-                            onChange={(e) => updateHsl('l', parseInt(e.target.value))}
-                            className="ml-2 w-16 p-2 bg-white border border-gray-300 rounded text-gray-800 text-center shadow-inner focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-                          />
-                        </div>
-                        
-                        {/* RGB inputs */}
-                        <div className="flex items-center mb-2">
-                          <span className="text-gray-600 w-10">R</span>
+                      {/* RGB inputs */}
+                      <div className="grid grid-cols-3 gap-4 mb-4">
+                        <div>
+                          <label className="block text-gray-600 text-sm mb-1">R</label>
                           <input
                             type="number"
                             min="0"
                             max="255"
                             value={currentRgb.r}
                             onChange={(e) => updateRgb('r', parseInt(e.target.value))}
-                            className="w-16 p-2 bg-white border border-gray-300 rounded text-gray-800 text-center shadow-inner focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                            className="w-full p-2 bg-white border border-gray-300 rounded text-gray-800 text-center shadow-inner focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
                           />
                         </div>
                         
-                        <div className="flex items-center mb-2">
-                          <span className="text-gray-600 w-10">G</span>
+                        <div>
+                          <label className="block text-gray-600 text-sm mb-1">G</label>
                           <input
                             type="number"
                             min="0"
                             max="255"
                             value={currentRgb.g}
                             onChange={(e) => updateRgb('g', parseInt(e.target.value))}
-                            className="w-16 p-2 bg-white border border-gray-300 rounded text-gray-800 text-center shadow-inner focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                            className="w-full p-2 bg-white border border-gray-300 rounded text-gray-800 text-center shadow-inner focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
                           />
                         </div>
                         
-                        <div className="flex items-center mb-2">
-                          <span className="text-gray-600 w-10">B</span>
+                        <div>
+                          <label className="block text-gray-600 text-sm mb-1">B</label>
                           <input
                             type="number"
                             min="0"
                             max="255"
                             value={currentRgb.b}
                             onChange={(e) => updateRgb('b', parseInt(e.target.value))}
-                            className="w-16 p-2 bg-white border border-gray-300 rounded text-gray-800 text-center shadow-inner focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                            className="w-full p-2 bg-white border border-gray-300 rounded text-gray-800 text-center shadow-inner focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
                           />
                         </div>
-                        
-                        {/* Hex input */}
-                        <div className="flex items-center">
-                          <span className="text-gray-600 w-10">#</span>
+                      </div>
+                      
+                      {/* Hex input */}
+                      <div className="mb-4">
+                        <label className="block text-gray-600 text-sm mb-1">HEX</label>
+                        <div className="flex">
+                          <span className="inline-flex items-center px-3 text-gray-500 bg-gray-100 border border-r-0 border-gray-300 rounded-l-md">
+                            #
+                          </span>
                           <input
                             type="text"
                             value={tempColor.replace('#', '')}
                             onChange={(e) => {
                               const value = e.target.value.replace(/[^0-9A-Fa-f]/g, '');
                               if (value.length <= 6) {
-                                setTempColor(`#${value.padEnd(6, '0')}`);
-                                updatePickerFromHex(`#${value.padEnd(6, '0')}`);
+                                const newColor = `#${value.padEnd(6, '0')}`;
+                                setTempColor(newColor);
+                                const r = parseInt(value.padEnd(6, '0').substring(0, 2), 16);
+                                const g = parseInt(value.padEnd(6, '0').substring(2, 4), 16);
+                                const b = parseInt(value.padEnd(6, '0').substring(4, 6), 16);
+                                setCurrentRgb({r, g, b});
                               }
                             }}
-                            className="w-24 p-2 bg-white border border-gray-300 rounded text-gray-800 text-center font-mono shadow-inner focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                            className="flex-1 p-2 bg-white border border-gray-300 rounded-r-md text-gray-800 font-mono text-center shadow-inner focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
                             maxLength={6}
                           />
                         </div>
@@ -1149,61 +822,81 @@ const ColorMixer = () => {
                 </div>
               )}
               
-              {/* Swatches Tab */}
+              {/* Preset Colors Tab */}
               {pickerTab === 'swatches' && (
-                <div className="p-4">
-                  {/* Color categories */}
+                <div className="p-6">
+                  {/* Preset Color Categories */}
                   <div className="border-b border-gray-200 mb-4">
-                    <div className="flex flex-wrap">
-                      {colorCategories.map(category => (
+                    <div className="flex flex-wrap pb-2">
+                      {Object.keys(colorPresets).map(category => (
                         <button
-                          key={category.name}
-                          onClick={() => setSelectedCategory(category.name)}
-                          className={`px-3 py-1 mr-2 mb-2 text-sm ${
-                            selectedCategory === category.name
-                              ? 'text-blue-600 font-medium'
-                              : 'text-gray-600'
+                          key={category}
+                          onClick={() => setActivePresetCategory(category)}
+                          className={`px-3 py-1 mr-2 mb-2 text-sm rounded transition-all ${
+                            activePresetCategory === category
+                              ? 'bg-blue-100 text-blue-600 font-medium'
+                              : 'text-gray-600 hover:bg-gray-100'
                           }`}
                         >
-                          <span className="inline-block w-3 h-3 rounded-full mr-1" style={{ backgroundColor: category.baseColor }}></span>
-                          {category.name}
+                          {category}
                         </button>
                       ))}
                     </div>
                   </div>
                   
-                  {/* Color swatches grid */}
-                  <div className="grid grid-cols-10 gap-1">
-                    {generateSwatches(colorCategories.find(c => c.name === selectedCategory)?.baseColor || '#FF0000').map((color, index) => (
-                      <button
-                        key={index}
-                        onClick={() => {
-                          setTempColor(color);
-                          updatePickerFromHex(color);
-                        }}
-                        className={`w-full aspect-square rounded overflow-hidden ${tempColor === color ? 'ring-2 ring-blue-500' : 'border border-gray-300 hover:border-gray-500'}`}
-                        style={{ backgroundColor: color }}
-                      />
-                    ))}
+                  {/* Preset Color Grid */}
+                  <div className="mb-4">
+                    <div className="grid grid-cols-8 gap-2">
+                      {colorPresets[activePresetCategory as keyof typeof colorPresets].map((color, index) => (
+                        <button
+                          key={index}
+                          onClick={() => {
+                            setTempColor(color);
+                            const cleanHex = color.replace('#', '');
+                            const r = parseInt(cleanHex.substring(0, 2), 16);
+                            const g = parseInt(cleanHex.substring(2, 4), 16);
+                            const b = parseInt(cleanHex.substring(4, 6), 16);
+                            setCurrentRgb({r, g, b});
+                          }}
+                          className="w-full aspect-square rounded-lg shadow-sm overflow-hidden transition-transform hover:scale-105 focus:outline-none"
+                          style={{ 
+                            backgroundColor: color,
+                            border: tempColor === color ? '2px solid #3b82f6' : '1px solid #e5e7eb'
+                          }}
+                        />
+                      ))}
+                    </div>
                   </div>
                   
-                  {/* Sort options */}
-                  <div className="mt-4 flex items-center">
-                    <span className="text-gray-600 text-sm mr-2">Sort Colors By:</span>
-                    <select className="bg-white border border-gray-300 text-gray-800 rounded p-1 text-sm">
-                      <option>Hue</option>
-                      <option>Saturation</option>
-                      <option>Lightness</option>
-                    </select>
-                  </div>
-                </div>
-              )}
-              
-              {/* Library Tab */}
-              {pickerTab === 'library' && (
-                <div className="p-4">
-                  <div className="text-center text-gray-600 py-8">
-                    Saved colors will appear here
+                  {/* Color Preview */}
+                  <div className="flex mt-6 rounded-lg overflow-hidden border border-gray-200 shadow-md">
+                    <div 
+                      className="w-1/3 p-6 flex items-center justify-center" 
+                      style={{ backgroundColor: tempColor }}
+                    >
+                      <span className={`font-medium ${parseInt(tempColor.slice(1), 16) > 0xffffff / 2 ? 'text-gray-800' : 'text-white'}`}>
+                        Preview
+                      </span>
+                    </div>
+                    <div className="w-2/3 bg-gray-50 p-4">
+                      <h4 className="text-sm font-medium text-gray-700 mb-1">Selected Color</h4>
+                      <div className="flex items-center">
+                        <span className="uppercase font-mono text-lg text-gray-800">
+                          {tempColor}
+                        </span>
+                        <button
+                          onClick={() => {
+                            navigator.clipboard.writeText(tempColor);
+                          }}
+                          className="ml-2 p-1 rounded hover:bg-gray-200 text-gray-600"
+                          title="Copy color code"
+                        >
+                          <svg className="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
