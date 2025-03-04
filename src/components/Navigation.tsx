@@ -139,6 +139,19 @@ export default function Navigation() {
             >
               Blog
             </Link>
+            
+            {/* 联系我们链接 */}
+            <a
+              href="mailto:mozhenhuamo@gmail.com"
+              className="font-medium transition-colors duration-200 text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 flex items-center group relative"
+              title="If you have any issues or suggestions for improvement, please contact us"
+            >
+              <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              Contact: mozhenhuamo@gmail.com
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300"></span>
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -211,6 +224,21 @@ export default function Navigation() {
             >
               Blog
             </Link>
+            
+            {/* 移动版联系我们链接 */}
+            <a
+              href="mailto:mozhenhuamo@gmail.com"
+              className="block px-3 py-2 rounded-md font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+              <div>
+                <div>Contact</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">mozhenhuamo@gmail.com (Suggestions welcome)</div>
+              </div>
+            </a>
           </div>
         </div>
       )}
