@@ -12,6 +12,7 @@
     "@modelcontextprotocol/server-sequential-thinking": "^0.6.2",
     "colord": "^2.9.3",
     "kmeans-js": "^0.1.2",
+    "mixbox": "^2.0.0",
     "next": "15.1.6",
     "react": "^18.2.0",
     "react-colorful": "^5.6.1",

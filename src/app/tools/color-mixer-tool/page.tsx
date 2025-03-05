@@ -1,7 +1,13 @@
 'use client';
 
+// Module declaration at the top of the file
+declare module 'mixbox' {
+  export function lerp(color1: [number, number, number], color2: [number, number, number], t: number): [number, number, number];
+}
+
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { HexColorPicker } from 'react-colorful';
+import mixbox from 'mixbox'; // Import mixbox library
 import './color-picker-styles.css'; // Import custom styles
 
 // Preset color categories
@@ -42,20 +48,24 @@ const colorPresets = {
   ]
 };
 
-// Color categories for swatches
-// const colorCategories = [
-//   { name: 'Red', baseColor: '#FF0000' },
-//   { name: 'Green', baseColor: '#00FF00' },
-//   { name: 'Blue', baseColor: '#0000FF' },
-//   { name: 'Yellow', baseColor: '#FFFF00' },
-//   { name: 'Purple', baseColor: '#800080' },
-//   { name: 'Orange', baseColor: '#FFA500' },
-//   { name: 'Gray', baseColor: '#808080' }
-// ];
+// Helper function: Convert hex color to RGB object
+const hexToRgb = (hex: string): { r: number, g: number, b: number } => {
+  const cleanHex = hex.replace('#', '');
+  const r = parseInt(cleanHex.substring(0, 2), 16);
+  const g = parseInt(cleanHex.substring(2, 4), 16);
+  const b = parseInt(cleanHex.substring(4, 6), 16);
+  return { r, g, b };
+};
 
-// Generate color variations for swatches
-// const generateSwatches = (baseColor: string, count: number = 10) => {
-// ... existing code ...
+// Helper function: Convert RGB object to RGB array [r,g,b]
+const rgbObjToArray = (rgb: { r: number, g: number, b: number }): [number, number, number] => {
+  return [rgb.r, rgb.g, rgb.b];
+};
+
+// Helper function: Convert RGB to hex color
+const rgbToHex = (r: number, g: number, b: number): string => {
+  return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+};
 
 // Color Mixer Component
 const ColorMixer = () => {
@@ -81,57 +91,67 @@ const ColorMixer = () => {
   // Reference for tracking the latest mixed color to avoid async issues
   const latestMixedColorRef = useRef('#800080');
 
-  // Color mixing algorithm (simple weighted average) - enhanced accuracy
+  // Improved color mixing algorithm (using mixbox)
   const mixColors = useCallback((colorList: Array<{ color: string, ratio: number }>): string => {
     if (colorList.length === 0) return '#FFFFFF';
     if (colorList.length === 1) return colorList[0].color;
 
-    let totalRatio = 0;
-    let r = 0, g = 0, b = 0;
-
-    colorList.forEach(item => {
-      const hex = item.color.replace('#', '');
-      const ratio = item.ratio;
+    // Mixing two colors
+    if (colorList.length === 2) {
+      // Convert hex colors to RGB objects
+      const rgb1Obj = hexToRgb(colorList[0].color);
+      const rgb2Obj = hexToRgb(colorList[1].color);
       
-      try {
-        // Parse RGB values with error handling
-        const rValue = parseInt(hex.substring(0, 2), 16);
-        const gValue = parseInt(hex.substring(2, 4), 16);
-        const bValue = parseInt(hex.substring(4, 6), 16);
-        
-        if (!isNaN(rValue) && !isNaN(gValue) && !isNaN(bValue)) {
-          // Weighted accumulation
-          r += rValue * ratio;
-          g += gValue * ratio;
-          b += bValue * ratio;
-          totalRatio += ratio;
-        }
-      } catch {
-        console.error('Error parsing color hex:', hex);
-      }
-    });
+      // Convert RGB objects to arrays [r,g,b]
+      const rgb1Array = rgbObjToArray(rgb1Obj);
+      const rgb2Array = rgbObjToArray(rgb2Obj);
+      
+      // Calculate mixing ratio based on provided ratios
+      const totalRatio = colorList[0].ratio + colorList[1].ratio;
+      const t = colorList[1].ratio / totalRatio; // t is the weight of the second color
+      
+      // Use mixbox.lerp for better color mixing
+      // mixbox.lerp accepts and returns [r,g,b] arrays
+      const mixedRgb = mixbox.lerp(rgb1Array, rgb2Array, t);
+      
+      // Convert result back to hex
+      return rgbToHex(
+        Math.round(mixedRgb[0]), 
+        Math.round(mixedRgb[1]), 
+        Math.round(mixedRgb[2])
+      );
+    }
 
-    if (totalRatio === 0) return '#FFFFFF'; // Avoid division by zero
-
-    // Calculate weighted average with proper rounding
-    r = Math.round(r / totalRatio);
-    g = Math.round(g / totalRatio);
-    b = Math.round(b / totalRatio);
-
-    // Ensure RGB values are within valid range
-    r = Math.min(255, Math.max(0, r));
-    g = Math.min(255, Math.max(0, g));
-    b = Math.min(255, Math.max(0, b));
-
-    // Convert back to hex color code with padding
-    const toHex = (c: number): string => {
-      const hex = c.toString(16);
-      return hex.length === 1 ? '0' + hex : hex;
-    };
-
-    const result = `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-    latestMixedColorRef.current = result; // Update the ref with latest calculated color
-    return result;
+    // Mixing more than two colors, using sequential mixing
+    let resultColor = colorList[0].color;
+    let accumulatedRatio = colorList[0].ratio;
+    
+    for (let i = 1; i < colorList.length; i++) {
+      const currentColor = colorList[i];
+      
+      // Convert hex colors to RGB arrays
+      const rgb1Array = rgbObjToArray(hexToRgb(resultColor));
+      const rgb2Array = rgbObjToArray(hexToRgb(currentColor.color));
+      
+      // Calculate new mixing ratio for this step
+      const newRatio = currentColor.ratio / (accumulatedRatio + currentColor.ratio);
+      
+      // Use mixbox.lerp for better color mixing
+      const mixedRgb = mixbox.lerp(rgb1Array, rgb2Array, newRatio);
+      
+      // Convert result back to hex
+      resultColor = rgbToHex(
+        Math.round(mixedRgb[0]), 
+        Math.round(mixedRgb[1]), 
+        Math.round(mixedRgb[2])
+      );
+      
+      // Update accumulated ratio
+      accumulatedRatio += currentColor.ratio;
+    }
+    
+    latestMixedColorRef.current = resultColor; // Update the ref with latest calculated color
+    return resultColor;
   }, []);
 
   // Draw the mixed color - with proper single-color handling
@@ -263,7 +283,7 @@ const ColorMixer = () => {
     };
   }, []);
 
-  // Initialize component on mount - enhanced
+  // Initialize component on mount
   useEffect(() => {
     setMounted(true);
     setIsInIframe(window.self !== window.top);
@@ -293,13 +313,10 @@ const ColorMixer = () => {
     
     setColors(initialColors);
     
-    // 初始化混合颜色和绘制操作将由另一个依赖于colors的useEffect处理
-    
     return () => {};
-  }, []); // 移除对 mixColors 和 drawMixedColor 的依赖
+  }, []);
 
   // Recalculate mixed color when colors or ratios change - with single-color special handling
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (colors.length > 0) {
       // If there's only one color, use it directly
@@ -332,21 +349,20 @@ const ColorMixer = () => {
       
       requestAnimationFrame(renderFrame);
     }
-  }, [colors, mounted]); // 有意省略 mixColors 和 drawMixedColor 依赖项，以避免无限循环
+  }, [colors, mounted, mixColors, drawMixedColor]);
 
   // Special effect for the single color case - runs once after mount
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (mounted && colors.length === 1) {
       console.log("Single color effect triggered with:", colors[0].color);
       
-      // 直接执行重绘操作而不依赖于 forceRedraw
+      // Directly perform redraw operations without depending on forceRedraw
       const performRedraw = () => {
         if (canvasRef.current && mounted) {
           console.log("Redrawing single color:", colors[0].color);
-          // 使用直接引用绘制函数
+          // Use direct reference to draw function
           if (typeof drawMixedColor === 'function') {
-            // 确保使用正确的颜色
+            // Ensure using the correct color
             latestMixedColorRef.current = colors[0].color;
             drawMixedColor();
           }
@@ -364,7 +380,7 @@ const ColorMixer = () => {
         clearTimeout(timer3);
       };
     }
-  }, [colors, mounted]); // 有意省略 drawMixedColor 依赖项，以避免无限循环
+  }, [colors, mounted, drawMixedColor]);
 
   // Add a new color with immediate calculation and redraw
   const addColor = () => {
@@ -442,7 +458,7 @@ const ColorMixer = () => {
     // Set initial picker values based on current color
     const color = colors[index].color;
     setTempColor(color);
-    // 直接设置RGB值，不使用updatePickerFromHex
+    // Directly set RGB values
     const cleanHex = color.replace('#', '');
     const r = parseInt(cleanHex.substring(0, 2), 16);
     const g = parseInt(cleanHex.substring(2, 4), 16);
@@ -679,6 +695,7 @@ const ColorMixer = () => {
         )}
 
         {/* Usage tips - only show in standalone page */}
+        {/* 在Usage Tips部分添加对颜色混合模式的解释 */}
         {!isInIframe && (
           <div className="mt-6 bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 rounded-xl p-5 text-sm shadow-inner border border-gray-200 dark:border-gray-600">
             <h4 className="font-semibold mb-3 text-base bg-gradient-to-r from-gray-800 to-gray-600 dark:from-gray-200 dark:to-gray-400 bg-clip-text text-transparent">Color Mixer Usage Tips:</h4>
@@ -689,8 +706,44 @@ const ColorMixer = () => {
               <li className="transition-all hover:translate-x-1">Mixed result is automatically calculated based on colors and ratios</li>
               <li className="transition-all hover:translate-x-1">You can add multiple colors for complex mixing</li>
             </ul>
+            
+            <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800">
+              <h5 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">About Our Color Mixing</h5>
+              <p className="text-blue-600 dark:text-blue-400">
+                This tool uses realistic <strong>pigment-based color mixing</strong> (subtractive color) rather than digital RGB mixing (additive color). 
+                This means colors mix like real paints would, not like colored lights on a screen.
+              </p>
+              <div className="mt-2 grid grid-cols-2 gap-4">
+                <div>
+                  <h6 className="font-medium text-xs uppercase tracking-wide text-blue-700 dark:text-blue-300 mb-1">Examples:</h6>
+                  <ul className="text-sm text-blue-600 dark:text-blue-400">
+                    <li>• Red + Blue = Purple (not magenta)</li>
+                    <li>• Red + Green = Brown (not yellow)</li>
+                    <li>• Blue + Yellow = Green (not gray)</li>
+                  </ul>
+                </div>
+                <div className="flex items-center justify-center">
+                  <button 
+                    className="text-xs bg-blue-100 hover:bg-blue-200 dark:bg-blue-800 dark:hover:bg-blue-700 text-blue-700 dark:text-blue-300 px-3 py-1 rounded transition-colors"
+                    onClick={() => window.open('https://en.wikipedia.org/wiki/Subtractive_color', '_blank')}
+                  >
+                    Learn more about color mixing
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         )}
+
+        {/*// 添加一个小标记，显示当前正在使用的混合模式*/}
+        <div className="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
+          Pigment Mixing
+        </div>
+
+        {/* 在颜色混合结果附近添加简短解释*/}
+        <div className="text-xs text-gray-500 mt-1 italic">
+          Using realistic pigment-based mixing (like paints, not digital light)
+        </div>
         
         {/* Color Picker Modal */}
         {pickerVisible && (

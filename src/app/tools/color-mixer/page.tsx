@@ -36,9 +36,10 @@ export default function ColorMixerPage() {
                 <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
                   Color Mixer Online Tool
                 </h1>
+                <span className="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded-full">Pigment-based</span>
               </div>
               <p className="text-gray-600 dark:text-gray-300 text-lg">
-                Mix, blend and create custom color combinations with our free <strong>color mixer online</strong> tool
+                Mix, blend and create custom color combinations with our free <strong>color mixer online</strong> tool that simulates real-world pigment mixing
               </p>
             </div>
 
@@ -92,11 +93,22 @@ export default function ColorMixerPage() {
                   A <strong>color mixer</strong> is an interactive tool that allows users to combine different colors and create new custom colors. Our <strong>color mixer online</strong> tool provides a simple yet powerful interface for mixing colors in various formats including <strong>RGB</strong> and <strong>HEX</strong> color codes.
                 </p>
                 <p>
-                  Unlike traditional <strong>color mixer</strong> methods used in physical painting or a <strong>color mixer machine</strong>, our digital <strong>color mixer tool</strong> uses additive color mixing to simulate how colors blend together. This makes it perfect for web designers, graphic artists, and anyone working with digital colors.
+                  Unlike most digital color mixers that use simple RGB averaging, our <strong>color mixer tool</strong> uses <strong>subtractive color mixing</strong> (pigment-based) to simulate how real paints and dyes blend together. This creates more natural and realistic color combinations that match what you would expect when mixing physical colors.
                 </p>
                 <p>
                   You can use our <strong>color mixer online</strong> to experiment with different color ratios, create gradients, develop color schemes, or simply play with colors like a <strong>color mixer game</strong>. It&apos;s even educational as a <strong>color mixer for kids</strong> to learn about color theory in a fun, interactive way.
                 </p>
+                <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800">
+                  <h5 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Realistic Pigment-Based Mixing</h5>
+                  <p className="text-blue-600 dark:text-blue-400">
+                    Our color mixer simulates how physical paints would blend, rather than how colored lights mix on a screen. This means:
+                  </p>
+                  <ul className="mt-2 text-sm text-blue-600 dark:text-blue-400 space-y-1">
+                    <li>• Red + Blue = Purple (not magenta)</li>
+                    <li>• Red + Green = Brown (not yellow)</li>
+                    <li>• Blue + Yellow = Green (not gray)</li>
+                  </ul>
+                </div>
               </div>
             </div>
 
@@ -110,6 +122,7 @@ export default function ColorMixerPage() {
                     <li>Mix colors using intuitive ratio controls</li>
                     <li>Add multiple colors to create complex blends</li>
                     <li>Real-time preview of mixed results</li>
+                    <li>Realistic pigment-based color mixing for natural results</li>
                     <li>Similar functionality to <strong>color mixer Photoshop</strong> tools but available online</li>
                   </ul>
                 </div>
@@ -167,7 +180,7 @@ export default function ColorMixerPage() {
                 <div>
                   <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white">Digital Art & Illustration</h3>
                   <p>
-                    Digital artists can experiment with <strong>color mixer RGB</strong> values to create unique tones and shades for their artwork, without the mess of traditional paint mixing.
+                    Digital artists can experiment with <strong>color mixer RGB</strong> values to create unique tones and shades for their artwork, without the mess of traditional paint mixing but with realistic pigment-based results.
                   </p>
                 </div>
                 <div>
@@ -191,13 +204,39 @@ export default function ColorMixerPage() {
                 <div>
                   <h3 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white">Additive vs. Subtractive Color Mixing</h3>
                   <p>
-                    Digital <strong>color mixers</strong> like ours use additive color mixing (RGB), which is different from the subtractive mixing (CMYK) used in physical paint. In additive mixing, combining all colors creates white, whereas in subtractive mixing (like with a physical <strong>color mixer machine</strong>), combining all colors creates black.
+                    Our <strong>color mixer</strong> uses <strong>subtractive color mixing</strong> (like physical paints), which is different from the additive mixing (RGB) used in most digital color tools. In <strong>additive mixing</strong>, combining red, green, and blue light creates white light (like on your screen), whereas in <strong>subtractive mixing</strong> (like with paints or printer inks), combining pigments absorbs more light, creating darker colors.
                   </p>
                 </div>
+                
+                <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <h4 className="font-semibold">Additive Color Mixing (RGB)</h4>
+                      <ul className="mt-2 space-y-1 text-sm">
+                        <li>• Red + Green = Yellow</li>
+                        <li>• Red + Blue = Magenta</li>
+                        <li>• Green + Blue = Cyan</li>
+                        <li>• Red + Green + Blue = White</li>
+                        <li>• How lights mix on screens</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold">Subtractive Color Mixing (Pigments)</h4>
+                      <ul className="mt-2 space-y-1 text-sm">
+                        <li>• Red + Green = Brown</li>
+                        <li>• Red + Blue = Purple</li>
+                        <li>• Yellow + Blue = Green</li>
+                        <li>• All colors mixed = Dark Brown/Black</li>
+                        <li>• How paints mix in real life</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                
                 <div>
                   <h3 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white">RGB Color Model</h3>
                   <p>
-                    The <strong>RGB color model</strong> underlies how our <strong>color mixer RGB</strong> functionality works. Each color is represented by values from 0 to 255 for Red, Green, and Blue channels. By adjusting these values, you can create any color in the visible spectrum.
+                    While our mixer uses pigment-based principles, we still work with the <strong>RGB color model</strong> since we&apos;re displaying on a screen. Each color is represented by values from 0 to 255 for Red, Green, and Blue channels, but our mixing algorithm simulates how physical pigments would interact rather than simply averaging these values.
                   </p>
                 </div>
                 <div>
@@ -209,7 +248,7 @@ export default function ColorMixerPage() {
                 <div>
                   <h3 className="text-lg font-semibold mb-2 text-gray-800 dark:text-white">Color Blending Algorithms</h3>
                   <p>
-                    The <strong>color mixer online</strong> tool uses weighted averaging to blend colors based on the ratios you specify. This mathematical approach ensures accurate and predictable results when mixing multiple colors together.
+                    The <strong>color mixer online</strong> tool uses advanced pigment-based mixing algorithms to simulate how real paints would interact. This approach creates more natural and visually pleasing results than simple RGB averaging, especially for complementary colors (like blue and yellow creating green instead of gray).
                   </p>
                 </div>
               </div>
@@ -225,6 +264,7 @@ export default function ColorMixerPage() {
                   <li>Start with complementary colors to create balanced neutrals</li>
                   <li>Use the <strong>color mixer chart</strong> to visualize how colors will blend before committing</li>
                   <li>Experiment with different ratio combinations for the same colors to find subtle variations</li>
+                  <li>Try mixing blue and yellow to create green, just like with real paints</li>
                   <li>Save your favorite mixtures to build a personal color palette</li>
                   <li>Use the <strong>color mixer tool</strong> to find the exact middle point between two brand colors</li>
                   <li>Try using analogous colors (those adjacent on the color wheel) for harmonious blends</li>
@@ -248,7 +288,14 @@ export default function ColorMixerPage() {
                 <div>
                   <h3 className="font-medium text-lg mb-2 text-gray-800 dark:text-white">How accurate is the color mixing?</h3>
                   <p>
-                    Our <strong>color mixer</strong> uses precise mathematical algorithms to ensure accurate color blending. The results are comparable to what you would achieve with professional software like <strong>color mixer Photoshop</strong> tools, making it suitable for professional design work.
+                    Our <strong>color mixer</strong> uses advanced pigment-based mixing algorithms to simulate how physical paints would interact. This creates more realistic results than standard digital color mixing, making it suitable for professional design work where natural color blending is important.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-medium text-lg mb-2 text-gray-800 dark:text-white">Why does red + green make brown instead of yellow?</h3>
+                  <p>
+                    Our color mixer uses pigment-based (subtractive) color mixing, which mimics how real paints and inks blend. In this model, red + green creates brown, not yellow. This is different from additive RGB mixing (used in most digital tools), where red + green light creates yellow. We chose the pigment model because it creates more natural-looking color combinations.
                   </p>
                 </div>
 
@@ -262,14 +309,14 @@ export default function ColorMixerPage() {
                 <div>
                   <h3 className="font-medium text-lg mb-2 text-gray-800 dark:text-white">How is this different from physical color mixing?</h3>
                   <p>
-                    Unlike physical paint mixing or a <strong>color mixer machine</strong>, our digital <strong>color mixer</strong> uses additive color theory (RGB) rather than subtractive color theory (CMYK). This means the results may differ from what you would get by mixing physical pigments.
+                    While most digital color tools use simple RGB averaging (additive mixing), our tool simulates physical pigment mixing (subtractive mixing) for more realistic results. This means the colors blend much more like real paints would, creating natural transitions and avoiding the &quot;muddy&quot; results often seen in digital mixing when combining complementary colors.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="font-medium text-lg mb-2 text-gray-800 dark:text-white">Can I use this for teaching color theory to children?</h3>
                   <p>
-                    Absolutely! Our tool is perfect as a <strong>color mixer for kids</strong> learning about color theory. It provides a fun, interactive way to demonstrate how colors combine, without the mess of physical paints. The <strong>color mixer game</strong> aspect makes learning enjoyable and engaging.
+                    Absolutely! Our tool is perfect as a <strong>color mixer for kids</strong> learning about color theory. It provides a fun, interactive way to demonstrate how colors combine, without the mess of physical paints. Since it uses pigment-based mixing principles, it will teach children the same color interactions they would observe when mixing real paints.
                   </p>
                 </div>
                 
