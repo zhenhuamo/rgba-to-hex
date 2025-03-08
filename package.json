@@ -14,6 +14,7 @@
     "kmeans-js": "^0.1.2",
     "mixbox": "^2.0.0",
     "next": "15.1.6",
+    "qrcode.react": "^4.2.0",
     "react": "^18.2.0",
     "react-colorful": "^5.6.1",
     "react-dom": "^18.2.0",

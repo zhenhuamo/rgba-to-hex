@@ -31,6 +31,12 @@ export default function Navigation() {
         { name: 'Color Mixer', href: '/tools/color-mixer', color: 'bg-emerald-500' },
         { name: 'Mixbox Paint Mixer', href: '/tools/mixer-painter', color: 'bg-violet-500' }
       ]
+    },
+    {
+      category: "text tools",
+      tools: [
+        { name: 'Font Generator', href: '/tools/font-generator', color: 'bg-purple-500' }
+      ]
     }
   ];
 
