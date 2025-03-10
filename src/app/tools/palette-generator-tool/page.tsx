@@ -740,9 +740,9 @@ export default function PaletteGeneratorTool() {
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* 左侧：颜色选择器和图像上传 */}
-          <div className="space-y-6">
+          <div className="space-y-6 flex flex-col">
             {/* 基础颜色选择 */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 h-auto">
               <div className="flex flex-wrap gap-4 items-start justify-between">
                 {/* 基础颜色选择 */}
                 <div>
@@ -803,7 +803,7 @@ export default function PaletteGeneratorTool() {
             </div>
             
             {/* 颜色提取 */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 flex-grow">
               <h3 className="text-lg font-medium mb-2">Extract Colors from Image</h3>
               <p className="text-gray-600 dark:text-gray-300 mb-3 text-sm">
                 Upload an image and drag the sample points to extract colors
@@ -932,7 +932,7 @@ export default function PaletteGeneratorTool() {
             </div>
             
             {/* 所有色彩方案 */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 flex-grow">
               <h3 className="text-lg font-medium mb-3">All Color Schemes</h3>
               
               <div className="space-y-4">

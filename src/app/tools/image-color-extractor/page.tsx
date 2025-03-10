@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import Navigation from '@/components/Navigation';
+import Link from 'next/link';
 
 export default function ImageColorExtractorPage() {
   const [showEmbedCode, setShowEmbedCode] = useState(false);
@@ -50,6 +51,18 @@ export default function ImageColorExtractorPage() {
                 title="Online Image Color Extractor"
                 loading="lazy"
               />
+              
+              <div className="flex justify-center mt-6 mb-4">
+                <Link 
+                  href="/tools/image-color-extractor-tool" 
+                  className="inline-flex items-center gap-2 px-6 py-3 text-white bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 rounded-full font-medium hover:from-purple-600 hover:via-pink-600 hover:to-red-600 shadow-md transition-all hover:shadow-lg"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                  Open Full Tool in New Page
+                </Link>
+              </div>
               
               <div className="mt-6 text-right">
                 <button

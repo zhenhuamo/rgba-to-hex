@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import Navigation from '@/components/Navigation';
+import Link from 'next/link';
 
 
 export default function ColorBlindnessPage() {
@@ -51,6 +52,18 @@ export default function ColorBlindnessPage() {
                 title="Color Blindness Simulator for Images"
                 loading="lazy"
               />
+              
+              <div className="flex justify-center mt-6 mb-4">
+                <Link 
+                  href="/tools/color-blindness-simulator-tool" 
+                  className="inline-flex items-center gap-2 px-6 py-3 text-white bg-gradient-to-r from-red-500 via-yellow-500 to-blue-500 rounded-full font-medium hover:from-red-600 hover:via-yellow-600 hover:to-blue-600 shadow-md transition-all hover:shadow-lg"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                  Open Full Tool in New Page
+                </Link>
+              </div>
               
               <div className="mt-6 text-right">
                 <button
@@ -279,7 +292,7 @@ export default function ColorBlindnessPage() {
                 <div>
                   <h3 className="font-medium text-lg mb-2">Can I use this color blindness simulator with Figma?</h3>
                   <p>
-                    While this isn`&apos;t a native <strong>color blindness simulator Figma plugin</strong>, you can easily export images from Figma and upload them to our simulator. This gives you the flexibility to test designs from any design tool, not just Figma.
+                    While this isn`&apos;t a native <strong>color blindness simulator Figma</strong> plugin, you can easily export images from Figma and upload them to our simulator. This gives you the flexibility to test designs from any design tool, not just Figma.
                   </p>
                 </div>
 
