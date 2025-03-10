@@ -6,6 +6,14 @@ import Navigation from '@/components/Navigation';
 export default function Blog() {
   const blogPosts = [
     {
+      title: 'Understanding Color Blindness: A Comprehensive Simulator Guide',
+      description: 'Learn about different types of color blindness and how to design accessible content. Our Color Blindness Simulator helps visualize how colors and images appear to people with various types of color vision deficiency.',
+      link: '/blog/color-blindness-simulator',
+      date: '2025-03-15',
+      readTime: '15 min read',
+      category: 'Accessibility',
+    },
+    {
       title: 'RGBA to HEX Color Converter: Complete Guide',
       description: 'A comprehensive guide to converting RGBA colors to hexadecimal format. Learn about color spaces, transparency handling, and practical applications in web development and design.',
       link: '/blog/rgba-to-hex-converter',
