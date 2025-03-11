@@ -168,6 +168,8 @@ export default function MixboxCanvasPainter() {
   const selectedColorRef = useRef<string>('#59c93c');
   const isDrawingRef = useRef<boolean>(false); // 添加绘制状态引用
   const mixingModeRef = useRef<'mixbox' | 'normal'>('mixbox'); // 添加混合模式引用
+  const brushSizeRef = useRef<number>(20); // 添加画笔大小引用
+  const opacityRef = useRef<number>(100); // 添加不透明度引用
   
   // 检测是否在iframe中
   const [isInIframe, setIsInIframe] = useState<boolean>(false);
@@ -227,6 +229,26 @@ export default function MixboxCanvasPainter() {
     mixingModeRef.current = mixingMode;
     console.log(`混合模式更新: ${mixingMode}`);
   }, [mixingMode]);
+  
+  // 监听画笔大小变化并更新ref
+  useEffect(() => {
+    brushSizeRef.current = brushSize;
+    console.log(`画笔大小更新: ${brushSize}`);
+  }, [brushSize]);
+  
+  // 监听不透明度变化并更新ref
+  useEffect(() => {
+    opacityRef.current = opacity;
+    //console.log(`不透明度更新: ${opacity}`);
+  }, [opacity]);
+  
+  // 监听标签页切换，当切换到"paints"标签页时重新初始化色轮
+  useEffect(() => {
+    if (activeTab === 'paints') {
+      //console.log('切换到颜料标签页，重新初始化色轮');
+      initColorWheel();
+    }
+  }, [activeTab]);
   
   // 初始化色轮
   const initColorWheel = () => {
@@ -429,7 +451,7 @@ export default function MixboxCanvasPainter() {
     canvas.addEventListener('touchmove', handleTouchMove);
     canvas.addEventListener('touchend', handleTouchEnd);
     
-    console.log('画布初始化完成，事件监听器已添加', canvas.width, canvas.height);
+    //console.log('画布初始化完成，事件监听器已添加', canvas.width, canvas.height);
   };
   
   // 保存当前状态到历史记录
@@ -567,7 +589,7 @@ export default function MixboxCanvasPainter() {
       // 更新颜色预览
       drawColorSwatch(hex);
       
-      console.log(`选择自定义颜色: ${hex}`);
+      //console.log(`选择自定义颜色: ${hex}`);
     }
   };
   
@@ -607,7 +629,7 @@ export default function MixboxCanvasPainter() {
     // 更新颜色预览
     drawColorSwatch(newColor);
     
-    console.log(`选择颜料: ${paintName}, 颜色: ${newColor}`);
+    //console.log(`选择颜料: ${paintName}, 颜色: ${newColor}`);
   };
   
   // 开始绘制
@@ -659,12 +681,15 @@ export default function MixboxCanvasPainter() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     
+    // 添加调试日志
+    //console.log(`drawDot被调用 - brushSize: ${brushSizeRef.current}, opacity: ${opacityRef.current/100}, tool: ${currentToolRef.current}, mixingMode: ${mixingModeRef.current}`);
+    
     // 使用ref获取当前工具状态
     if (currentToolRef.current === 'eraser') {
       drawWithBlending(x, y, '#FFFFFF', 1);
     } else {
-      // 使用当前选择的颜色和不透明度
-      drawWithBlending(x, y, selectedColorRef.current, opacity / 100);
+      // 使用当前选择的颜色和不透明度（从ref获取最新值）
+      drawWithBlending(x, y, selectedColorRef.current, opacityRef.current / 100);
     }
   };
   
@@ -678,13 +703,13 @@ const drawWithBlending = (x: number, y: number, colorHex: string, opacity: numbe
     
     // 添加调试信息，每10次绘制输出一次（避免过多日志）
     if (Math.random() < 0.1) {
-      console.log(`当前混合模式: ${mixingModeRef.current}, 工具: ${currentToolRef.current}, mixbox可用: ${typeof mixbox === 'object' && typeof mixbox.lerp === 'function'}`);
+      //console.log(`当前混合模式: ${mixingModeRef.current}, 工具: ${currentToolRef.current}, mixbox可用: ${typeof mixbox === 'object' && typeof mixbox.lerp === 'function'}`);
     }
     
-    // 使用当前画笔大小
-    const size = brushSize;
-    const startX = Math.max(0, Math.floor(x - brushSize));
-    const startY = Math.max(0, Math.floor(y - brushSize));
+    // 使用brushSizeRef获取最新的画笔大小
+    const size = brushSizeRef.current;
+    const startX = Math.max(0, Math.floor(x - size));
+    const startY = Math.max(0, Math.floor(y - size));
     const width = Math.min(size * 2, canvas.width - startX);
     const height = Math.min(size * 2, canvas.height - startY);
     
@@ -702,7 +727,7 @@ const drawWithBlending = (x: number, y: number, colorHex: string, opacity: numbe
         const distance = Math.sqrt(dx * dx + dy * dy);
         
         // 只修改在笔刷半径内的像素
-        if (distance <= brushSize) {
+        if (distance <= size) {
           // 关键改进1：不同模式使用不同的不透明度曲线
           let fadeOpacity = opacity; 
           
@@ -710,10 +735,10 @@ const drawWithBlending = (x: number, y: number, colorHex: string, opacity: numbe
           if (mixingModeRef.current === 'mixbox') {
             // 缩小最大不透明度并使用平缓衰减
             fadeOpacity *= 0.8; 
-            fadeOpacity *= (1 - Math.pow(distance / brushSize, 1.2));
+            fadeOpacity *= (1 - Math.pow(distance / size, 1.2));
           } else {
             // Normal模式使用陡峭的不透明度曲线，接近直接覆盖
-            fadeOpacity *= (1 - Math.pow(distance / brushSize, 3.0));
+            fadeOpacity *= (1 - Math.pow(distance / size, 3.0));
             // 增加不透明度基础值，使normal模式颜色更突出
             fadeOpacity = Math.min(1.0, fadeOpacity * 1.5);
           }
@@ -879,7 +904,7 @@ const drawWithBlending = (x: number, y: number, colorHex: string, opacity: numbe
       setIsDrawing(false);
       setLastPosition(null);
       saveToHistory();
-      console.log('Drawing stopped');
+      //console.log('Drawing stopped');
     }
   };
   
@@ -890,7 +915,7 @@ const drawWithBlending = (x: number, y: number, colorHex: string, opacity: numbe
   
   // 切换混合模式
   const toggleMixingMode = (mode: 'mixbox' | 'normal') => {
-    console.log(`切换到模式: ${mode}, mixbox库可用: ${typeof mixbox === 'object' && typeof mixbox.lerp === 'function'}`);
+    //console.log(`切换到模式: ${mode}, mixbox库可用: ${typeof mixbox === 'object' && typeof mixbox.lerp === 'function'}`);
     setMixingMode(mode);
     mixingModeRef.current = mode; // 立即更新ref，不等待下一个渲染周期
   };
@@ -1151,7 +1176,7 @@ const drawWithBlending = (x: number, y: number, colorHex: string, opacity: numbe
                                 className={`aspect-square rounded-full cursor-pointer border hover:opacity-90 ${selectedPaint === paintName ? 'ring-2 ring-blue-500' : ''}`}
                                 style={{ backgroundColor: PAINT_COLORS[paintName]?.hex || 'transparent' }}
                                 onClick={() => {
-                                  console.log(`点击了颜料: ${paintName}`);
+                                  //console.log(`点击了颜料: ${paintName}`);
                                   selectPaint(paintName);
                                 }}
                               />
