@@ -53,6 +53,9 @@ interface PaintColors {
 
 type Tool = 'brush' | 'eraser';
 
+// 更新笔刷样式类型，添加油画笔刷
+type BrushStyle = 'pen' | 'watercolor' | 'chalk' | 'oil';
+
 interface HistoryItem {
   imageData: ImageData;
 }
@@ -160,8 +163,8 @@ export default function MixboxCanvasPainter() {
   // 添加一个新的ref来可靠地跟踪位置
   const lastPositionRef = useRef<{x: number, y: number} | null>(null);
   
-  // 添加笔刷样式相关状态
-  const [brushStyle, setBrushStyle] = useState<'pen' | 'watercolor' | 'chalk'>('pen');
+  // 添加笔刷样式相关状态，更新类型
+  const [brushStyle, setBrushStyle] = useState<BrushStyle>('pen');
   const [showBrushMenu, setShowBrushMenu] = useState(false);
   
   // Refs
@@ -174,7 +177,7 @@ export default function MixboxCanvasPainter() {
   const mixingModeRef = useRef<'mixbox' | 'normal'>('mixbox'); // 添加混合模式引用
   const lastDrawTimeRef = useRef<number | null>(null); // 添加最后绘制时间引用
   const previousPositionsRef = useRef<Array<{x: number, y: number}>>([]);  // 添加历史点位置引用
-  const brushStyleRef = useRef<'pen' | 'watercolor' | 'chalk'>('pen'); // 添加笔刷样式引用
+  const brushStyleRef = useRef<BrushStyle>('pen'); // 更新笔刷样式引用类型
   
   // 检测是否在iframe中
   const [isInIframe, setIsInIframe] = useState<boolean>(false);
@@ -774,6 +777,76 @@ export default function MixboxCanvasPainter() {
             ctx.arc(x, y, radius, 0, Math.PI * 2);
             ctx.fill();
           }
+        } else if (brushStyleRef.current === 'oil') {
+          // 油画笔刷 - 厚重的纹理，不规则边缘
+          const radius = brushSize / 2;
+          
+          // 创建临时画布生成油画纹理效果
+          const tempCanvas = document.createElement('canvas');
+          tempCanvas.width = radius * 2.4; // 稍微大一些，容纳笔触效果
+          tempCanvas.height = radius * 2.4;
+          const tempCtx = tempCanvas.getContext('2d');
+          
+          if (tempCtx) {
+            // 清除画布
+            tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+            
+            // 绘制基础形状 - 椭圆形，模拟油画笔触的形状
+            tempCtx.fillStyle = selectedColorRef.current;
+            tempCtx.save();
+            tempCtx.translate(radius * 1.2, radius * 1.2);
+            
+            // 随机旋转角度，模拟自然笔触
+            const angle = Math.random() * Math.PI;
+            tempCtx.rotate(angle);
+            
+            // 绘制主要笔触 - 椭圆形
+            tempCtx.beginPath();
+            // 椭圆参数：中心x, 中心y, 半径x, 半径y, 旋转, 开始角度, 结束角度
+            tempCtx.ellipse(0, 0, radius * 1.1, radius * 0.7, 0, 0, Math.PI * 2);
+            tempCtx.fill();
+            
+            // 添加油画特有的纹理
+            tempCtx.globalCompositeOperation = 'destination-out';
+            
+            // 添加方向性纹理线条 - 模拟刷毛痕迹
+            const strokeCount = 12 + Math.floor(radius / 3);
+            for (let j = 0; j < strokeCount; j++) {
+              const strokeWidth = 1 + Math.random() * 2;
+              const offsetX = (Math.random() - 0.5) * radius * 1.8;
+              const strokeLength = radius * (0.8 + Math.random() * 0.8);
+              
+              tempCtx.beginPath();
+              tempCtx.moveTo(offsetX - strokeLength/2, -strokeWidth/2);
+              tempCtx.lineTo(offsetX + strokeLength/2, strokeWidth/2);
+              tempCtx.lineWidth = strokeWidth;
+              tempCtx.strokeStyle = 'rgba(255,255,255,0.15)';
+              tempCtx.stroke();
+            }
+            
+            // 添加一些随机的颜料堆积效果
+            for (let j = 0; j < 20; j++) {
+              const blobSize = 2 + Math.random() * 4;
+              const offsetX = (Math.random() - 0.5) * radius;
+              const offsetY = (Math.random() - 0.5) * radius * 0.6;
+              
+              tempCtx.beginPath();
+              tempCtx.arc(offsetX, offsetY, blobSize, 0, Math.PI * 2);
+              tempCtx.fillStyle = 'rgba(255,255,255,0.1)';
+              tempCtx.fill();
+            }
+            
+            tempCtx.restore();
+            
+            // 在主画布上绘制带纹理的油画效果
+            ctx.globalAlpha = opacity / 100;
+            ctx.drawImage(tempCanvas, x - radius * 1.2, y - radius * 1.2);
+          } else {
+            // 回退方案 - 如果临时画布创建失败
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.fill();
+          }
         }
       }
     }
@@ -928,6 +1001,84 @@ export default function MixboxCanvasPainter() {
               ctx.fill();
             }
           }
+        } else if (brushStyleRef.current === 'oil') {
+          // 油画笔刷 - 厚重的纹理，不规则边缘
+          const steps = Math.max(Math.ceil(distance / (brushSizeRef.current / 3)), 3);
+          const radius = brushSizeRef.current / 2;
+          
+          // 油画笔刷的特点是笔触方向明显，所以计算一个整体方向
+          const angle = Math.atan2(dy, dx);
+          
+          for (let i = 0; i <= steps; i++) {
+            const t = i / steps;
+            const px = lastPos.x + dx * t;
+            const py = lastPos.y + dy * t;
+            
+            // 创建临时画布生成油画纹理效果
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = radius * 2.4; // 稍微大一些，容纳笔触效果
+            tempCanvas.height = radius * 2.4;
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            if (tempCtx) {
+              // 清除画布
+              tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+              
+              // 绘制基础形状 - 椭圆形，模拟油画笔触的形状
+              tempCtx.fillStyle = selectedColorRef.current;
+              tempCtx.save();
+              tempCtx.translate(radius * 1.2, radius * 1.2);
+              tempCtx.rotate(angle);
+              
+              // 绘制主要笔触 - 椭圆形
+              tempCtx.beginPath();
+              // 椭圆参数：中心x, 中心y, 半径x, 半径y, 旋转, 开始角度, 结束角度
+              tempCtx.ellipse(0, 0, radius * 1.1, radius * 0.7, 0, 0, Math.PI * 2);
+              tempCtx.fill();
+              
+              // 添加油画特有的纹理
+              tempCtx.globalCompositeOperation = 'destination-out';
+              
+              // 添加方向性纹理线条 - 模拟刷毛痕迹
+              const strokeCount = 12 + Math.floor(radius / 3);
+              for (let j = 0; j < strokeCount; j++) {
+                const strokeWidth = 1 + Math.random() * 2;
+                const offsetX = (Math.random() - 0.5) * radius * 1.8;
+                const strokeLength = radius * (0.8 + Math.random() * 0.8);
+                
+                tempCtx.beginPath();
+                tempCtx.moveTo(offsetX - strokeLength/2, -strokeWidth/2);
+                tempCtx.lineTo(offsetX + strokeLength/2, strokeWidth/2);
+                tempCtx.lineWidth = strokeWidth;
+                tempCtx.strokeStyle = 'rgba(255,255,255,0.15)';
+                tempCtx.stroke();
+              }
+              
+              // 添加一些随机的颜料堆积效果
+              for (let j = 0; j < 20; j++) {
+                const blobSize = 2 + Math.random() * 4;
+                const offsetX = (Math.random() - 0.5) * radius;
+                const offsetY = (Math.random() - 0.5) * radius * 0.6;
+                
+                tempCtx.beginPath();
+                tempCtx.arc(offsetX, offsetY, blobSize, 0, Math.PI * 2);
+                tempCtx.fillStyle = 'rgba(255,255,255,0.1)';
+                tempCtx.fill();
+              }
+              
+              tempCtx.restore();
+              
+              // 在主画布上绘制带纹理的油画效果
+              ctx.globalAlpha = opacityRef.current / 100;
+              ctx.drawImage(tempCanvas, px - radius * 1.2, py - radius * 1.2);
+            } else {
+              // 回退方案 - 如果临时画布创建失败
+              ctx.beginPath();
+              ctx.arc(px, py, radius, 0, Math.PI * 2);
+              ctx.fillStyle = selectedColorRef.current;
+              ctx.fill();
+            }
+          }
         }
       }
     }
@@ -1063,6 +1214,76 @@ export default function MixboxCanvasPainter() {
             ctx.arc(x, y, radius, 0, Math.PI * 2);
             ctx.fill();
           }
+        } else if (brushStyleRef.current === 'oil') {
+          // 油画笔刷 - 厚重的纹理，不规则边缘
+          const radius = brushSize / 2;
+          
+          // 创建临时画布生成油画纹理效果
+          const tempCanvas = document.createElement('canvas');
+          tempCanvas.width = radius * 2.4; // 稍微大一些，容纳笔触效果
+          tempCanvas.height = radius * 2.4;
+          const tempCtx = tempCanvas.getContext('2d');
+          
+          if (tempCtx) {
+            // 清除画布
+            tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+            
+            // 绘制基础形状 - 椭圆形，模拟油画笔触的形状
+            tempCtx.fillStyle = selectedColorRef.current;
+            tempCtx.save();
+            tempCtx.translate(radius * 1.2, radius * 1.2);
+            
+            // 随机旋转角度，模拟自然笔触
+            const angle = Math.random() * Math.PI;
+            tempCtx.rotate(angle);
+            
+            // 绘制主要笔触 - 椭圆形
+            tempCtx.beginPath();
+            // 椭圆参数：中心x, 中心y, 半径x, 半径y, 旋转, 开始角度, 结束角度
+            tempCtx.ellipse(0, 0, radius * 1.1, radius * 0.7, 0, 0, Math.PI * 2);
+            tempCtx.fill();
+            
+            // 添加油画特有的纹理
+            tempCtx.globalCompositeOperation = 'destination-out';
+            
+            // 添加方向性纹理线条 - 模拟刷毛痕迹
+            const strokeCount = 12 + Math.floor(radius / 3);
+            for (let j = 0; j < strokeCount; j++) {
+              const strokeWidth = 1 + Math.random() * 2;
+              const offsetX = (Math.random() - 0.5) * radius * 1.8;
+              const strokeLength = radius * (0.8 + Math.random() * 0.8);
+              
+              tempCtx.beginPath();
+              tempCtx.moveTo(offsetX - strokeLength/2, -strokeWidth/2);
+              tempCtx.lineTo(offsetX + strokeLength/2, strokeWidth/2);
+              tempCtx.lineWidth = strokeWidth;
+              tempCtx.strokeStyle = 'rgba(255,255,255,0.15)';
+              tempCtx.stroke();
+            }
+            
+            // 添加一些随机的颜料堆积效果
+            for (let j = 0; j < 20; j++) {
+              const blobSize = 2 + Math.random() * 4;
+              const offsetX = (Math.random() - 0.5) * radius;
+              const offsetY = (Math.random() - 0.5) * radius * 0.6;
+              
+              tempCtx.beginPath();
+              tempCtx.arc(offsetX, offsetY, blobSize, 0, Math.PI * 2);
+              tempCtx.fillStyle = 'rgba(255,255,255,0.1)';
+              tempCtx.fill();
+            }
+            
+            tempCtx.restore();
+            
+            // 在主画布上绘制带纹理的油画效果
+            ctx.globalAlpha = opacity / 100;
+            ctx.drawImage(tempCanvas, x - radius * 1.2, y - radius * 1.2);
+          } else {
+            // 回退方案 - 如果临时画布创建失败
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.fill();
+          }
         }
       }
     }
@@ -1125,7 +1346,168 @@ export default function MixboxCanvasPainter() {
         ctx.globalCompositeOperation = 'source-over';
         ctx.globalAlpha = opacity / 100;
         
-        
+        // 根据笔刷样式绘制不同形状
+        if (brushStyleRef.current === 'pen') {
+          // 钢笔笔刷 - 使用硬边线条
+          ctx.strokeStyle = selectedColorRef.current;
+          ctx.beginPath();
+          ctx.moveTo(lastPos.x, lastPos.y);
+          ctx.lineTo(x, y);
+          ctx.stroke();
+        } else if (brushStyleRef.current === 'watercolor') {
+          // 水彩笔刷 - 使用多个半透明点
+          const steps = Math.max(Math.ceil(distance / (brushSizeRef.current / 6)), 5);
+          const radius = brushSizeRef.current / 2;
+          
+          for (let i = 0; i <= steps; i++) {
+            const t = i / steps;
+            const px = lastPos.x + dx * t;
+            const py = lastPos.y + dy * t;
+            
+            // 绘制多个半透明圆形，模拟水彩晕染效果
+            for (let j = 0; j < 4; j++) {
+              const offsetX = (Math.random() - 0.5) * radius * 0.3;
+              const offsetY = (Math.random() - 0.5) * radius * 0.3;
+              const size = radius * (0.7 + Math.random() * 0.6);
+              const alpha = (opacityRef.current / 100) * (0.3 + Math.random() * 0.4);
+              
+              ctx.beginPath();
+              ctx.arc(px + offsetX, py + offsetY, size, 0, Math.PI * 2);
+              ctx.fillStyle = selectedColorRef.current;
+              ctx.globalAlpha = alpha;
+              ctx.fill();
+            }
+          }
+          
+          // 恢复正常透明度
+          ctx.globalAlpha = opacityRef.current / 100;
+        } else if (brushStyleRef.current === 'chalk') {
+          // 粉笔笔刷 - 用带纹理的点连接
+          const steps = Math.max(Math.ceil(distance / (brushSizeRef.current / 4)), 3);
+          const radius = brushSizeRef.current / 2;
+          
+          for (let i = 0; i <= steps; i++) {
+            const t = i / steps;
+            const px = lastPos.x + dx * t;
+            const py = lastPos.y + dy * t;
+            
+            // 创建临时画布生成纹理效果
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = radius * 2;
+            tempCanvas.height = radius * 2;
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            if (tempCtx) {
+              // 绘制基础形状
+              tempCtx.fillStyle = selectedColorRef.current;
+              tempCtx.beginPath();
+              tempCtx.arc(radius, radius, radius, 0, Math.PI * 2);
+              tempCtx.fill();
+              
+              // 添加纹理
+              tempCtx.globalCompositeOperation = 'destination-out';
+              
+              // 创建随机噪点纹理
+              for (let j = 0; j < 80; j++) {
+                const px = Math.random() * radius * 2;
+                const py = Math.random() * radius * 2;
+                const size = 1 + Math.random() * 2;
+                
+                tempCtx.beginPath();
+                tempCtx.arc(px, py, size, 0, Math.PI * 2);
+                tempCtx.fillStyle = 'rgba(255,255,255,0.2)';
+                tempCtx.fill();
+              }
+              
+              // 在主画布上绘制带纹理的粉笔效果
+              ctx.drawImage(tempCanvas, px - radius, py - radius);
+            } else {
+              // 回退方案 - 如果临时画布创建失败
+              ctx.beginPath();
+              ctx.arc(px, py, radius, 0, Math.PI * 2);
+              ctx.fillStyle = selectedColorRef.current;
+              ctx.fill();
+            }
+          }
+        } else if (brushStyleRef.current === 'oil') {
+          // 油画笔刷 - 厚重的纹理，不规则边缘
+          const steps = Math.max(Math.ceil(distance / (brushSizeRef.current / 3)), 3);
+          const radius = brushSizeRef.current / 2;
+          
+          // 油画笔刷的特点是笔触方向明显，所以计算一个整体方向
+          const angle = Math.atan2(dy, dx);
+          
+          for (let i = 0; i <= steps; i++) {
+            const t = i / steps;
+            const px = lastPos.x + dx * t;
+            const py = lastPos.y + dy * t;
+            
+            // 创建临时画布生成油画纹理效果
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = radius * 2.4; // 稍微大一些，容纳笔触效果
+            tempCanvas.height = radius * 2.4;
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            if (tempCtx) {
+              // 清除画布
+              tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+              
+              // 绘制基础形状 - 椭圆形，模拟油画笔触的形状
+              tempCtx.fillStyle = selectedColorRef.current;
+              tempCtx.save();
+              tempCtx.translate(radius * 1.2, radius * 1.2);
+              tempCtx.rotate(angle);
+              
+              // 绘制主要笔触 - 椭圆形
+              tempCtx.beginPath();
+              // 椭圆参数：中心x, 中心y, 半径x, 半径y, 旋转, 开始角度, 结束角度
+              tempCtx.ellipse(0, 0, radius * 1.1, radius * 0.7, 0, 0, Math.PI * 2);
+              tempCtx.fill();
+              
+              // 添加油画特有的纹理
+              tempCtx.globalCompositeOperation = 'destination-out';
+              
+              // 添加方向性纹理线条 - 模拟刷毛痕迹
+              const strokeCount = 12 + Math.floor(radius / 3);
+              for (let j = 0; j < strokeCount; j++) {
+                const strokeWidth = 1 + Math.random() * 2;
+                const offsetX = (Math.random() - 0.5) * radius * 1.8;
+                const strokeLength = radius * (0.8 + Math.random() * 0.8);
+                
+                tempCtx.beginPath();
+                tempCtx.moveTo(offsetX - strokeLength/2, -strokeWidth/2);
+                tempCtx.lineTo(offsetX + strokeLength/2, strokeWidth/2);
+                tempCtx.lineWidth = strokeWidth;
+                tempCtx.strokeStyle = 'rgba(255,255,255,0.15)';
+                tempCtx.stroke();
+              }
+              
+              // 添加一些随机的颜料堆积效果
+              for (let j = 0; j < 20; j++) {
+                const blobSize = 2 + Math.random() * 4;
+                const offsetX = (Math.random() - 0.5) * radius;
+                const offsetY = (Math.random() - 0.5) * radius * 0.6;
+                
+                tempCtx.beginPath();
+                tempCtx.arc(offsetX, offsetY, blobSize, 0, Math.PI * 2);
+                tempCtx.fillStyle = 'rgba(255,255,255,0.1)';
+                tempCtx.fill();
+              }
+              
+              tempCtx.restore();
+              
+              // 在主画布上绘制带纹理的油画效果
+              ctx.globalAlpha = opacityRef.current / 100;
+              ctx.drawImage(tempCanvas, px - radius * 1.2, py - radius * 1.2);
+            } else {
+              // 回退方案 - 如果临时画布创建失败
+              ctx.beginPath();
+              ctx.arc(px, py, radius, 0, Math.PI * 2);
+              ctx.fillStyle = selectedColorRef.current;
+              ctx.fill();
+            }
+          }
+        }
       }
     }
     
@@ -1215,6 +1597,36 @@ export default function MixboxCanvasPainter() {
             const textureNoise = (grain1 * 0.7 + grain2 * 0.3) * noise;
             // 应用纹理效果到不透明度
             fadeOpacity = baseOpacity * (0.7 + textureNoise * 0.3);
+          }
+        } else if (brushStyleRef.current === 'oil') {
+          // 油画笔刷 - 厚重的纹理，不规则边缘，高密度
+          isInBrush = distanceRatio <= 1.2;
+          if (isInBrush) {
+            // 基础不透明度 - 油画颜料通常很厚重
+            const baseOpacity = (opacityRef.current / 100) * (1 - Math.pow(distanceRatio / 1.2, 1.2));
+            
+            // 创建油画特有的纹理效果
+            // 模拟油画刷子的纹理线条
+            const angle = Math.atan2(dy, dx);
+            const normalizedAngle = (angle + Math.PI) / (2 * Math.PI); // 0-1范围
+            
+            // 创建方向性纹理 - 模拟刷子的笔触方向
+            const brushDirection = Math.sin(normalizedAngle * 8) * 0.5 + 0.5;
+            
+            // 添加一些随机的颜料堆积效果
+            const paintThickness = noise * 0.7 + 0.3; // 0.3-1.0范围的随机厚度
+            
+            // 边缘处有更明显的纹理
+            const edgeEffect = distanceRatio > 0.7 ? 
+              0.6 + 0.4 * Math.sin(dx * 0.2) * Math.sin(dy * 0.2) : 1.0;
+            
+            // 组合所有效果
+            fadeOpacity = baseOpacity * (0.8 + brushDirection * 0.2) * paintThickness * edgeEffect;
+            
+            // 油画的特点是颜料厚重，所以提高最小不透明度
+            if (fadeOpacity > 0.1) {
+              fadeOpacity = Math.max(fadeOpacity, 0.3);
+            }
           }
         }
         
@@ -1427,6 +1839,36 @@ export default function MixboxCanvasPainter() {
                 // 沿线条方向的变化
                 fadeOpacity *= pointVariation;
               }
+            } else if (brushStyleRef.current === 'oil') {
+              // 油画笔刷 - 厚重的纹理，不规则边缘
+              isInBrush = distanceRatio <= 1;
+              if (isInBrush) {
+                // 基础不透明度 - 油画颜料通常很厚重
+                const baseOpacity = (opacityRef.current / 100) * (1 - Math.pow(distanceRatio / 1.2, 1.2));
+                
+                // 创建油画特有的纹理效果
+                // 模拟油画刷子的纹理线条
+                const angle = Math.atan2(dy, dx);
+                const normalizedAngle = (angle + Math.PI) / (2 * Math.PI); // 0-1范围
+                
+                // 创建方向性纹理 - 模拟刷子的笔触方向
+                const brushDirection = Math.sin(normalizedAngle * 8) * 0.5 + 0.5;
+                
+                // 添加一些随机的颜料堆积效果
+                const paintThickness = noise * 0.7 + 0.3; // 0.3-1.0范围的随机厚度
+                
+                // 边缘处有更明显的纹理
+                const edgeEffect = distanceRatio > 0.7 ? 
+                  0.6 + 0.4 * Math.sin(dx * 0.2) * Math.sin(dy * 0.2) : 1.0;
+                
+                // 组合所有效果
+                fadeOpacity = baseOpacity * (0.8 + brushDirection * 0.2) * paintThickness * edgeEffect;
+                
+                // 油画的特点是颜料厚重，所以提高最小不透明度
+                if (fadeOpacity > 0.1) {
+                  fadeOpacity = Math.max(fadeOpacity, 0.3);
+                }
+              }
             }
             
             // 只处理笔刷范围内的像素
@@ -1586,6 +2028,22 @@ export default function MixboxCanvasPainter() {
                       </div>
                       <span>chalk</span>
                     </button>
+                    
+                    {/* 油画笔刷 - 新增 */}
+                    <button 
+                      className={`flex items-center space-x-2 px-2 py-1.5 rounded hover:bg-gray-50 ${brushStyle === 'oil' ? 'bg-blue-50 text-blue-600' : 'text-gray-700'}`}
+                      onClick={() => {
+                        setBrushStyle('oil');
+                        setShowBrushMenu(false);
+                      }}
+                    >
+                      <div className="w-8 h-8 bg-gray-200 flex items-center justify-center relative overflow-hidden">
+                        <div className="w-6 h-4 bg-yellow-600 absolute rounded-sm" style={{top: '35%', left: '20%', transform: 'rotate(5deg)'}}></div>
+                        <div className="w-5 h-3 bg-yellow-500 absolute rounded-sm" style={{top: '45%', left: '30%', transform: 'rotate(-8deg)'}}></div>
+                        <div className="w-4 h-2 bg-yellow-400 absolute rounded-sm" style={{top: '40%', left: '40%', transform: 'rotate(12deg)'}}></div>
+                      </div>
+                      <span>oil</span>
+                    </button>
                   </div>
                 </div>
               )}
@@ -1601,7 +2059,7 @@ export default function MixboxCanvasPainter() {
             >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
                 <path d="M20 20H7L3 16c-.8-.8-.8-2 0-2.8L13.8 2.4c.8-.8 2-.8 2.8 0L20 6l-7 7"/>
-                <path d="M6 11l7 7"/>
+                <path d="M6 11l7 7 5-5M12 15V3"/>
               </svg>
             </button>
             
