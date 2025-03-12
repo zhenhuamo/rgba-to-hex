@@ -1806,7 +1806,7 @@ export default function MixboxCanvasPainter() {
                                 className={`aspect-square rounded-full cursor-pointer border hover:opacity-90 ${selectedPaint === paintName ? 'ring-2 ring-blue-500' : ''}`}
                                 style={{ backgroundColor: PAINT_COLORS[paintName]?.hex || 'transparent' }}
                                 onClick={() => {
-                                  //console.log(`点击了颜料: ${paintName}`);
+                                  console.log(`点击了颜料: ${paintName}`);
                                   selectPaint(paintName);
                                 }}
                               />
