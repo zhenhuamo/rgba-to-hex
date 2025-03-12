@@ -160,6 +160,10 @@ export default function MixboxCanvasPainter() {
   // 添加一个新的ref来可靠地跟踪位置
   const lastPositionRef = useRef<{x: number, y: number} | null>(null);
   
+  // 添加笔刷样式相关状态
+  const [brushStyle, setBrushStyle] = useState<'pen' | 'watercolor' | 'chalk'>('pen');
+  const [showBrushMenu, setShowBrushMenu] = useState(false);
+  
   // Refs
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const colorWheelRef = useRef<HTMLCanvasElement>(null);
@@ -170,6 +174,7 @@ export default function MixboxCanvasPainter() {
   const mixingModeRef = useRef<'mixbox' | 'normal'>('mixbox'); // 添加混合模式引用
   const lastDrawTimeRef = useRef<number | null>(null); // 添加最后绘制时间引用
   const previousPositionsRef = useRef<Array<{x: number, y: number}>>([]);  // 添加历史点位置引用
+  const brushStyleRef = useRef<'pen' | 'watercolor' | 'chalk'>('pen'); // 添加笔刷样式引用
   
   // 检测是否在iframe中
   const [isInIframe, setIsInIframe] = useState<boolean>(false);
@@ -255,6 +260,11 @@ export default function MixboxCanvasPainter() {
       }, 0);
     }
   }, [activeTab]);
+  
+  // 监听笔刷样式变化并更新ref
+  useEffect(() => {
+    brushStyleRef.current = brushStyle;
+  }, [brushStyle]);
   
   // 初始化色轮
   const initColorWheel = () => {
@@ -649,65 +659,128 @@ export default function MixboxCanvasPainter() {
   };
   
   // 开始绘制 - 使用线条方式
-// 修改后的startDrawing函数
-const startDrawing = (e: MouseEvent) => {
-  const canvas = canvasRef.current;
-  if (!canvas) return;
-  
-  // 直接更新引用和状态
-  isDrawingRef.current = true;
-  setIsDrawing(true);
-  
-  const rect = canvas.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-  
-  // 同时更新React状态和ref，确保后续draw函数可以立即访问到这个值
-  setLastPosition({ x, y });
-  lastPositionRef.current = { x, y };
-  
-  // 重置历史位置记录
-  previousPositionsRef.current = [];
-  
-  // 记录当前时间
-  lastDrawTimeRef.current = Date.now();
-  
-  // 获取绘制上下文
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return;
-  
-  // 配置上下文状态
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
-  ctx.lineWidth = brushSize;
-  
-  // 根据当前工具进行绘制
-  if (currentToolRef.current === 'eraser') {
-    // 橡皮擦模式
-    ctx.globalCompositeOperation = 'destination-out';
-    ctx.beginPath();
-    ctx.arc(x, y, brushSize/2, 0, Math.PI * 2);
-    ctx.fill();
-  } else {
-    // 画笔模式 - 绘制起始点
-    if (mixingModeRef.current === 'mixbox') {
-      // MixBox模式
-      drawMixboxDot(ctx, x, y);
-    } else {
-      // 普通模式
-      ctx.globalAlpha = opacity / 100;
-      ctx.fillStyle = selectedColorRef.current;
+  const startDrawing = (e: MouseEvent) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    
+    // 直接更新引用和状态
+    isDrawingRef.current = true;
+    setIsDrawing(true);
+    
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // 同时更新React状态和ref，确保后续draw函数可以立即访问到这个值
+    setLastPosition({ x, y });
+    lastPositionRef.current = { x, y };
+    
+    // 重置历史位置记录
+    previousPositionsRef.current = [];
+    
+    // 记录当前时间
+    lastDrawTimeRef.current = Date.now();
+    
+    // 获取绘制上下文
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    
+    // 配置上下文状态
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.lineWidth = brushSize;
+    
+    // 根据当前工具进行绘制
+    if (currentToolRef.current === 'eraser') {
+      // 橡皮擦模式
+      ctx.globalCompositeOperation = 'destination-out';
       ctx.beginPath();
       ctx.arc(x, y, brushSize/2, 0, Math.PI * 2);
       ctx.fill();
+    } else {
+      // 画笔模式 - 绘制起始点
+      if (mixingModeRef.current === 'mixbox') {
+        // MixBox模式
+        drawMixboxDot(ctx, x, y);
+      } else {
+        // 普通模式
+        ctx.globalAlpha = opacity / 100;
+        ctx.fillStyle = selectedColorRef.current;
+        
+        // 根据笔刷样式绘制不同形状
+        if (brushStyleRef.current === 'pen') {
+          // 钢笔笔刷 - 硬边缘、密度高
+          ctx.beginPath();
+          ctx.arc(x, y, brushSize/2, 0, Math.PI * 2);
+          // 确保边缘硬朗
+          ctx.fillStyle = selectedColorRef.current;
+          ctx.globalAlpha = opacity / 100;
+          ctx.fill();
+        } else if (brushStyleRef.current === 'watercolor') {
+          // 水彩笔刷 - 柔和、半透明
+          const radius = brushSize / 2;
+          // 绘制多个半透明圆形，模拟水彩晕染效果
+          for (let i = 0; i < 5; i++) {
+            const offsetX = (Math.random() - 0.5) * radius * 0.3;
+            const offsetY = (Math.random() - 0.5) * radius * 0.3;
+            const size = radius * (0.7 + Math.random() * 0.6);
+            const alpha = (opacity / 100) * (0.3 + Math.random() * 0.4);
+            
+            ctx.beginPath();
+            ctx.arc(x + offsetX, y + offsetY, size, 0, Math.PI * 2);
+            ctx.fillStyle = selectedColorRef.current;
+            ctx.globalAlpha = alpha;
+            ctx.fill();
+          }
+          
+          // 恢复正常透明度
+          ctx.globalAlpha = opacity / 100;
+        } else if (brushStyleRef.current === 'chalk') {
+          // 粉笔笔刷 - 带纹理效果
+          const radius = brushSize / 2;
+          // 创建一个临时画布来生成纹理
+          const tempCanvas = document.createElement('canvas');
+          tempCanvas.width = radius * 2;
+          tempCanvas.height = radius * 2;
+          const tempCtx = tempCanvas.getContext('2d');
+          
+          if (tempCtx) {
+            // 绘制基础形状
+            tempCtx.fillStyle = selectedColorRef.current;
+            tempCtx.beginPath();
+            tempCtx.arc(radius, radius, radius, 0, Math.PI * 2);
+            tempCtx.fill();
+            
+            // 添加纹理
+            tempCtx.globalCompositeOperation = 'destination-out';
+            
+            // 创建随机噪点纹理
+            for (let i = 0; i < 100; i++) {
+              const px = Math.random() * radius * 2;
+              const py = Math.random() * radius * 2;
+              const size = 1 + Math.random() * 2;
+              
+              tempCtx.beginPath();
+              tempCtx.arc(px, py, size, 0, Math.PI * 2);
+              tempCtx.fillStyle = 'rgba(255,255,255,0.2)';
+              tempCtx.fill();
+            }
+            
+            // 在主画布上绘制带纹理的粉笔效果
+            ctx.drawImage(tempCanvas, x - radius, y - radius);
+          } else {
+            // 回退方案 - 如果临时画布创建失败
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+      }
     }
-  }
-  
-  // 添加到位置历史
-  updatePositionHistory(x, y);
-  
-  //console.log('开始绘制，位置:', x, y, '工具:', currentToolRef.current);
-};
+    
+    // 添加到位置历史
+    updatePositionHistory(x, y);
+  };
   
   // 绘制 - 使用线条方式
   const draw = (e: MouseEvent) => {
@@ -771,12 +844,91 @@ const startDrawing = (e: MouseEvent) => {
         // 普通模式直接使用Canvas线条绘制
         ctx.globalCompositeOperation = 'source-over';
         ctx.globalAlpha = opacityRef.current / 100; // 使用ref获取最新值
-        ctx.strokeStyle = selectedColorRef.current;
         
-        ctx.beginPath();
-        ctx.moveTo(lastPos.x, lastPos.y);
-        ctx.lineTo(x, y);
-        ctx.stroke();
+        // 根据笔刷样式绘制不同形状
+        if (brushStyleRef.current === 'pen') {
+          // 钢笔笔刷 - 使用硬边线条
+          ctx.strokeStyle = selectedColorRef.current;
+          ctx.beginPath();
+          ctx.moveTo(lastPos.x, lastPos.y);
+          ctx.lineTo(x, y);
+          ctx.stroke();
+        } else if (brushStyleRef.current === 'watercolor') {
+          // 水彩笔刷 - 使用多个半透明点
+          const steps = Math.max(Math.ceil(distance / (brushSizeRef.current / 6)), 5);
+          const radius = brushSizeRef.current / 2;
+          
+          for (let i = 0; i <= steps; i++) {
+            const t = i / steps;
+            const px = lastPos.x + dx * t;
+            const py = lastPos.y + dy * t;
+            
+            // 绘制多个半透明圆形，模拟水彩晕染效果
+            for (let j = 0; j < 4; j++) {
+              const offsetX = (Math.random() - 0.5) * radius * 0.3;
+              const offsetY = (Math.random() - 0.5) * radius * 0.3;
+              const size = radius * (0.7 + Math.random() * 0.6);
+              const alpha = (opacityRef.current / 100) * (0.3 + Math.random() * 0.4);
+              
+              ctx.beginPath();
+              ctx.arc(px + offsetX, py + offsetY, size, 0, Math.PI * 2);
+              ctx.fillStyle = selectedColorRef.current;
+              ctx.globalAlpha = alpha;
+              ctx.fill();
+            }
+          }
+          
+          // 恢复正常透明度
+          ctx.globalAlpha = opacityRef.current / 100;
+        } else if (brushStyleRef.current === 'chalk') {
+          // 粉笔笔刷 - 用带纹理的点连接
+          const steps = Math.max(Math.ceil(distance / (brushSizeRef.current / 4)), 3);
+          const radius = brushSizeRef.current / 2;
+          
+          for (let i = 0; i <= steps; i++) {
+            const t = i / steps;
+            const px = lastPos.x + dx * t;
+            const py = lastPos.y + dy * t;
+            
+            // 创建临时画布生成纹理效果
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = radius * 2;
+            tempCanvas.height = radius * 2;
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            if (tempCtx) {
+              // 绘制基础形状
+              tempCtx.fillStyle = selectedColorRef.current;
+              tempCtx.beginPath();
+              tempCtx.arc(radius, radius, radius, 0, Math.PI * 2);
+              tempCtx.fill();
+              
+              // 添加纹理
+              tempCtx.globalCompositeOperation = 'destination-out';
+              
+              // 创建随机噪点纹理
+              for (let j = 0; j < 80; j++) {
+                const px = Math.random() * radius * 2;
+                const py = Math.random() * radius * 2;
+                const size = 1 + Math.random() * 2;
+                
+                tempCtx.beginPath();
+                tempCtx.arc(px, py, size, 0, Math.PI * 2);
+                tempCtx.fillStyle = 'rgba(255,255,255,0.2)';
+                tempCtx.fill();
+              }
+              
+              // 在主画布上绘制带纹理的粉笔效果
+              ctx.drawImage(tempCanvas, px - radius, py - radius);
+            } else {
+              // 回退方案 - 如果临时画布创建失败
+              ctx.beginPath();
+              ctx.arc(px, py, radius, 0, Math.PI * 2);
+              ctx.fillStyle = selectedColorRef.current;
+              ctx.fill();
+            }
+          }
+        }
       }
     }
     
@@ -787,20 +939,19 @@ const startDrawing = (e: MouseEvent) => {
   };
   
   // 停止绘制
-// 修改后的stopDrawing函数
-const stopDrawing = () => {
-  if (isDrawingRef.current) {
-    // 更新状态
-    isDrawingRef.current = false;
-    setIsDrawing(false);
-    setLastPosition(null);
-    lastPositionRef.current = null; // 同时清除ref
-    previousPositionsRef.current = [];
-    
-    // 保存历史记录
-    saveToHistory();
-    //console.log('Drawing stopped');
-  }
+  const stopDrawing = () => {
+    if (isDrawingRef.current) {
+      // 更新状态
+      isDrawingRef.current = false;
+      setIsDrawing(false);
+      setLastPosition(null);
+      lastPositionRef.current = null; // 同时清除ref
+      previousPositionsRef.current = [];
+      
+      // 保存历史记录
+      saveToHistory();
+      //console.log('Drawing stopped');
+    }
   };
   
   // 处理触摸开始事件
@@ -844,9 +995,75 @@ const stopDrawing = () => {
       } else {
         ctx.globalAlpha = opacity / 100;
         ctx.fillStyle = selectedColorRef.current;
-        ctx.beginPath();
-        ctx.arc(x, y, brushSize/2, 0, Math.PI * 2);
-        ctx.fill();
+        
+        // 根据笔刷样式绘制不同形状
+        if (brushStyleRef.current === 'pen') {
+          // 钢笔笔刷 - 硬边缘，强密度
+          ctx.beginPath();
+          ctx.arc(x, y, brushSize/2, 0, Math.PI * 2);
+          // 确保边缘硬朗
+          ctx.fillStyle = selectedColorRef.current;
+          ctx.globalAlpha = opacity / 100;
+          ctx.fill();
+        } else if (brushStyleRef.current === 'watercolor') {
+          // 水彩笔刷 - 柔和、半透明
+          const radius = brushSize / 2;
+          // 绘制多个半透明圆形，模拟水彩晕染效果
+          for (let i = 0; i < 5; i++) {
+            const offsetX = (Math.random() - 0.5) * radius * 0.3;
+            const offsetY = (Math.random() - 0.5) * radius * 0.3;
+            const size = radius * (0.7 + Math.random() * 0.6);
+            const alpha = (opacity / 100) * (0.3 + Math.random() * 0.4);
+            
+            ctx.beginPath();
+            ctx.arc(x + offsetX, y + offsetY, size, 0, Math.PI * 2);
+            ctx.fillStyle = selectedColorRef.current;
+            ctx.globalAlpha = alpha;
+            ctx.fill();
+          }
+          
+          // 恢复正常透明度
+          ctx.globalAlpha = opacity / 100;
+        } else if (brushStyleRef.current === 'chalk') {
+          // 粉笔笔刷 - 带纹理效果
+          const radius = brushSize / 2;
+          // 创建一个临时画布来生成纹理
+          const tempCanvas = document.createElement('canvas');
+          tempCanvas.width = radius * 2;
+          tempCanvas.height = radius * 2;
+          const tempCtx = tempCanvas.getContext('2d');
+          
+          if (tempCtx) {
+            // 绘制基础形状
+            tempCtx.fillStyle = selectedColorRef.current;
+            tempCtx.beginPath();
+            tempCtx.arc(radius, radius, radius, 0, Math.PI * 2);
+            tempCtx.fill();
+            
+            // 添加纹理
+            tempCtx.globalCompositeOperation = 'destination-out';
+            
+            // 创建随机噪点纹理
+            for (let i = 0; i < 100; i++) {
+              const px = Math.random() * radius * 2;
+              const py = Math.random() * radius * 2;
+              const size = 1 + Math.random() * 2;
+              
+              tempCtx.beginPath();
+              tempCtx.arc(px, py, size, 0, Math.PI * 2);
+              tempCtx.fillStyle = 'rgba(255,255,255,0.2)';
+              tempCtx.fill();
+            }
+            
+            // 在主画布上绘制带纹理的粉笔效果
+            ctx.drawImage(tempCanvas, x - radius, y - radius);
+          } else {
+            // 回退方案 - 如果临时画布创建失败
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
       }
     }
     
@@ -907,12 +1124,8 @@ const stopDrawing = () => {
       } else {
         ctx.globalCompositeOperation = 'source-over';
         ctx.globalAlpha = opacity / 100;
-        ctx.strokeStyle = selectedColorRef.current;
         
-        ctx.beginPath();
-        ctx.moveTo(lastPos.x, lastPos.y);
-        ctx.lineTo(x, y);
-        ctx.stroke();
+        
       }
     }
     
@@ -946,19 +1159,67 @@ const stopDrawing = () => {
     // 新颜色
     const newColor = hexToRgbArray(selectedColorRef.current);
     
+    // 创建随机纹理 - 用于粉笔和水彩效果
+    const noisePattern = new Array(width * height).fill(0).map(() => Math.random());
+    
     // 对每个像素应用mixbox混合
     for (let py = 0; py < height; py++) {
       for (let px = 0; px < width; px++) {
         const dx = px + left - x;
         const dy = py + top - y;
+        
+        // 根据笔刷样式决定像素是否在笔刷范围内及其不透明度
+        let isInBrush = false;
+        let fadeOpacity = 0;
         const distanceSq = dx * dx + dy * dy;
         const distanceRatio = Math.sqrt(distanceSq) / radius;
+        const noiseIndex = py * width + px;
+        const noise = noisePattern[noiseIndex]; // 0-1的随机值用于纹理
         
-        // 只处理画笔范围内的像素
-        if (distanceRatio <= 1) {
-          // 基于距离计算不透明度，创建渐变效果
-          const fadeOpacity = (opacityRef.current / 100) * (1 - Math.pow(distanceRatio, 1.2));
-          
+        if (brushStyleRef.current === 'pen') {
+          // 钢笔笔刷 - 硬边缘，强密度
+          isInBrush = distanceRatio <= 1;
+          if (isInBrush) {
+            // 钢笔效果 - 边缘非常硬朗，中心密度高
+            fadeOpacity = (opacityRef.current / 100) * (distanceRatio < 0.85 ? 1 : 0);
+          }
+        } else if (brushStyleRef.current === 'watercolor') {
+          // 水彩笔刷 - 柔和边缘，随机透明度变化
+          // 水彩笔刷的范围比实际半径大，有溢出效果
+          isInBrush = distanceRatio <= 1.5;
+          if (isInBrush) {
+            // 水彩效果 - 由中心向外渐变，带随机性
+            const baseOpacity = (opacityRef.current / 100) * (1 - Math.pow(distanceRatio / 1.5, 0.8));
+            // 添加随机噪点和纹理变化
+            const noiseMultiplier = 0.5 + noise * 0.5; // 0.5-1.0的随机值
+            fadeOpacity = baseOpacity * noiseMultiplier;
+            
+            // 边缘更明显的随机溢出效果
+            if (distanceRatio > 0.9) {
+              fadeOpacity *= noise * 0.8;
+            }
+          }
+        } else if (brushStyleRef.current === 'chalk') {
+          // 粉笔笔刷 - 带纹理的不规则边缘
+          isInBrush = distanceRatio <= 1;
+          if (isInBrush) {
+            // 基础不透明度
+            const baseOpacity = (opacityRef.current / 100) * (1 - Math.pow(distanceRatio, 1.4));
+            
+            // 粉笔纹理效果 - 使用噪声图案创建
+            // 创建规则的条纹效果
+            const grain1 = Math.sin((dx + dy) * 0.8) * 0.5 + 0.5; // 0-1之间的条纹
+            const grain2 = Math.sin(dx * 0.7) * 0.5 + 0.5; // 0-1之间的垂直条纹
+            
+            // 混合噪声和条纹
+            const textureNoise = (grain1 * 0.7 + grain2 * 0.3) * noise;
+            // 应用纹理效果到不透明度
+            fadeOpacity = baseOpacity * (0.7 + textureNoise * 0.3);
+          }
+        }
+        
+        // 只处理笔刷范围内的像素
+        if (isInBrush && fadeOpacity > 0.01) {
           const i = (py * width + px) * 4;
           const currentColor: [number, number, number] = [data[i], data[i+1], data[i+2]];
           
@@ -1007,7 +1268,9 @@ const stopDrawing = () => {
     }
     
     // 使用笔刷大小作为临时画布边距
-    const padding = brushSizeRef.current;
+    // 对于水彩笔刷需要更大的边距，因为水彩效果会溢出
+    const paddingFactor = brushStyleRef.current === 'watercolor' ? 2.5 : 1.2;
+    const padding = brushSizeRef.current * paddingFactor;
     
     // 创建一个临时画布，包含线条区域
     const tempCanvas = document.createElement('canvas');
@@ -1038,8 +1301,13 @@ const stopDrawing = () => {
       console.error('获取原始画布数据失败:', e);
     }
     
-    // 计算线段上的采样点数量 - 根据距离动态调整
-    const steps = Math.max(Math.ceil(distance / 2), 10);
+    // 计算线段上的采样点数量 - 根据距离和笔刷类型动态调整
+    // 水彩需要更多的采样点，钢笔需要更少
+    let stepsFactor = 1;
+    if (brushStyleRef.current === 'watercolor') stepsFactor = 1.5;
+    else if (brushStyleRef.current === 'pen') stepsFactor = 0.7;
+    
+    const steps = Math.max(Math.ceil(distance / 2 * stepsFactor), 10);
     
     // 临时画布上的相对坐标
     const tx1 = x1 - minX;
@@ -1047,18 +1315,38 @@ const stopDrawing = () => {
     const tx2 = x2 - minX;
     const ty2 = y2 - minY;
     
+    // 创建画整条线使用的噪声图案 - 保持整条线上的纹理一致性
+    let globalNoisePattern: number[] = [];
+    if (brushStyleRef.current === 'watercolor' || brushStyleRef.current === 'chalk') {
+      const radius = brushSizeRef.current / 2;
+      const maxSize = Math.ceil(radius * 2);
+      globalNoisePattern = new Array(maxSize * maxSize).fill(0).map(() => Math.random());
+    }
+    
     // 在临时画布上绘制线条
     for (let i = 0; i <= steps; i++) {
       const t = i / steps;
       const tx = tx1 + (tx2 - tx1) * t;
       const ty = ty1 + (ty2 - ty1) * t;
       
+      // 控制笔刷特性的变化
+      let pointVariation = 1;
+      
+      // 为粉笔和水彩笔刷添加笔触随机变化
+      if (brushStyleRef.current === 'chalk') {
+        // 粉笔有微微的压力变化
+        pointVariation = 0.85 + Math.sin(t * Math.PI * 6) * 0.15;
+      } else if (brushStyleRef.current === 'watercolor') {
+        // 水彩有更明显的流动变化
+        pointVariation = 0.7 + Math.sin(t * Math.PI * 3) * 0.2 + Math.sin(t * Math.PI * 7) * 0.1;
+      }
+      
       // 在每个采样点绘制MixBox点
-      const radius = brushSizeRef.current / 2;
-      const left = Math.max(0, Math.floor(tx - radius));
-      const top = Math.max(0, Math.floor(ty - radius));
-      const width = Math.min(Math.ceil(radius * 2), tempCanvas.width - left);
-      const height = Math.min(Math.ceil(radius * 2), tempCanvas.height - top);
+      const radius = (brushSizeRef.current / 2) * pointVariation;
+      const left = Math.max(0, Math.floor(tx - radius * paddingFactor));
+      const top = Math.max(0, Math.floor(ty - radius * paddingFactor));
+      const width = Math.min(Math.ceil(radius * 2 * paddingFactor), tempCanvas.width - left);
+      const height = Math.min(Math.ceil(radius * 2 * paddingFactor), tempCanvas.height - top);
       
       // 如果区域无效则跳过
       if (width <= 0 || height <= 0) continue;
@@ -1071,19 +1359,78 @@ const stopDrawing = () => {
         // 新颜色
         const newColor = hexToRgbArray(selectedColorRef.current);
         
+        // 需要新的本地噪声图案吗？
+        let localNoisePattern: number[] = globalNoisePattern;
+        if (globalNoisePattern.length === 0 || width * height > globalNoisePattern.length) {
+          localNoisePattern = new Array(width * height).fill(0).map(() => Math.random());
+        }
+        
         // 对采样点区域内的每个像素应用MixBox混合
         for (let py = 0; py < height; py++) {
           for (let px = 0; px < width; px++) {
             const pdx = px + left - tx;
             const pdy = py + top - ty;
+            
+            // 根据笔刷样式决定像素是否在笔刷范围内及其不透明度
+            let isInBrush = false;
+            let fadeOpacity = 0;
             const distanceSq = pdx * pdx + pdy * pdy;
             const distanceRatio = Math.sqrt(distanceSq) / radius;
             
-            // 只处理画笔范围内的像素
-            if (distanceRatio <= 1) {
-              // 基于距离计算不透明度，使用ref取得最新值
-              const fadeOpacity = (opacityRef.current / 100) * (1 - Math.pow(distanceRatio, 1.2));
-              
+            // 获取噪声值用于纹理
+            const noiseIndex = (py % Math.sqrt(localNoisePattern.length)) * Math.sqrt(localNoisePattern.length) + (px % Math.sqrt(localNoisePattern.length));
+            const noise = localNoisePattern[noiseIndex] || Math.random();
+            
+            if (brushStyleRef.current === 'pen') {
+              // 钢笔笔刷 - 硬边缘，强密度
+              isInBrush = distanceRatio <= 1;
+              if (isInBrush) {
+                // 钢笔效果 - 边缘非常硬朗，中心密度高
+                fadeOpacity = (opacityRef.current / 100) * (distanceRatio < 0.85 ? 1 : 0);
+              }
+            } else if (brushStyleRef.current === 'watercolor') {
+              // 水彩笔刷 - 柔和边缘，随机透明度变化
+              // 水彩笔刷的范围比实际半径大，有溢出效果
+              isInBrush = distanceRatio <= 1.5;
+              if (isInBrush) {
+                // 水彩效果 - 由中心向外渐变，带随机性
+                const baseOpacity = (opacityRef.current / 100) * (1 - Math.pow(distanceRatio / 1.5, 0.8));
+                // 添加随机噪点和纹理变化
+                const noiseMultiplier = 0.5 + noise * 0.5; // 0.5-1.0的随机值
+                fadeOpacity = baseOpacity * noiseMultiplier;
+                
+                // 边缘更明显的随机溢出效果
+                if (distanceRatio > 0.9) {
+                  fadeOpacity *= noise * 0.8;
+                }
+                
+                // 根据线条位置添加些微的流动变化
+                fadeOpacity *= pointVariation;
+              }
+            } else if (brushStyleRef.current === 'chalk') {
+              // 粉笔笔刷 - 带纹理的不规则边缘
+              isInBrush = distanceRatio <= 1;
+              if (isInBrush) {
+                // 基础不透明度
+                const baseOpacity = (opacityRef.current / 100) * (1 - Math.pow(distanceRatio, 1.4));
+                
+                // 粉笔纹理效果 - 使用噪声图案创建
+                // 创建规则的条纹效果
+                const grain1 = Math.sin((pdx + pdy) * 0.8) * 0.5 + 0.5; // 0-1之间的条纹
+                const grain2 = Math.sin(pdx * 0.7) * 0.5 + 0.5; // 0-1之间的垂直条纹
+                
+                // 混合噪声和条纹
+                const textureNoise = (grain1 * 0.7 + grain2 * 0.3) * noise;
+                // 应用纹理效果到不透明度
+                fadeOpacity = baseOpacity * (0.7 + textureNoise * 0.3);
+                
+                // 沿线条方向的变化
+                fadeOpacity *= pointVariation;
+              }
+            }
+            
+            // 只处理笔刷范围内的像素
+            if (isInBrush && fadeOpacity > 0.01) {
               const i = (py * width + px) * 4;
               const currentColor: [number, number, number] = [data[i], data[i+1], data[i+2]];
               
@@ -1127,7 +1474,7 @@ const stopDrawing = () => {
   
   // 切换混合模式
   const toggleMixingMode = (mode: 'mixbox' | 'normal') => {
-    console.log(`切换到模式: ${mode}, mixbox库可用: ${typeof mixbox === 'object' && typeof mixbox.lerp === 'function'}`);
+    //console.log(`切换到模式: ${mode}, mixbox库可用: ${typeof mixbox === 'object' && typeof mixbox.lerp === 'function'}`);
     setMixingMode(mode);
     mixingModeRef.current = mode; // 立即更新ref，不等待下一个渲染周期
   };
@@ -1174,6 +1521,75 @@ const stopDrawing = () => {
                 <path d="M18 3v2m0 16v-2M3 6h2m16 0h-2M3 18h2m16 0h-2M3 12h18M12 3v18"/>
               </svg>
             </button>
+            
+            {/* 添加笔刷样式按钮 */}
+            <div className="relative">
+              <button 
+                className={`w-8 h-8 mb-2 rounded text-gray-500 hover:bg-gray-100 flex items-center justify-center ${showBrushMenu ? 'bg-gray-100' : ''}`}
+                onClick={() => setShowBrushMenu(!showBrushMenu)}
+                title="Brush Styles"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                  <path d="M3 21v-4a4 4 0 0 1 4-4h14"/>
+                  <path d="M16 3a4 4 0 0 1 0 8H8a7 7 0 0 0-7 7"/>
+                </svg>
+              </button>
+              
+              {/* 笔刷样式选择弹出菜单 */}
+              {showBrushMenu && (
+                <div className="absolute left-full ml-2 top-0 bg-white rounded-lg shadow-lg border border-gray-200 p-2 w-48 z-50">
+                  <div className="text-sm font-medium text-gray-700 mb-2 pb-1 border-b">
+                  Brush Style
+                  </div>
+                  
+                  <div className="grid grid-cols-1 gap-2">
+                    {/* 钢笔笔刷 - 新增 */}
+                    <button 
+                      className={`flex items-center space-x-2 px-2 py-1.5 rounded hover:bg-gray-50 ${brushStyle === 'pen' ? 'bg-blue-50 text-blue-600' : 'text-gray-700'}`}
+                      onClick={() => {
+                        setBrushStyle('pen');
+                        setShowBrushMenu(false);
+                      }}
+                    >
+                      <div className="w-8 h-8 bg-gray-200 flex items-center justify-center">
+                        <div className="w-6 h-1 bg-gray-800 rounded-full"></div>
+                      </div>
+                      <span>pen</span>
+                    </button>
+                    
+                    {/* 水彩笔刷 - 新增 */}
+                    <button 
+                      className={`flex items-center space-x-2 px-2 py-1.5 rounded hover:bg-gray-50 ${brushStyle === 'watercolor' ? 'bg-blue-50 text-blue-600' : 'text-gray-700'}`}
+                      onClick={() => {
+                        setBrushStyle('watercolor');
+                        setShowBrushMenu(false);
+                      }}
+                    >
+                      <div className="w-8 h-8 bg-gray-200 flex items-center justify-center relative overflow-hidden">
+                        <div className="w-6 h-3 bg-blue-400 absolute rounded-full opacity-40"></div>
+                        <div className="w-5 h-3 bg-blue-500 absolute rounded-full opacity-30" style={{top: '30%', left: '30%'}}></div>
+                        <div className="w-4 h-3 bg-blue-600 absolute rounded-full opacity-20" style={{top: '40%', left: '25%'}}></div>
+                      </div>
+                      <span>watercolor</span>
+                    </button>
+                    
+                    {/* 粉笔笔刷 - 新增 */}
+                    <button 
+                      className={`flex items-center space-x-2 px-2 py-1.5 rounded hover:bg-gray-50 ${brushStyle === 'chalk' ? 'bg-blue-50 text-blue-600' : 'text-gray-700'}`}
+                      onClick={() => {
+                        setBrushStyle('chalk');
+                        setShowBrushMenu(false);
+                      }}
+                    >
+                      <div className="w-8 h-8 bg-gray-200 flex items-center justify-center">
+                        <div className="w-6 h-2 bg-gray-600 relative" style={{backgroundImage: 'linear-gradient(90deg, #555 50%, transparent 50%)', backgroundSize: '4px 4px'}}></div>
+                      </div>
+                      <span>chalk</span>
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
             
             <button 
               className={`w-8 h-8 mb-4 rounded ${currentTool === 'eraser' ? 'bg-blue-500 text-white' : 'text-gray-500 hover:bg-gray-100'} flex items-center justify-center`}
@@ -1390,7 +1806,7 @@ const stopDrawing = () => {
                                 className={`aspect-square rounded-full cursor-pointer border hover:opacity-90 ${selectedPaint === paintName ? 'ring-2 ring-blue-500' : ''}`}
                                 style={{ backgroundColor: PAINT_COLORS[paintName]?.hex || 'transparent' }}
                                 onClick={() => {
-                                  console.log(`点击了颜料: ${paintName}`);
+                                  //console.log(`点击了颜料: ${paintName}`);
                                   selectPaint(paintName);
                                 }}
                               />
