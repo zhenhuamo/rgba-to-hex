@@ -6,6 +6,14 @@ import Navigation from '@/components/Navigation';
 export default function Blog() {
   const blogPosts = [
     {
+      title: 'Mixbox Paint Mixer: Revolutionary Digital Painting Color Mixing Technology',
+      description: 'Discover how Mixbox technology simulates real pigment mixing to create more natural and vibrant digital painting effects than traditional RGB blending. Learn how Kubelka & Munk theory revolutionizes digital art creation.',
+      link: '/blog/mixbox-paint-mixer',
+      date: '2025-03-20',
+      readTime: '10 min read',
+      category: 'Digital Painting',
+    },
+    {
       title: 'Understanding Color Blindness: A Comprehensive Simulator Guide',
       description: 'Learn about different types of color blindness and how to design accessible content. Our Color Blindness Simulator helps visualize how colors and images appear to people with various types of color vision deficiency.',
       link: '/blog/color-blindness-simulator',
