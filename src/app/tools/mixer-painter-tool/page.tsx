@@ -1,7 +1,5 @@
 'use client';
 
-
-
 // Module declaration at the top of the file
 declare module 'mixbox' {
   export function lerp(color1: [number, number, number], color2: [number, number, number], t: number): [number, number, number];
@@ -16,25 +14,25 @@ console.log('Mixbox库状态:', {
 });
 
 // 测试混合效果 - 黄色和蓝色
-const testYellow: [number, number, number] = [255, 255, 0];
-const testBlue: [number, number, number] = [0, 0, 255];
+// const testYellow: [number, number, number] = [255, 255, 0];
+// const testBlue: [number, number, number] = [0, 0, 255];
 
 // 测试通常混合 - 应该是灰色 [127, 127, 127]
-const normalMixResult = [
-  Math.round(testYellow[0] * 0.5 + testBlue[0] * 0.5),
-  Math.round(testYellow[1] * 0.5 + testBlue[1] * 0.5),
-  Math.round(testYellow[2] * 0.5 + testBlue[2] * 0.5)
-];
+// const normalMixResult = [
+//   Math.round(testYellow[0] * 0.5 + testBlue[0] * 0.5),
+//   Math.round(testYellow[1] * 0.5 + testBlue[1] * 0.5),
+//   Math.round(testYellow[2] * 0.5 + testBlue[2] * 0.5)
+// ];
 
-console.log('常规混合黄色+蓝色:', normalMixResult);
+//console.log('常规混合黄色+蓝色:', normalMixResult);
 
 // 测试Mixbox混合 - 如果正确，应该是绿色 [0, 255, 0] 附近
-try {
-  const mixboxResult = mixbox.lerp(testYellow, testBlue, 0.5);
-  console.log('Mixbox混合黄色+蓝色:', mixboxResult);
-} catch (error) {
-  console.error('Mixbox测试失败:', error);
-}
+// try {
+//   const mixboxResult = mixbox.lerp(testYellow, testBlue, 0.5);
+//   //console.log('Mixbox混合黄色+蓝色:', mixboxResult);
+// } catch (error) {
+//   console.error('Mixbox测试失败:', error);
+// }
 
 import React, { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
@@ -159,6 +157,8 @@ export default function MixboxCanvasPainter() {
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [isDrawing, setIsDrawing] = useState(false);
   const [lastPosition, setLastPosition] = useState<{x: number, y: number} | null>(null);
+  // 添加一个新的ref来可靠地跟踪位置
+  const lastPositionRef = useRef<{x: number, y: number} | null>(null);
   
   // Refs
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -168,11 +168,27 @@ export default function MixboxCanvasPainter() {
   const selectedColorRef = useRef<string>('#59c93c');
   const isDrawingRef = useRef<boolean>(false); // 添加绘制状态引用
   const mixingModeRef = useRef<'mixbox' | 'normal'>('mixbox'); // 添加混合模式引用
-  const brushSizeRef = useRef<number>(20); // 添加画笔大小引用
-  const opacityRef = useRef<number>(100); // 添加不透明度引用
+  const lastDrawTimeRef = useRef<number | null>(null); // 添加最后绘制时间引用
+  const previousPositionsRef = useRef<Array<{x: number, y: number}>>([]);  // 添加历史点位置引用
   
   // 检测是否在iframe中
   const [isInIframe, setIsInIframe] = useState<boolean>(false);
+
+  // 1. 添加这两个ref到组件顶部的ref声明部分
+  const brushSizeRef = useRef<number>(20);
+  const opacityRef = useRef<number>(100);
+
+  // 2. 添加这两个useEffect监听state变化并更新ref
+  useEffect(() => {
+    brushSizeRef.current = brushSize;
+    //console.log(`笔刷大小更新为: ${brushSize}px`);
+  }, [brushSize]);
+
+  useEffect(() => {
+    opacityRef.current = opacity;
+    //console.log(`不透明度更新为: ${opacity}%`);
+  }, [opacity]);
+
   
   // 初始化设置
   useEffect(() => {
@@ -214,39 +230,29 @@ export default function MixboxCanvasPainter() {
   
   // 监听颜色变化并更新ref
   useEffect(() => {
-    console.log(`当前选择的颜色已更新为: ${selectedColor}`);
+    //console.log(`当前选择的颜色已更新为: ${selectedColor}`);
     selectedColorRef.current = selectedColor;
   }, [selectedColor]);
   
   // 监听绘制状态变化并更新ref
   useEffect(() => {
     isDrawingRef.current = isDrawing;
-    console.log(`绘制状态更新: ${isDrawing}`);
+    //console.log(`绘制状态更新: ${isDrawing}`);
   }, [isDrawing]);
   
   // 监听混合模式变化并更新ref
   useEffect(() => {
     mixingModeRef.current = mixingMode;
-    console.log(`混合模式更新: ${mixingMode}`);
+    //console.log(`混合模式更新: ${mixingMode}`);
   }, [mixingMode]);
   
-  // 监听画笔大小变化并更新ref
+  // 监听标签页变化并重新初始化色轮
   useEffect(() => {
-    brushSizeRef.current = brushSize;
-    console.log(`画笔大小更新: ${brushSize}`);
-  }, [brushSize]);
-  
-  // 监听不透明度变化并更新ref
-  useEffect(() => {
-    opacityRef.current = opacity;
-    //console.log(`不透明度更新: ${opacity}`);
-  }, [opacity]);
-  
-  // 监听标签页切换，当切换到"paints"标签页时重新初始化色轮
-  useEffect(() => {
+    // 如果当前是paints标签，则初始化色轮
     if (activeTab === 'paints') {
-      //console.log('切换到颜料标签页，重新初始化色轮');
-      initColorWheel();
+      setTimeout(() => {
+        initColorWheel();
+      }, 0);
     }
   }, [activeTab]);
   
@@ -632,25 +638,169 @@ export default function MixboxCanvasPainter() {
     //console.log(`选择颜料: ${paintName}, 颜色: ${newColor}`);
   };
   
-  // 开始绘制
-  const startDrawing = (e: MouseEvent) => {
+  // 更新位置历史记录
+  const updatePositionHistory = (x: number, y: number) => {
+    const positions = [...previousPositionsRef.current, {x, y}];
+    // 只保留最近的几个点用于曲线计算
+    if (positions.length > 10) {
+      positions.shift();
+    }
+    previousPositionsRef.current = positions;
+  };
+  
+  // 开始绘制 - 使用线条方式
+// 修改后的startDrawing函数
+const startDrawing = (e: MouseEvent) => {
+  const canvas = canvasRef.current;
+  if (!canvas) return;
+  
+  // 直接更新引用和状态
+  isDrawingRef.current = true;
+  setIsDrawing(true);
+  
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  
+  // 同时更新React状态和ref，确保后续draw函数可以立即访问到这个值
+  setLastPosition({ x, y });
+  lastPositionRef.current = { x, y };
+  
+  // 重置历史位置记录
+  previousPositionsRef.current = [];
+  
+  // 记录当前时间
+  lastDrawTimeRef.current = Date.now();
+  
+  // 获取绘制上下文
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  
+  // 配置上下文状态
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.lineWidth = brushSize;
+  
+  // 根据当前工具进行绘制
+  if (currentToolRef.current === 'eraser') {
+    // 橡皮擦模式
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath();
+    ctx.arc(x, y, brushSize/2, 0, Math.PI * 2);
+    ctx.fill();
+  } else {
+    // 画笔模式 - 绘制起始点
+    if (mixingModeRef.current === 'mixbox') {
+      // MixBox模式
+      drawMixboxDot(ctx, x, y);
+    } else {
+      // 普通模式
+      ctx.globalAlpha = opacity / 100;
+      ctx.fillStyle = selectedColorRef.current;
+      ctx.beginPath();
+      ctx.arc(x, y, brushSize/2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  
+  // 添加到位置历史
+  updatePositionHistory(x, y);
+  
+  //console.log('开始绘制，位置:', x, y, '工具:', currentToolRef.current);
+};
+  
+  // 绘制 - 使用线条方式
+  const draw = (e: MouseEvent) => {
+    // 检查是否正在绘制
+    if (!isDrawingRef.current) return;
+    
     const canvas = canvasRef.current;
     if (!canvas) return;
     
-    // 直接更新引用和状态
-    isDrawingRef.current = true;
-    setIsDrawing(true);
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
     
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     
+    // 使用ref获取上一个位置
+    const lastPos = lastPositionRef.current || lastPosition;
+    
+    if (!lastPos) {
+      lastPositionRef.current = { x, y };
+      setLastPosition({ x, y });
+      updatePositionHistory(x, y);
+      return;
+    }
+    
+    // 计算移动距离
+    const dx = x - lastPos.x;
+    const dy = y - lastPos.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    
+    if (distance < 0.5) return;
+    
+    // 计算移动速度
+    const now = Date.now();
+    //const timeDelta = now - (lastDrawTimeRef.current || now);
+    lastDrawTimeRef.current = now;
+    //const speed = distance / Math.max(1, timeDelta);
+    
+    // 配置线条样式 - 使用ref获取最新值
+    ctx.lineWidth = brushSizeRef.current;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    
+    // 根据工具和混合模式选择绘制方法
+    if (currentToolRef.current === 'eraser') {
+      // 橡皮擦模式
+      ctx.globalCompositeOperation = 'destination-out';
+      
+      // 直接绘制线条
+      ctx.beginPath();
+      ctx.moveTo(lastPos.x, lastPos.y);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+    } else {
+      // 画笔模式
+      if (mixingModeRef.current === 'mixbox') {
+        // MixBox模式需要特殊处理
+        drawMixboxLine(ctx, lastPos.x, lastPos.y, x, y);
+      } else {
+        // 普通模式直接使用Canvas线条绘制
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.globalAlpha = opacityRef.current / 100; // 使用ref获取最新值
+        ctx.strokeStyle = selectedColorRef.current;
+        
+        ctx.beginPath();
+        ctx.moveTo(lastPos.x, lastPos.y);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+      }
+    }
+    
+    // 更新位置
     setLastPosition({ x, y });
+    lastPositionRef.current = { x, y };
+    updatePositionHistory(x, y);
+  };
+  
+  // 停止绘制
+// 修改后的stopDrawing函数
+const stopDrawing = () => {
+  if (isDrawingRef.current) {
+    // 更新状态
+    isDrawingRef.current = false;
+    setIsDrawing(false);
+    setLastPosition(null);
+    lastPositionRef.current = null; // 同时清除ref
+    previousPositionsRef.current = [];
     
-    // 画一个点
-    drawDot(x, y);
-    
-    //console.log('开始绘制，位置:', x, y, '绘制状态:', isDrawingRef.current);
+    // 保存历史记录
+    saveToHistory();
+    //console.log('Drawing stopped');
+  }
   };
   
   // 处理触摸开始事件
@@ -660,7 +810,7 @@ export default function MixboxCanvasPainter() {
     const canvas = canvasRef.current;
     if (!canvas || e.touches.length === 0) return;
     
-    // 直接更新引用和状态
+    // 更新绘制状态
     isDrawingRef.current = true;
     setIsDrawing(true);
     
@@ -668,135 +818,166 @@ export default function MixboxCanvasPainter() {
     const x = e.touches[0].clientX - rect.left;
     const y = e.touches[0].clientY - rect.top;
     
+    // 同时更新状态和ref
     setLastPosition({ x, y });
+    lastPositionRef.current = { x, y };
+    lastDrawTimeRef.current = Date.now();
+    previousPositionsRef.current = [];
     
-    // 画一个点
-    drawDot(x, y);
+    // 获取绘制上下文
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
     
-    //console.log('触摸开始绘制，位置:', x, y, '绘制状态:', isDrawingRef.current);
-  };
-  
-  // 绘制一个点
-  const drawDot = (x: number, y: number) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    // 其他逻辑保持不变...
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.lineWidth = brushSize;
     
-    // 添加调试日志
-    //console.log(`drawDot被调用 - brushSize: ${brushSizeRef.current}, opacity: ${opacityRef.current/100}, tool: ${currentToolRef.current}, mixingMode: ${mixingModeRef.current}`);
-    
-    // 使用ref获取当前工具状态
     if (currentToolRef.current === 'eraser') {
-      drawWithBlending(x, y, '#FFFFFF', 1);
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(x, y, brushSize/2, 0, Math.PI * 2);
+      ctx.fill();
     } else {
-      // 使用当前选择的颜色和不透明度（从ref获取最新值）
-      drawWithBlending(x, y, selectedColorRef.current, opacityRef.current / 100);
+      if (mixingModeRef.current === 'mixbox') {
+        drawMixboxDot(ctx, x, y);
+      } else {
+        ctx.globalAlpha = opacity / 100;
+        ctx.fillStyle = selectedColorRef.current;
+        ctx.beginPath();
+        ctx.arc(x, y, brushSize/2, 0, Math.PI * 2);
+        ctx.fill();
+      }
     }
+    
+    updatePositionHistory(x, y);
   };
   
-  // 修改drawWithBlending函数，专注于改进重叠区域的混合效果
-const drawWithBlending = (x: number, y: number, colorHex: string, opacity: number) => {
+  // 处理触摸移动事件
+  const handleTouchMove = (e: TouchEvent) => {
+    e.preventDefault(); // 防止滚动
+    
+    if (!isDrawingRef.current || e.touches.length === 0) return;
+    
     const canvas = canvasRef.current;
     if (!canvas) return;
     
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     
-    // 添加调试信息，每10次绘制输出一次（避免过多日志）
-    if (Math.random() < 0.1) {
-      //console.log(`当前混合模式: ${mixingModeRef.current}, 工具: ${currentToolRef.current}, mixbox可用: ${typeof mixbox === 'object' && typeof mixbox.lerp === 'function'}`);
+    const rect = canvas.getBoundingClientRect();
+    const x = e.touches[0].clientX - rect.left;
+    const y = e.touches[0].clientY - rect.top;
+    
+    // 使用ref获取上一个位置
+    const lastPos = lastPositionRef.current || lastPosition;
+    
+    if (!lastPos) {
+      lastPositionRef.current = { x, y };
+      setLastPosition({ x, y });
+      updatePositionHistory(x, y);
+      return;
     }
     
-    // 使用brushSizeRef获取最新的画笔大小
-    const size = brushSizeRef.current;
-    const startX = Math.max(0, Math.floor(x - size));
-    const startY = Math.max(0, Math.floor(y - size));
-    const width = Math.min(size * 2, canvas.width - startX);
-    const height = Math.min(size * 2, canvas.height - startY);
+    // 其余逻辑与draw函数相同...
+    const dx = x - lastPos.x;
+    const dy = y - lastPos.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
     
-    const imageData = ctx.getImageData(startX, startY, width, height);
+    if (distance < 0.5) return;
+    
+    const now = Date.now();
+    //const timeDelta = now - (lastDrawTimeRef.current || now);
+    lastDrawTimeRef.current = now;
+    
+    ctx.lineWidth = brushSize;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    
+    if (currentToolRef.current === 'eraser') {
+      ctx.globalCompositeOperation = 'destination-out';
+      
+      ctx.beginPath();
+      ctx.moveTo(lastPos.x, lastPos.y);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+    } else {
+      if (mixingModeRef.current === 'mixbox') {
+        drawMixboxLine(ctx, lastPos.x, lastPos.y, x, y);
+      } else {
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.globalAlpha = opacity / 100;
+        ctx.strokeStyle = selectedColorRef.current;
+        
+        ctx.beginPath();
+        ctx.moveTo(lastPos.x, lastPos.y);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+      }
+    }
+    
+    // 同时更新状态和ref
+    setLastPosition({ x, y });
+    lastPositionRef.current = { x, y };
+    updatePositionHistory(x, y);
+  };
+  
+  // 处理触摸结束事件
+  const handleTouchEnd = () => {
+    stopDrawing();
+  };
+  
+  // 在主画布上绘制Mixbox点
+  const drawMixboxDot = (ctx: CanvasRenderingContext2D, x: number, y: number) => {
+    // 使用ref获取最新值
+    const radius = brushSizeRef.current / 2;
+    const left = Math.max(0, Math.floor(x - radius));
+    const top = Math.max(0, Math.floor(y - radius));
+    const width = Math.min(Math.ceil(radius * 2), ctx.canvas.width - left);
+    const height = Math.min(Math.ceil(radius * 2), ctx.canvas.height - top);
+    
+    // 若区域无效则返回
+    if (width <= 0 || height <= 0) return;
+    
+    // 获取受影响区域的像素数据
+    const imageData = ctx.getImageData(left, top, width, height);
     const data = imageData.data;
     
-    // 新颜色的RGB值
-    const newColor = hexToRgbArray(colorHex);
+    // 新颜色
+    const newColor = hexToRgbArray(selectedColorRef.current);
     
-    // 对区域内的每个像素应用混合
+    // 对每个像素应用mixbox混合
     for (let py = 0; py < height; py++) {
       for (let px = 0; px < width; px++) {
-        const dx = px + startX - x;
-        const dy = py + startY - y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+        const dx = px + left - x;
+        const dy = py + top - y;
+        const distanceSq = dx * dx + dy * dy;
+        const distanceRatio = Math.sqrt(distanceSq) / radius;
         
-        // 只修改在笔刷半径内的像素
-        if (distance <= size) {
-          // 关键改进1：不同模式使用不同的不透明度曲线
-          let fadeOpacity = opacity; 
+        // 只处理画笔范围内的像素
+        if (distanceRatio <= 1) {
+          // 基于距离计算不透明度，创建渐变效果
+          const fadeOpacity = (opacityRef.current / 100) * (1 - Math.pow(distanceRatio, 1.2));
           
-          // Mixbox模式使用更平滑的不透明度曲线，以突显颜料混合效果
-          if (mixingModeRef.current === 'mixbox') {
-            // 缩小最大不透明度并使用平缓衰减
-            fadeOpacity *= 0.8; 
-            fadeOpacity *= (1 - Math.pow(distance / size, 1.2));
-          } else {
-            // Normal模式使用陡峭的不透明度曲线，接近直接覆盖
-            fadeOpacity *= (1 - Math.pow(distance / size, 3.0));
-            // 增加不透明度基础值，使normal模式颜色更突出
-            fadeOpacity = Math.min(1.0, fadeOpacity * 1.5);
-          }
-          
-          const i = (py * width + px) * 4; // 像素索引
-          
-          // 当前像素的RGB值
+          const i = (py * width + px) * 4;
           const currentColor: [number, number, number] = [data[i], data[i+1], data[i+2]];
           
-          // 判断是否为白色或几乎白色的背景 - 放宽判定标准
+          // 检查是否为白色背景
           const isWhite = currentColor[0] > 240 && currentColor[1] > 240 && currentColor[2] > 240;
           
           let result: [number, number, number];
           
-          // 更明确的模式区分：正确使用ref的当前值
-          if (mixingModeRef.current === 'mixbox' && currentToolRef.current === 'brush') {
-            try {
-              if (!isWhite) {
-                // 对于颜色重叠区域，使用MixBox进行真实颜料混合
-                result = mixbox.lerp(currentColor, newColor, fadeOpacity);
-              } else {
-                // 对于白色区域，使用稍微调整的混合
-                result = normalMix(currentColor, newColor, fadeOpacity);
-              }
-            } catch (error) {
-              console.error('MixBox混合出错:', error);
+          try {
+            if (!isWhite) {
+              // 使用mixbox算法混合颜色
+              result = mixbox.lerp(currentColor, newColor, fadeOpacity);
+            } else {
+              // 白色背景上使用正常混合
               result = normalMix(currentColor, newColor, fadeOpacity);
             }
-          } else {
-            // ========= normal模式混合逻辑 ========= 
-            // 普通模式下，实现接近Photoshop的普通混合模式（不考虑颜料物理特性）
-            if (isWhite || fadeOpacity > 0.9) {
-              // 对于白色背景或高不透明度，几乎直接使用新颜色
-              result = [
-                Math.round(newColor[0]),
-                Math.round(newColor[1]),
-                Math.round(newColor[2])
-              ];
-            } else {
-              // 对于已有颜色的区域，使用RGB加权平均（而非物理混合）
-              // 关键：这里不考虑颜料的物理特性，仅做数字混合
-              result = [
-                Math.min(255, Math.round(currentColor[0] * (1 - fadeOpacity) + newColor[0] * fadeOpacity)),
-                Math.min(255, Math.round(currentColor[1] * (1 - fadeOpacity) + newColor[1] * fadeOpacity)),
-                Math.min(255, Math.round(currentColor[2] * (1 - fadeOpacity) + newColor[2] * fadeOpacity))
-              ];
-              
-              // 对于RGB模式，增强颜色鲜艳度（提高饱和度），使其与mixbox更有区别
-              if (!isWhite && fadeOpacity > 0.3) {
-                // 简单的RGB饱和度增强
-                const avg = (result[0] + result[1] + result[2]) / 3;
-                result = [
-                  Math.min(255, Math.max(0, Math.round(avg + (result[0] - avg) * 1.3))),
-                  Math.min(255, Math.max(0, Math.round(avg + (result[1] - avg) * 1.3))),
-                  Math.min(255, Math.max(0, Math.round(avg + (result[2] - avg) * 1.3)))
-                ];
-              }
-            }
+          } catch (error) {
+            console.error('Mixbox混合失败:', error);
+            result = normalMix(currentColor, newColor, fadeOpacity);
           }
           
           // 更新像素数据
@@ -809,113 +990,144 @@ const drawWithBlending = (x: number, y: number, colorHex: string, opacity: numbe
     }
     
     // 将修改后的像素数据绘制回画布
-    ctx.putImageData(imageData, startX, startY);
+    ctx.putImageData(imageData, left, top);
   };
   
-  // 绘制
-  const draw = (e: MouseEvent) => {
-    // 使用引用检查绘制状态，而不是状态变量
-    if (!isDrawingRef.current) {
+  // 使用MixBox模式绘制线条
+  const drawMixboxLine = (ctx: CanvasRenderingContext2D, x1: number, y1: number, x2: number, y2: number) => {
+    // 路径距离和方向
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    
+    // 如果距离太短，直接画点
+    if (distance < 2) {
+      drawMixboxDot(ctx, x2, y2);
       return;
     }
     
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    // 使用笔刷大小作为临时画布边距
+    const padding = brushSizeRef.current;
     
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    // 创建一个临时画布，包含线条区域
+    const tempCanvas = document.createElement('canvas');
+    tempCanvas.width = Math.abs(dx) + padding * 2;
+    tempCanvas.height = Math.abs(dy) + padding * 2;
     
-    // 绘制当前点
-    drawDot(x, y);
+    const tempCtx = tempCanvas.getContext('2d', { willReadFrequently: true });
+    if (!tempCtx) return;
     
-    // 在上一个点和当前点之间插值绘制，以避免快速移动时的间隔
-    if (lastPosition) {
-      const lastPos = lastPosition;
-      const dx = x - lastPos.x;
-      const dy = y - lastPos.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
+    // 计算区域的左上角坐标
+    const minX = Math.min(x1, x2) - padding;
+    const minY = Math.min(y1, y2) - padding;
+    
+    // 获取原始画布上这个区域的像素
+    try {
+      // 边界检查
+      const srcX = Math.max(0, minX);
+      const srcY = Math.max(0, minY);
+      const srcWidth = Math.min(ctx.canvas.width - srcX, tempCanvas.width);
+      const srcHeight = Math.min(ctx.canvas.height - srcY, tempCanvas.height);
       
-      if (distance >= 2) {
-        const steps = Math.ceil(distance / 2);
+      if (srcWidth > 0 && srcHeight > 0) {
+        // 复制原始画布内容到临时画布
+        const imageData = ctx.getImageData(srcX, srcY, srcWidth, srcHeight);
+        tempCtx.putImageData(imageData, srcX - minX, srcY - minY);
+      }
+    } catch (e) {
+      console.error('获取原始画布数据失败:', e);
+    }
+    
+    // 计算线段上的采样点数量 - 根据距离动态调整
+    const steps = Math.max(Math.ceil(distance / 2), 10);
+    
+    // 临时画布上的相对坐标
+    const tx1 = x1 - minX;
+    const ty1 = y1 - minY;
+    const tx2 = x2 - minX;
+    const ty2 = y2 - minY;
+    
+    // 在临时画布上绘制线条
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const tx = tx1 + (tx2 - tx1) * t;
+      const ty = ty1 + (ty2 - ty1) * t;
+      
+      // 在每个采样点绘制MixBox点
+      const radius = brushSizeRef.current / 2;
+      const left = Math.max(0, Math.floor(tx - radius));
+      const top = Math.max(0, Math.floor(ty - radius));
+      const width = Math.min(Math.ceil(radius * 2), tempCanvas.width - left);
+      const height = Math.min(Math.ceil(radius * 2), tempCanvas.height - top);
+      
+      // 如果区域无效则跳过
+      if (width <= 0 || height <= 0) continue;
+      
+      try {
+        // 获取临时画布上采样点区域的像素
+        const imageData = tempCtx.getImageData(left, top, width, height);
+        const data = imageData.data;
         
-        for (let i = 1; i < steps; i++) {
-          const t = i / steps;
-          const ix = lastPos.x + dx * t;
-          const iy = lastPos.y + dy * t;
-          drawDot(ix, iy);
+        // 新颜色
+        const newColor = hexToRgbArray(selectedColorRef.current);
+        
+        // 对采样点区域内的每个像素应用MixBox混合
+        for (let py = 0; py < height; py++) {
+          for (let px = 0; px < width; px++) {
+            const pdx = px + left - tx;
+            const pdy = py + top - ty;
+            const distanceSq = pdx * pdx + pdy * pdy;
+            const distanceRatio = Math.sqrt(distanceSq) / radius;
+            
+            // 只处理画笔范围内的像素
+            if (distanceRatio <= 1) {
+              // 基于距离计算不透明度，使用ref取得最新值
+              const fadeOpacity = (opacityRef.current / 100) * (1 - Math.pow(distanceRatio, 1.2));
+              
+              const i = (py * width + px) * 4;
+              const currentColor: [number, number, number] = [data[i], data[i+1], data[i+2]];
+              
+              // 检查是否为白色背景
+              const isWhite = currentColor[0] > 240 && currentColor[1] > 240 && currentColor[2] > 240;
+              
+              let result: [number, number, number];
+              
+              try {
+                if (!isWhite) {
+                  // 使用MixBox算法混合颜色
+                  result = mixbox.lerp(currentColor, newColor, fadeOpacity);
+                } else {
+                  // 白色背景上使用普通混合
+                  result = normalMix(currentColor, newColor, fadeOpacity);
+                }
+              } catch (error) {
+                console.error('MixBox混合失败:', error);
+                result = normalMix(currentColor, newColor, fadeOpacity);
+              }
+              
+              // 更新像素数据
+              data[i] = result[0];
+              data[i+1] = result[1];
+              data[i+2] = result[2];
+              data[i+3] = 255; // 确保完全不透明
+            }
+          }
         }
+        
+        // 将修改后的像素数据绘制回临时画布
+        tempCtx.putImageData(imageData, left, top);
+      } catch (e) {
+        console.error('处理采样点失败:', e);
       }
     }
     
-    // 更新位置
-    setLastPosition({ x, y });
-    
-    // 调试信息
-    //console.log(`绘制 - 位置: (${x}, ${y}), 颜色: ${selectedColorRef.current}, 工具: ${currentToolRef.current}, 绘制状态: ${isDrawingRef.current}`);
-  };
-  
-  // 处理触摸移动事件
-  const handleTouchMove = (e: TouchEvent) => {
-    e.preventDefault(); // 防止滚动
-    
-    if (!isDrawingRef.current || e.touches.length === 0) return;
-    
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    
-    const rect = canvas.getBoundingClientRect();
-    const x = e.touches[0].clientX - rect.left;
-    const y = e.touches[0].clientY - rect.top;
-    
-    // 绘制当前点
-    drawDot(x, y);
-    
-    // 在上一个点和当前点之间插值绘制，以避免快速移动时的间隔
-    if (lastPosition) {
-      const lastPos = lastPosition;
-      const dx = x - lastPos.x;
-      const dy = y - lastPos.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      
-      if (distance >= 2) {
-        const steps = Math.ceil(distance / 2);
-        
-        for (let i = 1; i < steps; i++) {
-          const t = i / steps;
-          const ix = lastPos.x + dx * t;
-          const iy = lastPos.y + dy * t;
-          drawDot(ix, iy);
-        }
-      }
-    }
-    
-    // 更新位置
-    setLastPosition({ x, y });
-    
-    //console.log(`触摸绘制 - 位置: (${x}, ${y}), 绘制状态: ${isDrawingRef.current}`);
-  };
-  
-  // 停止绘制
-  const stopDrawing = () => {
-    if (isDrawingRef.current) {
-      // 直接更新引用和状态
-      isDrawingRef.current = false;
-      setIsDrawing(false);
-      setLastPosition(null);
-      saveToHistory();
-      //console.log('Drawing stopped');
-    }
-  };
-  
-  // 处理触摸结束事件
-  const handleTouchEnd = () => {
-    stopDrawing();
+    // 将临时画布内容绘制到主画布
+    ctx.drawImage(tempCanvas, minX, minY);
   };
   
   // 切换混合模式
   const toggleMixingMode = (mode: 'mixbox' | 'normal') => {
-    //console.log(`切换到模式: ${mode}, mixbox库可用: ${typeof mixbox === 'object' && typeof mixbox.lerp === 'function'}`);
+    console.log(`切换到模式: ${mode}, mixbox库可用: ${typeof mixbox === 'object' && typeof mixbox.lerp === 'function'}`);
     setMixingMode(mode);
     mixingModeRef.current = mode; // 立即更新ref，不等待下一个渲染周期
   };
@@ -1105,6 +1317,7 @@ const drawWithBlending = (x: number, y: number, colorHex: string, opacity: numbe
                       onChange={(e) => {
                         const newSize = parseInt(e.target.value);
                         setBrushSize(newSize);
+                        brushSizeRef.current = newSize; // 立即更新ref
                       }} 
                       className="w-full"
                     />
@@ -1119,6 +1332,7 @@ const drawWithBlending = (x: number, y: number, colorHex: string, opacity: numbe
                       onChange={(e) => {
                         const newOpacity = parseInt(e.target.value);
                         setOpacity(newOpacity);
+                        opacityRef.current = newOpacity; // 立即更新ref
                       }} 
                       className="w-full"
                     />
@@ -1176,7 +1390,7 @@ const drawWithBlending = (x: number, y: number, colorHex: string, opacity: numbe
                                 className={`aspect-square rounded-full cursor-pointer border hover:opacity-90 ${selectedPaint === paintName ? 'ring-2 ring-blue-500' : ''}`}
                                 style={{ backgroundColor: PAINT_COLORS[paintName]?.hex || 'transparent' }}
                                 onClick={() => {
-                                  //console.log(`点击了颜料: ${paintName}`);
+                                  console.log(`点击了颜料: ${paintName}`);
                                   selectPaint(paintName);
                                 }}
                               />
