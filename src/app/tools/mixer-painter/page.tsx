@@ -47,10 +47,9 @@ export default function MixerPainterPage() {
               <div className="flex justify-end mb-2">
                 <a 
                   href="/tools/mixer-painter-tool" 
-                  target="_blank" 
                   className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg shadow transition-colors duration-200"
                 >
-                  <span>Open Full Tool in New Window</span>
+                  <span>Open Full Tool</span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                     <polyline points="15 3 21 3 21 9"></polyline>
@@ -121,6 +120,7 @@ export default function MixerPainterPage() {
                     <li>Professional Color Palette</li>
                     <li>Two Mixing Modes</li>
                     <li>Touch-Friendly Interface</li>
+                    <li>Multiple Professional Brush Types</li>
                   </ul>
                 </div>
               </div>
@@ -132,6 +132,9 @@ export default function MixerPainterPage() {
                 <ol className="list-decimal pl-6 space-y-3">
                   <li>
                     <strong>Select a Brush Size</strong> - Use the slider on the right panel to choose the size of your brush.
+                  </li>
+                  <li>
+                    <strong>Choose a Brush Type</strong> - We offer several professional brushes including pen, watercolor, chalk, and oil paint brushes, each with unique textures and effects.
                   </li>
                   <li>
                     <strong>Choose a Paint Color</strong> - Select a color from the professional palette or use the custom color wheel.
@@ -217,6 +220,8 @@ export default function MixerPainterPage() {
                   <li>Use complementary colors (opposite on the color wheel) to create contrast and vibrancy</li>
                   <li>Paint in multiple layers, starting with large shapes and then adding details</li>
                   <li>Experiment with different mixing modes to see which works best for your style</li>
+                  <li>Try different brush types: pen for precise lines, watercolor for soft effects, chalk for texture, and oil paint for thick paint effects</li>
+                  <li>The oil paint brush is particularly good for creating works with heavy texture - try using it to simulate traditional oil painting effects</li>
                   <li>Remember to save your work for later continuation or sharing</li>
                 </ul>
                 <p>
@@ -274,6 +279,22 @@ export default function MixerPainterPage() {
                   <h3 className="font-medium text-lg mb-2 text-gray-800 dark:text-white">What browsers does this tool support?</h3>
                   <p>
                     Our online drawing tool supports all modern browsers, including Chrome, Firefox, Safari, and Edge. No plugins or software installation is needed — just open your browser and start creating.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="font-medium text-lg mb-2 text-gray-800 dark:text-white">What types of brushes does this tool offer?</h3>
+                  <p>
+                    Our tool provides multiple professional brush options, including:
+                  </p>
+                  <ul className="mt-2 list-disc pl-6">
+                    <li><strong>Pen Brush</strong> - Provides clean, precise lines perfect for detailed work</li>
+                    <li><strong>Watercolor Brush</strong> - Creates soft, semi-transparent effects that simulate real watercolor diffusion</li>
+                    <li><strong>Chalk Brush</strong> - Offers rough texture effects ideal for creating textured looks</li>
+                    <li><strong>Oil Paint Brush</strong> - Simulates thick oil paint effects with directional strokes and rich texture</li>
+                  </ul>
+                  <p className="mt-2">
+                    Each brush has its unique characteristics and uses, allowing you to choose the right tool based on your artistic style and needs.
                   </p>
                 </div>
               </div>
