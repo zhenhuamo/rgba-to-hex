@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rgbatohex.com.com'),
+  metadataBase: new URL('https://rgbatohex.com'),
   title: "RGBA to HEX Color Converter | Free Online Tool",
   description: "Convert RGBA to HEX color codes instantly with our free online tool. Easy-to-use RGBA to hexadecimal converter with real-time preview. Perfect for web developers and designers.",
   keywords: "rgba to hex, color converter, hex color codes, rgba converter, color tool, web development, design tools, rgba to hexadecimal, color conversion, free color converter",
@@ -76,12 +76,7 @@ export default function RootLayout({
             gtag('config', 'G-WBNP4JPTFL');
           `}
         </Script>
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380689997504325"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380689997504325" crossOrigin="anonymous"></script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
