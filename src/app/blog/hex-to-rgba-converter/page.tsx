@@ -12,11 +12,11 @@ export default function HexToRgbaBlog() {
         <article className="max-w-4xl mx-auto">
           {/* SEO Meta Section */}
           <div className="hidden">
-            <h1>HEX to RGBA Converter - Convert Hexadecimal Colors to RGBA</h1>
-            <h2>Online HEX to RGBA Color Converter with Opacity Support</h2>
+            <h1>HEX to RGBA Converter - Convert Hexadecimal Colors to RGBA and RGBA to HEX</h1>
+            <h2>Online HEX to RGBA Color Converter with Opacity Support and RGBA to HEX Conversion</h2>
             <p>
               Convert HEX colors to RGBA format online. Support for both 6-digit and 8-digit hex codes.
-              Handle opacity in HEX to RGBA conversion. Free online color converter tool.
+              Handle opacity in HEX to RGBA conversion. Also includes RGBA to HEX conversion. Free online color converter tool.
             </p>
           </div>
 
@@ -61,7 +61,8 @@ export default function HexToRgbaBlog() {
             <p className="lead">
               Converting hexadecimal (HEX) colors to RGBA format is a crucial skill in modern web development. 
               Our HEX to RGBA converter simplifies this process, supporting both standard 6-digit and advanced 
-              8-digit hex codes with alpha channel support. This comprehensive guide covers everything from 
+              8-digit hex codes with alpha channel support. Additionally, our tools help with RGBA to HEX conversion for 
+              complete color format flexibility. This comprehensive guide covers everything from 
               basic concepts to advanced implementation techniques.
             </p>
 
@@ -70,6 +71,7 @@ export default function HexToRgbaBlog() {
               <h2 className="text-xl font-semibold mb-4">Try Our HEX to RGBA Converter</h2>
               <p className="mb-4">
                 Convert any HEX color to RGBA format instantly. Supports both 6-digit and 8-digit hex codes with opacity.
+                Our tools also support RGBA to HEX conversion for your complete color transformation needs.
               </p>
               <Link
                 href="/tools/hex-to-rgba"
@@ -204,7 +206,8 @@ export default function HexToRgbaBlog() {
             <h2>Conclusion</h2>
             <p>
               Understanding HEX to RGBA conversion is essential for modern web development. 
-              Whether you&apos;re working on a simple website or a complex application, 
+              Similarly, knowing how to perform RGBA to HEX conversion gives you complete flexibility 
+              when working with colors. Whether you&apos;re working on a simple website or a complex application, 
               our converter tool and this guide provide everything you need to handle color 
               conversions effectively.
             </p>
@@ -214,7 +217,7 @@ export default function HexToRgbaBlog() {
               <h2 className="text-2xl font-bold mb-4">Start Converting Colors Now</h2>
               <p className="mb-6">
                 Try our free online HEX to RGBA converter tool. Convert colors with or without opacity, 
-                and get instant results with real-time preview.
+                perform RGBA to HEX conversions, and get instant results with real-time preview.
               </p>
               <Link
                 href="/tools/hex-to-rgba"
