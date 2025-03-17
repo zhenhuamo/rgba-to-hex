@@ -6,10 +6,18 @@ import Navigation from '@/components/Navigation';
 export default function Blog() {
   const blogPosts = [
     {
+      title: 'Color Wheel Tool: Master Color Theory and Create Perfect Harmonies',
+      description: 'Explore our comprehensive guide to using the interactive color wheel tool. Learn about color harmonies, RGB vs RYB color systems, and how to create stunning color combinations for your design projects.',
+      link: '/blog/color-wheel-tool',
+      date: '2025-03-17',
+      readTime: '12 min read',
+      category: 'Color Theory',
+    },
+    {
       title: 'Mixbox Paint Mixer: Revolutionary Digital Painting Color Mixing Technology',
       description: 'Discover how Mixbox technology simulates real pigment mixing to create more natural and vibrant digital painting effects than traditional RGB blending. Learn how Kubelka & Munk theory revolutionizes digital art creation.',
       link: '/blog/mixbox-paint-mixer',
-      date: '2025-03-20',
+      date: '2025-03-16',
       readTime: '10 min read',
       category: 'Digital Painting',
     },
