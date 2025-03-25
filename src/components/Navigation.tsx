@@ -35,6 +35,12 @@ export default function Navigation() {
       ]
     },
     {
+      category: "image tools",
+      tools: [
+        { name: 'Image Crop Tool', href: '/tools/image-crop-landing', color: 'bg-blue-600' },
+      ]
+    },
+    {
       category: "text tools",
       tools: [
         { name: 'Font Generator', href: '/tools/font-generator', color: 'bg-purple-500' }
