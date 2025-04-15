@@ -12,6 +12,7 @@ export default function Navigation() {
     {
       category: "color conversion",
       tools: [
+        { name: 'RGBA to 8-Digit HEX', href: '/tools/rgba-to-hex-8-digit', color: 'bg-blue-500' },
         { name: 'HEX to RGBA', href: '/tools/hex-to-rgba', color: 'bg-green-500' },
         { name: 'HSL to HEX', href: '/tools/hsl-to-hex', color: 'bg-orange-500' },
         { name: 'CMYK to HEX', href: '/tools/cmyk-to-hex', color: 'bg-red-500' },

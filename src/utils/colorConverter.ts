@@ -40,6 +40,19 @@ export const rgbaToHex = ({ r, g, b }: RGBA): string => {
   return '#' + toHex(r) + toHex(g) + toHex(b);
 };
 
+// 新增8位HEX转换函数（保留透明度通道）
+export const rgbaToHex8 = ({ r, g, b, a }: RGBA): string => {
+  const toHex = (n: number): string => {
+    const hex = Math.round(n).toString(16);
+    return hex.length === 1 ? '0' + hex : hex;
+  };
+  
+  // 将0-1范围的alpha转为0-255整数
+  const alpha = Math.round(a * 255);
+  
+  return '#' + toHex(r) + toHex(g) + toHex(b) + toHex(alpha);
+};
+
 export const isValidHex = (hex: string): boolean => {
   const regex = /^#([A-Fa-f0-9]{3}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$/;
   return regex.test(hex);
