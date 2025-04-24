@@ -6,6 +6,14 @@ import Navigation from '@/components/Navigation';
 export default function Blog() {
   const blogPosts = [
     {
+      title: 'RGBA to 8-Digit HEX: The Ultimate Guide to Modern Color Conversion',
+      description: 'Explore the complete conversion process from RGBA to 8-digit HEX format (#RRGGBBAA), understand key differences between 8-digit and 16-digit HEX formats, and learn best practices for using transparent colors in modern web design.',
+      link: '/blog/rgba-to-hex-8-digit-converter',
+      date: '2024-03-15',
+      readTime: '15 min read',
+      category: 'Color Conversion',
+    },
+    {
       title: 'Color Wheel Tool: Master Color Theory and Create Perfect Harmonies',
       description: 'Explore our comprehensive guide to using the interactive color wheel tool. Learn about color harmonies, RGB vs RYB color systems, and how to create stunning color combinations for your design projects.',
       link: '/blog/color-wheel-tool',
