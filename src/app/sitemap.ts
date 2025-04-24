@@ -184,6 +184,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/blog/rgba-to-hex-8-digit-converter`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
     }
   ];
 } 

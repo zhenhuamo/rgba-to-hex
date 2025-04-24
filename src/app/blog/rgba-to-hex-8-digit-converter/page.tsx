@@ -202,86 +202,86 @@ export default function RgbaToHex8DigitBlog() {
             {/* Standard HEX vs 8-Digit HEX Section */}
             <h2 id="difference" className="flex items-center scroll-mt-24 mt-12">
               <span className="mr-3 p-1 bg-blue-100 dark:bg-blue-900 rounded text-blue-600 dark:text-blue-300 text-sm font-mono">02</span>
-              标准HEX、8位HEX与16位HEX格式对比
+              Comparison of Standard HEX, 8-Digit HEX, and 16-Digit HEX Formats
             </h2>
 
             <p>
-              当讨论颜色格式时，理解不同HEX格式之间的区别对于选择正确的颜色表示非常重要。特别是在进行RGBA to HEX转换时，我们需要了解这些格式如何处理透明度。
+              When discussing color formats, understanding the differences between various HEX formats is essential for choosing the right color representation. Especially when converting from RGBA to HEX, we need to understand how these formats handle transparency.
             </p>
 
             <div className="overflow-x-auto my-8">
               <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <thead>
                   <tr>
-                    <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">特性</th>
-                    <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">标准HEX (6位)</th>
-                    <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">8位HEX</th>
-                    <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">16位HEX</th>
+                    <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Feature</th>
+                    <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Standard HEX (6-digit)</th>
+                    <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">8-Digit HEX</th>
+                    <th className="px-6 py-3 bg-gray-50 dark:bg-gray-800 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">16-Digit HEX</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">格式</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">Format</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400"><code>#RRGGBB</code></td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400"><code>#RRGGBBAA</code></td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400"><code>#RRRRGGGGBBBBAAAA</code></td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">透明度支持</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">否</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">是 (通过AA组件)</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">是 (通过AAAA组件)</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">Transparency Support</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">No</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">Yes (via AA component)</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">Yes (via AAAA component)</td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">颜色精度</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">每通道8位 (256级)</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">每通道8位 (256级)</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">每通道16位 (65536级)</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">Color Precision</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">8 bits per channel (256 levels)</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">8 bits per channel (256 levels)</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">16 bits per channel (65536 levels)</td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">示例</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">Example</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400"><code>#FF5500</code></td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400"><code>#FF5500CC</code> (80%不透明度)</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400"><code>#FF550000CCCC</code> (80%不透明度)</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400"><code>#FF5500CC</code> (80% opacity)</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400"><code>#FF550000CCCC</code> (80% opacity)</td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">浏览器支持</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">全面支持</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">所有现代浏览器 (约2016年后)</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">有限支持，仅在特定环境</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">Browser Support</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">Full Support</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">All modern browsers (since ~2016)</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">Limited support, specific environments only</td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">CSS用法</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">CSS Usage</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400"><code>color: #FF5500;</code></td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400"><code>color: #FF5500CC;</code></td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">不支持CSS标准</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">Not supported in CSS standards</td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">主要用途</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">网页设计，一般用途</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">带透明度的网页设计</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">专业图像处理，HDR色彩</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">Primary Use</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">Web design, general purpose</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">Web design with transparency</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">Professional image processing, HDR colors</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <div className="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 my-8">
-              <h3 className="text-lg font-semibold mb-2 text-amber-800 dark:text-amber-300">为什么选择8位HEX而非16位HEX?</h3>
+              <h3 className="text-lg font-semibold mb-2 text-amber-800 dark:text-amber-300">Why Choose 8-Digit HEX Over 16-Digit HEX?</h3>
               <p>
-                虽然16位HEX提供更高的颜色精度，但8位HEX(#RRGGBBAA)成为了网页设计的主流选择。这是因为8位HEX在现代浏览器中有广泛支持，与CSS标准兼容，并提供了足够的256级颜色深度和透明度。相比之下，16位HEX主要应用于专业图像处理和HDR环境，在网页开发中较少使用。
+                While 16-digit HEX offers higher color precision, 8-digit HEX (#RRGGBBAA) has become the mainstream choice for web design. This is because 8-digit HEX is widely supported in modern browsers, compatible with CSS standards, and provides a sufficient 256 levels of color depth and transparency. In contrast, 16-digit HEX is primarily used in professional image processing and HDR environments, with less usage in web development.
               </p>
               <p className="mt-2">
-                我们的RGBA to HEX转换工具专注于8位HEX格式，为网页开发者提供最实用、兼容性最佳的颜色转换解决方案。
+                Our RGBA to HEX conversion tool focuses on the 8-digit HEX format, providing web developers with the most practical and compatible color conversion solution.
               </p>
             </div>
 
             <p>
-              标准6位HEX和8位HEX之间的主要区别在于表示透明度的能力。虽然标准6位HEX长期以来一直是CSS中颜色表示的传统方法，但它缺乏表达透明度的能力，当需要透明效果时，开发人员必须切换到rgba()表示法。
+              The main difference between standard 6-digit HEX and 8-digit HEX is the ability to represent transparency. While the standard 6-digit HEX has long been the traditional method for color representation in CSS, it lacks the ability to express transparency, requiring developers to switch to rgba() notation when transparency effects are needed.
             </p>
 
             <p>
-              通过使用8位HEX，开发人员可以在整个代码库中保持一致的HEX表示法，同时利用透明效果。这种融合简化了颜色管理，并在代码风格上提供了更大的一致性。而16位HEX虽然提供更高精度，但因浏览器支持有限且文件大小更大，不适合常规网页开发。
+              By using 8-digit HEX, developers can maintain consistent HEX notation throughout their codebase while leveraging transparency effects. This merger simplifies color management and provides greater consistency in coding style. While 16-digit HEX offers higher precision, it&apos;s not suitable for regular web development due to limited browser support and larger file sizes.
             </p>
 
             <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl my-8">

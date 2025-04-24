@@ -9,7 +9,7 @@ export default function Blog() {
       title: 'RGBA to 8-Digit HEX: The Ultimate Guide to Modern Color Conversion',
       description: 'Explore the complete conversion process from RGBA to 8-digit HEX format (#RRGGBBAA), understand key differences between 8-digit and 16-digit HEX formats, and learn best practices for using transparent colors in modern web design.',
       link: '/blog/rgba-to-hex-8-digit-converter',
-      date: '2024-03-15',
+      date: '2024-04-27',
       readTime: '15 min read',
       category: 'Color Conversion',
     },
