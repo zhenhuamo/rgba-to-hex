@@ -191,6 +191,69 @@ const RgbInput = ({ rgb, onChange }: {
   );
 };
 
+// 新增：HSV 可视化组件
+const HsvVisualizer = ({ hsv }: { hsv: { h: number, s: number, v: number } }) => {
+  const { h, s, v } = hsv;
+
+  // 计算 Hue marker 的位置
+  const hueMarkerStyle = {
+    transform: `rotate(${h}deg) translate(50%) rotate(-${h}deg)`,
+    // 调整 translate 的值来控制标记点离圆心的距离，例如 50% 在圆周上
+  };
+
+  // 计算 SV marker 的位置
+  const svMarkerStyle = {
+    left: `${s}%`,
+    top: `${100 - v}%`,
+    backgroundColor: `rgb(${v > 50 ? 0 : 255}, ${v > 50 ? 0 : 255}, ${v > 50 ? 0 : 255})`, // 根据亮度决定标记点颜色以保证可见性
+    transform: 'translate(-50%, -50%)',
+  };
+
+  // SV Box 背景色
+  const svBoxBackground = {
+    backgroundImage: `
+      linear-gradient(to top, black, transparent),
+      linear-gradient(to right, white, hsl(${h}, 100%, 50%))
+    `,
+  };
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+      {/* Hue Wheel */}
+      <div className="flex flex-col items-center">
+        <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Hue</h4>
+        <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full border-2 border-gray-200 dark:border-gray-600 overflow-hidden"
+          style={{
+            background: 'conic-gradient(from 90deg, hsl(0,100%,50%), hsl(60,100%,50%), hsl(120,100%,50%), hsl(180,100%,50%), hsl(240,100%,50%), hsl(300,100%,50%), hsl(360,100%,50%))'
+          }}
+        >
+          {/* Hue Marker - 放在一个容器里便于旋转定位 */}
+          <div className="absolute inset-0 flex items-center justify-center" >
+             <div className="absolute w-full h-full flex justify-start items-center" style={hueMarkerStyle}>
+                <div className="w-4 h-4 rounded-full border-2 border-white ring-1 ring-black shadow-md bg-transparent" 
+                    style={{ transform: 'translate(-50%, -50%)' }} // 微调标记点中心
+                />
+             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Saturation/Value Box */}
+      <div className="flex flex-col items-center">
+         <h4 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Saturation & Value</h4>
+        <div className="relative w-32 h-32 md:w-40 md:h-40 border-2 border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden"
+          style={svBoxBackground}
+        >
+          {/* SV Marker */}
+          <div className="absolute w-4 h-4 rounded-full border-2 border-white shadow-md"
+            style={svMarkerStyle}
+          ></div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function RgbToHsvConverter() {
   // 状态管理
   const [rgb, setRgb] = useState({ r: 50, g: 150, b: 200 });
@@ -296,10 +359,10 @@ export default function RgbToHsvConverter() {
             {/* RGB 输入控件 */}
             <RgbInput rgb={rgb} onChange={setRgb} />
             
-            {/* 高亮显示的HSV输出部分 */}
+            {/* 高亮显示的HSV输出部分 + 可视化 */}
             <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border-2 border-pink-200 dark:border-pink-900 shadow-md">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">HSV Result</h3>
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">HSV Result & Visualization</h3>
                 <div className="bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-200 text-xs px-2 py-1 rounded-full">
                   Hue, Saturation, Value
                 </div>
@@ -320,7 +383,7 @@ export default function RgbToHsvConverter() {
                 </div>
               </div>
 
-              <div className="flex">
+              <div className="flex mb-6">
                 <input
                   type="text"
                   value={currentHsvString}
@@ -348,7 +411,12 @@ export default function RgbToHsvConverter() {
                   )}
                 </button>
               </div>
-               <div className="mt-3 text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1">
+              
+              {/* 渲染新的可视化组件 */}
+              <HsvVisualizer hsv={hsv} />
+
+               {/* 原有的提示信息 */}
+               <div className="mt-6 text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1">
                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                  </svg>

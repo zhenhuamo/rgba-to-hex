@@ -116,7 +116,7 @@ export default function RgbToHsvPage() {
               Easily convert RGB color values to the HSV (Hue, Saturation, Value) model online using the standard conversion formula.
             </p>
             <p className="text-md text-gray-500 dark:text-gray-400">
-              Instantly get Hue (0-360°), Saturation (0-100%), and Value (0-100%). Understand the algorithm behind the intuitive HSV color space for your design and development needs.
+              Instantly get Hue (0-360°), Saturation (0-100%), and Value (0-100%). Understand the algorithm behind the intuitive HSV color space for your design and development needs. Includes interactive visualizations like a Hue Wheel and Saturation/Value box to help you better understand the HSV color space.
             </p>
             <div className="flex flex-wrap justify-center gap-2 mt-4">
               <span className="bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-200 text-xs px-2 py-1 rounded-full">RGB to HSV</span>
@@ -168,7 +168,7 @@ export default function RgbToHsvPage() {
                 Converting RGB to HSV is useful because the HSV model makes it easier to:
               </p>
               <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 pl-4 mt-2">
-                <li>Intuitively select or adjust colors (e.g., changing hue while keeping saturation/value constant).</li>
+                <li>Intuitively select or adjust colors (e.g., changing hue while keeping saturation/value constant), aided by visualizers like the Hue Wheel and SV Box.</li>
                 <li>Modify the saturation or brightness of an image independently.</li>
                 <li>Analyze colors in image processing tasks.</li>
                 <li>Create harmonious color palettes in design applications.</li>
