@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
 
   // 将工具进行分类
@@ -14,6 +15,7 @@ export default function Navigation() {
       tools: [
         { name: 'RGBA to 8-Digit HEX', href: '/tools/rgba-to-hex-8-digit', color: 'bg-blue-500' },
         { name: 'HEX to RGBA', href: '/tools/hex-to-rgba', color: 'bg-green-500' },
+        { name: 'RGB to HEX', href: '/tools/rgb-to-hex', color: 'bg-lime-500' },
         { name: 'HSL to HEX', href: '/tools/hsl-to-hex', color: 'bg-orange-500' },
         { name: 'CMYK to HEX', href: '/tools/cmyk-to-hex', color: 'bg-red-500' },
         { name: 'RGB to HSL', href: '/tools/rgb-to-hsl', color: 'bg-purple-500' },
@@ -63,7 +65,12 @@ export default function Navigation() {
       }
     };
 
+    // Set mounted state after initial render on client
+    setMounted(true);
+
     window.addEventListener('scroll', handleScroll);
+    // Call handleScroll once initially in case the page loads scrolled
+    handleScroll(); 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -81,8 +88,8 @@ export default function Navigation() {
   }, [isMenuOpen]);
 
   return (
-    <nav className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-      scrolled ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-md' : 'bg-transparent'
+    <nav className={`sticky top-0 z-50 w-full transition-all duration-300 ${ 
+      mounted && scrolled ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-md' : 'bg-transparent'
     }`}>
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">

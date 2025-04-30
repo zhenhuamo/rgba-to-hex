@@ -76,8 +76,6 @@ export default function RootLayout({
             gtag('config', 'G-WBNP4JPTFL');
           `}
         </Script>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380689997504325" crossOrigin="anonymous"></script>
-        
         {/* Microsoft Clarity */}
         <Script id="microsoft-clarity" strategy="afterInteractive">
           {`
@@ -93,6 +91,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        {/* Restore AdSense Script with lazyOnload strategy */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2380689997504325"
+          crossOrigin="anonymous"
+          strategy="lazyOnload" 
+        />
       </body>
     </html>
   );
