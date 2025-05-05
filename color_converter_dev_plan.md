@@ -107,6 +107,27 @@
 
 开发者可以根据此更新后的计划，按优先级逐步实现新功能，确保每个独立页面都满足内容、技术和 SEO 要求，并在每个阶段进行测试和用户反馈收集。 
 
+## 当前任务实施计划：HSV to RGB
+Implementation Checklist:
+1.  [PLAN] 在 `src/utils/colorConverter.ts` 中添加或验证 `hsvToRgb` 函数，包括输入验证和正确的转换逻辑，并导出该函数。
+2.  [CREATE] 创建工具组件页面文件 `src/app/tools/hsv-to-rgb-converter/page.tsx`。
+3.  [IMPLEMENT] 在 `hsv-to-rgb-converter/page.tsx` 中实现 HSV 输入（3个输入框/滑块）和 RGB 输出显示 UI。
+4.  [IMPLEMENT] 在 `hsv-to-rgb-converter/page.tsx` 中添加状态管理逻辑 (`useState`) 来处理输入和输出值。
+5.  [INTEGRATE] 在 `hsv-to-rgb-converter/page.tsx` 中集成 `hsvToRgb` 函数调用，实现实时转换。
+6.  [IMPLEMENT] 在 `hsv-to-rgb-converter/page.tsx` 中实现输入验证和错误处理逻辑。
+7.  [IMPLEMENT] 在 `hsv-to-rgb-converter/page.tsx` 中实现嵌入模式 (`?embed=true`) 的逻辑，根据 URL 参数调整 UI 显示。
+8.  [IMPLEMENT] 在 `hsv-to-rgb-converter/page.tsx` 中添加复制 RGB 结果的功能。
+9.  [STYLE] 使用 Tailwind CSS 对 `hsv-to-rgb-converter/page.tsx` 进行样式设置，确保界面清晰易用。
+10. [CREATE] 创建内容展示页面文件 `src/app/tools/hsv-to-rgb/page.tsx`。
+11. [CONTENT] 在 `hsv-to-rgb/page.tsx` 中编写所有必需的英文内容章节（简介、原理、用途、如何使用、FAQ 等）。
+12. [EMBED] 在 `hsv-to-rgb/page.tsx` 中使用 `iframe` 嵌入 `/tools/hsv-to-rgb-converter?embed=true`。
+13. [SEO] 在 `hsv-to-rgb/page.tsx` 中实现 `generateMetadata` 函数，提供优化的 Title, Description, Keywords 以及 Open Graph/Twitter Card 元数据（使用占位图像路径，例如 `/images/og-hsv-to-rgb.png`）。
+14. [CONTENT] (可选但推荐) 在 `hsv-to-rgb/page.tsx` 中添加 JavaScript/Python 的 `hsvToRgb` 代码示例。
+15. [STYLE] 使用 Tailwind CSS 对 `hsv-to-rgb/page.tsx` 进行样式设置，确保内容可读性和专业性（可使用 `prose` 类）。
+16. [LINK] 在 `hsv-to-rgb/page.tsx` 中添加指向相关转换器（如 RGB to HSV）的链接。
+17. [REVIEW] 代码审查：检查类型安全、代码风格、错误处理、SEO 实现和嵌入逻辑是否符合要求。
+18. [TEST] 功能测试：测试转换准确性、输入验证、嵌入模式、复制功能和页面响应性。
+
 ---
 
 # 功能更新日志
