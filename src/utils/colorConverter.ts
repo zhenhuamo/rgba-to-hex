@@ -295,12 +295,19 @@ export function hsvToRgb({ h, s, v }: HSV): RGB {
 
 export function hslToHex(hsl: HSL): string {
   const rgb = hslToRgb(hsl);
-  const toHex = (n: number): string => {
-    const hex = Math.round(n).toString(16);
-    return hex.length === 1 ? '0' + hex : hex;
-  };
+  return rgbaToHex(rgb as RGBA); // Cast or ensure rgbaToHex can handle RGB
+}
 
-  return '#' + toHex(rgb.r) + toHex(rgb.g) + toHex(rgb.b);
+/**
+ * Converts an HSV color value to a HEX string.
+ * @param {HSV} hsv - The HSV color value.
+ * @returns {string} The HEX color string (e.g., "#RRGGBB").
+ */
+export function hsvToHex(hsv: HSV): string {
+  const rgb = hsvToRgb(hsv);
+  // rgbaToHex expects an RGBA input but only uses r, g, b for 6-digit hex.
+  // We can cast rgb to RGBA as the alpha component will be ignored by rgbaToHex.
+  return rgbaToHex(rgb as RGBA);
 }
 
 export function cmykToRgb({ c, m, y, k }: CMYK): RGB {

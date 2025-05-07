@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
 import React, { useState, useEffect, Suspense } from 'react';
-import { hslToRgb, HSL, RGB, rgbaToHex, hslToHex } from '@/utils/colorConverter';
+import { useSearchParams } from 'next/navigation';
+import { hsvToHex, hsvToRgb,  RGB } from '@/utils/colorConverter';
 
 // Add global styles for smooth dark/light mode transitions
 const GlobalStyles = () => {
@@ -17,80 +18,117 @@ const GlobalStyles = () => {
 };
 
 // Inner component containing the actual logic and UI
-const HslToRgbConverterTool = () => {
-  // State for HSL inputs
-  const [hsl, setHsl] = useState<HSL>({ h: 180, s: 50, l: 50 });
-  const [rgb, setRgb] = useState<RGB>({ r: 64, g: 191, b: 191 });
-  const [hex, setHex] = useState<string>('#40BFBF');
-  const [mounted, setMounted] = useState(false);
-  const [isInIframe, setIsInIframe] = useState(false);
-  const [isCopied, setIsCopied] = useState(false);
-  const [copyType, setCopyType] = useState('');
+const HsvToHexConverterTool = () => {
+  // State for HSV inputs
+  const [h, setH] = useState<number>(0);
+  const [s, setS] = useState<number>(100);
+  const [v, setV] = useState<number>(100);
+
+  // State for RGB and HEX output
+  const [rgb, setRgb] = useState<RGB>({ r: 255, g: 0, b: 0 }); 
+  const [hex, setHex] = useState<string>('#FF0000');
+  const [isCopied, setIsCopied] = useState<boolean>(false);
+  const [copyType, setCopyType] = useState<string>('');
   
   // State for expanded sections
-  const [showColorSchemes, setShowColorSchemes] = useState(false);
+  const [showColorSchemes, setShowColorSchemes] = useState<boolean>(false);
 
+  const searchParams = useSearchParams();
+  const isEmbedMode = searchParams.get('embed') === 'true';
+
+  // Initialize with query parameters if provided
   useEffect(() => {
-    setMounted(true);
-    // Check if running in iframe based on URL param ?embed=true
-    const params = new URLSearchParams(window.location.search);
-    setIsInIframe(params.get('embed') === 'true');
+    const hParam = searchParams.get('h');
+    const sParam = searchParams.get('s');
+    const vParam = searchParams.get('v');
     
-    // Parse URL parameters for initial HSL values if available
-    const h = params.get('h');
-    const s = params.get('s');
-    const l = params.get('l');
-    
-    if (h && s && l) {
-      const newHsl = {
-        h: Math.min(360, Math.max(0, parseInt(h) || 180)),
-        s: Math.min(100, Math.max(0, parseInt(s) || 50)),
-        l: Math.min(100, Math.max(0, parseInt(l) || 50))
-      };
-      setHsl(newHsl);
+    if (hParam !== null) {
+      const hValue = parseInt(hParam);
+      if (!isNaN(hValue) && hValue >= 0 && hValue <= 360) {
+        setH(hValue);
+      }
     }
-  }, []);
+    
+    if (sParam !== null) {
+      const sValue = parseInt(sParam);
+      if (!isNaN(sValue) && sValue >= 0 && sValue <= 100) {
+        setS(sValue);
+      }
+    }
+    
+    if (vParam !== null) {
+      const vValue = parseInt(vParam);
+      if (!isNaN(vValue) && vValue >= 0 && vValue <= 100) {
+        setV(vValue);
+      }
+    }
+  }, [searchParams]);
 
-  // Recalculate RGB whenever HSL changes
+  // Perform conversion whenever h, s, or v changes
   useEffect(() => {
-    if (mounted) {
-      const newRgb = hslToRgb(hsl);
-      setRgb(newRgb);
-      setHex(hslToHex(hsl));
-      setIsCopied(false);
-    }
-  }, [hsl, mounted]);
+    const newRgb = hsvToRgb({ h, s, v });
+    setRgb(newRgb);
+    const newHex = hsvToHex({ h, s, v });
+    setHex(newHex);
+    setIsCopied(false); 
+  }, [h, s, v]);
 
-  const handleChange = (key: keyof HSL) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(event.target.value);
-    setHsl(prevHsl => ({ ...prevHsl, [key]: value }));
+  // Event handlers with input validation
+  const handleHueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    const parsedValue = parseInt(value, 10);
+    if (!isNaN(parsedValue)) {
+      setH(Math.max(0, Math.min(360, parsedValue))); 
+    } else if (value === '') {
+        setH(0);
+    }
+  };
+
+  const handleSaturationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    const parsedValue = parseInt(value, 10);
+    if (!isNaN(parsedValue)) {
+      setS(Math.max(0, Math.min(100, parsedValue)));
+    } else if (value === '') {
+        setS(0);
+    }
+  };
+
+  const handleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    const parsedValue = parseInt(value, 10);
+     if (!isNaN(parsedValue)) {
+      setV(Math.max(0, Math.min(100, parsedValue)));
+    } else if (value === '') {
+        setV(0);
+    }
   };
 
   // Calculate complementary color
   const getComplementaryColor = () => {
     // Complementary color is 180° away on the color wheel
-    const complementaryH = (hsl.h + 180) % 360;
-    const complementaryRgb = hslToRgb({ h: complementaryH, s: hsl.s, l: hsl.l });
+    const complementaryH = (h + 180) % 360;
+    const complementaryRgb = hsvToRgb({ h: complementaryH, s, v });
     return {
       h: complementaryH,
-      s: hsl.s,
-      l: hsl.l,
+      s,
+      v,
       rgb: complementaryRgb,
-      hex: rgbaToHex({ ...complementaryRgb, a: 1 })
+      hex: hsvToHex({ h: complementaryH, s, v })
     };
   };
 
   // Generate monochromatic color scheme
   const getMonochromaticColors = () => {
     const variants = [0.3, 0.6, 1, 1.4, 1.7].map(factor => {
-      const newL = Math.min(Math.max(hsl.l * factor, 0), 100);
-      const variantRgb = hslToRgb({ h: hsl.h, s: hsl.s, l: newL });
+      const newV = Math.min(Math.max(v * factor, 0), 100);
+      const variantRgb = hsvToRgb({ h, s, v: newV });
       return {
-        h: hsl.h,
-        s: hsl.s,
-        l: newL,
+        h,
+        s,
+        v: newV,
         rgb: variantRgb,
-        hex: rgbaToHex({ ...variantRgb, a: 1 })
+        hex: hsvToHex({ h, s, v: newV })
       };
     });
     return variants;
@@ -99,14 +137,14 @@ const HslToRgbConverterTool = () => {
   // Generate triadic color scheme
   const getTriadicColors = () => {
     const triadicColors = [0, 120, 240].map(offset => {
-      const triadicH = (hsl.h + offset) % 360;
-      const triadicRgb = hslToRgb({ h: triadicH, s: hsl.s, l: hsl.l });
+      const triadicH = (h + offset) % 360;
+      const triadicRgb = hsvToRgb({ h: triadicH, s, v });
       return {
         h: triadicH,
-        s: hsl.s,
-        l: hsl.l,
+        s,
+        v,
         rgb: triadicRgb,
-        hex: rgbaToHex({ ...triadicRgb, a: 1 })
+        hex: hsvToHex({ h: triadicH, s, v })
       };
     });
     return triadicColors;
@@ -151,7 +189,7 @@ const HslToRgbConverterTool = () => {
       setCopyType(type);
       setTimeout(() => setIsCopied(false), 2000); // Reset after 2 seconds
     } catch (err) {
-      console.error('Failed to copy:', err);
+      console.error("Failed to copy value: ", err);
     }
   };
 
@@ -159,11 +197,6 @@ const HslToRgbConverterTool = () => {
   const complementaryColor = getComplementaryColor();
   const monochromaticColors = getMonochromaticColors();
   const triadicColors = getTriadicColors();
-
-  // Avoid rendering potentially mismatched server/client content before mount
-  if (!mounted) {
-    return <div className="min-h-screen bg-gray-100 dark:bg-gray-900"></div>;
-  }
 
   const ConverterUI = (
     <>
@@ -240,13 +273,13 @@ const HslToRgbConverterTool = () => {
 
       {/* Input Section */}
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 mb-6 transition-all duration-300 hover:shadow-lg">
-        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">HSL Parameters</h2>
+        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">HSV Parameters</h2>
         <div className="space-y-6">
           {/* Hue Input */}
           <div>
             <div className="flex justify-between mb-2">
               <label htmlFor="h" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Hue (H): {hsl.h}°
+                Hue (H): {h}°
               </label>
               <div className="bg-gray-100 dark:bg-gray-700 rounded-md overflow-hidden">
                 <input
@@ -255,8 +288,8 @@ const HslToRgbConverterTool = () => {
                   name="h"
                   min="0"
                   max="360"
-                  value={hsl.h}
-                  onChange={handleChange('h')}
+                  value={h}
+                  onChange={handleHueChange}
                   className="w-16 p-1 text-right border-0 bg-transparent focus:ring-0 focus:outline-none"
                   aria-label="Hue Input"
                 />
@@ -273,14 +306,14 @@ const HslToRgbConverterTool = () => {
                 type="range"
                 min="0"
                 max="360"
-                value={hsl.h}
-                onChange={handleChange('h')}
+                value={h}
+                onChange={handleHueChange}
                 className="absolute inset-0 opacity-0 cursor-pointer w-full"
                 aria-label="Hue Slider"
               />
               <div 
                 className="absolute top-0 bottom-0 w-1 bg-white rounded-full shadow-md border border-gray-300 transform -translate-x-1/2 pointer-events-none transition-all duration-300"
-                style={{ left: `${(hsl.h / 360) * 100}%` }}
+                style={{ left: `${(h / 360) * 100}%` }}
               ></div>
             </div>
           </div>
@@ -289,7 +322,7 @@ const HslToRgbConverterTool = () => {
           <div>
             <div className="flex justify-between mb-2">
               <label htmlFor="s" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Saturation (S): {hsl.s}%
+                Saturation (S): {s}%
               </label>
               <div className="bg-gray-100 dark:bg-gray-700 rounded-md overflow-hidden">
                 <input
@@ -298,8 +331,8 @@ const HslToRgbConverterTool = () => {
                   name="s"
                   min="0"
                   max="100"
-                  value={hsl.s}
-                  onChange={handleChange('s')}
+                  value={s}
+                  onChange={handleSaturationChange}
                   className="w-16 p-1 text-right border-0 bg-transparent focus:ring-0 focus:outline-none"
                   aria-label="Saturation Input"
                 />
@@ -309,42 +342,42 @@ const HslToRgbConverterTool = () => {
               <div 
                 className="absolute inset-0 rounded-md"
                 style={{
-                  background: `linear-gradient(to right, hsl(${hsl.h}, 0%, 50%), hsl(${hsl.h}, 100%, 50%))`
+                  background: `linear-gradient(to right, #${v === 100 ? 'FFFFFF' : '808080'}, hsl(${h}, 100%, 50%))`
                 }}
               ></div>
               <input
                 type="range"
                 min="0"
                 max="100"
-                value={hsl.s}
-                onChange={handleChange('s')}
+                value={s}
+                onChange={handleSaturationChange}
                 className="absolute inset-0 opacity-0 cursor-pointer w-full"
                 aria-label="Saturation Slider"
               />
               <div 
                 className="absolute top-0 bottom-0 w-1 bg-white rounded-full shadow-md border border-gray-300 transform -translate-x-1/2 pointer-events-none transition-all duration-300"
-                style={{ left: `${hsl.s}%` }}
+                style={{ left: `${s}%` }}
               ></div>
             </div>
           </div>
 
-          {/* Lightness Input */}
+          {/* Value Input */}
           <div>
             <div className="flex justify-between mb-2">
-              <label htmlFor="l" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Lightness (L): {hsl.l}%
+              <label htmlFor="v" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Value (V): {v}%
               </label>
               <div className="bg-gray-100 dark:bg-gray-700 rounded-md overflow-hidden">
                 <input
                   type="number"
-                  id="l"
-                  name="l"
+                  id="v"
+                  name="v"
                   min="0"
                   max="100"
-                  value={hsl.l}
-                  onChange={handleChange('l')}
+                  value={v}
+                  onChange={handleValueChange}
                   className="w-16 p-1 text-right border-0 bg-transparent focus:ring-0 focus:outline-none"
-                  aria-label="Lightness Input"
+                  aria-label="Value Input"
                 />
               </div>
             </div>
@@ -352,21 +385,21 @@ const HslToRgbConverterTool = () => {
               <div 
                 className="absolute inset-0 rounded-md"
                 style={{
-                  background: `linear-gradient(to right, #000000, hsl(${hsl.h}, ${hsl.s}%, 50%), #ffffff)`
+                  background: `linear-gradient(to right, #000000, hsl(${h}, ${s}%, 50%))`
                 }}
               ></div>
               <input
                 type="range"
                 min="0"
                 max="100"
-                value={hsl.l}
-                onChange={handleChange('l')}
+                value={v}
+                onChange={handleValueChange}
                 className="absolute inset-0 opacity-0 cursor-pointer w-full"
-                aria-label="Lightness Slider"
+                aria-label="Value Slider"
               />
               <div 
                 className="absolute top-0 bottom-0 w-1 bg-white rounded-full shadow-md border border-gray-300 transform -translate-x-1/2 pointer-events-none transition-all duration-300"
-                style={{ left: `${hsl.l}%` }}
+                style={{ left: `${v}%` }}
               ></div>
             </div>
           </div>
@@ -375,25 +408,29 @@ const HslToRgbConverterTool = () => {
 
       {/* Output Section */}
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 mb-6 transition-all duration-300 hover:shadow-lg">
-        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">RGB Result</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-md flex items-center justify-between transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-            <span className="text-rose-600 dark:text-rose-400 font-medium">R</span>
-            <span className="font-mono text-xl">{rgb.r}</span>
-          </div>
-          <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-md flex items-center justify-between transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-            <span className="text-green-600 dark:text-green-400 font-medium">G</span>
-            <span className="font-mono text-xl">{rgb.g}</span>
-          </div>
-          <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-md flex items-center justify-between transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-            <span className="text-blue-600 dark:text-blue-400 font-medium">B</span>
-            <span className="font-mono text-xl">{rgb.b}</span>
-          </div>
-        </div>
-        <div className="mt-4">
+        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Results</h2>
+        <div className="space-y-4">
           <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-md flex items-center justify-between transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-700">
             <span className="text-purple-600 dark:text-purple-400 font-medium">HEX</span>
             <span className="font-mono text-xl">{hex}</span>
+          </div>
+          
+          <div>
+            <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">RGB Values</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-md flex items-center justify-between transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <span className="text-rose-600 dark:text-rose-400 font-medium">R</span>
+                <span className="font-mono text-xl">{rgb.r}</span>
+              </div>
+              <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-md flex items-center justify-between transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <span className="text-green-600 dark:text-green-400 font-medium">G</span>
+                <span className="font-mono text-xl">{rgb.g}</span>
+              </div>
+              <div className="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-md flex items-center justify-between transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <span className="text-blue-600 dark:text-blue-400 font-medium">B</span>
+                <span className="font-mono text-xl">{rgb.b}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -532,7 +569,7 @@ const HslToRgbConverterTool = () => {
   );
 
   // Conditionally apply wrapper styling
-  return isInIframe ? (
+  return isEmbedMode ? (
     <div data-embed="true" className="p-4 bg-transparent">
       {ConverterUI}
     </div>
@@ -540,18 +577,18 @@ const HslToRgbConverterTool = () => {
     <div className="p-4 sm:p-6 max-w-2xl mx-auto transition-all duration-500">
       <GlobalStyles />
       <div className="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-5 sm:p-6 mb-6 transition-all duration-500 dark:border dark:border-gray-700">
-        <h1 className="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-600 mb-6">HSL to RGB Converter</h1>
+        <h1 className="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-600 mb-6">HSV to HEX Converter</h1>
         {ConverterUI}
       </div>
       
       {/* Info card */}
       <div className="bg-blue-50 dark:bg-blue-900/30 rounded-xl p-4 sm:p-5 text-sm text-blue-800 dark:text-blue-200 mt-4 border border-blue-100 dark:border-blue-800/50 transition-all duration-500">
-        <h3 className="font-semibold mb-2">HSL Color Space</h3>
-        <p>HSL (Hue, Saturation, Lightness) is an intuitive color model designed to better align with how humans perceive color:</p>
+        <h3 className="font-semibold mb-2">HSV Color Space</h3>
+        <p>HSV (Hue, Saturation, Value) is an intuitive color space especially suitable for color selection and adjustment:</p>
         <ul className="list-disc pl-5 mt-2 space-y-1">
-          <li><strong>Hue (H)</strong>: Represents the color type as a position on the color wheel, measured in degrees (0-360°)</li>
-          <li><strong>Saturation (S)</strong>: Represents the intensity of the color, from 0% (gray) to 100% (full color)</li>
-          <li><strong>Lightness (L)</strong>: Represents the brightness, from 0% (black) to 100% (white), with 50% being normal brightness</li>
+          <li><strong>Hue (H)</strong>: Represents the type of color, such as red or blue, measured in degrees (0-360°)</li>
+          <li><strong>Saturation (S)</strong>: Represents color purity or vividness, 0% is gray, 100% is pure color</li>
+          <li><strong>Value (V)</strong>: Represents brightness, 0% is black, 100% is maximum brightness</li>
         </ul>
       </div>
     </div>
@@ -559,12 +596,12 @@ const HslToRgbConverterTool = () => {
 };
 
 // Main exported component wraps the tool in Suspense
-const HslToRgbConverterPage = () => {
+const HsvToHexConverterPage = () => {
   return (
     <Suspense fallback={<div className="p-4 text-center text-gray-700 dark:text-gray-300">Loading Converter...</div>}> 
-      <HslToRgbConverterTool />
+      <HsvToHexConverterTool />
     </Suspense>
   );
 };
 
-export default HslToRgbConverterPage;
+export default HsvToHexConverterPage;
