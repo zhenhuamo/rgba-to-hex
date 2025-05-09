@@ -25,6 +25,7 @@ export default function Navigation() {
         { name: 'RGB to CMYK', href: '/tools/rgb-to-cmyk', color: 'bg-cyan-500' },
         { name: 'CMYK to RGB', href: '/tools/cmyk-to-rgb', color: 'bg-yellow-500' },
         { name: 'HSV to HEX', href: '/tools/hsv-to-hex', color: 'bg-sky-500' },
+        { name: 'HSV to HSL (and vice-versa)', href: '/tools/hsv-hsl', color: 'bg-fuchsia-500' },
       ]
     },
     {

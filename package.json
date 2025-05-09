@@ -12,6 +12,7 @@
     "@modelcontextprotocol/server-sequential-thinking": "^0.6.2",
     "colord": "^2.9.3",
     "fabric": "^6.6.1",
+    "framer-motion": "^12.10.4",
     "kmeans-js": "^0.1.2",
     "mixbox": "^2.0.0",
     "next": "15.1.6",

@@ -396,4 +396,100 @@ export function getColorSystemInfo(cmyk: CMYK): ColorSystemInfo {
     isInGamut: checkColorGamut(cmyk),
     printabilityScore: calculatePrintScore(cmyk)
   };
+}
+
+export function hsvToHsl({ h, s, v }: HSV): HSL {
+  // Input validation: h (0-360), s (0-100), v (0-100)
+  if (h < 0 || h > 360 || s < 0 || s > 100 || v < 0 || v > 100) {
+    // Or throw an error, or return a default, clamping is also an option
+    console.error("Invalid HSV input for hsvToHsl:", { h, s, v });
+    // For now, clamp values to valid ranges
+    h = Math.max(0, Math.min(360, h));
+    s = Math.max(0, Math.min(100, s));
+    v = Math.max(0, Math.min(100, v));
+  }
+
+  const sNormalized = s / 100;
+  const vNormalized = v / 100;
+
+  const l = vNormalized * (1 - sNormalized / 2);
+  let sHsl;
+  if (l === 0 || l === 1) {
+    sHsl = 0;
+  } else {
+    sHsl = (vNormalized - l) / Math.min(l, 1 - l);
+  }
+
+  return {
+    h: h, // Hue remains the same
+    s: Math.round(sHsl * 100),
+    l: Math.round(l * 100)
+  };
+}
+
+export function hslToHsv({ h, s, l }: HSL): HSV {
+  // Input validation: h (0-360), s (0-100), l (0-100)
+  if (h < 0 || h > 360 || s < 0 || s > 100 || l < 0 || l > 100) {
+    console.error("Invalid HSL input for hslToHsv:", { h, s, l });
+    h = Math.max(0, Math.min(360, h));
+    s = Math.max(0, Math.min(100, s));
+    l = Math.max(0, Math.min(100, l));
+  }
+
+  const sNormalized = s / 100;
+  const lNormalized = l / 100;
+
+  const v = lNormalized + sNormalized * Math.min(lNormalized, 1 - lNormalized);
+  let sHsv;
+  if (v === 0) {
+    sHsv = 0;
+  } else {
+    sHsv = 2 * (1 - lNormalized / v);
+  }
+  
+  // Ensure sHsv is within 0-1 range before converting to percentage
+  sHsv = Math.max(0, Math.min(1, sHsv));
+
+  return {
+    h: h, // Hue remains the same
+    s: Math.round(sHsv * 100),
+    v: Math.round(v * 100)
+  };
+}
+
+export function rgbToHsv({ r, g, b }: RGB): HSV {
+  const rNorm = r / 255;
+  const gNorm = g / 255;
+  const bNorm = b / 255;
+
+  const max = Math.max(rNorm, gNorm, bNorm);
+  const min = Math.min(rNorm, gNorm, bNorm);
+  const delta = max - min;
+
+  let h = 0;
+  let s = 0;
+  const v = max; // V is the max of R, G, B
+
+  if (delta !== 0) {
+    s = max === 0 ? 0 : delta / max; // Saturation
+
+    switch (max) {
+      case rNorm:
+        h = (gNorm - bNorm) / delta + (gNorm < bNorm ? 6 : 0);
+        break;
+      case gNorm:
+        h = (bNorm - rNorm) / delta + 2;
+        break;
+      case bNorm:
+        h = (rNorm - gNorm) / delta + 4;
+        break;
+    }
+    h /= 6;
+  }
+
+  return {
+    h: Math.round(h * 360),
+    s: Math.round(s * 100),
+    v: Math.round(v * 100),
+  };
 } 
