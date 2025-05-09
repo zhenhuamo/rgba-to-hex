@@ -35,6 +35,6 @@ export const metadata: Metadata = {
     description: 'Professional color contrast checker for web accessibility. Test WCAG compliance, ADA requirements, and color combinations for free.',
   },
   alternates: {
-    canonical: 'https://rgbatohex.com//tools/color-contrast'
+    canonical: 'https://rgbatohex.com/tools/color-contrast'
   }
 }; 
