@@ -33,6 +33,7 @@ export default function Navigation() {
       tools: [
         { name: 'Color Wheel', href: '/tools/color-wheel', color: 'bg-amber-500' },
         { name: 'Color Picker', href: '/tools/color-picker-embed', color: 'bg-lime-600' },
+        { name: 'Color Temperature', href: '/tools/color-temperature', color: 'bg-orange-600' },
         { name: 'Color Contrast Checker', href: '/tools/color-contrast', color: 'bg-indigo-500' },
         { name: 'Color Palette', href: '/tools/palette-generator', color: 'bg-pink-500' },
         { name: 'Gradient Generator', href: '/tools/gradient-generator', color: 'bg-blue-500' },
