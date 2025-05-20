@@ -37,6 +37,15 @@ export interface ColorSystemInfo {
   nearestPrintableColor?: CMYK;
 }
 
+export interface ColorFormat {
+  rgba: string;      // rgba(255, 0, 0, 1)
+  hex: string;       // #ff0000
+  hex8: string;      // #ff0000ff
+  hsl: string;       // hsl(0, 100%, 50%)
+  hsla: string;      // hsla(0, 100%, 50%, 1)
+  named?: string;    // red (if exact match exists)
+}
+
 export const rgbaToHex = ({ r, g, b }: RGBA): string => {
   const toHex = (n: number): string => {
     const hex = Math.round(n).toString(16);
@@ -491,5 +500,70 @@ export function rgbToHsv({ r, g, b }: RGB): HSV {
     h: Math.round(h * 360),
     s: Math.round(s * 100),
     v: Math.round(v * 100),
+  };
+}
+
+export const rgbaToColor = ({ r, g, b, a }: RGBA): ColorFormat => {
+  // 转换为rgba字符串
+  const rgba = `rgba(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)}, ${a})`;
+  
+  // 转换为hex
+  const hex = rgbaToHex({ r, g, b, a });
+  
+  // 转换为hex8
+  const hex8 = rgbaToHex8({ r, g, b, a });
+  
+  // 转换为hsl
+  const hsl = rgbaToHsl({ r, g, b, a });
+  const hslString = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+  
+  // 转换为hsla
+  const hsla = `hsla(${hsl.h}, ${hsl.s}%, ${hsl.l}%, ${a})`;
+  
+  // 尝试匹配命名颜色（仅在alpha为1且完全匹配时）
+  let named: string | undefined;
+  if (a === 1) {
+    const colorMap: Record<string, string> = {
+      '#ff0000': 'red',
+      '#00ff00': 'lime',
+      '#0000ff': 'blue',
+      '#000000': 'black',
+      '#ffffff': 'white',
+      // 可以添加更多命名颜色映射
+    };
+    named = colorMap[hex.toLowerCase()];
+  }
+  
+  return {
+    rgba,
+    hex,
+    hex8,
+    hsl: hslString,
+    hsla,
+    ...(named && { named })
+  };
+};
+
+/**
+ * 将 RGBA 颜色转换为 RGB 颜色，丢弃透明度信息
+ * @param {RGBA} rgba - RGBA 颜色对象
+ * @returns {RGB} RGB 颜色对象
+ */
+export function rgbaToRgb({ r, g, b }: RGBA): RGB {
+  return { r, g, b };
+}
+
+/**
+ * 将 RGBA 颜色与背景色混合，计算得到 RGB 颜色
+ * @param {RGBA} rgba - RGBA 颜色对象
+ * @param {RGB} background - 背景色 RGB 对象
+ * @returns {RGB} 混合后的 RGB 颜色
+ */
+export function rgbaToRgbWithBackground({ r, g, b, a }: RGBA, background: RGB): RGB {
+  // 使用 Alpha 混合公式: result = foreground * alpha + background * (1 - alpha)
+  return {
+    r: Math.round(r * a + background.r * (1 - a)),
+    g: Math.round(g * a + background.g * (1 - a)),
+    b: Math.round(b * a + background.b * (1 - a))
   };
 } 
