@@ -20,6 +20,7 @@ export default function Navigation() {
         { name: 'RGB to HEX', href: '/tools/rgb-to-hex', color: 'bg-lime-500' },
         { name: 'HSL to HEX', href: '/tools/hsl-to-hex', color: 'bg-orange-500' },
         { name: 'CMYK to HEX', href: '/tools/cmyk-to-hex', color: 'bg-red-500' },
+        { name: 'HEX to CMYK', href: '/tools/hex-to-cmyk', color: 'bg-emerald-500' },
         { name: 'RGB to HSL', href: '/tools/rgb-to-hsl', color: 'bg-purple-500' },
         { name: 'HSL to RGB', href: '/tools/hsl-to-rgb', color: 'bg-pink-500' },
         { name: 'RGB to HSV', href: '/tools/rgb-to-hsv', color: 'bg-teal-500' },

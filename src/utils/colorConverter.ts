@@ -566,4 +566,14 @@ export function rgbaToRgbWithBackground({ r, g, b, a }: RGBA, background: RGB): 
     g: Math.round(g * a + background.g * (1 - a)),
     b: Math.round(b * a + background.b * (1 - a))
   };
+}
+
+// 将HEX颜色转换为CMYK
+export function hexToCmyk(hex: string): CMYK {
+  const rgba = hexToRgba(hex);
+  if (!rgba) {
+    return { c: 0, m: 0, y: 0, k: 0 };
+  }
+  
+  return rgbToCmyk({ r: rgba.r, g: rgba.g, b: rgba.b });
 } 
