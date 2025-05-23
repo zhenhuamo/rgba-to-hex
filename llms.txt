@@ -30,6 +30,7 @@
 - [HSV到HEX转换器](https://rgbatohex.com/tools/hsv-to-hex)：将HSV颜色值转换为十六进制颜色码。
 - [HSV到HSL转换器](https://rgbatohex.com/tools/hsv-hsl)：在HSV（色相、饱和度、明度）与HSL（色相、饱和度、亮度）颜色模型之间进行双向转换，附带详细模型比较与代码实现。
 - [色温/色调调整器](https://rgbatohex.com/tools/color-temperature)：调整任意颜色的色温和色调，生成更暖或更冷的色彩变体。
+- [HEX到十进制转换器](https://rgbatohex.com/tools/hex-to-decimal)：将十六进制数字转换为十进制数字，支持大数计算和常用进制转换。
 - [博客](https://rgbatohex.com/blog)：关于颜色理论、颜色工具使用技巧和颜色转换教程的文章。
 
 ## 常用资源

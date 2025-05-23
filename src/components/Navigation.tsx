@@ -47,6 +47,12 @@ export default function Navigation() {
       ]
     },
     {
+      category: "number tools",
+      tools: [
+        { name: 'HEX to Decimal', href: '/tools/hex-to-decimal', color: 'bg-blue-600' }
+      ]
+    },
+    {
       category: "image tools",
       tools: [
         { name: 'Image Crop Tool', href: '/tools/image-crop-landing', color: 'bg-blue-600' },
