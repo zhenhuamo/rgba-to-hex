@@ -161,6 +161,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/tools/hsl-to-oklch`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/tools/hex-to-decimal`,
       lastModified: new Date(),
       changeFrequency: 'monthly',

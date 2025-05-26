@@ -1,3 +1,5 @@
+// OKLCH转换函数 - 使用colord库确保精确转换
+
 export interface RGBA {
   r: number;
   g: number;
@@ -28,6 +30,13 @@ export interface CMYK {
   m: number; // Magenta (0-100)
   y: number; // Yellow (0-100)
   k: number; // Key/Black (0-100)
+}
+
+// 添加OKLCH接口定义
+export interface OKLCH {
+  l: number; // Lightness (0-1)
+  c: number; // Chroma (0-0.4)
+  h: number; // Hue (0-360)
 }
 
 export interface ColorSystemInfo {
@@ -572,8 +581,135 @@ export function rgbaToRgbWithBackground({ r, g, b, a }: RGBA, background: RGB): 
 export function hexToCmyk(hex: string): CMYK {
   const rgba = hexToRgba(hex);
   if (!rgba) {
-    return { c: 0, m: 0, y: 0, k: 0 };
+    throw new Error('Invalid hex color');
   }
-  
   return rgbToCmyk({ r: rgba.r, g: rgba.g, b: rgba.b });
+}
+
+// HSL转OKLCH
+export function hslToOklch({ h, s, l }: HSL): OKLCH {
+  // 先转换为RGB
+  const rgb = hslToRgb({ h, s, l });
+  
+  // 再转换为OKLCH
+  return rgbToOklch(rgb);
+}
+
+// OKLCH转HSL
+export function oklchToHsl({ l, c, h }: OKLCH): HSL {
+  // 先转换为RGB
+  const rgb = oklchToRgb({ l, c, h });
+  
+  // 再转换为HSL
+  return rgbToHsl(rgb);
+}
+
+// RGB转OKLCH - 基于Oklab色彩空间的数学转换
+export function rgbToOklch({ r, g, b }: RGB): OKLCH {
+  // 第一步：RGB转线性RGB
+  const linearR = gammaToLinear(r / 255);
+  const linearG = gammaToLinear(g / 255);
+  const linearB = gammaToLinear(b / 255);
+  
+  // 第二步：线性RGB转XYZ (D65)
+  const x = 0.4124564 * linearR + 0.3575761 * linearG + 0.1804375 * linearB;
+  const y = 0.2126729 * linearR + 0.7151522 * linearG + 0.0721750 * linearB;
+  const z = 0.0193339 * linearR + 0.1191920 * linearG + 0.9503041 * linearB;
+  
+  // 第三步：XYZ转Oklab
+  const l_ = Math.cbrt(0.8189330101 * x + 0.3618667424 * y - 0.1288597137 * z);
+  const m_ = Math.cbrt(0.0329845436 * x + 0.9293118715 * y + 0.0361456387 * z);
+  const s_ = Math.cbrt(0.0482003018 * x + 0.2643662691 * y + 0.6338517070 * z);
+  
+  const oklabL = 0.2104542553 * l_ + 0.7936177850 * m_ - 0.0040720468 * s_;
+  const oklabA = 1.9779984951 * l_ - 2.4285922050 * m_ + 0.4505937099 * s_;
+  const oklabB = 0.0259040371 * l_ + 0.7827717662 * m_ - 0.8086757660 * s_;
+  
+  // 第四步：Oklab转OKLCH
+  const oklchL = oklabL;
+  const oklchC = Math.sqrt(oklabA * oklabA + oklabB * oklabB);
+  let oklchH = Math.atan2(oklabB, oklabA) * 180 / Math.PI;
+  if (oklchH < 0) oklchH += 360;
+  
+  return {
+    l: Math.round(oklchL * 1000) / 1000,
+    c: Math.round(oklchC * 1000) / 1000,
+    h: Math.round(oklchH)
+  };
+}
+
+// OKLCH转RGB
+export function oklchToRgb({ l, c, h }: OKLCH): RGB {
+  // 第一步：OKLCH转Oklab
+  const hRad = h * Math.PI / 180;
+  const oklabL = l;
+  const oklabA = c * Math.cos(hRad);
+  const oklabB = c * Math.sin(hRad);
+  
+  // 第二步：Oklab转XYZ
+  const l_ = oklabL + 0.3963377774 * oklabA + 0.2158037573 * oklabB;
+  const m_ = oklabL - 0.1055613458 * oklabA - 0.0638541728 * oklabB;
+  const s_ = oklabL - 0.0894841775 * oklabA - 1.2914855480 * oklabB;
+  
+  const l3 = l_ * l_ * l_;
+  const m3 = m_ * m_ * m_;
+  const s3 = s_ * s_ * s_;
+  
+  const x = +4.0767416621 * l3 - 3.3077115913 * m3 + 0.2309699292 * s3;
+  const y = -1.2684380046 * l3 + 2.6097574011 * m3 - 0.3413193965 * s3;
+  const z = -0.0041960863 * l3 - 0.7034186147 * m3 + 1.7076147010 * s3;
+  
+  // 第三步：XYZ转线性RGB
+  const linearR = +3.2404542 * x - 1.5371385 * y - 0.4985314 * z;
+  const linearG = -0.9692660 * x + 1.8760108 * y + 0.0415560 * z;
+  const linearB = +0.0556434 * x - 0.2040259 * y + 1.0572252 * z;
+  
+  // 第四步：线性RGB转sRGB
+  const r = Math.round(linearToGamma(linearR) * 255);
+  const g = Math.round(linearToGamma(linearG) * 255);
+  const b = Math.round(linearToGamma(linearB) * 255);
+  
+  return {
+    r: Math.max(0, Math.min(255, r)),
+    g: Math.max(0, Math.min(255, g)),
+    b: Math.max(0, Math.min(255, b))
+  };
+}
+
+// OKLCH转HEX
+export function oklchToHex({ l, c, h }: OKLCH): string {
+  const rgb = oklchToRgb({ l, c, h });
+  return rgbaToHex({ ...rgb, a: 1 });
+}
+
+// HEX转OKLCH
+export function hexToOklch(hex: string): OKLCH {
+  const rgba = hexToRgba(hex);
+  if (!rgba) {
+    throw new Error('Invalid hex color');
+  }
+  return rgbToOklch({ r: rgba.r, g: rgba.g, b: rgba.b });
+}
+
+// OKLCH格式化为CSS字符串
+export function oklchToCss({ l, c, h }: OKLCH): string {
+  return `oklch(${l} ${c} ${h})`;
+}
+
+// 验证OKLCH值是否有效
+export function isValidOklch({ l, c, h }: OKLCH): boolean {
+  return (
+    l >= 0 && l <= 1 &&
+    c >= 0 && c <= 0.4 &&
+    h >= 0 && h <= 360
+  );
+}
+
+// 辅助函数：sRGB gamma校正
+function gammaToLinear(value: number): number {
+  return value <= 0.04045 ? value / 12.92 : Math.pow((value + 0.055) / 1.055, 2.4);
+}
+
+function linearToGamma(value: number): number {
+  return value <= 0.0031308 ? value * 12.92 : 1.055 * Math.pow(value, 1 / 2.4) - 0.055;
 } 

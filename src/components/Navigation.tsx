@@ -8,27 +8,37 @@ export default function Navigation() {
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
 
-  // 将工具进行分类
+  // Tool categories with subcategories for better organization
   const toolCategories = [
     {
       category: "color conversion",
       tools: [
+        // RGB/RGBA based
         { name: 'RGBA to 8-Digit HEX', href: '/tools/rgba-to-hex-8-digit', color: 'bg-blue-500' },
         { name: 'RGBA to RGB', href: '/tools/rgba-to-rgb', color: 'bg-violet-500' },
+        { name: 'RGB to HEX', href: '/tools/rgb-to-hex', color: 'bg-lime-500' },
+        { name: 'RGB to HSL', href: '/tools/rgb-to-hsl', color: 'bg-purple-500' },
+        { name: 'RGB to HSV', href: '/tools/rgb-to-hsv', color: 'bg-teal-500' },
+        { name: 'RGB to CMYK', href: '/tools/rgb-to-cmyk', color: 'bg-cyan-500' },
+        
+        // HEX based
         { name: 'HEX to RGBA', href: '/tools/hex-to-rgba', color: 'bg-green-500' },
         { name: 'HEX to HSL', href: '/tools/hex-to-hsl', color: 'bg-amber-500' },
-        { name: 'RGB to HEX', href: '/tools/rgb-to-hex', color: 'bg-lime-500' },
-        { name: 'HSL to HEX', href: '/tools/hsl-to-hex', color: 'bg-orange-500' },
-        { name: 'CMYK to HEX', href: '/tools/cmyk-to-hex', color: 'bg-red-500' },
         { name: 'HEX to CMYK', href: '/tools/hex-to-cmyk', color: 'bg-emerald-500' },
-        { name: 'RGB to HSL', href: '/tools/rgb-to-hsl', color: 'bg-purple-500' },
+        
+        // HSL based
+        { name: 'HSL to HEX', href: '/tools/hsl-to-hex', color: 'bg-orange-500' },
         { name: 'HSL to RGB', href: '/tools/hsl-to-rgb', color: 'bg-pink-500' },
-        { name: 'RGB to HSV', href: '/tools/rgb-to-hsv', color: 'bg-teal-500' },
+        { name: 'HSL to OKLCH', href: '/tools/hsl-to-oklch', color: 'bg-purple-600' },
+        
+        // HSV based
         { name: 'HSV to RGB', href: '/tools/hsv-to-rgb', color: 'bg-indigo-500' },
-        { name: 'RGB to CMYK', href: '/tools/rgb-to-cmyk', color: 'bg-cyan-500' },
-        { name: 'CMYK to RGB', href: '/tools/cmyk-to-rgb', color: 'bg-yellow-500' },
         { name: 'HSV to HEX', href: '/tools/hsv-to-hex', color: 'bg-sky-500' },
         { name: 'HSV to HSL (and vice-versa)', href: '/tools/hsv-hsl', color: 'bg-fuchsia-500' },
+        
+        // CMYK based
+        { name: 'CMYK to HEX', href: '/tools/cmyk-to-hex', color: 'bg-red-500' },
+        { name: 'CMYK to RGB', href: '/tools/cmyk-to-rgb', color: 'bg-yellow-500' },
       ]
     },
     {
@@ -66,9 +76,6 @@ export default function Navigation() {
     }
   ];
 
-  // 获取所有工具的平面列表（用于移动端显示）
-  // const tools = toolCategories.flatMap(category => category.tools);
-
   // Add scroll detection
   useEffect(() => {
     const handleScroll = () => {
@@ -100,6 +107,13 @@ export default function Navigation() {
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isMenuOpen]);
+
+  // Get column count based on tool count
+  const getColumnCount = (toolCount: number) => {
+    if (toolCount > 12) return 3;
+    if (toolCount > 6) return 2;
+    return 1;
+  };
 
   return (
     <nav className={`sticky top-0 z-50 w-full transition-all duration-300 ${ 
@@ -142,7 +156,7 @@ export default function Navigation() {
               Blog
             </Link>
             
-            {/* 联系我们链接 */}
+            {/* Contact link */}
             <a
               href="mailto:mozhenhuamo@gmail.com"
               className="font-medium transition-colors duration-200 text-gray-600 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400 flex items-center group relative"
@@ -155,7 +169,7 @@ export default function Navigation() {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all duration-300"></span>
             </a>
             
-            {/* 空白占位，让Tools项移到最右侧 */}
+            {/* Spacer to push Tools to the right */}
             <div className="flex-grow"></div>
             
             {/* Tools Dropdown */}
@@ -182,8 +196,8 @@ export default function Navigation() {
               
               {isMenuOpen && (
                 <div
-                  className="absolute mt-2 py-3 px-3 w-[520px] bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-200"
-                  style={{ left: '50%', right: 'auto', transform: 'translateX(-50%)' }}
+                  className="absolute mt-2 py-3 px-3 w-[600px] bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 transition-all duration-200 overflow-y-auto max-h-[calc(100vh-120px)]"
+                  style={{ left: '50%', right: 'auto', transform: 'translateX(-80%)' }}
                   onMouseEnter={() => setIsMenuOpen(true)}
                   onMouseLeave={() => {
                     setTimeout(() => setIsMenuOpen(false), 100);
@@ -191,25 +205,35 @@ export default function Navigation() {
                 >
                   {toolCategories.map((category, categoryIndex) => (
                     <div key={categoryIndex} className="mb-3 last:mb-0">
-                      <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1 px-2">{category.category}</h3>
-                      <div className="py-1 grid grid-cols-2 gap-1">
+                      <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-1 px-2 capitalize">{category.category}</h3>
+                      <div className={`py-1 grid grid-cols-${getColumnCount(category.tools.length)} gap-1`}>
                         {category.tools.map((tool, index) => (
                           <Link
                             key={index}
                             href={tool.href}
-                            className={`flex items-center space-x-3 px-4 py-2 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-150 ${
+                            className={`flex items-center space-x-2 px-3 py-1.5 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-150 ${
                               pathname === tool.href 
                                 ? 'bg-blue-50 dark:bg-gray-700/70 text-blue-600 dark:text-blue-400' 
                                 : 'text-gray-700 dark:text-gray-200'
                             }`}
                           >
-                            <span className={`w-3 h-3 rounded-full ${tool.color} shadow-sm flex-shrink-0`}></span>
-                            <span className="font-medium">{tool.name}</span>
+                            <span className={`w-2.5 h-2.5 rounded-full ${tool.color} shadow-sm flex-shrink-0`}></span>
+                            <span className="font-medium text-sm truncate">{tool.name}</span>
                           </Link>
                         ))}
                       </div>
                     </div>
                   ))}
+                  
+                  {/* Tools index link */}
+                  <div className="mt-3 pt-2 border-t border-gray-100 dark:border-gray-700">
+                    <Link 
+                      href="/tools"
+                      className="block text-center py-1.5 px-3 font-medium text-blue-500 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg text-sm"
+                    >
+                      View All Tools
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
@@ -255,11 +279,24 @@ export default function Navigation() {
               <div className="px-3 py-2 text-sm font-semibold text-gray-500 dark:text-gray-400">
                 Tools
               </div>
+              
+              {/* Tools index link for mobile */}
+              <Link
+                href="/tools"
+                className="flex items-center px-3 py-2 rounded-md text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 mb-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                </svg>
+                <span className="font-medium">View All Tools</span>
+              </Link>
+              
               {toolCategories.map((category, categoryIndex) => (
                 <div key={categoryIndex} className="mb-2 last:mb-0">
-                  <div className="px-3 py-1 text-xs font-medium text-gray-500 dark:text-gray-400">{category.category}</div>
+                  <div className="px-3 py-1 text-xs font-medium text-gray-500 dark:text-gray-400 capitalize">{category.category}</div>
                   <div className="grid grid-cols-2 gap-1">
-                    {category.tools.map((tool, index) => (
+                    {category.tools.slice(0, 6).map((tool, index) => (
                       <Link
                         key={index}
                         href={tool.href}
@@ -271,9 +308,18 @@ export default function Navigation() {
                         onClick={() => setIsMenuOpen(false)}
                       >
                         <span className={`w-2 h-2 rounded-full ${tool.color}`}></span>
-                        <span className="text-sm">{tool.name}</span>
+                        <span className="text-sm truncate">{tool.name}</span>
                       </Link>
                     ))}
+                    {category.tools.length > 6 && (
+                      <Link
+                        href="/tools"
+                        className="flex items-center justify-center px-3 py-2 rounded-md text-gray-500 dark:text-gray-400 italic text-sm hover:bg-gray-50 dark:hover:bg-gray-700"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        +{category.tools.length - 6} more...
+                      </Link>
+                    )}
                   </div>
                 </div>
               ))}
@@ -291,7 +337,7 @@ export default function Navigation() {
               Blog
             </Link>
             
-            {/* 移动版联系我们链接 */}
+            {/* Mobile contact link */}
             <a
               href="mailto:mozhenhuamo@gmail.com"
               className="block px-3 py-2 rounded-md font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center"
