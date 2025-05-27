@@ -13,6 +13,7 @@
 - [HEX到CMYK转换器](https://rgbatohex.com/tools/hex-to-cmyk)：将网页设计中的十六进制颜色码转换为印刷适用的CMYK格式，附带总墨量检查和印刷提示。
 - [RGB到HSL转换器](https://rgbatohex.com/tools/rgb-to-hsl)：将RGB颜色值转换为HSL格式。
 - [RGB到CMYK转换器](https://rgbatohex.com/tools/rgb-to-cmyk)：将RGB颜色值转换为CMYK格式。
+- [RGB到LAB转换器](https://rgbatohex.com/tools/rgb-to-lab)：专业RGB到LAB颜色空间转换器，支持CIELAB色彩模型转换，提供数学公式、Python/MATLAB/Excel代码示例，适用于科学色彩分析、印刷色彩管理和计算机视觉应用。
 - [CMYK到RGB转换器](https://rgbatohex.com/tools/cmyk-to-rgb)：将CMYK颜色值转换为RGB格式。
 - [颜色对比度检查器](https://rgbatohex.com/tools/color-contrast)：检查颜色间的对比度是否符合可访问性标准。
 - [调色板生成器](https://rgbatohex.com/tools/palette-generator)：生成配色方案。

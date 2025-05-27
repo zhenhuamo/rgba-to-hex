@@ -39,6 +39,13 @@ export interface OKLCH {
   h: number; // Hue (0-360)
 }
 
+// 添加LAB接口定义
+export interface LAB {
+  l: number; // Lightness (0-100)
+  a: number; // Green-Red axis (-128 to 127)
+  b: number; // Blue-Yellow axis (-128 to 127)
+}
+
 export interface ColorSystemInfo {
   pantone?: string;
   isInGamut: boolean;
@@ -607,14 +614,14 @@ export function oklchToHsl({ l, c, h }: OKLCH): HSL {
 // RGB转OKLCH - 基于Oklab色彩空间的数学转换
 export function rgbToOklch({ r, g, b }: RGB): OKLCH {
   // 第一步：RGB转线性RGB
-  const linearR = gammaToLinear(r / 255);
-  const linearG = gammaToLinear(g / 255);
-  const linearB = gammaToLinear(b / 255);
+  const rLinear = gammaToLinear(r / 255);
+  const gLinear = gammaToLinear(g / 255);
+  const bLinear = gammaToLinear(b / 255);
   
   // 第二步：线性RGB转XYZ (D65)
-  const x = 0.4124564 * linearR + 0.3575761 * linearG + 0.1804375 * linearB;
-  const y = 0.2126729 * linearR + 0.7151522 * linearG + 0.0721750 * linearB;
-  const z = 0.0193339 * linearR + 0.1191920 * linearG + 0.9503041 * linearB;
+  const x = 0.4124564 * rLinear + 0.3575761 * gLinear + 0.1804375 * bLinear;
+  const y = 0.2126729 * rLinear + 0.7151522 * gLinear + 0.0721750 * bLinear;
+  const z = 0.0193339 * rLinear + 0.1191920 * gLinear + 0.9503041 * bLinear;
   
   // 第三步：XYZ转Oklab
   const l_ = Math.cbrt(0.8189330101 * x + 0.3618667424 * y - 0.1288597137 * z);
@@ -667,12 +674,12 @@ export function oklchToRgb({ l, c, h }: OKLCH): RGB {
   // 第四步：线性RGB转sRGB
   const r = Math.round(linearToGamma(linearR) * 255);
   const g = Math.round(linearToGamma(linearG) * 255);
-  const b = Math.round(linearToGamma(linearB) * 255);
+  const blue = Math.round(linearToGamma(linearB) * 255);
   
   return {
     r: Math.max(0, Math.min(255, r)),
     g: Math.max(0, Math.min(255, g)),
-    b: Math.max(0, Math.min(255, b))
+    b: Math.max(0, Math.min(255, blue))
   };
 }
 
@@ -712,4 +719,107 @@ function gammaToLinear(value: number): number {
 
 function linearToGamma(value: number): number {
   return value <= 0.0031308 ? value * 12.92 : 1.055 * Math.pow(value, 1 / 2.4) - 0.055;
+}
+
+// RGB到LAB的转换函数
+export function rgbToLab({ r, g, b }: RGB): LAB {
+  // 首先将RGB转换为XYZ
+  // 归一化RGB值到0-1范围
+  const rLinear = gammaToLinear(r / 255);
+  const gLinear = gammaToLinear(g / 255);
+  const bLinear = gammaToLinear(b / 255);
+
+  // RGB到XYZ的转换矩阵
+  const x = 0.4124564 * rLinear + 0.3575761 * gLinear + 0.1804375 * bLinear;
+  const y = 0.2126729 * rLinear + 0.7151522 * gLinear + 0.0721750 * bLinear;
+  const z = 0.0193339 * rLinear + 0.1191920 * gLinear + 0.9503041 * bLinear;
+
+  // 使用D65白点进行XYZ到LAB的转换
+  const xn = 0.95047;
+  const yn = 1.00000;
+  const zn = 1.08883;
+
+  // 归一化XYZ
+  const xNorm = x / xn;
+  const yNorm = y / yn;
+  const zNorm = z / zn;
+
+  // 非线性转换
+  const x3 = xNorm > 0.008856 ? Math.pow(xNorm, 1/3) : (903.3 * xNorm + 16) / 116;
+  const y3 = yNorm > 0.008856 ? Math.pow(yNorm, 1/3) : (903.3 * yNorm + 16) / 116;
+  const z3 = zNorm > 0.008856 ? Math.pow(zNorm, 1/3) : (903.3 * zNorm + 16) / 116;
+
+  // 计算L*, a*, b*
+  const l = 116 * y3 - 16;
+  const a = 500 * (x3 - y3);
+  const bb = 200 * (y3 - z3);
+
+  return {
+    l: Math.round(l * 100) / 100,
+    a: Math.round(a * 100) / 100,
+    b: Math.round(bb * 100) / 100
+  };
+}
+
+// LAB到RGB的转换函数
+export function labToRgb({ l, a, b }: LAB): RGB {
+  // LAB到XYZ转换
+  const y = (l + 16) / 116;
+  const x = a / 500 + y;
+  const z = y - b / 200;
+
+  // 应用反转的非线性转换
+  const y3 = Math.pow(y, 3);
+  const x3 = Math.pow(x, 3);
+  const z3 = Math.pow(z, 3);
+
+  const yNorm = y3 > 0.008856 ? y3 : (y - 16 / 116) / 7.787;
+  const xNorm = x3 > 0.008856 ? x3 : (x - 16 / 116) / 7.787;
+  const zNorm = z3 > 0.008856 ? z3 : (z - 16 / 116) / 7.787;
+
+  // 使用D65白点
+  const xn = 0.95047;
+  const yn = 1.00000;
+  const zn = 1.08883;
+
+  // 应用白点缩放
+  const xLinear = xNorm * xn;
+  const yLinear = yNorm * yn;
+  const zLinear = zNorm * zn;
+
+  // XYZ到RGB的转换矩阵
+  const rLinear = 3.2404542 * xLinear - 1.5371385 * yLinear - 0.4985314 * zLinear;
+  const gLinear = -0.9692660 * xLinear + 1.8760108 * yLinear + 0.0415560 * zLinear;
+  const bLinear = 0.0556434 * xLinear - 0.2040259 * yLinear + 1.0572252 * zLinear;
+
+  // 限制值在0-1范围内
+  const r = Math.round(linearToGamma(rLinear) * 255);
+  const g = Math.round(linearToGamma(gLinear) * 255);
+  const blue = Math.round(linearToGamma(bLinear) * 255);
+
+  return { r, g, b: blue };
+}
+
+// 辅助函数：LAB到Hex
+export function labToHex(lab: LAB): string {
+  const rgb = labToRgb(lab);
+  return rgbaToHex({ ...rgb, a: 1 });
+}
+
+// 辅助函数：Hex到LAB
+export function hexToLab(hex: string): LAB {
+  const rgba = hexToRgba(hex);
+  if (!rgba) return { l: 0, a: 0, b: 0 };
+  const rgb = { r: rgba.r, g: rgba.g, b: rgba.b };
+  return rgbToLab(rgb);
+}
+
+// 辅助函数：LAB到CSS表示法
+export function labToCss({ l, a, b }: LAB): string {
+  return `lab(${l}% ${a.toFixed(2)} ${b.toFixed(2)})`;
+}
+
+// 辅助函数：验证LAB值是否有效
+export function isValidLab({ l, a, b }: LAB): boolean {
+  return l >= 0 && l <= 100 && a >= -128 && a <= 127 && b >= -128 && b <= 127;
 } 

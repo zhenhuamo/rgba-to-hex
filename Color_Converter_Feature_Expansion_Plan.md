@@ -107,6 +107,10 @@ interface LCH {
 - `/tools/rgb-to-lab/` 和 `/tools/rgb-to-lab-converter/`
 - `/tools/oklch-to-hex/` 和 `/tools/oklch-to-hex-converter/`
 
+**路由说明**:
+- 标准路由 (如 `/tools/hsl-to-oklch/`): 完整功能页面，包含网站导航和完整UI
+- 带`-converter`后缀路由: 独立工具页面，设计为可通过iframe嵌入到其他网站使用，具有简化UI和响应式设计
+
 ### 第二阶段：转换路径优化 ⚡
 **优先级**: 高 | **预估工期**: 1-2周
 
