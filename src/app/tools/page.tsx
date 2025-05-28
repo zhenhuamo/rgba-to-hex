@@ -19,6 +19,7 @@ export default function ToolsIndex() {
         { name: 'RGB to HEX', href: '/tools/rgb-to-hex', color: 'from-lime-500 to-lime-600' },
         { name: 'HSL to HEX', href: '/tools/hsl-to-hex', color: 'from-orange-500 to-orange-600' },
         { name: 'HSL to OKLCH', href: '/tools/hsl-to-oklch', color: 'from-purple-500 to-purple-600' },
+        { name: 'OKLCH to HEX', href: '/tools/oklch-to-hex', color: 'from-indigo-500 to-indigo-600' },
         { name: 'CMYK to HEX', href: '/tools/cmyk-to-hex', color: 'from-red-500 to-red-600' },
         { name: 'HEX to CMYK', href: '/tools/hex-to-cmyk', color: 'from-emerald-500 to-emerald-600' },
         { name: 'RGB to HSL', href: '/tools/rgb-to-hsl', color: 'from-purple-500 to-purple-600' },

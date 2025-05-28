@@ -32,6 +32,9 @@ export default function Navigation() {
         { name: 'HSL to RGB', href: '/tools/hsl-to-rgb', color: 'bg-pink-500' },
         { name: 'HSL to OKLCH', href: '/tools/hsl-to-oklch', color: 'bg-purple-600' },
         
+        // OKLCH based
+        { name: 'OKLCH to HEX', href: '/tools/oklch-to-hex', color: 'bg-indigo-600' },
+        
         // HSV based
         { name: 'HSV to RGB', href: '/tools/hsv-to-rgb', color: 'bg-indigo-500' },
         { name: 'HSV to HEX', href: '/tools/hsv-to-hex', color: 'bg-sky-500' },
