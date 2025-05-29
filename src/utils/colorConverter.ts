@@ -276,6 +276,12 @@ export function hslToRgb({ h, s, l }: HSL): RGB {
   };
 }
 
+// HSL to RGBA conversion with alpha channel support
+export function hslToRgba(hsl: HSL, alpha: number = 1): RGBA {
+  const rgb = hslToRgb(hsl);  // 复用现有函数
+  return { ...rgb, a: Math.max(0, Math.min(1, alpha)) }; // 确保alpha在有效范围内
+}
+
 export function hsvToRgb({ h, s, v }: HSV): RGB {
   // 输入验证与范围钳制 (Input validation and clamping)
   h = Math.max(0, Math.min(360, h));
