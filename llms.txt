@@ -9,6 +9,7 @@
 - [HEX到HSL转换器](https://rgbatohex.com/tools/hex-to-hsl)：将十六进制颜色码转换为HSL（色相、饱和度、亮度）格式，便于更直观地进行颜色调整。
 - [HSL到HEX转换器](https://rgbatohex.com/tools/hsl-to-hex)：将HSL颜色值转换为十六进制颜色码。
 - [HSL到RGBA转换器](https://rgbatohex.com/tools/hsl-to-rgba)：专业HSL到RGBA颜色转换器，支持透明度控制，提供JavaScript实现、CSS应用指南和暗色主题处理，适用于现代Web开发和响应式设计。
+- [HSL到CMYK转换器](https://rgbatohex.com/tools/hsl-to-cmyk)：专业HSL到CMYK颜色转换器，支持直观的HSL色彩选择与精确的CMYK印刷输出，提供总墨量警告、Adobe软件集成指南和完整的JavaScript代码实现，适用于品牌色彩管理和印刷设计工作流程。
 - [HSL到OKLCH转换器](https://rgbatohex.com/tools/hsl-to-oklch)：HSL与OKLCH色彩空间双向转换，支持CSS Color Level 4的感知均匀色彩模型，附带浏览器兼容性信息。
 - [OKLCH到HEX转换器](https://rgbatohex.com/tools/oklch-to-hex)：现代OKLCH色彩空间到HEX颜色格式的专业转换工具，支持CSS Color Level 4标准，提供JavaScript代码示例和实时颜色预览。
 - [CMYK到HEX转换器](https://rgbatohex.com/tools/cmyk-to-hex)：将CMYK颜色值转换为十六进制颜色码。

@@ -32,6 +32,7 @@ export default function ToolsIndex() {
         { name: 'CMYK to RGB', href: '/tools/cmyk-to-rgb', color: 'from-yellow-500 to-yellow-600' },
         { name: 'HSV to HEX', href: '/tools/hsv-to-hex', color: 'from-sky-500 to-sky-600' },
         { name: 'HSV to HSL (and vice-versa)', href: '/tools/hsv-hsl', color: 'from-fuchsia-500 to-fuchsia-600' },
+        { name: 'HSL to CMYK', href: '/tools/hsl-to-cmyk', color: 'from-purple-500 to-pink-500' },
       ]
     },
     {
@@ -94,12 +95,12 @@ export default function ToolsIndex() {
               </h1>
             </div>
             <p className="text-2xl text-gray-700 dark:text-gray-200 mb-8 leading-relaxed max-w-4xl mx-auto">
-              Comprehensive collection of color tools for modern web designers and developers. Includes color conversion, palette generation, 
+              Comprehensive collection of color tools for modern web designers and developers. Includes color conversion between RGB, HSL, HEX, CMYK formats, HSL to CMYK conversion for print design, palette generation, 
               contrast checking, gradient creation, and many other professional utilities.
             </p>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 max-w-3xl mx-auto">
               Our tools support RGB, HSL, HEX, CMYK, as well as modern CSS Color Level 4 specification color spaces like OKLCH,
-              helping you create more visually appealing and accessible website designs.
+              helping you create more visually appealing and accessible website designs. Perfect for both digital design workflows and print production with professional HSL to CMYK conversion capabilities.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm">
               <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-4 py-2 rounded-full font-medium">CSS Color Level 4</span>
@@ -137,7 +138,10 @@ export default function ToolsIndex() {
                       </h3>
                     </div>
                     <p className="text-gray-600 dark:text-gray-300">
-                      Professional {tool.name} tool with real-time preview and intuitive user interface.
+                      {tool.name === 'HSL to CMYK' 
+                        ? 'Convert HSL colors to CMYK format for professional printing. Features intuitive HSL color selection with real-time CMYK output and ink coverage warnings for print-ready designs.'
+                        : `Professional ${tool.name} tool with real-time preview and intuitive user interface.`
+                      }
                     </p>
                   </Link>
                 ))}

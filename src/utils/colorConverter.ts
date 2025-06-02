@@ -828,4 +828,12 @@ export function labToCss({ l, a, b }: LAB): string {
 // 辅助函数：验证LAB值是否有效
 export function isValidLab({ l, a, b }: LAB): boolean {
   return l >= 0 && l <= 100 && a >= -128 && a <= 127 && b >= -128 && b <= 127;
+}
+
+// HSL to CMYK conversion (via RGB)
+export function hslToCmyk(hsl: HSL): CMYK {
+  // First convert HSL to RGB
+  const rgb = hslToRgb(hsl);
+  // Then convert RGB to CMYK
+  return rgbToCmyk(rgb);
 } 
