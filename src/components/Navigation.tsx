@@ -39,6 +39,7 @@ export default function Navigation() {
         
         // HSV based
         { name: 'HSV to RGB', href: '/tools/hsv-to-rgb', color: 'bg-indigo-500' },
+        { name: 'HSV to RGBA', href: '/tools/hsv-to-rgba', color: 'bg-purple-500' },
         { name: 'HSV to HEX', href: '/tools/hsv-to-hex', color: 'bg-sky-500' },
         { name: 'HSV to HSL (and vice-versa)', href: '/tools/hsv-hsl', color: 'bg-fuchsia-500' },
         

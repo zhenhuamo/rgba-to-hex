@@ -836,4 +836,15 @@ export function hslToCmyk(hsl: HSL): CMYK {
   const rgb = hslToRgb(hsl);
   // Then convert RGB to CMYK
   return rgbToCmyk(rgb);
+}
+
+/**
+ * Converts an HSV color value to an RGBA color value.
+ * @param {HSV} hsv - The HSV color value.
+ * @param {number} alpha - The alpha/transparency value (0-1, defaults to 1).
+ * @returns {RGBA} The RGBA color value.
+ */
+export function hsvToRgba(hsv: HSV, alpha: number = 1): RGBA {
+  const rgb = hsvToRgb(hsv);  // 复用现有的HSV to RGB转换函数
+  return { ...rgb, a: Math.max(0, Math.min(1, alpha)) }; // 确保alpha在有效范围内(0-1)
 } 

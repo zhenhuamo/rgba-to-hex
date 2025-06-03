@@ -27,6 +27,7 @@ export default function ToolsIndex() {
         { name: 'HSL to RGB', href: '/tools/hsl-to-rgb', color: 'from-pink-500 to-pink-600' },
         { name: 'RGB to HSV', href: '/tools/rgb-to-hsv', color: 'from-teal-500 to-teal-600' },
         { name: 'HSV to RGB', href: '/tools/hsv-to-rgb', color: 'from-indigo-500 to-indigo-600' },
+        { name: 'HSV to RGBA', href: '/tools/hsv-to-rgba', color: 'from-purple-500 to-indigo-500' },
         { name: 'RGB to CMYK', href: '/tools/rgb-to-cmyk', color: 'from-cyan-500 to-cyan-600' },
         { name: 'RGB to LAB', href: '/tools/rgb-to-lab', color: 'from-rose-500 to-rose-600' },
         { name: 'CMYK to RGB', href: '/tools/cmyk-to-rgb', color: 'from-yellow-500 to-yellow-600' },
@@ -140,6 +141,8 @@ export default function ToolsIndex() {
                     <p className="text-gray-600 dark:text-gray-300">
                       {tool.name === 'HSL to CMYK' 
                         ? 'Convert HSL colors to CMYK format for professional printing. Features intuitive HSL color selection with real-time CMYK output and ink coverage warnings for print-ready designs.'
+                        : tool.name === 'HSV to RGBA'
+                        ? 'Convert HSV colors to RGBA format with alpha transparency control. Perfect for web design with HSV color selection, real-time RGBA output, and CSS-ready transparent color values.'
                         : `Professional ${tool.name} tool with real-time preview and intuitive user interface.`
                       }
                     </p>
