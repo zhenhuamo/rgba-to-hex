@@ -18,6 +18,7 @@
 - [RGB到CMYK转换器](https://rgbatohex.com/tools/rgb-to-cmyk)：将RGB颜色值转换为CMYK格式。
 - [RGB到LAB转换器](https://rgbatohex.com/tools/rgb-to-lab)：专业RGB到LAB颜色空间转换器，支持CIELAB色彩模型转换，提供数学公式、Python/MATLAB/Excel代码示例，适用于科学色彩分析、印刷色彩管理和计算机视觉应用。
 - [CMYK到RGB转换器](https://rgbatohex.com/tools/cmyk-to-rgb)：将CMYK颜色值转换为RGB格式。
+- [CMYK到RGBA转换器](https://rgbatohex.com/tools/cmyk-to-rgba)：专业CMYK到RGBA颜色转换器，支持印刷色彩到Web透明色彩的精确转换，提供多语言代码实现、iframe嵌入功能和实时透明度预览，适用于品牌设计和跨媒体工作流程。
 - [颜色对比度检查器](https://rgbatohex.com/tools/color-contrast)：检查颜色间的对比度是否符合可访问性标准。
 - [调色板生成器](https://rgbatohex.com/tools/palette-generator)：生成配色方案。
 - [渐变生成器](https://rgbatohex.com/tools/gradient-generator)：创建颜色渐变。

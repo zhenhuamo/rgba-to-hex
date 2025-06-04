@@ -46,6 +46,7 @@ export default function Navigation() {
         // CMYK based
         { name: 'CMYK to HEX', href: '/tools/cmyk-to-hex', color: 'bg-red-500' },
         { name: 'CMYK to RGB', href: '/tools/cmyk-to-rgb', color: 'bg-yellow-500' },
+        { name: 'CMYK to RGBA', href: '/tools/cmyk-to-rgba', color: 'bg-red-600' },
       ]
     },
     {

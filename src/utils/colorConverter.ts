@@ -366,6 +366,20 @@ export function cmykToHex(cmyk: CMYK): string {
   return rgbaToHex({ ...rgb, a: 1 });
 }
 
+/**
+ * 将 CMYK 颜色转换为 RGBA 颜色，添加透明度支持
+ * @param {CMYK} cmyk - CMYK 颜色对象
+ * @param {number} alpha - 透明度值 (0-1，默认为1)
+ * @returns {RGBA} RGBA 颜色对象
+ */
+export function cmykToRgba(cmyk: CMYK, alpha: number = 1): RGBA {
+  const rgb = cmykToRgb(cmyk);  // 复用现有的CMYK to RGB转换函数
+  return { 
+    ...rgb, 
+    a: Math.max(0, Math.min(1, alpha)) // 确保alpha在有效范围内(0-1)
+  };
+}
+
 // 检查颜色是否在打印色域内
 export function checkColorGamut(cmyk: CMYK): boolean {
   const totalInk = cmyk.c + cmyk.m + cmyk.y + cmyk.k;
