@@ -208,8 +208,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
-
-
+    {
+      url: 'https://rgbatohex.com/tools/color-harmony',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: 'https://rgbatohex.com/tools/color-harmony-tool',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
     {
       url: `${baseUrl}/blog`,
       lastModified: new Date(),

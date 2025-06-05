@@ -46,6 +46,7 @@ export default function ToolsIndex() {
         { name: 'Color Picker', href: '/tools/color-picker-embed', color: 'from-lime-500 to-lime-600' },
         { name: 'Color Temperature', href: '/tools/color-temperature', color: 'from-orange-500 to-orange-600' },
         { name: 'Color Contrast Checker', href: '/tools/color-contrast', color: 'from-indigo-500 to-indigo-600' },
+        { name: 'Color Harmony Generator', href: '/tools/color-harmony', color: 'from-purple-500 to-purple-600' },
         { name: 'Palette Generator', href: '/tools/palette-generator', color: 'from-pink-500 to-pink-600' },
         { name: 'Gradient Generator', href: '/tools/gradient-generator', color: 'from-blue-500 to-blue-600' },
         { name: 'Color Blindness Simulator', href: '/tools/color-blindness-simulator', color: 'from-teal-500 to-teal-600' },
