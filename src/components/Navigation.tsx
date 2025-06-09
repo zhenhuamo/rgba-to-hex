@@ -57,6 +57,7 @@ export default function Navigation() {
         { name: 'Color Temperature', href: '/tools/color-temperature', color: 'bg-orange-600' },
         { name: 'Color Contrast Checker', href: '/tools/color-contrast', color: 'bg-indigo-500' },
         { name: 'Color Harmony Generator', href: '/tools/color-harmony', color: 'bg-purple-600' },
+        { name: 'Delta-E Calculator', href: '/tools/delta-e-calculator', color: 'bg-blue-600' },
         { name: 'Color Palette', href: '/tools/palette-generator', color: 'bg-pink-500' },
         { name: 'Gradient Generator', href: '/tools/gradient-generator', color: 'bg-blue-500' },
         { name: 'Color Blindness Simulator', href: '/tools/color-blindness-simulator', color: 'bg-teal-500' },
