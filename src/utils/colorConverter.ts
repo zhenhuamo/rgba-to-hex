@@ -46,6 +46,13 @@ export interface LAB {
   b: number; // Blue-Yellow axis (-128 to 127)
 }
 
+// 添加XYZ接口定义
+export interface XYZ {
+  x: number; // X component (0-95.047 for D65 white point)
+  y: number; // Y component (0-100.000 for D65 white point)
+  z: number; // Z component (0-108.883 for D65 white point)
+}
+
 export interface ColorSystemInfo {
   pantone?: string;
   isInGamut: boolean;
@@ -862,3 +869,75 @@ export function hsvToRgba(hsv: HSV, alpha: number = 1): RGBA {
   const rgb = hsvToRgb(hsv);  // 复用现有的HSV to RGB转换函数
   return { ...rgb, a: Math.max(0, Math.min(1, alpha)) }; // 确保alpha在有效范围内(0-1)
 } 
+
+// RGB到XYZ的转换函数
+export function rgbToXyz({ r, g, b }: RGB): XYZ {
+  // 归一化RGB值到0-1范围并应用gamma校正
+  const rLinear = gammaToLinear(r / 255);
+  const gLinear = gammaToLinear(g / 255);
+  const bLinear = gammaToLinear(b / 255);
+
+  // RGB到XYZ的转换矩阵 (sRGB D65)
+  const x = 0.4124564 * rLinear + 0.3575761 * gLinear + 0.1804375 * bLinear;
+  const y = 0.2126729 * rLinear + 0.7151522 * gLinear + 0.0721750 * bLinear;
+  const z = 0.0193339 * rLinear + 0.1191920 * gLinear + 0.9503041 * bLinear;
+
+  // 乘以100以符合标准XYZ范围
+  return {
+    x: Math.round(x * 100 * 1000) / 1000, // 保留3位小数
+    y: Math.round(y * 100 * 1000) / 1000,
+    z: Math.round(z * 100 * 1000) / 1000
+  };
+}
+
+// XYZ到RGB的转换函数
+export function xyzToRgb({ x, y, z }: XYZ): RGB {
+  // 将XYZ值归一化到0-1范围
+  const xNorm = x / 100;
+  const yNorm = y / 100;
+  const zNorm = z / 100;
+
+  // XYZ到RGB的转换矩阵 (sRGB D65)
+  const rLinear = 3.2404542 * xNorm - 1.5371385 * yNorm - 0.4985314 * zNorm;
+  const gLinear = -0.9692660 * xNorm + 1.8760108 * yNorm + 0.0415560 * zNorm;
+  const bLinear = 0.0556434 * xNorm - 0.2040259 * yNorm + 1.0572252 * zNorm;
+
+  // 应用逆gamma校正并转换到0-255范围
+  const r = Math.round(linearToGamma(rLinear) * 255);
+  const g = Math.round(linearToGamma(gLinear) * 255);
+  const blue = Math.round(linearToGamma(bLinear) * 255);
+
+  return {
+    r: Math.max(0, Math.min(255, r)),
+    g: Math.max(0, Math.min(255, g)),
+    b: Math.max(0, Math.min(255, blue))
+  };
+}
+
+// XYZ到HEX的转换函数
+export function xyzToHex(xyz: XYZ): string {
+  const rgb = xyzToRgb(xyz);
+  return rgbaToHex({ ...rgb, a: 1 });
+}
+
+// HEX到XYZ的转换函数
+export function hexToXyz(hex: string): XYZ {
+  const rgba = hexToRgba(hex);
+  if (!rgba) return { x: 0, y: 0, z: 0 };
+  const rgb = { r: rgba.r, g: rgba.g, b: rgba.b };
+  return rgbToXyz(rgb);
+}
+
+// 验证XYZ值是否有效
+export function isValidXyz({ x, y, z }: XYZ): boolean {
+  return (
+    x >= 0 && x <= 95.047 &&
+    y >= 0 && y <= 100.000 &&
+    z >= 0 && z <= 108.883
+  );
+}
+
+// XYZ格式化为CSS字符串（注意：CSS没有标准的XYZ格式，这里提供一个可读的格式）
+export function xyzToCss({ x, y, z }: XYZ): string {
+  return `xyz(${x.toFixed(3)} ${y.toFixed(3)} ${z.toFixed(3)})`;
+}

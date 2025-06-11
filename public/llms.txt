@@ -18,6 +18,7 @@ Additional background information can be added here without using headings. Keep
 - [RGB to HSL Converter](https://rgbatohex.com/tools/rgb-to-hsl): Convert RGB color values to HSL format.
 - [RGB to CMYK Converter](https://rgbatohex.com/tools/rgb-to-cmyk): Convert RGB color values to CMYK format.
 - [RGB to LAB Converter](https://rgbatohex.com/tools/rgb-to-lab): Professional RGB to LAB color space converter supporting CIELAB color model conversion, providing mathematical formulas and code examples in Python/MATLAB/Excel, suitable for scientific color analysis, print color management, and computer vision applications.
+- [XYZ to RGB Guide](https://rgbatohex.com/tools/xyz-to-rgb): Comprehensive guide and educational resource for XYZ and RGB color space conversion, including technical documentation, code examples in multiple programming languages, and detailed explanations of color science principles.
 - [CMYK to RGB Converter](https://rgbatohex.com/tools/cmyk-to-rgb): Convert CMYK color values to RGB format.
 - [CMYK to RGBA Converter](https://rgbatohex.com/tools/cmyk-to-rgba): Professional CMYK to RGBA color converter supporting precise conversion from print colors to web transparent colors, featuring multi-language code implementation, iframe embedding functionality, and real-time transparency preview, suitable for brand design and cross-media workflows.
 - [Color Contrast Checker](https://rgbatohex.com/tools/color-contrast): Check whether color contrast meets accessibility standards.

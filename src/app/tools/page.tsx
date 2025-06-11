@@ -30,6 +30,7 @@ export default function ToolsIndex() {
         { name: 'HSV to RGBA', href: '/tools/hsv-to-rgba', color: 'from-purple-500 to-indigo-500' },
         { name: 'RGB to CMYK', href: '/tools/rgb-to-cmyk', color: 'from-cyan-500 to-cyan-600' },
         { name: 'RGB to LAB', href: '/tools/rgb-to-lab', color: 'from-rose-500 to-rose-600' },
+        { name: 'XYZ to RGB', href: '/tools/xyz-to-rgb', color: 'from-blue-700 to-blue-800' },
         { name: 'CMYK to RGB', href: '/tools/cmyk-to-rgb', color: 'from-yellow-500 to-yellow-600' },
         { name: 'CMYK to RGBA', href: '/tools/cmyk-to-rgba', color: 'from-red-500 to-pink-500' },
         { name: 'HSV to HEX', href: '/tools/hsv-to-hex', color: 'from-sky-500 to-sky-600' },
