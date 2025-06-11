@@ -1,47 +1,47 @@
 # rgbatohex
 
-> rgbatohex.com 提供一系列在线颜色转换工具和相关博客文章，帮助用户处理HEX、RGB、HSL、CMYK等颜色代码转换及颜色相关任务。
+> rgbatohex.com provides a comprehensive suite of online color conversion tools and related blog articles to help users handle HEX, RGB, HSL, CMYK color code conversions and color-related tasks.
 
-这里可以添加额外的背景信息，不使用标题。保持简短明了。
+Additional background information can be added here without using headings. Keep it concise and clear.
 
-## 核心内容
-- [HEX到RGBA转换器](https://rgbatohex.com/tools/hex-to-rgba)：将十六进制颜色码（带或不带alpha）转换为RGBA格式。
-- [HEX到HSL转换器](https://rgbatohex.com/tools/hex-to-hsl)：将十六进制颜色码转换为HSL（色相、饱和度、亮度）格式，便于更直观地进行颜色调整。
-- [HSL到HEX转换器](https://rgbatohex.com/tools/hsl-to-hex)：将HSL颜色值转换为十六进制颜色码。
-- [Delta-E颜色差异计算器](https://rgbatohex.com/tools/delta-e-calculator)：使用CIE76、CIE94和CIEDE2000标准计算和比较两个颜色之间的感知差异，适用于设计、印刷和颜色质量控制。
-- [HSL到RGBA转换器](https://rgbatohex.com/tools/hsl-to-rgba)：专业HSL到RGBA颜色转换器，支持透明度控制，提供JavaScript实现、CSS应用指南和暗色主题处理，适用于现代Web开发和响应式设计。
-- [HSL到CMYK转换器](https://rgbatohex.com/tools/hsl-to-cmyk)：专业HSL到CMYK颜色转换器，支持直观的HSL色彩选择与精确的CMYK印刷输出，提供总墨量警告、Adobe软件集成指南和完整的JavaScript代码实现，适用于品牌色彩管理和印刷设计工作流程。
-- [HSL到OKLCH转换器](https://rgbatohex.com/tools/hsl-to-oklch)：HSL与OKLCH色彩空间双向转换，支持CSS Color Level 4的感知均匀色彩模型，附带浏览器兼容性信息。
-- [OKLCH到HEX转换器](https://rgbatohex.com/tools/oklch-to-hex)：现代OKLCH色彩空间到HEX颜色格式的专业转换工具，支持CSS Color Level 4标准，提供JavaScript代码示例和实时颜色预览。
-- [CMYK到HEX转换器](https://rgbatohex.com/tools/cmyk-to-hex)：将CMYK颜色值转换为十六进制颜色码。
-- [HEX到CMYK转换器](https://rgbatohex.com/tools/hex-to-cmyk)：将网页设计中的十六进制颜色码转换为印刷适用的CMYK格式，附带总墨量检查和印刷提示。
-- [RGB到HSL转换器](https://rgbatohex.com/tools/rgb-to-hsl)：将RGB颜色值转换为HSL格式。
-- [RGB到CMYK转换器](https://rgbatohex.com/tools/rgb-to-cmyk)：将RGB颜色值转换为CMYK格式。
-- [RGB到LAB转换器](https://rgbatohex.com/tools/rgb-to-lab)：专业RGB到LAB颜色空间转换器，支持CIELAB色彩模型转换，提供数学公式、Python/MATLAB/Excel代码示例，适用于科学色彩分析、印刷色彩管理和计算机视觉应用。
-- [CMYK到RGB转换器](https://rgbatohex.com/tools/cmyk-to-rgb)：将CMYK颜色值转换为RGB格式。
-- [CMYK到RGBA转换器](https://rgbatohex.com/tools/cmyk-to-rgba)：专业CMYK到RGBA颜色转换器，支持印刷色彩到Web透明色彩的精确转换，提供多语言代码实现、iframe嵌入功能和实时透明度预览，适用于品牌设计和跨媒体工作流程。
-- [颜色对比度检查器](https://rgbatohex.com/tools/color-contrast)：检查颜色间的对比度是否符合可访问性标准。
-- [调色板生成器](https://rgbatohex.com/tools/palette-generator)：生成配色方案。
-- [渐变生成器](https://rgbatohex.com/tools/gradient-generator)：创建颜色渐变。
-- [色盲模拟器](https://rgbatohex.com/tools/color-blindness-simulator)：模拟色盲视觉下的颜色显示。
-- [图像颜色提取器](https://rgbatohex.com/tools/image-color-extractor)：从图像中提取颜色。
-- [颜色混合器](https://rgbatohex.com/tools/color-mixer)：混合不同颜色。
-- [绘画混合器](https://rgbatohex.com/tools/mixer-painter)：模拟颜料混合效果。
-- [字体生成器](https://rgbatohex.com/tools/font-generator)：在线字体相关工具。
-- [色轮工具](https://rgbatohex.com/tools/color-wheel)：交互式色轮，辅助颜色选择。
-- [颜色选择器嵌入](https://rgbatohex.com/tools/color-picker-embed)：可嵌入的颜色选择器工具。
-- [图像裁剪工具](https://rgbatohex.com/tools/image-crop-landing)：在线图像裁剪工具。
-- [RGB到HSV转换器](https://rgbatohex.com/tools/rgb-to-hsv)：将RGB颜色值转换为HSV格式。
-- [RGB到HEX转换器](https://rgbatohex.com/tools/rgb-to-hex)：将RGB颜色值转换为十六进制颜色码。
-- [HSV到RGB转换器](https://rgbatohex.com/tools/hsv-to-rgb)：将HSV颜色值转换为RGB格式。
-- [HSV到RGBA转换器](https://rgbatohex.com/tools/hsv-to-rgba)：专业HSV到RGBA颜色转换器，支持透明度控制，提供JavaScript、C#、Unity、C++、Python多语言实现，适用于Web开发、游戏开发和数字设计。
-- [HSV到HEX转换器](https://rgbatohex.com/tools/hsv-to-hex)：将HSV颜色值转换为十六进制颜色码。
-- [HSV到HSL转换器](https://rgbatohex.com/tools/hsv-hsl)：在HSV（色相、饱和度、明度）与HSL（色相、饱和度、亮度）颜色模型之间进行双向转换，附带详细模型比较与代码实现。
-- [色温/色调调整器](https://rgbatohex.com/tools/color-temperature)：调整任意颜色的色温和色调，生成更暖或更冷的色彩变体。
-- [HEX到十进制转换器](https://rgbatohex.com/tools/hex-to-decimal)：将十六进制数字转换为十进制数字，支持大数计算和常用进制转换。
-- [色彩和谐生成器](https://rgbatohex.com/tools/color-harmony)：基于色彩理论创建和谐的配色方案，支持互补色、三元色、邻近色、分离互补色、四元色和单色等多种和谐类型，提供实时预览、CSS/Sass/JSON导出功能，适用于网页设计、UI/UX、品牌设计和创意项目。
-- [博客](https://rgbatohex.com/blog)：关于颜色理论、颜色工具使用技巧和颜色转换教程的文章。
+## Core Features
+- [HEX to RGBA Converter](https://rgbatohex.com/tools/hex-to-rgba): Convert hexadecimal color codes (with or without alpha) to RGBA format.
+- [HEX to HSL Converter](https://rgbatohex.com/tools/hex-to-hsl): Convert hexadecimal color codes to HSL (Hue, Saturation, Lightness) format for more intuitive color adjustments.
+- [HSL to HEX Converter](https://rgbatohex.com/tools/hsl-to-hex): Convert HSL color values to hexadecimal color codes.
+- [Delta-E Color Difference Calculator](https://rgbatohex.com/tools/delta-e-calculator): Calculate and compare perceptual differences between two colors using CIE76, CIE94, and CIEDE2000 standards, suitable for design, printing, and color quality control.
+- [HSL to RGBA Converter](https://rgbatohex.com/tools/hsl-to-rgba): Professional HSL to RGBA color converter with transparency control, providing JavaScript implementation, CSS application guides, and dark theme handling, suitable for modern web development and responsive design.
+- [HSL to CMYK Converter](https://rgbatohex.com/tools/hsl-to-cmyk): Professional HSL to CMYK color converter supporting intuitive HSL color selection with precise CMYK print output, featuring total ink coverage warnings, Adobe software integration guides, and complete JavaScript code implementation, suitable for brand color management and print design workflows.
+- [HSL to OKLCH Converter](https://rgbatohex.com/tools/hsl-to-oklch): Bidirectional conversion between HSL and OKLCH color spaces, supporting CSS Color Level 4 perceptually uniform color model with browser compatibility information.
+- [OKLCH to HEX Converter](https://rgbatohex.com/tools/oklch-to-hex): Professional conversion tool from modern OKLCH color space to HEX color format, supporting CSS Color Level 4 standards with JavaScript code examples and real-time color preview.
+- [CMYK to HEX Converter](https://rgbatohex.com/tools/cmyk-to-hex): Convert CMYK color values to hexadecimal color codes.
+- [HEX to CMYK Converter](https://rgbatohex.com/tools/hex-to-cmyk): Convert hexadecimal color codes from web design to print-ready CMYK format, with total ink coverage checking and printing tips.
+- [RGB to HSL Converter](https://rgbatohex.com/tools/rgb-to-hsl): Convert RGB color values to HSL format.
+- [RGB to CMYK Converter](https://rgbatohex.com/tools/rgb-to-cmyk): Convert RGB color values to CMYK format.
+- [RGB to LAB Converter](https://rgbatohex.com/tools/rgb-to-lab): Professional RGB to LAB color space converter supporting CIELAB color model conversion, providing mathematical formulas and code examples in Python/MATLAB/Excel, suitable for scientific color analysis, print color management, and computer vision applications.
+- [CMYK to RGB Converter](https://rgbatohex.com/tools/cmyk-to-rgb): Convert CMYK color values to RGB format.
+- [CMYK to RGBA Converter](https://rgbatohex.com/tools/cmyk-to-rgba): Professional CMYK to RGBA color converter supporting precise conversion from print colors to web transparent colors, featuring multi-language code implementation, iframe embedding functionality, and real-time transparency preview, suitable for brand design and cross-media workflows.
+- [Color Contrast Checker](https://rgbatohex.com/tools/color-contrast): Check whether color contrast meets accessibility standards.
+- [Palette Generator](https://rgbatohex.com/tools/palette-generator): Generate color schemes.
+- [Gradient Generator](https://rgbatohex.com/tools/gradient-generator): Create color gradients.
+- [Color Blindness Simulator](https://rgbatohex.com/tools/color-blindness-simulator): Simulate how colors appear under color blind vision.
+- [Image Color Extractor](https://rgbatohex.com/tools/image-color-extractor): Extract colors from images.
+- [Color Mixer](https://rgbatohex.com/tools/color-mixer): Mix different colors.
+- [Paint Mixer](https://rgbatohex.com/tools/mixer-painter): Simulate paint mixing effects.
+- [Font Generator](https://rgbatohex.com/tools/font-generator): Online font-related tools.
+- [Color Wheel Tool](https://rgbatohex.com/tools/color-wheel): Interactive color wheel to assist with color selection.
+- [Color Picker Embed](https://rgbatohex.com/tools/color-picker-embed): Embeddable color picker tool.
+- [Image Crop Tool](https://rgbatohex.com/tools/image-crop-landing): Online image cropping tool.
+- [RGB to HSV Converter](https://rgbatohex.com/tools/rgb-to-hsv): Convert RGB color values to HSV format.
+- [RGB to HEX Converter](https://rgbatohex.com/tools/rgb-to-hex): Convert RGB color values to hexadecimal color codes.
+- [HSV to RGB Converter](https://rgbatohex.com/tools/hsv-to-rgb): Convert HSV color values to RGB format.
+- [HSV to RGBA Converter](https://rgbatohex.com/tools/hsv-to-rgba): Professional HSV to RGBA color converter with transparency control, providing multi-language implementations in JavaScript, C#, Unity, C++, and Python, suitable for web development, game development, and digital design.
+- [HSV to HEX Converter](https://rgbatohex.com/tools/hsv-to-hex): Convert HSV color values to hexadecimal color codes.
+- [HSV to HSL Converter](https://rgbatohex.com/tools/hsv-hsl): Bidirectional conversion between HSV (Hue, Saturation, Value) and HSL (Hue, Saturation, Lightness) color models, with detailed model comparison and code implementation.
+- [Color Temperature/Tone Adjuster](https://rgbatohex.com/tools/color-temperature): Adjust the color temperature and tone of any color to generate warmer or cooler color variants.
+- [HEX to Decimal Converter](https://rgbatohex.com/tools/hex-to-decimal): Convert hexadecimal numbers to decimal numbers, supporting large number calculations and common base conversions.
+- [Color Harmony Generator](https://rgbatohex.com/tools/color-harmony): Create harmonious color schemes based on color theory, supporting various harmony types including complementary, triadic, analogous, split-complementary, tetradic, and monochromatic colors, with real-time preview and CSS/Sass/JSON export functionality, suitable for web design, UI/UX, brand design, and creative projects.
+- [Blog](https://rgbatohex.com/blog): Articles about color theory, color tool usage tips, and color conversion tutorials.
 
-## 常用资源
+## Common Resources
 
-## 可选 
+## Optional 
