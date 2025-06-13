@@ -70,7 +70,8 @@ export default function Navigation() {
     {
       category: "number tools",
       tools: [
-        { name: 'HEX to Decimal', href: '/tools/hex-to-decimal', color: 'bg-blue-600' }
+        { name: 'HEX to Decimal', href: '/tools/hex-to-decimal', color: 'bg-blue-600' },
+        { name: 'HEX to Binary', href: '/tools/hex-to-binary', color: 'bg-green-600' }
       ]
     },
     {

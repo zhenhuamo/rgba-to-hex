@@ -40,6 +40,7 @@ Additional background information can be added here without using headings. Keep
 - [HSV to HSL Converter](https://rgbatohex.com/tools/hsv-hsl): Bidirectional conversion between HSV (Hue, Saturation, Value) and HSL (Hue, Saturation, Lightness) color models, with detailed model comparison and code implementation.
 - [Color Temperature/Tone Adjuster](https://rgbatohex.com/tools/color-temperature): Adjust the color temperature and tone of any color to generate warmer or cooler color variants.
 - [HEX to Decimal Converter](https://rgbatohex.com/tools/hex-to-decimal): Convert hexadecimal numbers to decimal numbers, supporting large number calculations and common base conversions.
+- [HEX to Binary Converter](https://rgbatohex.com/tools/hex-to-binary): Professional hexadecimal to binary converter supporting real-time conversion, bit grouping options, programming code examples in Python/Java/C++/Excel, conversion tables, and comprehensive educational content covering conversion principles, file processing, and practical applications.
 - [Color Harmony Generator](https://rgbatohex.com/tools/color-harmony): Create harmonious color schemes based on color theory, supporting various harmony types including complementary, triadic, analogous, split-complementary, tetradic, and monochromatic colors, with real-time preview and CSS/Sass/JSON export functionality, suitable for web design, UI/UX, brand design, and creative projects.
 - [Blog](https://rgbatohex.com/blog): Articles about color theory, color tool usage tips, and color conversion tutorials.
 
