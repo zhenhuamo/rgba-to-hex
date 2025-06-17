@@ -71,7 +71,9 @@ export default function Navigation() {
       category: "number tools",
       tools: [
         { name: 'HEX to Decimal', href: '/tools/hex-to-decimal', color: 'bg-blue-600' },
-        { name: 'HEX to Binary', href: '/tools/hex-to-binary', color: 'bg-green-600' }
+        { name: 'HEX to Binary', href: '/tools/hex-to-binary', color: 'bg-green-600' },
+        { name: 'Binary to Decimal', href: '/tools/binary-to-decimal', color: 'bg-purple-600' },
+        { name: 'Decimal to Binary', href: '/tools/decimal-to-binary', color: 'bg-indigo-600' }
       ]
     },
     {

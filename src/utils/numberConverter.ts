@@ -257,4 +257,236 @@ export function getHexBinaryMapping(): Array<{ hex: string; binary: string; deci
     { hex: 'E', binary: '1110', decimal: 14 },
     { hex: 'F', binary: '1111', decimal: 15 }
   ];
+}
+
+// ===== Binary to Decimal Conversion =====
+
+export interface BinaryToDecimalResult {
+  decimal: string;
+  isValid: boolean;
+  error?: string;
+}
+
+/**
+ * Validate if a binary string is valid
+ * @param binary Binary string (only 0s and 1s)
+ * @returns Whether it's a valid binary number
+ */
+export function isValidBinaryNumber(binary: string): boolean {
+  if (!binary || typeof binary !== 'string') {
+    return false;
+  }
+  
+  // Remove spaces and clean input
+  const cleanBinary = binary.trim().replace(/\s/g, '');
+  
+  // Check if empty
+  if (cleanBinary.length === 0) {
+    return false;
+  }
+  
+  // Check if it only contains 0s and 1s
+  const binaryRegex = /^[01]+$/;
+  return binaryRegex.test(cleanBinary);
+}
+
+/**
+ * Convert binary number to decimal
+ * @param binary Binary string (only 0s and 1s)
+ * @returns Conversion result object containing decimal string, validity, and possible error message
+ */
+export function binaryToDecimal(binary: string): BinaryToDecimalResult {
+  // Input validation
+  if (!binary || typeof binary !== 'string') {
+    return {
+      decimal: '',
+      isValid: false,
+      error: '请输入有效的二进制数'
+    };
+  }
+
+  // Clean input: remove spaces
+  const cleanBinary = binary.trim().replace(/\s/g, '');
+  
+  // Check if empty
+  if (cleanBinary.length === 0) {
+    return {
+      decimal: '',
+      isValid: false,
+      error: '输入不能为空'
+    };
+  }
+
+  // Validate format
+  if (!isValidBinaryNumber(cleanBinary)) {
+    return {
+      decimal: '',
+      isValid: false,
+      error: '请输入有效的二进制数字（只能包含0和1）'
+    };
+  }
+
+  try {
+    // For smaller numbers, use parseInt
+    if (cleanBinary.length <= 53) { // JavaScript safe integer limit
+      const decimal = parseInt(cleanBinary, 2);
+      return {
+        decimal: decimal.toString(),
+        isValid: true
+      };
+    } else {
+      // For large numbers, use BigInt
+      const decimal = BigInt('0b' + cleanBinary);
+      return {
+        decimal: decimal.toString(),
+        isValid: true
+      };
+    }
+  } catch {
+    return {
+      decimal: '',
+      isValid: false,
+      error: '转换失败：数字可能过大或格式不正确'
+    };
+  }
+}
+
+/**
+ * Get common binary number examples
+ * @returns Array of common binary numbers
+ */
+export function getCommonBinaryNumbers(): Array<{ binary: string; description: string; decimal: string }> {
+  return [
+    { binary: '1', description: '最小正整数', decimal: '1' },
+    { binary: '1111', description: '4位最大值', decimal: '15' },
+    { binary: '10000', description: '16 (2^4)', decimal: '16' },
+    { binary: '11111111', description: '8位最大值 (1字节)', decimal: '255' },
+    { binary: '100000000', description: '256 (2^8)', decimal: '256' },
+    { binary: '1111111111111111', description: '16位最大值 (2字节)', decimal: '65535' },
+    { binary: '10000000000000000', description: '65536 (2^16)', decimal: '65536' },
+    { binary: '10101010', description: '交替模式', decimal: '170' },
+    { binary: '11110000', description: '高4位置1', decimal: '240' },
+    { binary: '1010101010101010', description: '16位交替模式', decimal: '43690' }
+  ];
+}
+
+// ===== Decimal to Binary Conversion =====
+
+export interface DecimalToBinaryResult {
+  binary: string;
+  isValid: boolean;
+  error?: string;
+}
+
+/**
+ * Validate if a decimal string is valid
+ * @param decimal Decimal number string
+ * @returns Whether it's a valid decimal number
+ */
+export function isValidDecimalNumber(decimal: string): boolean {
+  if (!decimal || typeof decimal !== 'string') {
+    return false;
+  }
+  
+  // Remove spaces and clean input
+  const cleanDecimal = decimal.trim().replace(/,/g, ''); // Remove thousand separators
+  
+  // Check if empty
+  if (cleanDecimal.length === 0) {
+    return false;
+  }
+  
+  // Check if it's a valid positive integer (no negative numbers for binary conversion)
+  const decimalRegex = /^[0-9]+$/;
+  return decimalRegex.test(cleanDecimal);
+}
+
+/**
+ * Convert decimal number to binary
+ * @param decimal Decimal number string
+ * @returns Conversion result object containing binary string, validity, and possible error message
+ */
+export function decimalToBinary(decimal: string): DecimalToBinaryResult {
+  // Input validation
+  if (!decimal || typeof decimal !== 'string') {
+    return {
+      binary: '',
+      isValid: false,
+      error: '请输入有效的十进制数'
+    };
+  }
+
+  // Clean input: remove spaces and thousand separators
+  const cleanDecimal = decimal.trim().replace(/,/g, '');
+  
+  // Check if empty
+  if (cleanDecimal.length === 0) {
+    return {
+      binary: '',
+      isValid: false,
+      error: '输入不能为空'
+    };
+  }
+
+  // Validate format
+  if (!isValidDecimalNumber(cleanDecimal)) {
+    return {
+      binary: '',
+      isValid: false,
+      error: '请输入有效的十进制数字（只能包含数字0-9）'
+    };
+  }
+
+  try {
+    // Handle zero case
+    if (cleanDecimal === '0') {
+      return {
+        binary: '0',
+        isValid: true
+      };
+    }
+
+    // For smaller numbers, use parseInt
+    if (cleanDecimal.length <= 15) { // Reasonable limit for Number.toString()
+      const number = parseInt(cleanDecimal, 10);
+      const binary = number.toString(2);
+      return {
+        binary,
+        isValid: true
+      };
+    } else {
+      // For large numbers, use BigInt
+      const number = BigInt(cleanDecimal);
+      const binary = number.toString(2);
+      return {
+        binary,
+        isValid: true
+      };
+    }
+  } catch {
+    return {
+      binary: '',
+      isValid: false,
+      error: '转换失败：数字可能过大或格式不正确'
+    };
+  }
+}
+
+/**
+ * Get common decimal number examples for binary conversion
+ * @returns Array of common decimal numbers
+ */
+export function getCommonDecimalNumbers(): Array<{ decimal: string; description: string; binary: string }> {
+  return [
+    { decimal: '1', description: '最小正整数', binary: '1' },
+    { decimal: '15', description: '4位二进制最大值', binary: '1111' },
+    { decimal: '16', description: '2的4次方', binary: '10000' },
+    { decimal: '255', description: '8位二进制最大值', binary: '11111111' },
+    { decimal: '256', description: '2的8次方', binary: '100000000' },
+    { decimal: '1024', description: '2的10次方 (1KB)', binary: '10000000000' },
+    { decimal: '65535', description: '16位二进制最大值', binary: '1111111111111111' },
+    { decimal: '65536', description: '2的16次方', binary: '10000000000000000' },
+    { decimal: '100', description: '常用整数', binary: '1100100' },
+    { decimal: '1000', description: '常用整数', binary: '1111101000' }
+  ];
 } 
