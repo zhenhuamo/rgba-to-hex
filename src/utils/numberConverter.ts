@@ -301,7 +301,7 @@ export function binaryToDecimal(binary: string): BinaryToDecimalResult {
     return {
       decimal: '',
       isValid: false,
-      error: '请输入有效的二进制数'
+      error: 'Please enter a valid binary number'
     };
   }
 
@@ -313,7 +313,7 @@ export function binaryToDecimal(binary: string): BinaryToDecimalResult {
     return {
       decimal: '',
       isValid: false,
-      error: '输入不能为空'
+      error: 'Input cannot be empty'
     };
   }
 
@@ -322,7 +322,7 @@ export function binaryToDecimal(binary: string): BinaryToDecimalResult {
     return {
       decimal: '',
       isValid: false,
-      error: '请输入有效的二进制数字（只能包含0和1）'
+      error: 'Please enter valid binary digits (only 0 and 1 allowed)'
     };
   }
 
@@ -346,7 +346,7 @@ export function binaryToDecimal(binary: string): BinaryToDecimalResult {
     return {
       decimal: '',
       isValid: false,
-      error: '转换失败：数字可能过大或格式不正确'
+      error: 'Conversion failed: number may be too large or format incorrect'
     };
   }
 }
@@ -357,16 +357,16 @@ export function binaryToDecimal(binary: string): BinaryToDecimalResult {
  */
 export function getCommonBinaryNumbers(): Array<{ binary: string; description: string; decimal: string }> {
   return [
-    { binary: '1', description: '最小正整数', decimal: '1' },
-    { binary: '1111', description: '4位最大值', decimal: '15' },
+    { binary: '1', description: 'Smallest positive integer', decimal: '1' },
+    { binary: '1111', description: '4-bit maximum value', decimal: '15' },
     { binary: '10000', description: '16 (2^4)', decimal: '16' },
-    { binary: '11111111', description: '8位最大值 (1字节)', decimal: '255' },
+    { binary: '11111111', description: '8-bit maximum (1 byte)', decimal: '255' },
     { binary: '100000000', description: '256 (2^8)', decimal: '256' },
-    { binary: '1111111111111111', description: '16位最大值 (2字节)', decimal: '65535' },
+    { binary: '1111111111111111', description: '16-bit maximum (2 bytes)', decimal: '65535' },
     { binary: '10000000000000000', description: '65536 (2^16)', decimal: '65536' },
-    { binary: '10101010', description: '交替模式', decimal: '170' },
-    { binary: '11110000', description: '高4位置1', decimal: '240' },
-    { binary: '1010101010101010', description: '16位交替模式', decimal: '43690' }
+    { binary: '10101010', description: 'Alternating pattern', decimal: '170' },
+    { binary: '11110000', description: 'Upper 4 bits set', decimal: '240' },
+    { binary: '1010101010101010', description: '16-bit alternating pattern', decimal: '43690' }
   ];
 }
 
@@ -412,7 +412,7 @@ export function decimalToBinary(decimal: string): DecimalToBinaryResult {
     return {
       binary: '',
       isValid: false,
-      error: '请输入有效的十进制数'
+      error: 'Please enter a valid decimal number'
     };
   }
 
@@ -424,7 +424,7 @@ export function decimalToBinary(decimal: string): DecimalToBinaryResult {
     return {
       binary: '',
       isValid: false,
-      error: '输入不能为空'
+      error: 'Input cannot be empty'
     };
   }
 
@@ -433,7 +433,7 @@ export function decimalToBinary(decimal: string): DecimalToBinaryResult {
     return {
       binary: '',
       isValid: false,
-      error: '请输入有效的十进制数字（只能包含数字0-9）'
+      error: 'Please enter valid decimal digits (only 0-9 allowed)'
     };
   }
 
@@ -467,7 +467,7 @@ export function decimalToBinary(decimal: string): DecimalToBinaryResult {
     return {
       binary: '',
       isValid: false,
-      error: '转换失败：数字可能过大或格式不正确'
+      error: 'Conversion failed: number may be too large or format incorrect'
     };
   }
 }
@@ -478,15 +478,353 @@ export function decimalToBinary(decimal: string): DecimalToBinaryResult {
  */
 export function getCommonDecimalNumbers(): Array<{ decimal: string; description: string; binary: string }> {
   return [
-    { decimal: '1', description: '最小正整数', binary: '1' },
-    { decimal: '15', description: '4位二进制最大值', binary: '1111' },
-    { decimal: '16', description: '2的4次方', binary: '10000' },
-    { decimal: '255', description: '8位二进制最大值', binary: '11111111' },
-    { decimal: '256', description: '2的8次方', binary: '100000000' },
-    { decimal: '1024', description: '2的10次方 (1KB)', binary: '10000000000' },
-    { decimal: '65535', description: '16位二进制最大值', binary: '1111111111111111' },
-    { decimal: '65536', description: '2的16次方', binary: '10000000000000000' },
-    { decimal: '100', description: '常用整数', binary: '1100100' },
-    { decimal: '1000', description: '常用整数', binary: '1111101000' }
+    { decimal: '1', description: 'Smallest positive integer', binary: '1' },
+    { decimal: '15', description: '4-bit binary maximum', binary: '1111' },
+    { decimal: '16', description: '2 to the 4th power', binary: '10000' },
+    { decimal: '255', description: '8-bit binary maximum', binary: '11111111' },
+    { decimal: '256', description: '2 to the 8th power', binary: '100000000' },
+    { decimal: '1024', description: '2 to the 10th power (1KB)', binary: '10000000000' },
+    { decimal: '65535', description: '16-bit binary maximum', binary: '1111111111111111' },
+    { decimal: '65536', description: '2 to the 16th power', binary: '10000000000000000' },
+    { decimal: '100', description: 'Common integer', binary: '1100100' },
+    { decimal: '1000', description: 'Common integer', binary: '1111101000' }
+  ];
+}
+
+// ===== Octal Number Conversion =====
+
+export interface OctalToDecimalResult {
+  decimal: string;
+  isValid: boolean;
+  error?: string;
+}
+
+export interface DecimalToOctalResult {
+  octal: string;
+  isValid: boolean;
+  error?: string;
+}
+
+export interface UnixPermissionResult {
+  isValid: boolean;
+  owner: { read: boolean; write: boolean; execute: boolean };
+  group: { read: boolean; write: boolean; execute: boolean };
+  other: { read: boolean; write: boolean; execute: boolean };
+  representation: string; // 如 "rwxr-xr-x"
+  description: string;
+  error?: string;
+}
+
+/**
+ * Validate if an octal string is valid
+ * @param octal Octal string (only 0-7 digits), may include 0o prefix
+ * @returns Whether it's a valid octal number
+ */
+export function isValidOctalNumber(octal: string): boolean {
+  if (!octal || typeof octal !== 'string') {
+    return false;
+  }
+  
+  // Remove possible 0o prefix and spaces
+  const cleanOctal = octal.trim().replace(/^0o/i, '');
+  
+  // Check if empty
+  if (cleanOctal.length === 0) {
+    return false;
+  }
+  
+  // Check if it only contains valid octal characters (0-7)
+  const octalRegex = /^[0-7]+$/;
+  return octalRegex.test(cleanOctal);
+}
+
+/**
+ * Convert octal number to decimal
+ * @param octal Octal string (only 0-7 digits), may include 0o prefix
+ * @returns Conversion result object containing decimal string, validity, and possible error message
+ */
+export function octalToDecimal(octal: string): OctalToDecimalResult {
+  // Input validation
+  if (!octal || typeof octal !== 'string') {
+    return {
+      decimal: '',
+      isValid: false,
+      error: 'Please enter a valid octal number'
+    };
+  }
+
+  // Clean input: remove spaces and possible 0o prefix
+  const cleanOctal = octal.trim().replace(/^0o/i, '');
+  
+  // Check if empty
+  if (cleanOctal.length === 0) {
+    return {
+      decimal: '',
+      isValid: false,
+      error: 'Input cannot be empty'
+    };
+  }
+
+  // Validate format
+  if (!isValidOctalNumber(cleanOctal)) {
+    return {
+      decimal: '',
+      isValid: false,
+      error: 'Please enter valid octal digits (0-7 only)'
+    };
+  }
+
+  try {
+    // For smaller numbers, use parseInt
+    if (cleanOctal.length <= 10) { // Safe limit for octal
+      const decimal = parseInt(cleanOctal, 8);
+      return {
+        decimal: decimal.toString(),
+        isValid: true
+      };
+    } else {
+      // For large numbers, use BigInt
+      const decimal = BigInt('0o' + cleanOctal);
+      return {
+        decimal: decimal.toString(),
+        isValid: true
+      };
+    }
+  } catch {
+    return {
+      decimal: '',
+      isValid: false,
+      error: 'Conversion failed: number may be too large or format incorrect'
+    };
+  }
+}
+
+/**
+ * Convert decimal number to octal
+ * @param decimal Decimal number string
+ * @returns Conversion result object containing octal string, validity, and possible error message
+ */
+export function decimalToOctal(decimal: string): DecimalToOctalResult {
+  // Input validation
+  if (!decimal || typeof decimal !== 'string') {
+    return {
+      octal: '',
+      isValid: false,
+      error: 'Please enter a valid decimal number'
+    };
+  }
+
+  // Clean input: remove spaces and thousand separators
+  const cleanDecimal = decimal.trim().replace(/,/g, '');
+  
+  // Check if empty
+  if (cleanDecimal.length === 0) {
+    return {
+      octal: '',
+      isValid: false,
+      error: 'Input cannot be empty'
+    };
+  }
+
+  // Validate format
+  if (!isValidDecimalNumber(cleanDecimal)) {
+    return {
+      octal: '',
+      isValid: false,
+      error: 'Please enter valid decimal digits (0-9 only)'
+    };
+  }
+
+  try {
+    // Handle zero case
+    if (cleanDecimal === '0') {
+      return {
+        octal: '0',
+        isValid: true
+      };
+    }
+
+    // For smaller numbers, use parseInt
+    if (cleanDecimal.length <= 15) {
+      const number = parseInt(cleanDecimal, 10);
+      const octal = number.toString(8);
+      return {
+        octal,
+        isValid: true
+      };
+    } else {
+      // For large numbers, use BigInt
+      const number = BigInt(cleanDecimal);
+      const octal = number.toString(8);
+      return {
+        octal,
+        isValid: true
+      };
+    }
+  } catch {
+    return {
+      octal: '',
+      isValid: false,
+      error: 'Conversion failed: number may be too large or format incorrect'
+    };
+  }
+}
+
+/**
+ * Format octal number with grouping separators
+ * @param octal Octal number string
+ * @param groupSize Group size (default 3)
+ * @returns Formatted octal string with spaces
+ */
+export function formatOctalNumber(octal: string, groupSize: number = 3): string {
+  if (!octal) return '';
+  
+  try {
+    // Add spaces every groupSize digits from right to left
+    const reversed = octal.split('').reverse().join('');
+    const grouped = reversed.match(new RegExp(`.{1,${groupSize}}`, 'g')) || [];
+    return grouped.map(group => group.split('').reverse().join('')).reverse().join(' ');
+  } catch {
+    return octal;
+  }
+}
+
+/**
+ * Convert octal number to Unix file permissions
+ * @param octal Octal string (typically 3 digits for file permissions)
+ * @returns Unix permission result with parsed permissions
+ */
+export function octalToUnixPermissions(octal: string): UnixPermissionResult {
+  const cleanOctal = octal.trim().replace(/^0o/i, '');
+  
+  if (!isValidOctalNumber(cleanOctal)) {
+    return {
+      isValid: false,
+      owner: { read: false, write: false, execute: false },
+      group: { read: false, write: false, execute: false },
+      other: { read: false, write: false, execute: false },
+      representation: '',
+      description: '',
+      error: 'Please enter valid octal permission digits (0-7)'
+    };
+  }
+
+  // Pad to 3 digits if needed
+  const paddedOctal = cleanOctal.padStart(3, '0');
+  
+  if (paddedOctal.length > 4) {
+    return {
+      isValid: false,
+      owner: { read: false, write: false, execute: false },
+      group: { read: false, write: false, execute: false },
+      other: { read: false, write: false, execute: false },
+      representation: '',
+      description: '',
+      error: 'Unix permissions are typically 3-digit octal numbers'
+    };
+  }
+
+  try {
+    // Take last 3 digits for basic permissions
+    const permissionDigits = paddedOctal.slice(-3);
+    const ownerPerm = parseInt(permissionDigits[0], 10);
+    const groupPerm = parseInt(permissionDigits[1], 10);
+    const otherPerm = parseInt(permissionDigits[2], 10);
+
+    const parsePermissions = (perm: number) => ({
+      read: (perm & 4) !== 0,
+      write: (perm & 2) !== 0,
+      execute: (perm & 1) !== 0
+    });
+
+    const owner = parsePermissions(ownerPerm);
+    const group = parsePermissions(groupPerm);
+    const other = parsePermissions(otherPerm);
+
+    const formatPermGroup = (perm: { read: boolean; write: boolean; execute: boolean }) => 
+      (perm.read ? 'r' : '-') + (perm.write ? 'w' : '-') + (perm.execute ? 'x' : '-');
+
+    const representation = formatPermGroup(owner) + formatPermGroup(group) + formatPermGroup(other);
+    
+    // Generate description
+    const descriptions = {
+      '755': 'Owner: read/write/execute, Group & Others: read/execute',
+      '644': 'Owner: read/write, Group & Others: read only',
+      '777': 'All permissions: everyone read/write/execute',
+      '600': 'Owner: read/write, Group & Others: no permissions',
+      '700': 'Owner: read/write/execute, Group & Others: no permissions',
+      '666': 'Everyone: read/write, no execute permissions',
+      '555': 'Everyone: read/execute, no write permissions'
+    };
+
+    const description = descriptions[permissionDigits as keyof typeof descriptions] || 
+      `Owner: ${owner.read ? 'read ' : ''}${owner.write ? 'write ' : ''}${owner.execute ? 'execute ' : ''}, ` +
+      `Group: ${group.read ? 'read ' : ''}${group.write ? 'write ' : ''}${group.execute ? 'execute ' : ''}, ` +
+      `Others: ${other.read ? 'read ' : ''}${other.write ? 'write ' : ''}${other.execute ? 'execute ' : ''}`;
+
+    return {
+      isValid: true,
+      owner,
+      group,
+      other,
+      representation,
+      description
+    };
+  } catch {
+    return {
+      isValid: false,
+      owner: { read: false, write: false, execute: false },
+      group: { read: false, write: false, execute: false },
+      other: { read: false, write: false, execute: false },
+      representation: '',
+      description: '',
+      error: 'Permission parsing failed'
+    };
+  }
+}
+
+/**
+ * Convert Unix permission string to octal
+ * @param permissions Permission string like "rwxr-xr-x"
+ * @returns Octal representation
+ */
+export function unixPermissionsToOctal(permissions: string): string {
+  if (!permissions || permissions.length !== 9) {
+    return '';
+  }
+
+  const groups = [
+    permissions.slice(0, 3), // owner
+    permissions.slice(3, 6), // group
+    permissions.slice(6, 9)  // other
+  ];
+
+  const octalDigits = groups.map(group => {
+    let value = 0;
+    if (group[0] === 'r') value += 4;
+    if (group[1] === 'w') value += 2;
+    if (group[2] === 'x') value += 1;
+    return value.toString();
+  });
+
+  return octalDigits.join('');
+}
+
+/**
+ * Get common octal number examples
+ * @returns Array of common octal numbers with descriptions
+ */
+export function getCommonOctalNumbers(): Array<{ octal: string; description: string; decimal: string; unixPermission?: string }> {
+  return [
+    { octal: '7', description: 'Maximum single octal digit', decimal: '7' },
+    { octal: '10', description: 'Octal 10 (decimal 8)', decimal: '8' },
+    { octal: '77', description: 'Maximum 2-digit octal', decimal: '63' },
+    { octal: '100', description: 'Octal 100 (decimal 64)', decimal: '64' },
+    { octal: '644', description: 'Unix file permission: owner read/write, others read', decimal: '420', unixPermission: 'rw-r--r--' },
+    { octal: '755', description: 'Unix file permission: owner all, others read/execute', decimal: '493', unixPermission: 'rwxr-xr-x' },
+    { octal: '777', description: 'Unix file permission: everyone all permissions', decimal: '511', unixPermission: 'rwxrwxrwx' },
+    { octal: '600', description: 'Unix file permission: owner read/write only', decimal: '384', unixPermission: 'rw-------' },
+    { octal: '700', description: 'Unix file permission: owner all permissions only', decimal: '448', unixPermission: 'rwx------' },
+    { octal: '1000', description: 'Octal 1000 (decimal 512)', decimal: '512' }
   ];
 } 

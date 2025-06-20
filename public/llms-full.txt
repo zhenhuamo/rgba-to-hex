@@ -870,6 +870,81 @@ Additional background information can be added here without using headings. Keep
 
   This Decimal to Binary converter provides a complete solution combining mathematical accuracy, educational depth, and practical programming implementation, making it an indispensable tool for anyone working with number system conversions in technology, education, and professional development.
   Please visit the page for complete features and more information.]
+- [Octal Converter](https://rgbatohex.com/tools/octal-converter)
+  [Detailed Description:
+  **Octal Converter - Professional Bidirectional Number Converter & Unix Permissions Tool**
+
+  This comprehensive online tool provided by rgbatohex.com is specifically designed for precise bidirectional conversion between octal (base-8) and decimal (base-10) number systems, with specialized features for Unix file permissions management. It serves as both a practical conversion tool and an educational resource for understanding octal number system principles, making it essential for system administrators, programmers, and computer science students working with Unix/Linux systems and octal number representations.
+
+  **Primary User Groups:**
+  *   **System Administrators & DevOps Engineers:** Professionals working with Unix/Linux file systems who need to understand and configure file permissions using octal notation (755, 644, 777, etc.).
+  *   **Software Developers & Programmers:** Developers working with file system operations, shell scripting, and system programming who need to convert between octal and decimal representations.
+  *   **Computer Science Students:** Students learning number systems, Unix/Linux administration, and system programming fundamentals who need to understand octal notation and file permissions.
+  *   **Cybersecurity Professionals:** Security specialists working with Unix/Linux systems who need to analyze and configure file permissions for security compliance.
+  *   **Unix/Linux Engineers:** Technical professionals involved in system configuration, deployment, and maintenance requiring precise permission management.
+  *   **Embedded Systems Developers:** Engineers working with embedded Linux systems and IoT devices requiring octal number system understanding.
+
+  **Core Features & Technical Characteristics:**
+  *   **Bidirectional Conversion:** Supports both octal to decimal and decimal to octal conversion with high precision and real-time validation for accurate number system transformation.
+  *   **Unix Permissions Calculator:** Advanced Unix file permissions visualization and calculation system that converts octal permission values (like 755, 644, 777) to human-readable permission strings (rwxr-xr-x, rw-r--r--, rwxrwxrwx).
+  *   **Permission Breakdown Display:** Visual representation of Unix permissions showing Owner, Group, and Others permissions with read (r), write (w), and execute (x) flags clearly displayed.
+  *   **Common Octal Values Library:** Pre-loaded examples of frequently used octal numbers including standard Unix permission values with their decimal equivalents and permission descriptions.
+  *   **Real-time Input Validation:** Intelligent input validation ensuring only valid octal digits (0-7) are accepted, with clear error messages for invalid input.
+  *   **Interactive Visual Feedback:** Color-coded permission display showing granted and denied permissions for intuitive understanding of access control settings.
+
+  **Educational Content & Learning Resources:**
+  *   **Octal Number System Theory:** Comprehensive explanation of base-8 number system principles, including positional notation and conversion algorithms with mathematical foundations.
+  *   **Unix Permissions System Guide:** In-depth coverage of Unix/Linux file permission system, including the relationship between octal notation and rwx permission flags.
+  *   **Step-by-Step Conversion Examples:** Detailed demonstrations of octal-decimal conversion using positional notation formula (Σ Octal Digit × 8^Position) with practical examples.
+  *   **Common Unix Permission Patterns:** Explanation of standard permission patterns like 644 (rw-r--r--), 755 (rwxr-xr-x), 777 (rwxrwxrwx), and their security implications.
+  *   **Security Best Practices:** Professional guidance on choosing appropriate file permissions for different file types and security requirements.
+
+  **Programming Implementation & Code Examples:**
+  *   **JavaScript Implementation:** Complete JavaScript functions for octal-decimal conversion and Unix permission parsing with error handling and validation.
+  *   **Python Implementation:** Professional Python code examples suitable for system administration scripts and automation tools with os.stat integration.
+  *   **Shell Scripting Examples:** Bash and shell script examples for working with file permissions in Unix/Linux environments.
+  *   **Multiple Language Support:** Additional implementations in languages commonly used in system programming and administration.
+  *   **Command-Line Integration:** Examples of using octal conversion with chmod, umask, and other Unix commands.
+
+  **Professional Application Scenarios:**
+  *   **System Administration:** Setting and understanding file permissions in Unix/Linux environments, configuring secure access controls for files and directories.
+  *   **DevOps & Deployment:** Automating permission settings in deployment scripts, Docker containers, and CI/CD pipelines with proper octal notation.
+  *   **Security Auditing:** Analyzing existing file permissions, identifying security vulnerabilities, and implementing least-privilege access principles.
+  *   **Shell Scripting:** Creating robust system administration scripts that properly handle file permissions and access control.
+  *   **Server Configuration:** Setting up web servers, databases, and applications with appropriate file and directory permissions.
+  *   **Container Security:** Configuring proper file permissions in Docker containers and Kubernetes deployments.
+
+  **Advanced Features & Technical Tools:**
+  *   **Permission Security Analysis:** Warnings and recommendations for potentially insecure permission settings like 777 (world-writable) or unusual permission combinations.
+  *   **Batch Conversion Support:** Capability to convert multiple octal values simultaneously for processing configuration files and system audits.
+  *   **Permission Calculator:** Interactive tool for building permission sets by selecting desired read, write, and execute permissions for owner, group, and others.
+  *   **chmod Command Generator:** Automatic generation of chmod commands based on selected permissions for direct use in terminal.
+  *   **Historical Permission Tracking:** Examples and explanations of how octal permissions evolved in Unix systems and their modern applications.
+
+  **Technical Documentation & Best Practices:**
+  *   **Octal Conversion Algorithm Details:** Mathematical explanation of base-8 to base-10 conversion process including error handling and edge cases.
+  *   **Unix Permission Model Deep Dive:** Comprehensive coverage of Unix permission architecture, including special bits (setuid, setgid, sticky bit) and their octal representations.
+  *   **Security Implications Guide:** Professional analysis of security risks associated with different permission settings and mitigation strategies.
+  *   **Cross-Platform Considerations:** Differences in permission handling between various Unix-like systems (Linux, macOS, BSD) and compatibility considerations.
+  *   **Automation Best Practices:** Guidelines for incorporating octal permission management into automated deployment and configuration management systems.
+
+  **Common Use Cases & Examples:**
+  *   **Web Server Configuration:** Setting proper permissions for web directories, configuration files, and executable scripts (typically 644 for files, 755 for directories).
+  *   **Database Administration:** Configuring database file permissions for security and proper operation with specific permission requirements.
+  *   **Application Deployment:** Setting appropriate permissions for application files, logs, and configuration in production environments.
+  *   **Backup and Recovery:** Understanding and preserving file permissions during backup operations and system recovery procedures.
+  *   **Multi-user System Management:** Configuring shared directories and files with appropriate group permissions for collaborative environments.
+
+  **Usage Overview:**
+  1.  Input octal or decimal number for conversion (supports common Unix permission values)
+  2.  View real-time conversion results with mathematical breakdown
+  3.  Explore Unix permission visualization with rwx notation
+  4.  Reference common octal permission values and their security implications
+  5.  Copy generated permission values or chmod commands for direct use
+  6.  Access educational content and programming examples for implementation
+
+  This Octal Converter combines practical number system conversion with specialized Unix permissions management, making it an essential tool for system administrators, developers, and students working with Unix/Linux systems. Through its combination of mathematical accuracy, security awareness, and educational content, it provides comprehensive support for understanding and applying octal notation in professional system administration and development environments.
+  Please visit the page for complete features and more information.]
 - [Color Harmony Generator](https://rgbatohex.com/tools/color-harmony): Create harmonious color schemes based on color theory, supporting various harmony types including complementary, triadic, analogous, split-complementary, tetradic, and monochromatic colors, with real-time preview and CSS/Sass/JSON export functionality, suitable for web design, UI/UX, brand design, and creative projects.
   [Detailed Description:
   **Color Harmony Generator & Wheel**

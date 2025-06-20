@@ -65,7 +65,8 @@ export default function ToolsIndex() {
         { name: 'HEX to Decimal', href: '/tools/hex-to-decimal', color: 'from-blue-600 to-blue-700' },
         { name: 'HEX to Binary', href: '/tools/hex-to-binary', color: 'from-green-600 to-green-700' },
         { name: 'Binary to Decimal', href: '/tools/binary-to-decimal', color: 'from-purple-600 to-purple-700' },
-        { name: 'Decimal to Binary', href: '/tools/decimal-to-binary', color: 'from-indigo-600 to-indigo-700' }
+        { name: 'Decimal to Binary', href: '/tools/decimal-to-binary', color: 'from-indigo-600 to-indigo-700' },
+        { name: 'Octal Converter', href: '/tools/octal-converter', color: 'from-orange-600 to-orange-700' }
       ]
     },
     {
@@ -150,6 +151,8 @@ export default function ToolsIndex() {
                         ? 'Convert HSL colors to CMYK format for professional printing. Features intuitive HSL color selection with real-time CMYK output and ink coverage warnings for print-ready designs.'
                         : tool.name === 'HSV to RGBA'
                         ? 'Convert HSV colors to RGBA format with alpha transparency control. Perfect for web design with HSV color selection, real-time RGBA output, and CSS-ready transparent color values.'
+                        : tool.name === 'Octal Converter'
+                        ? 'Professional bidirectional octal to decimal converter with Unix file permissions calculator. Features octal-decimal conversion, permission visualization (rwxr-xr-x), and comprehensive educational content for system administrators.'
                         : `Professional ${tool.name} tool with real-time preview and intuitive user interface.`
                       }
                     </p>
