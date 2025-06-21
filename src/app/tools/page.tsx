@@ -79,10 +79,12 @@ export default function ToolsIndex() {
     },
     {
       category: "Text Tools",
-      description: "Professional font processing and text beautification tools for designers and developers",
+      description: "Professional text processing, encoding conversion, and font beautification tools for designers and developers",
       icon: "📝",
       tools: [
-        { name: 'Font Generator', href: '/tools/font-generator', color: 'from-purple-500 to-purple-600' }
+        { name: 'Font Generator', href: '/tools/font-generator', color: 'from-purple-500 to-purple-600' },
+        { name: 'Text to Binary', href: '/tools/text-to-binary', color: 'from-blue-500 to-blue-600' },
+        { name: 'Binary to Text', href: '/tools/binary-to-text', color: 'from-green-500 to-green-600' }
       ]
     }
   ];
@@ -153,6 +155,10 @@ export default function ToolsIndex() {
                         ? 'Convert HSV colors to RGBA format with alpha transparency control. Perfect for web design with HSV color selection, real-time RGBA output, and CSS-ready transparent color values.'
                         : tool.name === 'Octal Converter'
                         ? 'Professional bidirectional octal to decimal converter with Unix file permissions calculator. Features octal-decimal conversion, permission visualization (rwxr-xr-x), and comprehensive educational content for system administrators.'
+                        : tool.name === 'Text to Binary'
+                        ? 'Convert text to binary encoding (ASCII format). Features character-by-character analysis with ASCII codes, common text examples, and detailed binary representation. Perfect for programming education and data encoding tasks.'
+                        : tool.name === 'Binary to Text'
+                        ? 'Convert binary code back to readable text. Smart format detection supports spaced, continuous, and comma-separated binary input. Includes error handling, format suggestions, and binary statistics analysis.'
                         : `Professional ${tool.name} tool with real-time preview and intuitive user interface.`
                       }
                     </p>

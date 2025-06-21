@@ -86,7 +86,9 @@ export default function Navigation() {
     {
       category: "text tools",
       tools: [
-        { name: 'Font Generator', href: '/tools/font-generator', color: 'bg-purple-500' }
+        { name: 'Font Generator', href: '/tools/font-generator', color: 'bg-purple-500' },
+        { name: 'Text to Binary', href: '/tools/text-to-binary', color: 'bg-blue-500' },
+        { name: 'Binary to Text', href: '/tools/binary-to-text', color: 'bg-green-500' }
       ]
     }
   ];
