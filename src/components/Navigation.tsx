@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -53,6 +55,7 @@ export default function Navigation() {
     {
       category: "color tools",
       tools: [
+        { name: 'Color Name Finder', href: '/tools/color-name', color: 'bg-cyan-600' },
         { name: 'Color Wheel', href: '/tools/color-wheel', color: 'bg-amber-500' },
         { name: 'Color Picker', href: '/tools/color-picker-embed', color: 'bg-lime-600' },
         { name: 'Color Temperature', href: '/tools/color-temperature', color: 'bg-orange-600' },

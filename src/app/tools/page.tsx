@@ -45,6 +45,7 @@ export default function ToolsIndex() {
       tools: [
         { name: 'Color Wheel', href: '/tools/color-wheel', color: 'from-amber-500 to-amber-600' },
         { name: 'Color Picker', href: '/tools/color-picker-embed', color: 'from-lime-500 to-lime-600' },
+        { name: 'Color Name', href: '/tools/color-name', color: 'from-violet-500 to-violet-600' },
         { name: 'Color Temperature', href: '/tools/color-temperature', color: 'from-orange-500 to-orange-600' },
         { name: 'Color Contrast Checker', href: '/tools/color-contrast', color: 'from-indigo-500 to-indigo-600' },
         { name: 'Color Harmony Generator', href: '/tools/color-harmony', color: 'from-purple-500 to-purple-600' },

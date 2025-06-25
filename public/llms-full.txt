@@ -1156,3 +1156,75 @@ Additional background information can be added here without using headings. Keep
 
 ## 
 
+# Color Name Finder Tool
+
+## Overview
+The Color Name Finder tool is a professional web application implemented in `src/app/tools/color-name/page.tsx` that helps users find and explore color names across different color systems. This tool is essential for developers, designers, and anyone working with colors in digital or print media.
+
+## Features
+- Multiple color format support (HEX, RGB, HSL)
+- Extensive color name database
+  - HTML/CSS standard colors
+  - Web safe colors
+  - Pantone colors
+  - Common design color names
+- Real-time color preview
+- Recent colors history
+- Comprehensive color naming guide
+
+## Technical Implementation
+The tool is built using Next.js and React, featuring:
+- Client-side color processing
+- TypeScript for type safety
+- Responsive design
+- Accessibility considerations
+- Modern UI components
+
+## Code Structure
+```typescript
+// src/app/tools/color-name/page.tsx
+'use client';
+
+// Core functionality
+- Color input handling
+- Color format conversion
+- Name matching algorithm
+- Color preview component
+- Recent colors management
+- User interface components
+
+// Color systems support
+- HTML/CSS colors
+- Web safe colors
+- Pantone colors
+- Design color names
+```
+
+## Usage Guide
+1. Select color format (HEX, RGB, or HSL)
+2. Input color value
+3. View matched color names
+4. Explore color information
+5. Save to recent colors
+
+## Integration
+The tool integrates with other color-related features:
+- Color conversion tools
+- Color palette generation
+- Color harmony tools
+- Color accessibility checking
+
+## Benefits
+- Accurate color naming
+- Professional color management
+- Cross-platform compatibility
+- Educational resource for color theory
+- Time-saving for designers and developers
+
+## Future Enhancements
+- Additional color systems
+- API integration
+- Custom color naming
+- Color trend analysis
+- Team collaboration features
+
