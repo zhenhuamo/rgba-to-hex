@@ -22,6 +22,8 @@ export default function ToolsIndex() {
         { name: 'HSL to OKLCH', href: '/tools/hsl-to-oklch', color: 'from-purple-500 to-purple-600' },
         { name: 'OKLCH to HSL', href: '/tools/oklch-to-hsl', color: 'from-indigo-500 to-purple-500' },
         { name: 'OKLCH to HEX', href: '/tools/oklch-to-hex', color: 'from-indigo-500 to-indigo-600' },
+        { name: 'OKLCH to OKLAB', href: '/tools/oklch-to-oklab', color: 'from-purple-600 to-pink-600' },
+        { name: 'OKLAB to OKLCH', href: '/tools/oklab-to-oklch', color: 'from-pink-600 to-purple-600' },
         { name: 'CMYK to HEX', href: '/tools/cmyk-to-hex', color: 'from-red-500 to-red-600' },
         { name: 'HEX to CMYK', href: '/tools/hex-to-cmyk', color: 'from-emerald-500 to-emerald-600' },
         { name: 'RGB to HSL', href: '/tools/rgb-to-hsl', color: 'from-purple-500 to-purple-600' },

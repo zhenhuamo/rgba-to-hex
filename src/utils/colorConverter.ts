@@ -46,6 +46,13 @@ export interface LAB {
   b: number; // Blue-Yellow axis (-128 to 127)
 }
 
+// 添加OKLAB接口定义
+export interface OKLAB {
+  l: number; // Lightness (0-1)
+  a: number; // Green-Red axis (-0.4 to 0.4)
+  b: number; // Blue-Yellow axis (-0.4 to 0.4)
+}
+
 // 添加XYZ接口定义
 export interface XYZ {
   x: number; // X component (0-95.047 for D65 white point)
@@ -940,4 +947,74 @@ export function isValidXyz({ x, y, z }: XYZ): boolean {
 // XYZ格式化为CSS字符串（注意：CSS没有标准的XYZ格式，这里提供一个可读的格式）
 export function xyzToCss({ x, y, z }: XYZ): string {
   return `xyz(${x.toFixed(3)} ${y.toFixed(3)} ${z.toFixed(3)})`;
+}
+
+// OKLCH转OKLAB
+export function oklchToOklab({ l, c, h }: OKLCH): OKLAB {
+  // 将OKLCH的极坐标转换为OKLAB的直角坐标
+  const hRad = h * Math.PI / 180;
+  const oklabL = l;
+  const oklabA = c * Math.cos(hRad);
+  const oklabB = c * Math.sin(hRad);
+
+  return {
+    l: Math.round(oklabL * 1000) / 1000,
+    a: Math.round(oklabA * 1000) / 1000,
+    b: Math.round(oklabB * 1000) / 1000
+  };
+}
+
+// OKLAB转OKLCH
+export function oklabToOklch({ l, a, b }: OKLAB): OKLCH {
+  // 将OKLAB的直角坐标转换为OKLCH的极坐标
+  const oklchL = l;
+  const oklchC = Math.sqrt(a * a + b * b);
+  let oklchH = Math.atan2(b, a) * 180 / Math.PI;
+  if (oklchH < 0) oklchH += 360;
+
+  return {
+    l: Math.round(oklchL * 1000) / 1000,
+    c: Math.round(oklchC * 1000) / 1000,
+    h: Math.round(oklchH * 10) / 10
+  };
+}
+
+// 验证OKLAB值是否有效
+export function isValidOklab({ l, a, b }: OKLAB): boolean {
+  return (
+    l >= 0 && l <= 1 &&
+    a >= -0.4 && a <= 0.4 &&
+    b >= -0.4 && b <= 0.4
+  );
+}
+
+// OKLAB格式化为CSS字符串
+export function oklabToCss({ l, a, b }: OKLAB): string {
+  return `oklab(${l.toFixed(3)} ${a.toFixed(3)} ${b.toFixed(3)})`;
+}
+
+// OKLAB转RGB (通过OKLCH)
+export function oklabToRgb(oklab: OKLAB): RGB {
+  const oklch = oklabToOklch(oklab);
+  return oklchToRgb(oklch);
+}
+
+// RGB转OKLAB (通过OKLCH)
+export function rgbToOklab(rgb: RGB): OKLAB {
+  const oklch = rgbToOklch(rgb);
+  return oklchToOklab(oklch);
+}
+
+// OKLAB转HEX
+export function oklabToHex(oklab: OKLAB): string {
+  const rgb = oklabToRgb(oklab);
+  return rgbaToHex({ ...rgb, a: 1 });
+}
+
+// HEX转OKLAB
+export function hexToOklab(hex: string): OKLAB {
+  const rgba = hexToRgba(hex);
+  if (!rgba) return { l: 0, a: 0, b: 0 };
+  const rgb = { r: rgba.r, g: rgba.g, b: rgba.b };
+  return rgbToOklab(rgb);
 }
