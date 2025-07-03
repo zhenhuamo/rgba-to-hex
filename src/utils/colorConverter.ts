@@ -1011,6 +1011,39 @@ export function oklabToHex(oklab: OKLAB): string {
   return rgbaToHex({ ...rgb, a: 1 });
 }
 
+// OKLCH转CMYK - 通过RGB作为中间转换
+export function oklchToCmyk({ l, c, h }: OKLCH): CMYK {
+  // 先转换为RGB
+  const rgb = oklchToRgb({ l, c, h });
+
+  // 再转换为CMYK
+  return rgbToCmyk(rgb);
+}
+
+// CMYK转OKLCH - 通过RGB作为中间转换
+export function cmykToOklch({ c, m, y, k }: CMYK): OKLCH {
+  // 先转换为RGB
+  const rgb = cmykToRgb({ c, m, y, k });
+
+  // 再转换为OKLCH
+  return rgbToOklch(rgb);
+}
+
+// 验证CMYK值是否有效
+export function isValidCmyk({ c, m, y, k }: CMYK): boolean {
+  return (
+    c >= 0 && c <= 100 &&
+    m >= 0 && m <= 100 &&
+    y >= 0 && y <= 100 &&
+    k >= 0 && k <= 100
+  );
+}
+
+// CMYK格式化为CSS字符串
+export function cmykToCss({ c, m, y, k }: CMYK): string {
+  return `cmyk(${c}%, ${m}%, ${y}%, ${k}%)`;
+}
+
 // HEX转OKLAB
 export function hexToOklab(hex: string): OKLAB {
   const rgba = hexToRgba(hex);

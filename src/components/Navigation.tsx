@@ -42,6 +42,7 @@ export default function Navigation() {
         { name: 'OKLCH to HEX', href: '/tools/oklch-to-hex', color: 'bg-indigo-600' },
         { name: 'OKLCH to RGB', href: '/tools/oklch-to-rgb', color: 'bg-blue-600' },
         { name: 'OKLCH to HSL', href: '/tools/oklch-to-hsl', color: 'bg-purple-600' },
+        { name: 'OKLCH to CMYK', href: '/tools/oklch-to-cmyk', color: 'bg-cyan-600' },
         { name: 'OKLCH to OKLAB', href: '/tools/oklch-to-oklab', color: 'bg-pink-600' },
         { name: 'OKLAB to OKLCH', href: '/tools/oklab-to-oklch', color: 'bg-rose-600' },
         
@@ -55,6 +56,7 @@ export default function Navigation() {
         { name: 'CMYK to HEX', href: '/tools/cmyk-to-hex', color: 'bg-red-500' },
         { name: 'CMYK to RGB', href: '/tools/cmyk-to-rgb', color: 'bg-yellow-500' },
         { name: 'CMYK to RGBA', href: '/tools/cmyk-to-rgba', color: 'bg-red-600' },
+        { name: 'CMYK to OKLCH', href: '/tools/cmyk-to-oklch', color: 'bg-purple-700' },
       ]
     },
     {

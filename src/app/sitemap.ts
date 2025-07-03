@@ -239,6 +239,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/tools/oklch-to-cmyk`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/tools/cmyk-to-oklch`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+
+    {
       url: 'https://rgbatohex.com/tools/color-harmony',
       lastModified: new Date(),
       changeFrequency: 'weekly',
