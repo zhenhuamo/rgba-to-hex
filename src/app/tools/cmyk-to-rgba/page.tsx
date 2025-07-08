@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 
 // Helper function for copying text
@@ -293,9 +292,9 @@ export default function CmykToRgbaPage() {
             />
           </div>
            <div className="text-center mt-6">
-            <Link 
-              href={standaloneToolUrl} 
-              target="_blank" 
+            <a
+              href={standaloneToolUrl}
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 text-base font-medium text-white bg-gradient-to-r from-red-500 to-pink-500 rounded-lg hover:from-red-600 hover:to-pink-600 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg transition-all hover:shadow-xl transform hover:scale-105"
             >
@@ -303,7 +302,7 @@ export default function CmykToRgbaPage() {
                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                </svg>
                Open Full Tool
-            </Link>
+            </a>
           </div>
         </section>
 
@@ -591,25 +590,25 @@ export default function CmykToRgbaPage() {
             </p>
             
             <div className="grid md:grid-cols-2 gap-4 mt-6">
-              <Link href="/tools/cmyk-to-rgb" className="block p-4 bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 rounded-lg hover:shadow-md transition-all">
+              <a href="/tools/cmyk-to-rgb" target="_blank" rel="noopener noreferrer" className="block p-4 bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 rounded-lg hover:shadow-md transition-all">
                 <h4 className="font-semibold text-red-800 dark:text-red-200">CMYK to RGB Converter</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">Convert CMYK colors to RGB format without alpha channel</p>
-              </Link>
-              
-              <Link href="/tools/cmyk-to-hex" className="block p-4 bg-gradient-to-r from-pink-50 to-purple-50 dark:from-pink-900/20 dark:to-purple-900/20 rounded-lg hover:shadow-md transition-all">
+              </a>
+
+              <a href="/tools/cmyk-to-hex" target="_blank" rel="noopener noreferrer" className="block p-4 bg-gradient-to-r from-pink-50 to-purple-50 dark:from-pink-900/20 dark:to-purple-900/20 rounded-lg hover:shadow-md transition-all">
                 <h4 className="font-semibold text-pink-800 dark:text-pink-200">CMYK to HEX Converter</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">Generate hexadecimal color codes from CMYK values</p>
-              </Link>
-              
-              <Link href="/tools/rgba-to-cmyk" className="block p-4 bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 rounded-lg hover:shadow-md transition-all">
+              </a>
+
+              <a href="/tools/rgba-to-cmyk" target="_blank" rel="noopener noreferrer" className="block p-4 bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 rounded-lg hover:shadow-md transition-all">
                 <h4 className="font-semibold text-purple-800 dark:text-purple-200">RGBA to CMYK Converter</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">Convert web colors back to print CMYK format</p>
-              </Link>
-              
-              <Link href="/tools/hsl-to-rgba" className="block p-4 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg hover:shadow-md transition-all">
+              </a>
+
+              <a href="/tools/hsl-to-rgba" target="_blank" rel="noopener noreferrer" className="block p-4 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg hover:shadow-md transition-all">
                 <h4 className="font-semibold text-blue-800 dark:text-blue-200">HSL to RGBA Converter</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">Transform HSL colors to RGBA with transparency</p>
-              </Link>
+              </a>
             </div>
           </section>
 

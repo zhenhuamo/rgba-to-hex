@@ -56,15 +56,17 @@ export default function HslToOklch() {
             
             {/* Enhanced CTA */}
             <div className="text-center">
-              <Link 
-                href="/tools/hsl-to-oklch-converter" 
+              <a
+                href="/tools/hsl-to-oklch-converter"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-10 py-5 text-white bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-lg font-semibold hover:from-purple-700 hover:to-pink-700 shadow-xl transition-all hover:shadow-2xl transform hover:scale-105"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
                 Open Full HSL to OKLCH Converter Tool
-              </Link>
+              </a>
             </div>
           </div>
 

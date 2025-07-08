@@ -56,15 +56,17 @@ export default function OklchToHsl() {
             
             {/* Enhanced CTA */}
             <div className="text-center">
-              <Link 
-                href="/tools/oklch-to-hsl-converter" 
+              <a
+                href="/tools/oklch-to-hsl-converter"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-10 py-5 text-white bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-lg font-semibold hover:from-purple-700 hover:to-pink-700 shadow-xl transition-all hover:shadow-2xl transform hover:scale-105"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
                 Open Full OKLCH to HSL Converter Tool
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -515,59 +517,59 @@ console.log(\`hsl(\${hslResult.h}, \${hslResult.s}%, \${hslResult.l}%)\`);`}</co
             </p>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-              <Link href="/tools/hsl-to-oklch" className="group bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
+              <a href="/tools/hsl-to-oklch" target="_blank" rel="noopener noreferrer" className="group bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400">
                   HSL to OKLCH Converter
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Convert HSL colors to modern OKLCH format for superior perceptual uniformity and advanced color manipulation capabilities in modern web development.
                 </p>
-              </Link>
-              
-              <Link href="/tools/oklch-to-hex" className="group bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
+              </a>
+
+              <a href="/tools/oklch-to-hex" target="_blank" rel="noopener noreferrer" className="group bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
                   OKLCH to HEX Converter
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Transform OKLCH colors to HEX format for traditional web development workflows and universal browser compatibility requirements.
                 </p>
-              </Link>
-              
-              <Link href="/tools/oklch-to-rgb" className="group bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
+              </a>
+
+              <a href="/tools/oklch-to-rgb" target="_blank" rel="noopener noreferrer" className="group bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">
                   OKLCH to RGB Converter
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Convert OKLCH colors to RGB format for digital design workflows and color manipulation in graphics applications.
                 </p>
-              </Link>
-              
-              <Link href="/tools/color-contrast" className="group bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
+              </a>
+
+              <a href="/tools/color-contrast" target="_blank" rel="noopener noreferrer" className="group bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400">
                   Color Contrast Checker
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Verify color contrast ratios for WCAG accessibility compliance using both traditional and modern color spaces including OKLCH.
                 </p>
-              </Link>
-              
-              <Link href="/tools/color-picker-embed" className="group bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-900/20 dark:to-rose-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
+              </a>
+
+              <a href="/tools/color-picker-embed" target="_blank" rel="noopener noreferrer" className="group bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-900/20 dark:to-rose-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400">
                   Advanced Color Picker
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Professional color picker with OKLCH support for precise color selection and conversion to multiple formats including HSL.
                 </p>
-              </Link>
-              
-              <Link href="/tools/palette-generator" className="group bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
+              </a>
+
+              <a href="/tools/palette-generator" target="_blank" rel="noopener noreferrer" className="group bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white group-hover:text-yellow-600 dark:group-hover:text-yellow-400">
                   Color Palette Generator
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Generate harmonious color palettes with OKLCH color generation and automatic HSL conversion for design systems.
                 </p>
-              </Link>
+              </a>
             </div>
             
             <div className="text-center">

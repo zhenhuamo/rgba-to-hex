@@ -1,9 +1,8 @@
 'use client';
 
 import React, { useState } from 'react'; // 导入 useState
-import Link from 'next/link';
 // 假设导航组件路径正确，如果不存在或路径不同，请调整或移除
-import Navigation from '@/components/Navigation'; 
+import Navigation from '@/components/Navigation';
 
 // 辅助函数：复制代码到剪贴板
 const copyToClipboard = async (text: string, setCopiedState: React.Dispatch<React.SetStateAction<boolean>>) => {
@@ -140,11 +139,14 @@ export default function RgbToHsvPage() {
 
           {/* 跳转按钮 */}
           <div className="text-center mb-12">
-            <Link href="/tools/rgb-to-hsv-converter" legacyBehavior>
-              <a className="inline-block px-6 py-3 bg-gradient-to-r from-pink-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md hover:scale-105 transition-transform">
-                Open Full RGB to HSV Converter Tool
-              </a>
-            </Link>
+            <a
+              href="/tools/rgb-to-hsv-converter"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-6 py-3 bg-gradient-to-r from-pink-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md hover:scale-105 transition-transform"
+            >
+              Open Full RGB to HSV Converter Tool
+            </a>
           </div>
 
           {/* 详细内容区 */}
@@ -287,11 +289,14 @@ export default function RgbToHsvPage() {
               <p className="text-gray-600 dark:text-gray-300 mb-6">
                 Use the interactive tool above or embed it on your site to effortlessly switch between RGB and the intuitive HSV color space. Simplify your color workflow today!
               </p>
-              <Link href="/tools/rgb-to-hsv-converter" legacyBehavior>
-                <a className="inline-block px-6 py-3 bg-gradient-to-r from-pink-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md hover:scale-105 transition-transform">
-                  Try the Full Tool Now
-                </a>
-              </Link>
+              <a
+                href="/tools/rgb-to-hsv-converter"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-6 py-3 bg-gradient-to-r from-pink-500 to-yellow-500 text-white font-semibold rounded-lg shadow-md hover:scale-105 transition-transform"
+              >
+                Try the Full Tool Now
+              </a>
             </section>
           </div>
         </main>

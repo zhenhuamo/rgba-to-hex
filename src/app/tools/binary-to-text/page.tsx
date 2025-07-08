@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Navigation from '@/components/Navigation';
 
 export const metadata = {
   title: 'Binary to Text Converter & Binary Decoder - Convert Binary Code to English Text | Free Online Tool',
@@ -18,6 +18,9 @@ export default function BinaryToText() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-12">
+        {/* Navigation Bar */}
+        <Navigation />
+
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-blue-500 mb-6">
@@ -48,14 +51,14 @@ export default function BinaryToText() {
             
             <div className="bg-gray-50 dark:bg-gray-700 p-6 border-t">
               <div className="flex justify-center">
-                <Link 
+                <a
                   href="/tools/binary-to-text-converter"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 shadow-lg"
                 >
                   Open Full Binary Decoder & Converter Tool →
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -347,20 +350,20 @@ print(f"Smart decoded: {decoded_smart}")  # Output: "Hello"`}</code>
             </h2>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Link href="/tools/text-to-binary" className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <a href="/tools/text-to-binary" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
                 <h3 className="text-lg font-semibold mb-3 text-blue-600 dark:text-blue-400">Text to Binary Converter</h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">Convert English text to binary code and encode text to binary language using our reverse binary converter tool.</p>
-              </Link>
-              
-              <Link href="/tools/base64-encoder" className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              </a>
+
+              <a href="/tools/base64-encoder" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
                 <h3 className="text-lg font-semibold mb-3 text-green-600 dark:text-green-400">Base64 Encoder/Decoder</h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">Encode and decode Base64 data, another essential encoding format commonly used alongside binary conversion.</p>
-              </Link>
-              
-              <Link href="/tools/ascii-table" className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              </a>
+
+              <a href="/tools/ascii-table" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
                 <h3 className="text-lg font-semibold mb-3 text-purple-600 dark:text-purple-400">ASCII Table Reference</h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">Complete ASCII character table showing decimal, binary, and hexadecimal values for understanding binary to text conversion.</p>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

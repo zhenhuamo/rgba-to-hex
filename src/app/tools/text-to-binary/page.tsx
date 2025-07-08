@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import { useState, useEffect } from 'react';
 
@@ -55,8 +54,8 @@ export default function TextToBinary() {
             )}
             
             <div className="flex justify-center mt-6">
-              <Link 
-                href="/tools/text-to-binary-converter" 
+              <a
+                href="/tools/text-to-binary-converter"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 text-white bg-gradient-to-r from-blue-500 to-purple-500 rounded-full font-medium hover:from-blue-600 hover:to-purple-600 shadow-md transition-all hover:shadow-lg"
@@ -65,7 +64,7 @@ export default function TextToBinary() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
                 Open Full Binary to Text & Text to Binary Converter Tool
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -488,22 +487,22 @@ int main() {
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 rounded-2xl p-8">
             <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200">Related Binary Converter & Decoder Tools</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <Link href="/tools/binary-to-text" className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              <a href="/tools/binary-to-text" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                 <h3 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">Binary to Text Decoder</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Convert binary code to readable text instantly</p>
-              </Link>
-              <Link href="/tools/binary-to-decimal" className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              </a>
+              <a href="/tools/binary-to-decimal" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                 <h3 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">Binary to Decimal Converter</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Convert binary numbers to decimal format</p>
-              </Link>
-              <Link href="/tools/ascii-converter" className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              </a>
+              <a href="/tools/ascii-converter" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                 <h3 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">ASCII Text Converter</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Text to ASCII code conversion & decoding</p>
-              </Link>
-              <Link href="/tools/hex-to-binary" className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              </a>
+              <a href="/tools/hex-to-binary" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
                 <h3 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">Hex to Binary Converter</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Convert hexadecimal to binary format</p>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

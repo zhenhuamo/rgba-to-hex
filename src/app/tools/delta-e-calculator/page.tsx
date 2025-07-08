@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 
 const DeltaECalculatorPage: React.FC = () => {
@@ -24,9 +23,9 @@ const DeltaECalculatorPage: React.FC = () => {
             />
           </div>
           <div className="text-center mt-6">
-            <Link 
-              href={toolEmbedUrl} 
-              target="_blank" 
+            <a
+              href={toolEmbedUrl}
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 text-base font-medium text-white bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg hover:from-blue-700 hover:to-cyan-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg transition-all hover:shadow-xl transform hover:scale-105"
             >
@@ -34,7 +33,7 @@ const DeltaECalculatorPage: React.FC = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
               </svg>
               Open Standalone Tool
-            </Link>
+            </a>
           </div>
         </section>
         
@@ -341,25 +340,25 @@ const DeltaECalculatorPage: React.FC = () => {
             </p>
             
             <div className="grid md:grid-cols-2 gap-4 mt-6">
-              <Link href="/tools/color-harmony" className="block p-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg hover:shadow-md transition-all">
+              <a href="/tools/color-harmony" target="_blank" rel="noopener noreferrer" className="block p-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg hover:shadow-md transition-all">
                 <h4 className="font-semibold text-blue-800 dark:text-blue-200">Color Harmony Generator</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">Create harmonious color schemes based on color theory principles</p>
-              </Link>
-              
-              <Link href="/tools/color-contrast" className="block p-4 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg hover:shadow-md transition-all">
+              </a>
+
+              <a href="/tools/color-contrast" target="_blank" rel="noopener noreferrer" className="block p-4 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg hover:shadow-md transition-all">
                 <h4 className="font-semibold text-indigo-800 dark:text-indigo-200">Color Contrast Checker</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">Verify accessibility of color combinations</p>
-              </Link>
-              
-              <Link href="/tools/color-palette" className="block p-4 bg-gradient-to-r from-cyan-50 to-teal-50 dark:from-cyan-900/20 dark:to-teal-900/20 rounded-lg hover:shadow-md transition-all">
+              </a>
+
+              <a href="/tools/color-palette" target="_blank" rel="noopener noreferrer" className="block p-4 bg-gradient-to-r from-cyan-50 to-teal-50 dark:from-cyan-900/20 dark:to-teal-900/20 rounded-lg hover:shadow-md transition-all">
                 <h4 className="font-semibold text-cyan-800 dark:text-cyan-200">Color Palette Generator</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">Create complete color schemes for your projects</p>
-              </Link>
-              
-              <Link href="/tools/rgba-to-hex" className="block p-4 bg-gradient-to-r from-teal-50 to-emerald-50 dark:from-teal-900/20 dark:to-emerald-900/20 rounded-lg hover:shadow-md transition-all">
+              </a>
+
+              <a href="/tools/rgba-to-hex" target="_blank" rel="noopener noreferrer" className="block p-4 bg-gradient-to-r from-teal-50 to-emerald-50 dark:from-teal-900/20 dark:to-emerald-900/20 rounded-lg hover:shadow-md transition-all">
                 <h4 className="font-semibold text-teal-800 dark:text-teal-200">RGBA to HEX Converter</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">Easily convert between different color formats</p>
-              </Link>
+              </a>
             </div>
           </section>
         </article>
@@ -373,15 +372,17 @@ const DeltaECalculatorPage: React.FC = () => {
             Use our Delta-E calculator to compare colors and ensure your designs and brand maintain consistent color fidelity across all mediums.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link 
-              href="/tools" 
+            <a
+              href="/tools"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 text-base font-medium bg-white text-gray-800 dark:bg-gray-800 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 shadow-lg transition-all hover:shadow-xl transform hover:scale-105"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 13.5V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 9.75V10.5" />
               </svg>
               Explore More Tools
-            </Link>
+            </a>
           </div>
         </div>
       </div>

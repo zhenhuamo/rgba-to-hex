@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Head from 'next/head';
@@ -56,15 +55,17 @@ export default function FontGenerator() {
             
             {/* Tool Actions - Below the iframe */}
             <div className="mt-4 flex justify-between items-center">
-              <Link 
-                href="/tools/font-generator-tool" 
+              <a
+                href="/tools/font-generator-tool"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-4 py-2 text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors duration-200"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
                 Open Full-Featured Font Generator
-              </Link>
+              </a>
               
               <button
                 onClick={() => setShowEmbedCode(!showEmbedCode)}
@@ -334,15 +335,17 @@ export default function FontGenerator() {
             
             {/* Subtle CTA in content */}
             <div className="mt-6 text-right">
-              <Link 
-                href="/tools/font-generator-tool" 
+              <a
+                href="/tools/font-generator-tool"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center text-purple-600 dark:text-purple-400 hover:text-blue-600 dark:hover:text-blue-400 font-medium"
               >
                 <span>Explore all font generator features</span>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
-              </Link>
+              </a>
             </div>
           </div>
           

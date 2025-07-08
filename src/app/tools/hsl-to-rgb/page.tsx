@@ -3,8 +3,7 @@
 // Merged Client Component logic back into page for HSL to RGB
 import React, { useState } from 'react';
 // Metadata type import is removed as metadata export is removed.
-// import type { Metadata } from 'next'; 
-import Link from 'next/link';
+// import type { Metadata } from 'next';
 import Navigation from '@/components/Navigation';
 
 
@@ -175,9 +174,9 @@ export default function HslToRgbPage() { // This is now the main component again
              />
           </div>
           <div className="text-center mt-6">
-            <Link 
-              href={standaloneToolUrl} 
-              target="_blank" 
+            <a
+              href={standaloneToolUrl}
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 text-base font-medium text-white bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg hover:from-cyan-600 hover:to-blue-600 focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg transition-all hover:shadow-xl transform hover:scale-105"
             >
@@ -185,7 +184,7 @@ export default function HslToRgbPage() { // This is now the main component again
                  <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                </svg>
                Open Full Tool in New Tab
-            </Link>
+            </a>
           </div>
         </section>
 
@@ -404,7 +403,7 @@ export default function HslToRgbPage() { // This is now the main component again
                        <svg className="w-5 h-5 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                     </summary>
                     <p className="mt-4 text-gray-700 dark:text-gray-400">
-                      This page focuses solely on HSL → RGB. We offer a separate, dedicated <Link href="/tools/rgb-to-hsl" className="text-blue-600 dark:text-blue-400 hover:underline">RGB to HSL Converter</Link> tool for the reverse conversion.
+                      This page focuses solely on HSL → RGB. We offer a separate, dedicated <a href="/tools/rgb-to-hsl" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">RGB to HSL Converter</a> tool for the reverse conversion.
                     </p>
                   </details>
 
@@ -429,11 +428,9 @@ export default function HslToRgbPage() { // This is now the main component again
                 Use the interactive tool above to get instant RGB values, explore the HSL color space, or grab the code examples to integrate this conversion into your own applications. Bookmark this page for quick access!
               </p>
               {/* Link back to the interactive tool section or standalone */}
-              <Link href={standaloneToolUrl} legacyBehavior>
-                <a className="inline-block px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-lg font-semibold rounded-lg shadow-lg hover:scale-105 transition-transform no-underline">
-                  Go to Full HSL to RGB Tool
-                </a>
-              </Link>
+              <a href={standaloneToolUrl} target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-lg font-semibold rounded-lg shadow-lg hover:scale-105 transition-transform no-underline">
+                Go to Full HSL to RGB Tool
+              </a>
             </section>
 
          </div>

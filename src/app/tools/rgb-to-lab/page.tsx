@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 
 export default function RgbToLab() {
@@ -57,15 +56,17 @@ export default function RgbToLab() {
             
             {/* Enhanced CTA */}
             <div className="text-center">
-              <Link 
-                href="/tools/rgb-to-lab-converter" 
+              <a
+                href="/tools/rgb-to-lab-converter"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-10 py-5 text-white bg-gradient-to-r from-blue-600 to-teal-600 rounded-full text-lg font-semibold hover:from-blue-700 hover:to-teal-700 shadow-xl transition-all hover:shadow-2xl transform hover:scale-105"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
                 Open Full RGB to LAB Converter Calculator
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -624,25 +625,25 @@ console.log(\`RGB(\${rgb.r}, \${rgb.g}, \${rgb.b}) = LAB(\${lab.L.toFixed(2)}, \
             </h2>
             
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Link href="/tools/rgb-to-hsl" className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <a href="/tools/rgb-to-hsl" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
                 <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white">RGB to HSL Calculator</h3>
                 <p className="text-gray-600 dark:text-gray-300">Convert RGB colors to HSL format with mathematical formulas for intuitive color manipulation and web design.</p>
-              </Link>
-              
-              <Link href="/tools/rgb-to-cmyk" className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              </a>
+
+              <a href="/tools/rgb-to-cmyk" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
                 <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white">RGB to CMYK Converter</h3>
                 <p className="text-gray-600 dark:text-gray-300">Convert RGB colors to CMYK using professional formulas for print production workflows and color management.</p>
-              </Link>
-              
-              <Link href="/tools/hsl-to-oklch" className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              </a>
+
+              <a href="/tools/hsl-to-oklch" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
                 <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white">HSL to OKLCH Calculator</h3>
                 <p className="text-gray-600 dark:text-gray-300">Convert HSL colors to modern OKLCH color space with advanced mathematical formulas and CSS Color Level 4 support.</p>
-              </Link>
-              
-              <Link href="/tools/rgb-to-hex" className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              </a>
+
+              <a href="/tools/rgb-to-hex" target="_blank" rel="noopener noreferrer" className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
                 <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white">RGB to HEX Converter</h3>
                 <p className="text-gray-600 dark:text-gray-300">Convert RGB colors to hexadecimal color codes for web development with instant formula calculations and code generation.</p>
-              </Link>
+              </a>
             </div>
           </div>
 

@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import Navigation from '@/components/Navigation'; // Assuming Navigation component exists
 
@@ -132,11 +131,14 @@ export default function RgbToHexPage() {
 
           {/* Link Button Section */}
           <div className="text-center mb-12 not-prose">
-            <Link href="/tools/rgb-to-hex-converter" legacyBehavior>
-              <a className="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-lg shadow-md hover:scale-105 transition-transform no-underline">
-                Open Full RGB to HEX Converter Tool
-              </a>
-            </Link>
+            <a
+              href="/tools/rgb-to-hex-converter"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-lg shadow-md hover:scale-105 transition-transform no-underline"
+            >
+              Open Full RGB to HEX Converter Tool
+            </a>
           </div>
 
           {/* Detailed Content Section */}
@@ -239,7 +241,7 @@ export default function RgbToHexPage() {
                <ul className="list-disc list-inside space-y-2 pl-4 my-4">
                  <li><strong>Leverage Browser DevTools:</strong> Most modern web browsers have built-in developer tools with excellent color pickers that allow you to inspect page colors and see their HEX, RGB, and other formats.</li>
                  <li><strong>Maintain Consistency:</strong> For larger projects or brand guidelines, define your color palette using HEX codes and reuse them consistently throughout your CSS or design system.</li>
-                 <li><strong>Check Color Contrast:</strong> When choosing colors for text and backgrounds, always check the contrast ratio to ensure readability and meet accessibility standards (WCAG). Poor contrast can make content difficult or impossible to read for users with visual impairments. (You might need a separate <Link href="/tools/color-contrast">Color Contrast Checker</Link> tool for this).</li>
+                 <li><strong>Check Color Contrast:</strong> When choosing colors for text and backgrounds, always check the contrast ratio to ensure readability and meet accessibility standards (WCAG). Poor contrast can make content difficult or impossible to read for users with visual impairments. (You might need a separate <a href="/tools/color-contrast" target="_blank" rel="noopener noreferrer">Color Contrast Checker</a> tool for this).</li>
                  <li><strong>Quick Verification:</strong> Use this online RGB to HEX converter to quickly verify color codes you encounter or to convert values from design software that might primarily display RGB.</li>
                </ul>
             </section>
@@ -324,7 +326,7 @@ export default function RgbToHexPage() {
                 </div>
                  <div>
                   <h3 className="font-medium text-lg mb-1">How do I convert RGB colors with transparency (alpha)?</h3>
-                  <p>To include transparency, you need the RGBA color model. The corresponding hexadecimal format is an 8-digit code (#RRGGBBAA), where the last two digits (AA) represent the alpha value (00 for fully transparent, FF for fully opaque). Use our dedicated <Link href="/tools/rgba-to-hex-8-digit">RGBA to 8-Digit HEX Converter</Link> for that purpose.</p>
+                  <p>To include transparency, you need the RGBA color model. The corresponding hexadecimal format is an 8-digit code (#RRGGBBAA), where the last two digits (AA) represent the alpha value (00 for fully transparent, FF for fully opaque). Use our dedicated <a href="/tools/rgba-to-hex-8-digit" target="_blank" rel="noopener noreferrer">RGBA to 8-Digit HEX Converter</a> for that purpose.</p>
                 </div>
                 <div>
                   <h3 className="font-medium text-lg mb-1">Is the RGB to HEX conversion always accurate?</h3>
@@ -365,11 +367,14 @@ export default function RgbToHexPage() {
               <p className="text-gray-600 dark:text-gray-300 mb-6">
                 Use the interactive RGB to HEX tool above or embed it on your site for seamless color code conversions. An essential utility for web developers and graphic designers!
               </p>
-              <Link href="/tools/rgb-to-hex-converter" legacyBehavior>
-                <a className="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-lg shadow-md hover:scale-105 transition-transform no-underline">
-                  Try the Full Tool Now
-                </a>
-              </Link>
+              <a
+                href="/tools/rgb-to-hex-converter"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-6 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white font-semibold rounded-lg shadow-md hover:scale-105 transition-transform no-underline"
+              >
+                Try the Full Tool Now
+              </a>
             </section>
           </div>
         </main>

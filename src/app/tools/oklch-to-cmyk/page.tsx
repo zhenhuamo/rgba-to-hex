@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 
 export default function OklchToCmyk() {
@@ -56,15 +55,17 @@ export default function OklchToCmyk() {
 
             {/* Enhanced CTA */}
             <div className="text-center">
-              <Link
+              <a
                 href="/tools/oklch-to-cmyk-converter"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-10 py-5 text-white bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-lg font-semibold hover:from-purple-700 hover:to-pink-700 shadow-xl transition-all hover:shadow-2xl transform hover:scale-105"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
                 Open Full OKLCH to CMYK Converter Tool
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -411,32 +412,32 @@ export default function OklchToCmyk() {
                 Related Professional Tools
               </h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <Link href="/tools/cmyk-to-oklch" className="group bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-6 rounded-2xl hover:shadow-lg transition-all">
+                <a href="/tools/cmyk-to-oklch" target="_blank" rel="noopener noreferrer" className="group bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-6 rounded-2xl hover:shadow-lg transition-all">
                   <h4 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
                     CMYK to OKLCH Converter
                   </h4>
                   <p className="text-gray-600 dark:text-gray-300">
                     Convert traditional CMYK print colors to modern OKLCH format for digital workflow upgrades.
                   </p>
-                </Link>
+                </a>
 
-                <Link href="/tools/oklch-to-rgb" className="group bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-6 rounded-2xl hover:shadow-lg transition-all">
+                <a href="/tools/oklch-to-rgb" target="_blank" rel="noopener noreferrer" className="group bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 p-6 rounded-2xl hover:shadow-lg transition-all">
                   <h4 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">
                     OKLCH to RGB Converter
                   </h4>
                   <p className="text-gray-600 dark:text-gray-300">
                     Convert OKLCH colors to RGB format for digital display and web applications.
                   </p>
-                </Link>
+                </a>
 
-                <Link href="/tools/oklch-to-hex" className="group bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-6 rounded-2xl hover:shadow-lg transition-all">
+                <a href="/tools/oklch-to-hex" target="_blank" rel="noopener noreferrer" className="group bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-6 rounded-2xl hover:shadow-lg transition-all">
                   <h4 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400">
                     OKLCH to HEX Converter
                   </h4>
                   <p className="text-gray-600 dark:text-gray-300">
                     Convert OKLCH values to hexadecimal color codes for CSS and web development use.
                   </p>
-                </Link>
+                </a>
               </div>
             </div>
           </div>

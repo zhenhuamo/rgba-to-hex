@@ -2,7 +2,6 @@
 
 // import type { Metadata } from 'next'; // Removed
 import React, { useState } from 'react'; // Added useState
-import Link from 'next/link';
 import Navigation from '@/components/Navigation'; // Added Navigation import
 
 // Removed generateMetadata function
@@ -175,9 +174,9 @@ def hsv_to_hex(h, s, v):
             />
           </div>
           <div className="text-center mt-6">
-            <Link 
-              href={standaloneToolUrl} 
-              target="_blank" 
+            <a
+              href={standaloneToolUrl}
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 text-base font-medium text-white bg-gradient-to-r from-sky-500 to-cyan-500 rounded-lg hover:from-sky-600 hover:to-cyan-600 focus:ring-4 focus:outline-none focus:ring-sky-300 dark:focus:ring-sky-800 shadow-lg transition-all hover:shadow-xl transform hover:scale-105"
             >
@@ -185,7 +184,7 @@ def hsv_to_hex(h, s, v):
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
               </svg>
               Open Full Tool in New Tab
-            </Link>
+            </a>
           </div>
         </section>
 
@@ -402,7 +401,7 @@ def hsv_to_hex(h, s, v):
                      strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                    </summary>
                    <p className="mt-4 text-gray-700 dark:text-gray-400">
-                    This specific page is dedicated to the HSV → HEX conversion. For the reverse process, you\&apos;ll need a different tool. We plan to offer a dedicated <Link href="/tools/hex-to-hsv" className="text-sky-600 dark:text-sky-400 hover:underline">HEX to HSV Converter</Link> soon! Check our tools list for updates.
+                    This specific page is dedicated to the HSV → HEX conversion. For the reverse process, you\&apos;ll need a different tool. We plan to offer a dedicated <a href="/tools/hex-to-hsv" target="_blank" rel="noopener noreferrer" className="text-sky-600 dark:text-sky-400 hover:underline">HEX to HSV Converter</a> soon! Check our tools list for updates.
                   </p>
                  </details>
                  <details className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg border dark:border-gray-600/50 shadow-sm group">
@@ -422,13 +421,13 @@ def hsv_to_hex(h, s, v):
              <h2 className="text-2xl md:text-3xl font-semibold mb-6 border-l-4 border-purple-500 pl-4">Explore More Color Tools</h2>
              <p>Expand your color manipulation capabilities with our other conversion and utility tools:</p>
             <ul className="list-disc pl-6 space-y-2 my-4">
-              <li><Link href="/tools/hsv-to-rgb" className="text-sky-600 dark:text-sky-400 hover:underline">HSV to RGB Converter</Link> - Convert HSV directly to RGB values.</li>
-              <li><Link href="/tools/rgb-to-hex" className="text-sky-600 dark:text-sky-400 hover:underline">RGB to HEX Converter</Link> - Convert standard RGB values to HEX.</li>
-              <li><Link href="/tools/hsl-to-hex" className="text-sky-600 dark:text-sky-400 hover:underline">HSL to HEX Converter</Link> - Convert from the similar HSL model to HEX.</li>
-              <li><Link href="/tools/hex-to-rgba" className="text-sky-600 dark:text-sky-400 hover:underline">HEX to RGBA Converter</Link> - Get RGBA values (including alpha) from HEX.</li>
-              <li><Link href="/tools/color-picker-embed" className="text-sky-600 dark:text-sky-400 hover:underline">Online Color Picker</Link> - Visually pick colors and get their codes.</li>
+              <li><a href="/tools/hsv-to-rgb" target="_blank" rel="noopener noreferrer" className="text-sky-600 dark:text-sky-400 hover:underline">HSV to RGB Converter</a> - Convert HSV directly to RGB values.</li>
+              <li><a href="/tools/rgb-to-hex" target="_blank" rel="noopener noreferrer" className="text-sky-600 dark:text-sky-400 hover:underline">RGB to HEX Converter</a> - Convert standard RGB values to HEX.</li>
+              <li><a href="/tools/hsl-to-hex" target="_blank" rel="noopener noreferrer" className="text-sky-600 dark:text-sky-400 hover:underline">HSL to HEX Converter</a> - Convert from the similar HSL model to HEX.</li>
+              <li><a href="/tools/hex-to-rgba" target="_blank" rel="noopener noreferrer" className="text-sky-600 dark:text-sky-400 hover:underline">HEX to RGBA Converter</a> - Get RGBA values (including alpha) from HEX.</li>
+              <li><a href="/tools/color-picker-embed" target="_blank" rel="noopener noreferrer" className="text-sky-600 dark:text-sky-400 hover:underline">Online Color Picker</a> - Visually pick colors and get their codes.</li>
             </ul>
-             <p>Visit our main <Link href="/" className="text-sky-600 dark:text-sky-400 hover:underline">Color Tools</Link> page for the complete list.</p>
+             <p>Visit our main <a href="/" target="_blank" rel="noopener noreferrer" className="text-sky-600 dark:text-sky-400 hover:underline">Color Tools</a> page for the complete list.</p>
            </section>
 
            {/* Section 9: Conclusion */}
@@ -437,11 +436,9 @@ def hsv_to_hex(h, s, v):
              <p className="text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
               Whether you\&apos;re finalizing a design, writing CSS, or just exploring color spaces, our HSV to HEX converter provides the speed and accuracy you need. Bookmark this page and simplify your workflow today!
             </p>
-            <Link href={standaloneToolUrl} legacyBehavior>
-              <a className="inline-block px-8 py-4 bg-gradient-to-r from-sky-500 to-cyan-500 text-white text-lg font-semibold rounded-lg shadow-lg hover:scale-105 transition-transform no-underline">
-                Use the Full HSV to HEX Tool Now
-              </a>
-            </Link>
+            <a href={standaloneToolUrl} target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-4 bg-gradient-to-r from-sky-500 to-cyan-500 text-white text-lg font-semibold rounded-lg shadow-lg hover:scale-105 transition-transform no-underline">
+              Use the Full HSV to HEX Tool Now
+            </a>
            </section>
 
         </article>

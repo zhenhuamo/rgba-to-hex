@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import { useEffect } from 'react';
 
@@ -50,8 +49,8 @@ export default function XyzToRgbPage() {
             />
             
             <div className="flex justify-center mt-6">
-              <Link 
-                href="/tools/xyz-to-rgb-converter" 
+              <a
+                href="/tools/xyz-to-rgb-converter"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 text-white bg-gradient-to-r from-blue-500 to-purple-500 rounded-full font-medium hover:from-blue-600 hover:to-purple-600 shadow-md transition-all hover:shadow-lg"
@@ -60,7 +59,7 @@ export default function XyzToRgbPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
                 Open Full XYZ to RGB Converter
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -614,18 +613,18 @@ int main() {
           <div className="mt-12">
             <h2 className="text-2xl font-bold text-center mb-8">Related Color Conversion Tools</h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <Link href="/tools/rgb-to-lab" className="block bg-gradient-to-br from-red-50 to-pink-50 dark:from-red-900/20 dark:to-pink-900/20 rounded-xl p-6 hover:shadow-lg transition-shadow">
+              <a href="/tools/rgb-to-lab" target="_blank" rel="noopener noreferrer" className="block bg-gradient-to-br from-red-50 to-pink-50 dark:from-red-900/20 dark:to-pink-900/20 rounded-xl p-6 hover:shadow-lg transition-shadow">
                 <h3 className="text-lg font-semibold text-red-600 dark:text-red-400 mb-2">RGB to LAB Converter</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-sm">Convert RGB to perceptually uniform LAB color space</p>
-              </Link>
-              <Link href="/tools/oklch-to-hex" className="block bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl p-6 hover:shadow-lg transition-shadow">
+              </a>
+              <a href="/tools/oklch-to-hex" target="_blank" rel="noopener noreferrer" className="block bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl p-6 hover:shadow-lg transition-shadow">
                 <h3 className="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-2">OKLCH to HEX Converter</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-sm">Modern perceptual color space to web colors</p>
-              </Link>
-              <Link href="/tools/color-contrast" className="block bg-gradient-to-br from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 rounded-xl p-6 hover:shadow-lg transition-shadow">
+              </a>
+              <a href="/tools/color-contrast" target="_blank" rel="noopener noreferrer" className="block bg-gradient-to-br from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 rounded-xl p-6 hover:shadow-lg transition-shadow">
                 <h3 className="text-lg font-semibold text-green-600 dark:text-green-400 mb-2">Color Contrast Checker</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-sm">WCAG accessibility and contrast validation</p>
-              </Link>
+              </a>
             </div>
           </div>
 

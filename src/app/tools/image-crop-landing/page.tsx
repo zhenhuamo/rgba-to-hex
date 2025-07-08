@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import Head from 'next/head';
 import Navigation from '@/components/Navigation';
 
@@ -94,15 +93,17 @@ export default function ImageCropLandingPage() {
             </div>
             
             <div className="flex justify-center mt-2 mb-6">
-              <Link 
-                href="/tools/image-crop-tool" 
+              <a
+                href="/tools/image-crop-tool"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 text-white bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-full font-medium hover:from-blue-600 hover:via-indigo-600 hover:to-purple-600 shadow-md transition-all hover:shadow-lg"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
                 Open Full Tool in New Page
-              </Link>
+              </a>
             </div>
 
 
@@ -521,16 +522,16 @@ export default function ImageCropLandingPage() {
               <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
                 No registration required, no download necessary. Get professional-grade image cropping right in your browser at rgbatohex.com.
               </p>
-              <Link 
+              <a
                 href="#top"
                 className="px-8 py-4 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white rounded-lg font-semibold hover:opacity-90 transition shadow-lg"
-                onClick={(e) => {
+                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                   e.preventDefault();
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
               >
                 Start Cropping
-              </Link>
+              </a>
             </div>
           </div>
           

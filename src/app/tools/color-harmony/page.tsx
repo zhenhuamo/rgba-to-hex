@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 
 const ColorHarmonyPage: React.FC = () => {
@@ -60,9 +59,9 @@ const ColorHarmonyPage: React.FC = () => {
             />
           </div>
           <div className="text-center mt-6">
-            <Link 
-              href={toolEmbedUrl} 
-              target="_blank" 
+            <a
+              href={toolEmbedUrl}
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 text-base font-medium text-white bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg hover:from-purple-700 hover:to-blue-700 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg transition-all hover:shadow-xl transform hover:scale-105"
             >
@@ -70,7 +69,7 @@ const ColorHarmonyPage: React.FC = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
               </svg>
               Open Standalone Tool
-            </Link>
+            </a>
           </div>
         </section>
 
@@ -360,25 +359,25 @@ const ColorHarmonyPage: React.FC = () => {
             </p>
             
             <div className="grid md:grid-cols-2 gap-4 mt-6">
-              <Link href="/tools/color-wheel" className="block p-4 bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 rounded-lg hover:shadow-md transition-all">
+              <a href="/tools/color-wheel" target="_blank" rel="noopener noreferrer" className="block p-4 bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 rounded-lg hover:shadow-md transition-all">
                 <h4 className="font-semibold text-purple-800 dark:text-purple-200">Color Wheel</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">Interactive color wheel to explore color relationships</p>
-              </Link>
-              
-              <Link href="/tools/palette-generator" className="block p-4 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg hover:shadow-md transition-all">
+              </a>
+
+              <a href="/tools/palette-generator" target="_blank" rel="noopener noreferrer" className="block p-4 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg hover:shadow-md transition-all">
                 <h4 className="font-semibold text-blue-800 dark:text-blue-200">Palette Generator</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">Create complete color palettes for your projects</p>
-              </Link>
-              
-              <Link href="/tools/color-contrast" className="block p-4 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg hover:shadow-md transition-all">
+              </a>
+
+              <a href="/tools/color-contrast" target="_blank" rel="noopener noreferrer" className="block p-4 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 rounded-lg hover:shadow-md transition-all">
                 <h4 className="font-semibold text-indigo-800 dark:text-indigo-200">Color Contrast Checker</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">Check accessibility of your color combinations</p>
-              </Link>
-              
-              <Link href="/tools/hsl-to-rgb" className="block p-4 bg-gradient-to-r from-pink-50 to-rose-50 dark:from-pink-900/20 dark:to-rose-900/20 rounded-lg hover:shadow-md transition-all">
+              </a>
+
+              <a href="/tools/hsl-to-rgb" target="_blank" rel="noopener noreferrer" className="block p-4 bg-gradient-to-r from-pink-50 to-rose-50 dark:from-pink-900/20 dark:to-rose-900/20 rounded-lg hover:shadow-md transition-all">
                 <h4 className="font-semibold text-pink-800 dark:text-pink-200">HSL to RGB Converter</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">Convert HSL colors to RGB format</p>
-              </Link>
+              </a>
             </div>
           </section>
         </article>
@@ -392,24 +391,28 @@ const ColorHarmonyPage: React.FC = () => {
             Experiment with different base colors and harmony types to find the perfect color combination for your next project.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link 
-              href="/tools/color-wheel" 
+            <a
+              href="/tools/color-wheel"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 text-base font-medium text-white bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg hover:from-purple-700 hover:to-blue-700 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg transition-all hover:shadow-xl transform hover:scale-105"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
               </svg>
               Try Color Wheel
-            </Link>
-            <Link 
-              href="/tools/palette-generator" 
+            </a>
+            <a
+              href="/tools/palette-generator"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 text-base font-medium bg-white text-gray-800 dark:bg-gray-800 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 shadow-lg transition-all hover:shadow-xl transform hover:scale-105"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
               </svg>
               Create Color Palette
-            </Link>
+            </a>
           </div>
         </div>
       </div>

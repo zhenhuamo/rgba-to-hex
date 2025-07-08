@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 
 export default function OklchToHex() {
@@ -56,15 +55,17 @@ export default function OklchToHex() {
             
             {/* Enhanced CTA */}
             <div className="text-center">
-              <Link 
-                href="/tools/oklch-to-hex-converter" 
+              <a
+                href="/tools/oklch-to-hex-converter"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-10 py-5 text-white bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-lg font-semibold hover:from-purple-700 hover:to-pink-700 shadow-xl transition-all hover:shadow-2xl transform hover:scale-105"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
                 Open Full OKLCH to HEX Converter Tool
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -470,7 +471,7 @@ function ColorConverter() {
             </h2>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Link href="/tools/hsl-to-oklch" className="group bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all hover:scale-105">
+              <a href="/tools/hsl-to-oklch" target="_blank" rel="noopener noreferrer" className="group bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all hover:scale-105">
                 <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a4 4 0 004-4V5z" />
@@ -478,9 +479,9 @@ function ColorConverter() {
                 </div>
                 <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">HSL to OKLCH</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-sm">Convert HSL colors to modern OKLCH format</p>
-              </Link>
+              </a>
               
-              <Link href="/tools/rgb-to-lab" className="group bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all hover:scale-105">
+              <a href="/tools/rgb-to-lab" target="_blank" rel="noopener noreferrer" className="group bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all hover:scale-105">
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -488,9 +489,9 @@ function ColorConverter() {
                 </div>
                 <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">RGB to LAB</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-sm">Convert RGB colors to LAB color space</p>
-              </Link>
+              </a>
               
-              <Link href="/tools/hex-to-hsl" className="group bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all hover:scale-105">
+              <a href="/tools/hex-to-hsl" target="_blank" rel="noopener noreferrer" className="group bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all hover:scale-105">
                 <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -498,9 +499,9 @@ function ColorConverter() {
                 </div>
                 <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">HEX to HSL</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-sm">Convert HEX colors to HSL format</p>
-              </Link>
+              </a>
               
-              <Link href="/tools/color-converter" className="group bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all hover:scale-105">
+              <a href="/tools/color-converter" target="_blank" rel="noopener noreferrer" className="group bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 hover:shadow-2xl transition-all hover:scale-105">
                 <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
@@ -508,7 +509,7 @@ function ColorConverter() {
                 </div>
                 <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Universal Converter</h3>
                 <p className="text-gray-600 dark:text-gray-300 text-sm">Convert between all color formats</p>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

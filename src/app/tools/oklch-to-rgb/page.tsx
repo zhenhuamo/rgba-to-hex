@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 
 export default function OklchToRgb() {
@@ -30,7 +29,7 @@ export default function OklchToRgb() {
             />
 
             <div className="text-center my-8">
-              <Link 
+              <a
                 href="/tools/oklch-to-rgb-converter"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -40,7 +39,7 @@ export default function OklchToRgb() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
                 Open Full OKLCH to RGB Calculator & Converter Tool
-              </Link>
+              </a>
             </div>
             
             <p className="text-2xl text-gray-700 dark:text-gray-200 mb-8 leading-relaxed max-w-4xl mx-auto">
@@ -700,7 +699,7 @@ class BatchOKLCHConverter {
             </h2>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Link href="/tools/rgb-to-oklch" className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+              <a href="/tools/rgb-to-oklch" target="_blank" rel="noopener noreferrer" className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
                 <div className="text-blue-600 text-3xl mb-4">🔄</div>
                 <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white group-hover:text-blue-600 transition-colors">
                   RGB to OKLCH Converter & Calculator
@@ -708,9 +707,9 @@ class BatchOKLCHConverter {
                 <p className="text-gray-600 dark:text-gray-300">
                   Convert RGB colors to OKLCH format for perceptually uniform color manipulation and modern CSS. Includes JavaScript code and mathematical formulas.
                 </p>
-              </Link>
+              </a>
               
-              <Link href="/tools/oklch-to-hex" className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+              <a href="/tools/oklch-to-hex" target="_blank" rel="noopener noreferrer" className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
                 <div className="text-green-600 text-3xl mb-4">🎯</div>
                 <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white group-hover:text-green-600 transition-colors">
                   OKLCH to HEX Converter & Algorithm
@@ -718,9 +717,9 @@ class BatchOKLCHConverter {
                 <p className="text-gray-600 dark:text-gray-300">
                   Transform OKLCH colors to HEX format for traditional web development and design workflows. Features JavaScript implementation and color formulas.
                 </p>
-              </Link>
+              </a>
               
-              <Link href="/tools/hsl-to-oklch" className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+              <a href="/tools/hsl-to-oklch" target="_blank" rel="noopener noreferrer" className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
                 <div className="text-purple-600 text-3xl mb-4">🌈</div>
                 <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white group-hover:text-purple-600 transition-colors">
                   HSL to OKLCH Converter Tool
@@ -728,9 +727,9 @@ class BatchOKLCHConverter {
                 <p className="text-gray-600 dark:text-gray-300">
                   Convert HSL colors to OKLCH format for better color manipulation and perceptual uniformity in design systems and web applications.
                 </p>
-              </Link>
+              </a>
               
-              <Link href="/tools/rgb-to-cmyk" className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+              <a href="/tools/rgb-to-cmyk" target="_blank" rel="noopener noreferrer" className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
                 <div className="text-orange-600 text-3xl mb-4">🖨️</div>
                 <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white group-hover:text-orange-600 transition-colors">
                   RGB to CMYK Calculator
@@ -738,9 +737,9 @@ class BatchOKLCHConverter {
                 <p className="text-gray-600 dark:text-gray-300">
                   Convert RGB colors to CMYK format for print design and professional printing workflows. Includes JavaScript algorithms and conversion formulas.
                 </p>
-              </Link>
+              </a>
               
-              <Link href="/tools/rgb-to-yuv" className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+              <a href="/tools/rgb-to-yuv" target="_blank" rel="noopener noreferrer" className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
                 <div className="text-cyan-600 text-3xl mb-4">📺</div>
                 <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white group-hover:text-cyan-600 transition-colors">
                   RGB to YUV Converter
@@ -748,9 +747,9 @@ class BatchOKLCHConverter {
                 <p className="text-gray-600 dark:text-gray-300">
                   Transform RGB colors to YUV color space for video processing and broadcast applications. Features mathematical formulas and JavaScript implementation.
                 </p>
-              </Link>
+              </a>
               
-              <Link href="/tools/color-mixer" className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+              <a href="/tools/color-mixer" target="_blank" rel="noopener noreferrer" className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
                 <div className="text-pink-600 text-3xl mb-4">🎨</div>
                 <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white group-hover:text-pink-600 transition-colors">
                   Color Mixer & Blending Calculator
@@ -758,7 +757,7 @@ class BatchOKLCHConverter {
                 <p className="text-gray-600 dark:text-gray-300">
                   Mix and blend colors using various algorithms and color spaces. Perfect for creating color palettes and gradient calculations.
                 </p>
-              </Link>
+              </a>
             </div>
           </div>
 

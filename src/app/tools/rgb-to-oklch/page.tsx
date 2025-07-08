@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 
 export default function RgbToOklch() {
@@ -48,7 +47,7 @@ export default function RgbToOklch() {
             
             {/* Enhanced CTA */}
             <div className="text-center my-8">
-              <Link 
+              <a
                 href="/tools/rgb-to-oklch-converter"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -58,7 +57,7 @@ export default function RgbToOklch() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
                 Open Full RGB to OKLCH Converter Tool
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -349,7 +348,7 @@ function ColorConverter() {
             </h2>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Link href="/tools/oklch-to-rgb" className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+              <a href="/tools/oklch-to-rgb" target="_blank" rel="noopener noreferrer" className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
                 <div className="text-green-600 text-3xl mb-4">🔄</div>
                 <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white group-hover:text-green-600 transition-colors">
                   OKLCH to RGB Converter
@@ -357,9 +356,9 @@ function ColorConverter() {
                 <p className="text-gray-600 dark:text-gray-300">
                   Convert OKLCH colors back to RGB format for universal compatibility and legacy system support.
                 </p>
-              </Link>
+              </a>
               
-              <Link href="/tools/oklch-to-hex" className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+              <a href="/tools/oklch-to-hex" target="_blank" rel="noopener noreferrer" className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
                 <div className="text-blue-600 text-3xl mb-4">🎯</div>
                 <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white group-hover:text-blue-600 transition-colors">
                   OKLCH to HEX Converter
@@ -367,9 +366,9 @@ function ColorConverter() {
                 <p className="text-gray-600 dark:text-gray-300">
                   Transform OKLCH colors to HEX format for traditional web development and design workflows.
                 </p>
-              </Link>
+              </a>
               
-              <Link href="/tools/color-converter" className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+              <a href="/tools/color-converter" target="_blank" rel="noopener noreferrer" className="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
                 <div className="text-purple-600 text-3xl mb-4">🌈</div>
                 <h3 className="text-xl font-semibold mb-3 text-gray-800 dark:text-white group-hover:text-purple-600 transition-colors">
                   Universal Color Converter
@@ -377,7 +376,7 @@ function ColorConverter() {
                 <p className="text-gray-600 dark:text-gray-300">
                   Convert between all major color formats including RGB, HEX, HSL, OKLCH, and more.
                 </p>
-              </Link>
+              </a>
             </div>
           </div>
 

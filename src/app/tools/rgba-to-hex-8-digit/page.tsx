@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 
 export default function RgbaToHex8Digit() {
@@ -56,15 +55,17 @@ export default function RgbaToHex8Digit() {
 
             {/* 添加跳转按钮 */}
             <div className="flex justify-center mt-6">
-              <Link 
-                href="/tools/rgba-to-hex-8-digit-converter" 
+              <a
+                href="/tools/rgba-to-hex-8-digit-converter"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 text-white bg-gradient-to-r from-blue-500 to-green-500 rounded-full font-medium hover:from-blue-600 hover:to-green-600 shadow-md transition-all hover:shadow-lg"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
                 Open Full RGBA to HEX Converter Tool
-              </Link>
+              </a>
             </div>
           </div>
           
@@ -829,18 +830,18 @@ $my-color: rgba(255, 0, 0, 0.5);
             <div className="mt-8">
               <h3 className="text-xl font-semibold mb-4">Additional RGBA to HEX Resources</h3>
               <div className="grid md:grid-cols-3 gap-6">
-                <Link href="/articles/rgba-to-hex-conversion-guide" className="block p-5 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+                <a href="/articles/rgba-to-hex-conversion-guide" target="_blank" rel="noopener noreferrer" className="block p-5 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
                   <h4 className="text-lg font-medium mb-2">Comprehensive RGBA to HEX Conversion Guide</h4>
                   <p className="text-sm text-gray-600 dark:text-gray-300">Detailed tutorial on understanding and implementing RGBA to HEX conversion in web projects.</p>
-                </Link>
-                <Link href="/tools/color-converter" className="block p-5 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+                </a>
+                <a href="/tools/color-converter" target="_blank" rel="noopener noreferrer" className="block p-5 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
                   <h4 className="text-lg font-medium mb-2">Standard RGBA to HEX Converter</h4>
                   <p className="text-sm text-gray-600 dark:text-gray-300">Our classic converter for standard 6-digit HEX codes without opacity support.</p>
-                </Link>
-                <Link href="/tools/color-palette-generator" className="block p-5 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
+                </a>
+                <a href="/tools/color-palette-generator" target="_blank" rel="noopener noreferrer" className="block p-5 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
                   <h4 className="text-lg font-medium mb-2">Color Palette Generator</h4>
                   <p className="text-sm text-gray-600 dark:text-gray-300">Create and export color palettes with both RGBA and 8-digit HEX notation.</p>
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -896,15 +897,17 @@ $my-color: rgba(255, 0, 0, 0.5);
               <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
                 Our RGBA to HEX converter tool provides the most accurate and convenient way to transform your RGBA colors to both standard 6-digit and modern 8-digit HEX format with full transparency support. Try it now and streamline your web development workflow!
               </p>
-              <Link 
-                href="/tools/rgba-to-hex-8-digit-converter" 
+              <a
+                href="/tools/rgba-to-hex-8-digit-converter"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-4 text-white bg-gradient-to-r from-blue-500 to-green-500 rounded-full font-medium hover:from-blue-600 hover:to-green-600 shadow-lg transition-all"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
                 </svg>
                 Start Converting RGBA to HEX Now
-              </Link>
+              </a>
             </div>
           </div>
         </div>

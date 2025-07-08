@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 
 export default function HexToHsl() {
@@ -41,15 +40,17 @@ export default function HexToHsl() {
             
             {/* Add navigation button */}
             <div className="flex justify-center mt-6">
-              <Link 
-                href="/tools/hex-to-hsl-converter" 
+              <a
+                href="/tools/hex-to-hsl-converter"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 text-white bg-gradient-to-r from-purple-500 to-blue-500 rounded-full font-medium hover:from-purple-600 hover:to-blue-600 shadow-md transition-all hover:shadow-lg"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
                 Open Full Tool in New Page
-              </Link>
+              </a>
             </div>
           </div>
           

@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import Navigation from '@/components/Navigation';
-import Link from 'next/link';
 
 export default function ColorMixerPage() {
   const [showEmbedCode, setShowEmbedCode] = useState(false);
@@ -54,15 +53,17 @@ export default function ColorMixerPage() {
               />
               
               <div className="flex justify-center mt-6 mb-4">
-                <Link 
-                  href="/tools/color-mixer-tool" 
+                <a
+                  href="/tools/color-mixer-tool"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 text-white bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full font-medium hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 shadow-md transition-all hover:shadow-lg"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                   Open Full Tool in New Page
-                </Link>
+                </a>
               </div>
               
               <div className="mt-6 text-right">

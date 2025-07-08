@@ -640,9 +640,27 @@ export function hslToOklch({ h, s, l }: HSL): OKLCH {
 export function oklchToHsl({ l, c, h }: OKLCH): HSL {
   // 先转换为RGB
   const rgb = oklchToRgb({ l, c, h });
-  
+
   // 再转换为HSL
   return rgbToHsl(rgb);
+}
+
+// HSV转OKLCH
+export function hsvToOklch({ h, s, v }: HSV): OKLCH {
+  // 先转换为RGB
+  const rgb = hsvToRgb({ h, s, v });
+
+  // 再转换为OKLCH
+  return rgbToOklch(rgb);
+}
+
+// OKLCH转HSV
+export function oklchToHsv({ l, c, h }: OKLCH): HSV {
+  // 先转换为RGB
+  const rgb = oklchToRgb({ l, c, h });
+
+  // 再转换为HSV
+  return rgbToHsv(rgb);
 }
 
 // RGB转OKLCH - 基于Oklab色彩空间的数学转换
@@ -745,6 +763,23 @@ export function isValidOklch({ l, c, h }: OKLCH): boolean {
     h >= 0 && h <= 360
   );
 }
+
+// 验证HSV值是否有效
+export function isValidHsv({ h, s, v }: HSV): boolean {
+  return (
+    h >= 0 && h <= 360 &&
+    s >= 0 && s <= 100 &&
+    v >= 0 && v <= 100
+  );
+}
+
+// HSV格式化为CSS字符串 (注意：CSS不直接支持HSV，这里转换为HSL)
+export function hsvToCss({ h, s, v }: HSV): string {
+  const hsl = hsvToHsl({ h, s, v });
+  return `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+}
+
+
 
 // 辅助函数：sRGB gamma校正
 function gammaToLinear(value: number): number {

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import Navigation from '@/components/Navigation'; // Assuming Navigation component exists
 
 // Helper function for copying text (copied from other similar pages)
@@ -130,9 +129,9 @@ export default function HsvToRgbPage() {
             />
           </div>
            <div className="text-center mt-6">
-            <Link 
-              href={standaloneToolUrl} 
-              target="_blank" 
+            <a
+              href={standaloneToolUrl}
+              target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 text-base font-medium text-white bg-gradient-to-r from-green-500 to-teal-500 rounded-lg hover:from-green-600 hover:to-teal-600 focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg transition-all hover:shadow-xl transform hover:scale-105"
             >
@@ -140,7 +139,7 @@ export default function HsvToRgbPage() {
                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                </svg>
                Open Full Tool in New Tab
-            </Link>
+            </a>
           </div>
         </section>
 
@@ -286,7 +285,7 @@ export default function HsvToRgbPage() {
                      <svg className="w-5 h-5 transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                    </summary>
                    <p className="mt-4 text-gray-700 dark:text-gray-400">
-                    This page focuses on HSV → RGB. For the reverse conversion, please use our dedicated <Link href="/tools/rgb-to-hsv" className="text-green-600 dark:text-green-400 hover:underline">RGB to HSV Converter</Link> tool.
+                    This page focuses on HSV → RGB. For the reverse conversion, please use our dedicated <a href="/tools/rgb-to-hsv" target="_blank" rel="noopener noreferrer" className="text-green-600 dark:text-green-400 hover:underline">RGB to HSV Converter</a> tool.
                   </p>
                  </details>
               
@@ -298,13 +297,13 @@ export default function HsvToRgbPage() {
              <h2 className="text-2xl md:text-3xl font-semibold mb-6 border-l-4 border-indigo-500 pl-4">Related Color Conversion Tools</h2>
             <p>Explore other useful color utilities:</p>
             <ul className="list-disc pl-6 space-y-2 my-4">
-              <li><Link href="/tools/rgb-to-hsv" className="text-green-600 dark:text-green-400 hover:underline">RGB to HSV Converter</Link></li>
-              <li><Link href="/tools/hsv-to-hex" className="text-green-600 dark:text-green-400 hover:underline">HSV to HEX Converter</Link></li>
-              <li><Link href="/tools/rgb-to-hex" className="text-green-600 dark:text-green-400 hover:underline">RGB to HEX Converter</Link></li>
-              <li><Link href="/tools/hsl-to-rgb" className="text-green-600 dark:text-green-400 hover:underline">HSL to RGB Converter</Link></li>
-              <li><Link href="/tools/color-picker-embed" className="text-green-600 dark:text-green-400 hover:underline">Online Color Picker</Link></li>
+              <li><a href="/tools/rgb-to-hsv" target="_blank" rel="noopener noreferrer" className="text-green-600 dark:text-green-400 hover:underline">RGB to HSV Converter</a></li>
+              <li><a href="/tools/hsv-to-hex" target="_blank" rel="noopener noreferrer" className="text-green-600 dark:text-green-400 hover:underline">HSV to HEX Converter</a></li>
+              <li><a href="/tools/rgb-to-hex" target="_blank" rel="noopener noreferrer" className="text-green-600 dark:text-green-400 hover:underline">RGB to HEX Converter</a></li>
+              <li><a href="/tools/hsl-to-rgb" target="_blank" rel="noopener noreferrer" className="text-green-600 dark:text-green-400 hover:underline">HSL to RGB Converter</a></li>
+              <li><a href="/tools/color-picker-embed" target="_blank" rel="noopener noreferrer" className="text-green-600 dark:text-green-400 hover:underline">Online Color Picker</a></li>
             </ul>
-             <p>Check out our full suite on the main <Link href="/" className="text-green-600 dark:text-green-400 hover:underline">Color Tools</Link> page.</p>
+             <p>Check out our full suite on the main <a href="/" target="_blank" rel="noopener noreferrer" className="text-green-600 dark:text-green-400 hover:underline">Color Tools</a> page.</p>
           </section>
 
           {/* Conclusion Section */}
@@ -313,11 +312,9 @@ export default function HsvToRgbPage() {
             <p className="text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
               This accurate and easy-to-use HSV to RGB converter is perfect for designers and developers needing standard RGB color codes. Bookmark it for quick access whenever you need to translate HSV colors for screen use.
             </p>
-            <Link href={standaloneToolUrl} legacyBehavior>
-              <a className="inline-block px-8 py-4 bg-gradient-to-r from-green-500 to-teal-500 text-white text-lg font-semibold rounded-lg shadow-lg hover:scale-105 transition-transform no-underline">
-                Use the Full HSV to RGB Tool
-              </a>
-            </Link>
+            <a href={standaloneToolUrl} target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-4 bg-gradient-to-r from-green-500 to-teal-500 text-white text-lg font-semibold rounded-lg shadow-lg hover:scale-105 transition-transform no-underline">
+              Use the Full HSV to RGB Tool
+            </a>
           </section>
 
         </article>

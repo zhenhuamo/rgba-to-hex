@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import Navigation from '@/components/Navigation'; // Added Navigation import
 // import Head from 'next/head'; // Removed
 // import type { Metadata } from 'next'; // Removed
@@ -264,9 +263,9 @@ const HsvHslContentPage = () => {
               />
             </div>
             <div className="text-center mt-6">
-              <Link 
-                href={standaloneToolUrl} 
-                target="_blank" 
+              <a
+                href={standaloneToolUrl}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 text-base font-medium text-white bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg hover:from-indigo-600 hover:to-purple-600 focus:ring-4 focus:outline-none focus:ring-indigo-300 dark:focus:ring-indigo-800 shadow-lg transition-all hover:shadow-xl transform hover:scale-105"
               >
@@ -274,7 +273,7 @@ const HsvHslContentPage = () => {
                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                  </svg>
                  Open Full Tool in New Tab
-              </Link>
+              </a>
             </div>
           </motion.section>
 
@@ -601,56 +600,56 @@ const HsvHslContentPage = () => {
               <p>Explore other useful color conversion and manipulation tools:</p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-6">
-                <Link href="/tools/rgb-to-hsv" className="flex items-center gap-2 p-3 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg border border-indigo-100 dark:border-indigo-800 hover:shadow-md transition-shadow">
+                <a href="/tools/rgb-to-hsv" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 p-3 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg border border-indigo-100 dark:border-indigo-800 hover:shadow-md transition-shadow">
                   <svg className="w-5 h-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
                   </svg>
                   <span>RGB to HSV Converter</span>
-                </Link>
-                
-                <Link href="/tools/rgb-to-hsl" className="flex items-center gap-2 p-3 bg-purple-50 dark:bg-purple-900/30 rounded-lg border border-purple-100 dark:border-purple-800 hover:shadow-md transition-shadow">
+                </a>
+
+                <a href="/tools/rgb-to-hsl" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 p-3 bg-purple-50 dark:bg-purple-900/30 rounded-lg border border-purple-100 dark:border-purple-800 hover:shadow-md transition-shadow">
                   <svg className="w-5 h-5 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
                   </svg>
                   <span>RGB to HSL Converter</span>
-                </Link>
-                
-                <Link href="/tools/hsv-to-rgb" className="flex items-center gap-2 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg border border-blue-100 dark:border-blue-800 hover:shadow-md transition-shadow">
+                </a>
+
+                <a href="/tools/hsv-to-rgb" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg border border-blue-100 dark:border-blue-800 hover:shadow-md transition-shadow">
                   <svg className="w-5 h-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
                   </svg>
                   <span>HSV to RGB Converter</span>
-                </Link>
-                
-                <Link href="/tools/hsl-to-rgb" className="flex items-center gap-2 p-3 bg-pink-50 dark:bg-pink-900/30 rounded-lg border border-pink-100 dark:border-pink-800 hover:shadow-md transition-shadow">
+                </a>
+
+                <a href="/tools/hsl-to-rgb" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 p-3 bg-pink-50 dark:bg-pink-900/30 rounded-lg border border-pink-100 dark:border-pink-800 hover:shadow-md transition-shadow">
                   <svg className="w-5 h-5 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
                   </svg>
                   <span>HSL to RGB Converter</span>
-                </Link>
-                
-                <Link href="/tools/rgb-to-hex" className="flex items-center gap-2 p-3 bg-green-50 dark:bg-green-900/30 rounded-lg border border-green-100 dark:border-green-800 hover:shadow-md transition-shadow">
+                </a>
+
+                <a href="/tools/rgb-to-hex" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 p-3 bg-green-50 dark:bg-green-900/30 rounded-lg border border-green-100 dark:border-green-800 hover:shadow-md transition-shadow">
                   <svg className="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
                   </svg>
                   <span>RGB to HEX Converter</span>
-                </Link>
-                
-                <Link href="/tools/hex-to-rgb" className="flex items-center gap-2 p-3 bg-teal-50 dark:bg-teal-900/30 rounded-lg border border-teal-100 dark:border-teal-800 hover:shadow-md transition-shadow">
+                </a>
+
+                <a href="/tools/hex-to-rgb" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 p-3 bg-teal-50 dark:bg-teal-900/30 rounded-lg border border-teal-100 dark:border-teal-800 hover:shadow-md transition-shadow">
                   <svg className="w-5 h-5 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
                   </svg>
                   <span>HEX to RGB Converter</span>
-                </Link>
+                </a>
               </div>
               
               <p className="text-center mt-6">
-                <Link href="/" className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 rounded-full hover:bg-indigo-200 dark:hover:bg-indigo-800/50 transition-colors">
+                <a href="/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 rounded-full hover:bg-indigo-200 dark:hover:bg-indigo-800/50 transition-colors">
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                   </svg>
                   Explore All Color Tools
-                </Link>
+                </a>
               </p>
             </section>
       </article>

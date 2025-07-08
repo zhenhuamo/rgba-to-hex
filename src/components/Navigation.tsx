@@ -42,6 +42,7 @@ export default function Navigation() {
         { name: 'OKLCH to HEX', href: '/tools/oklch-to-hex', color: 'bg-indigo-600' },
         { name: 'OKLCH to RGB', href: '/tools/oklch-to-rgb', color: 'bg-blue-600' },
         { name: 'OKLCH to HSL', href: '/tools/oklch-to-hsl', color: 'bg-purple-600' },
+        { name: 'OKLCH to HSV', href: '/tools/oklch-to-hsv', color: 'bg-teal-600' },
         { name: 'OKLCH to CMYK', href: '/tools/oklch-to-cmyk', color: 'bg-cyan-600' },
         { name: 'OKLCH to OKLAB', href: '/tools/oklch-to-oklab', color: 'bg-pink-600' },
         { name: 'OKLAB to OKLCH', href: '/tools/oklab-to-oklch', color: 'bg-rose-600' },
@@ -50,6 +51,7 @@ export default function Navigation() {
         { name: 'HSV to RGB', href: '/tools/hsv-to-rgb', color: 'bg-indigo-500' },
         { name: 'HSV to RGBA', href: '/tools/hsv-to-rgba', color: 'bg-purple-500' },
         { name: 'HSV to HEX', href: '/tools/hsv-to-hex', color: 'bg-sky-500' },
+        { name: 'HSV to OKLCH', href: '/tools/hsv-to-oklch', color: 'bg-emerald-600' },
         { name: 'HSV to HSL (and vice-versa)', href: '/tools/hsv-hsl', color: 'bg-fuchsia-500' },
         
         // CMYK based

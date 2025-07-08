@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 
 export default function OklabToOklch() {
@@ -56,15 +55,17 @@ export default function OklabToOklch() {
             
             {/* Enhanced CTA */}
             <div className="text-center">
-              <Link 
-                href="/tools/oklab-to-oklch-converter" 
+              <a
+                href="/tools/oklab-to-oklch-converter"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-10 py-5 text-white bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-lg font-semibold hover:from-purple-700 hover:to-pink-700 shadow-xl transition-all hover:shadow-2xl transform hover:scale-105"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
                 Open Full OKLAB to OKLCH Converter Tool
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -484,71 +485,73 @@ function createColorPicker(oklabColor) {
             </p>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-              <Link href="/tools/oklch-to-oklab" className="group bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
+              <a href="/tools/oklch-to-oklab" target="_blank" rel="noopener noreferrer" className="group bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400">
                   OKLCH to OKLAB Converter
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Convert OKLCH polar coordinates to OKLAB rectangular coordinates for mathematical color operations and analysis.
                 </p>
-              </Link>
+              </a>
 
-              <Link href="/tools/oklch-to-hsl" className="group bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
+              <a href="/tools/oklch-to-hsl" target="_blank" rel="noopener noreferrer" className="group bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
                   OKLCH to HSL Converter
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Transform OKLCH colors to HSL format for legacy browser compatibility and traditional color workflows.
                 </p>
-              </Link>
+              </a>
 
-              <Link href="/tools/oklch-to-rgb" className="group bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
+              <a href="/tools/oklch-to-rgb" target="_blank" rel="noopener noreferrer" className="group bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400">
                   OKLCH to RGB Converter
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Convert OKLCH colors to RGB format for digital design workflows and graphics applications.
                 </p>
-              </Link>
+              </a>
 
-              <Link href="/tools/color-contrast" className="group bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
+              <a href="/tools/color-contrast" target="_blank" rel="noopener noreferrer" className="group bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400">
                   Color Contrast Checker
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Verify color contrast ratios for WCAG accessibility compliance using both traditional and modern color spaces.
                 </p>
-              </Link>
+              </a>
 
-              <Link href="/tools/color-picker-embed" className="group bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-900/20 dark:to-rose-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
+              <a href="/tools/color-picker-embed" target="_blank" rel="noopener noreferrer" className="group bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-900/20 dark:to-rose-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white group-hover:text-pink-600 dark:group-hover:text-pink-400">
                   Advanced Color Picker
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Professional color picker with OKLCH and OKLAB support for precise color selection and format conversion.
                 </p>
-              </Link>
+              </a>
 
-              <Link href="/tools/delta-e-calculator" className="group bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
+              <a href="/tools/delta-e-calculator" target="_blank" rel="noopener noreferrer" className="group bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 p-8 rounded-2xl hover:shadow-xl transition-all transform hover:scale-105">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white group-hover:text-yellow-600 dark:group-hover:text-yellow-400">
                   Delta-E Calculator
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   Calculate perceptual color differences using OKLAB coordinates for accurate color analysis and quality control.
                 </p>
-              </Link>
+              </a>
             </div>
 
             <div className="text-center">
-              <Link
+              <a
                 href="/tools"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-gray-800 to-gray-900 dark:from-gray-600 dark:to-gray-700 text-white rounded-full text-lg font-semibold hover:shadow-xl transition-all transform hover:scale-105"
               >
                 Explore All Professional Color Tools
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

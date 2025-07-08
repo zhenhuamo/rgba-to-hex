@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import Navigation from '@/components/Navigation';
-import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -44,15 +43,17 @@ export default function Home() {
             
             {/* 添加跳转按钮 */}
             <div className="flex justify-center mt-6">
-              <Link 
-                href="/tools/color-converter" 
+              <a
+                href="/tools/color-converter"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 text-white bg-gradient-to-r from-blue-500 to-purple-500 rounded-full font-medium hover:from-blue-600 hover:to-purple-600 shadow-md transition-all hover:shadow-lg"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
                 Open Full Tool in New Page
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -382,9 +383,9 @@ export default function Home() {
               <h3 className="text-xl font-semibold mb-3">More Embeddable Tools</h3>
               <ul className="space-y-2 text-gray-600 dark:text-gray-300">
                 <li>
-                  <Link href="/tools/hex-to-rgba-converter" className="text-blue-500 hover:text-blue-600">
+                  <a href="/tools/hex-to-rgba-converter" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600">
                     HEX to RGBA Converter
-                  </Link>
+                  </a>
                   <p className="text-sm mt-1">
                     Convert HEX color codes to RGBA values with transparency support.
                   </p>

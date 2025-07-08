@@ -45,8 +45,10 @@ export default function MixerPainterPage() {
 
             <div className="mb-8">
               <div className="flex justify-end mb-2">
-                <a 
-                  href="/tools/mixer-painter-tool" 
+                <a
+                  href="/tools/mixer-painter-tool"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg shadow transition-colors duration-200"
                 >
                   <span>Open Full Tool</span>

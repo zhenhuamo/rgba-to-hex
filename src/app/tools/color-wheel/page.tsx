@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 
 export default function ColorWheelEmbedPage() {
@@ -57,15 +56,17 @@ export default function ColorWheelEmbedPage() {
               </div>
               
               <div className="flex justify-center mt-6 mb-4">
-                <Link 
-                  href="/tools/color-wheel-tool" 
+                <a
+                  href="/tools/color-wheel-tool"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 text-white bg-gradient-to-r from-red-500 via-green-500 to-blue-500 rounded-full font-medium hover:from-red-600 hover:via-green-600 hover:to-blue-600 shadow-md transition-all hover:shadow-lg"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                   Open Full Tool in New Page
-                </Link>
+                </a>
               </div>
               
               <div className="mt-6 text-right">
