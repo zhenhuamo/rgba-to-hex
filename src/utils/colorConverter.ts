@@ -984,6 +984,63 @@ export function xyzToCss({ x, y, z }: XYZ): string {
   return `xyz(${x.toFixed(3)} ${y.toFixed(3)} ${z.toFixed(3)})`;
 }
 
+// XYZ到LAB的直接转换函数
+export function xyzToLab({ x, y, z }: XYZ): LAB {
+  // 使用D65白点进行归一化
+  const xn = 95.047;  // D65 illuminant X
+  const yn = 100.000; // D65 illuminant Y
+  const zn = 108.883; // D65 illuminant Z
+
+  // 归一化XYZ值
+  const xNorm = x / xn;
+  const yNorm = y / yn;
+  const zNorm = z / zn;
+
+  // 应用非线性转换
+  const fx = xNorm > 0.008856 ? Math.pow(xNorm, 1/3) : (7.787 * xNorm + 16/116);
+  const fy = yNorm > 0.008856 ? Math.pow(yNorm, 1/3) : (7.787 * yNorm + 16/116);
+  const fz = zNorm > 0.008856 ? Math.pow(zNorm, 1/3) : (7.787 * zNorm + 16/116);
+
+  // 计算LAB值
+  const l = 116 * fy - 16;
+  const a = 500 * (fx - fy);
+  const b = 200 * (fy - fz);
+
+  return {
+    l: Math.round(l * 1000) / 1000, // 保留3位小数
+    a: Math.round(a * 1000) / 1000,
+    b: Math.round(b * 1000) / 1000
+  };
+}
+
+// LAB到XYZ的直接转换函数
+export function labToXyz({ l, a, b }: LAB): XYZ {
+  // 计算中间值
+  const fy = (l + 16) / 116;
+  const fx = a / 500 + fy;
+  const fz = fy - b / 200;
+
+  // 应用反转的非线性转换
+  const fx3 = Math.pow(fx, 3);
+  const fy3 = Math.pow(fy, 3);
+  const fz3 = Math.pow(fz, 3);
+
+  const xNorm = fx3 > 0.008856 ? fx3 : (fx - 16/116) / 7.787;
+  const yNorm = fy3 > 0.008856 ? fy3 : (fy - 16/116) / 7.787;
+  const zNorm = fz3 > 0.008856 ? fz3 : (fz - 16/116) / 7.787;
+
+  // 使用D65白点进行反归一化
+  const xn = 95.047;  // D65 illuminant X
+  const yn = 100.000; // D65 illuminant Y
+  const zn = 108.883; // D65 illuminant Z
+
+  return {
+    x: Math.round(xNorm * xn * 1000) / 1000, // 保留3位小数
+    y: Math.round(yNorm * yn * 1000) / 1000,
+    z: Math.round(zNorm * zn * 1000) / 1000
+  };
+}
+
 // OKLCH转OKLAB
 export function oklchToOklab({ l, c, h }: OKLCH): OKLAB {
   // 将OKLCH的极坐标转换为OKLAB的直角坐标

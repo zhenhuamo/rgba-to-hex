@@ -25,6 +25,8 @@ export default function Navigation() {
         { name: 'RGB to LAB', href: '/tools/rgb-to-lab', color: 'bg-rose-500' },
         { name: 'RGB to OKLCH', href: '/tools/rgb-to-oklch', color: 'bg-pink-600' },
         { name: 'XYZ to RGB', href: '/tools/xyz-to-rgb', color: 'bg-blue-700' },
+        { name: 'XYZ to LAB', href: '/tools/xyz-to-lab', color: 'bg-purple-700' },
+        { name: 'LAB to XYZ', href: '/tools/lab-to-xyz', color: 'bg-indigo-700' },
         
         // HEX based
         { name: 'HEX to RGBA', href: '/tools/hex-to-rgba', color: 'bg-green-500' },

@@ -9,7 +9,7 @@ export default function ToolsIndex() {
   const toolCategories = [
     {
       category: "Color Conversion Tools",
-      description: "Professional tools for converting between various color formats including RGB, HSL, HEX, CMYK, OKLCH and other color spaces",
+      description: "Professional tools for converting between various color formats including RGB, HSL, HEX, CMYK, OKLCH, CIE XYZ, CIELAB and other color spaces with industry-standard precision",
       icon: "🔄",
       tools: [
         { name: 'RGBA to 8-Digit HEX', href: '/tools/rgba-to-hex-8-digit', color: 'from-blue-500 to-blue-600' },
@@ -37,6 +37,8 @@ export default function ToolsIndex() {
         { name: 'RGB to CMYK', href: '/tools/rgb-to-cmyk', color: 'from-cyan-500 to-cyan-600' },
         { name: 'RGB to LAB', href: '/tools/rgb-to-lab', color: 'from-rose-500 to-rose-600' },
         { name: 'XYZ to RGB', href: '/tools/xyz-to-rgb', color: 'from-blue-700 to-blue-800' },
+        { name: 'XYZ to LAB', href: '/tools/xyz-to-lab', color: 'from-purple-700 to-purple-800' },
+        { name: 'LAB to XYZ', href: '/tools/lab-to-xyz', color: 'from-indigo-700 to-indigo-800' },
         { name: 'CMYK to RGB', href: '/tools/cmyk-to-rgb', color: 'from-yellow-500 to-yellow-600' },
         { name: 'CMYK to RGBA', href: '/tools/cmyk-to-rgba', color: 'from-red-500 to-pink-500' },
         { name: 'CMYK to OKLCH', href: '/tools/cmyk-to-oklch', color: 'from-purple-700 to-indigo-700' },
@@ -114,19 +116,20 @@ export default function ToolsIndex() {
               </h1>
             </div>
             <p className="text-2xl text-gray-700 dark:text-gray-200 mb-8 leading-relaxed max-w-4xl mx-auto">
-              Comprehensive collection of color tools for modern web designers and developers. Includes color conversion between RGB, HSL, HEX, CMYK formats, HSL to CMYK conversion for print design, palette generation, 
-              contrast checking, gradient creation, and many other professional utilities.
+              Comprehensive collection of professional color tools for modern web designers, developers, and color scientists. Includes advanced color space conversions between RGB, HSL, HEX, CMYK, CIE XYZ, CIELAB (LAB), OKLCH formats,
+              palette generation, contrast checking, gradient creation, and specialized color science utilities.
             </p>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 max-w-3xl mx-auto">
-              Our tools support RGB, HSL, HEX, CMYK, as well as modern CSS Color Level 4 specification color spaces like OKLCH,
-              helping you create more visually appealing and accessible website designs. Perfect for both digital design workflows and print production with professional HSL to CMYK conversion capabilities.
+              Our tools support traditional color spaces (RGB, HSL, HEX, CMYK) and advanced color science formats (CIE XYZ, CIELAB, OKLCH) following CSS Color Level 4 specifications and CIE standards.
+              Perfect for digital design workflows, print production, color research, and professional color management applications with industry-standard D65 illuminant calculations.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm">
               <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-4 py-2 rounded-full font-medium">CSS Color Level 4</span>
               <span className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-4 py-2 rounded-full font-medium">Complete Color Conversion</span>
-              <span className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-4 py-2 rounded-full font-medium">Professional Palettes</span>
+              <span className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-4 py-2 rounded-full font-medium">CIE Color Science</span>
               <span className="bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-4 py-2 rounded-full font-medium">Real-time Preview</span>
-              <span className="bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-200 px-4 py-2 rounded-full font-medium">Modern Design</span>
+              <span className="bg-pink-100 dark:bg-pink-900 text-pink-800 dark:text-pink-200 px-4 py-2 rounded-full font-medium">Professional Quality</span>
+              <span className="bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 px-4 py-2 rounded-full font-medium">D65 Standard</span>
             </div>
           </div>
 
@@ -157,10 +160,14 @@ export default function ToolsIndex() {
                       </h3>
                     </div>
                     <p className="text-gray-600 dark:text-gray-300">
-                      {tool.name === 'HSL to CMYK' 
+                      {tool.name === 'HSL to CMYK'
                         ? 'Convert HSL colors to CMYK format for professional printing. Features intuitive HSL color selection with real-time CMYK output and ink coverage warnings for print-ready designs.'
                         : tool.name === 'HSV to RGBA'
                         ? 'Convert HSV colors to RGBA format with alpha transparency control. Perfect for web design with HSV color selection, real-time RGBA output, and CSS-ready transparent color values.'
+                        : tool.name === 'XYZ to LAB'
+                        ? 'Convert CIE XYZ tristimulus values to CIELAB (LAB) perceptual color space. Professional tool using D65 illuminant standard with step-by-step formulas, programming examples, and comprehensive technical documentation for color scientists and designers.'
+                        : tool.name === 'LAB to XYZ'
+                        ? 'Convert CIELAB (LAB) perceptual colors to CIE XYZ tristimulus coordinates. Features accurate D65 illuminant conversion, real-time calculations, and detailed mathematical explanations for professional color management workflows.'
                         : tool.name === 'Octal Converter'
                         ? 'Professional bidirectional octal to decimal converter with Unix file permissions calculator. Features octal-decimal conversion, permission visualization (rwxr-xr-x), and comprehensive educational content for system administrators.'
                         : tool.name === 'Text to Binary'
@@ -282,7 +289,7 @@ export default function ToolsIndex() {
                   How accurate are the color conversions in these tools?
                 </h3>
                 <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                  We use industry-standard color science algorithms to ensure high precision and accuracy for all color conversions. The conversion process takes into account appropriate color space characteristics, gamma correction, and D65 illuminant standards, suitable for professional-grade web development and design applications.
+                  We use industry-standard color science algorithms following CIE specifications to ensure high precision and accuracy for all color conversions. Our XYZ to LAB and LAB to XYZ converters use the official CIE formulas with D65 illuminant standards, providing professional-grade accuracy suitable for color research, print production, and display calibration applications.
                 </p>
               </div>
               
@@ -301,6 +308,15 @@ export default function ToolsIndex() {
                 </h3>
                 <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                   OKLCH offers perceptual uniformity and consistency advantages. Unlike HSL, OKLCH ensures consistent brightness perception across all hues, making color adjustments more predictable. It supports wider color gamuts, provides better color mixing results, and complies with CSS Color Level 4 specifications, offering more advanced color handling capabilities for modern web design.
+                </p>
+              </div>
+
+              <div className="border-l-4 border-cyan-500 pl-8">
+                <h3 className="text-2xl font-semibold mb-4 text-gray-800 dark:text-white">
+                  When should I use XYZ and LAB color spaces?
+                </h3>
+                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                  CIE XYZ is the foundation color space for all other color spaces and is ideal for device-independent color representation. CIELAB (LAB) is perfect for perceptual color analysis, color difference calculations (Delta E), and quality control applications. Use XYZ to LAB conversion when you need perceptually uniform color measurements, and LAB to XYZ when converting measured colors back to device coordinates for display or printing.
                 </p>
               </div>
               
