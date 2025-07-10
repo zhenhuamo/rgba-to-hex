@@ -38,6 +38,8 @@ export default function ToolsIndex() {
         { name: 'RGB to LAB', href: '/tools/rgb-to-lab', color: 'from-rose-500 to-rose-600' },
         { name: 'XYZ to RGB', href: '/tools/xyz-to-rgb', color: 'from-blue-700 to-blue-800' },
         { name: 'XYZ to LAB', href: '/tools/xyz-to-lab', color: 'from-purple-700 to-purple-800' },
+        { name: 'XYZ to UV', href: '/tools/xyz-to-uv', color: 'from-teal-700 to-teal-800' },
+        { name: 'UV to XYZ', href: '/tools/uv-to-xyz', color: 'from-cyan-700 to-cyan-800' },
         { name: 'LAB to XYZ', href: '/tools/lab-to-xyz', color: 'from-indigo-700 to-indigo-800' },
         { name: 'CMYK to RGB', href: '/tools/cmyk-to-rgb', color: 'from-yellow-500 to-yellow-600' },
         { name: 'CMYK to RGBA', href: '/tools/cmyk-to-rgba', color: 'from-red-500 to-pink-500' },
@@ -166,6 +168,10 @@ export default function ToolsIndex() {
                         ? 'Convert HSV colors to RGBA format with alpha transparency control. Perfect for web design with HSV color selection, real-time RGBA output, and CSS-ready transparent color values.'
                         : tool.name === 'XYZ to LAB'
                         ? 'Convert CIE XYZ tristimulus values to CIELAB (LAB) perceptual color space. Professional tool using D65 illuminant standard with step-by-step formulas, programming examples, and comprehensive technical documentation for color scientists and designers.'
+                        : tool.name === 'XYZ to UV'
+                        ? 'Convert CIE XYZ color space to CIE 1960 UCS chromaticity coordinates (u, v) for professional color analysis, optical applications, and color temperature measurements. Features real-time calculations and comprehensive technical documentation.'
+                        : tool.name === 'UV to XYZ'
+                        ? 'Convert CIE 1960 UCS chromaticity coordinates (u, v) back to CIE XYZ color space with luminance input. Professional tool for colorimetric applications with detailed conversion formulas and programming examples.'
                         : tool.name === 'LAB to XYZ'
                         ? 'Convert CIELAB (LAB) perceptual colors to CIE XYZ tristimulus coordinates. Features accurate D65 illuminant conversion, real-time calculations, and detailed mathematical explanations for professional color management workflows.'
                         : tool.name === 'Octal Converter'

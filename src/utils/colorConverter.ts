@@ -60,6 +60,12 @@ export interface XYZ {
   z: number; // Z component (0-108.883 for D65 white point)
 }
 
+// 添加UV坐标接口定义 (CIE 1960 UCS)
+export interface UV {
+  u: number; // u chromaticity coordinate (0-1)
+  v: number; // v chromaticity coordinate (0-1)
+}
+
 export interface ColorSystemInfo {
   pantone?: string;
   isInGamut: boolean;
@@ -1142,4 +1148,97 @@ export function hexToOklab(hex: string): OKLAB {
   if (!rgba) return { l: 0, a: 0, b: 0 };
   const rgb = { r: rgba.r, g: rgba.g, b: rgba.b };
   return rgbToOklab(rgb);
+}
+
+// ==================== UV 坐标转换函数 (CIE 1960 UCS) ====================
+
+/**
+ * XYZ转UV坐标 (CIE 1960 UCS色度坐标)
+ * @param xyz XYZ颜色对象
+ * @returns UV坐标对象
+ */
+export function xyzToUv({ x, y, z }: XYZ): UV {
+  // 计算分母：X + 15Y + 3Z
+  const denominator = x + 15 * y + 3 * z;
+
+  // 处理边界情况：分母为零时返回原点
+  if (denominator === 0 || denominator < 1e-10) {
+    return { u: 0, v: 0 };
+  }
+
+  // CIE 1960 UCS 转换公式
+  const u = (4 * x) / denominator;
+  const v = (6 * y) / denominator;
+
+  return {
+    u: Math.round(u * 1000000) / 1000000, // 保留6位小数
+    v: Math.round(v * 1000000) / 1000000
+  };
+}
+
+/**
+ * UV坐标转XYZ (需要额外的Y值)
+ * 注意：这个转换需要理解UV坐标的本质 - 它们是色度坐标，不包含亮度信息
+ * @param uv UV坐标对象
+ * @param y Y值 (亮度值，通常为0-100)
+ * @returns XYZ颜色对象
+ */
+export function uvToXyz({ u, v }: UV, y: number): XYZ {
+  // 处理边界情况：v为零时无法计算
+  if (v === 0 || v < 1e-10) {
+    return { x: 0, y: 0, z: 0 };
+  }
+
+  // 确保Y值在合理范围内
+  y = Math.max(0, Math.min(100, y));
+
+  // 从UV坐标和Y值重构XYZ
+  // 基于 u = 4X/(X+15Y+3Z) 和 v = 6Y/(X+15Y+3Z) 的反向计算
+  // 设 D = X + 15Y + 3Z，则：
+  // u = 4X/D => X = uD/4
+  // v = 6Y/D => D = 6Y/v
+  // 因此：X = u * 6Y / (4v) = 1.5uY/v
+  // Z = (D - X - 15Y)/3 = (6Y/v - 1.5uY/v - 15Y)/3
+
+  const x = (1.5 * u * y) / v;
+  const z = (6 * y / v - x - 15 * y) / 3;
+
+  return {
+    x: Math.round(x * 1000) / 1000, // 保留3位小数
+    y: Math.round(y * 1000) / 1000,
+    z: Math.round(z * 1000) / 1000
+  };
+}
+
+/**
+ * 验证UV坐标值是否有效
+ * @param uv UV坐标对象
+ * @returns 是否有效
+ */
+export function isValidUv({ u, v }: UV): boolean {
+  return (
+    u >= 0 && u <= 1 &&
+    v >= 0 && v <= 1 &&
+    !isNaN(u) && !isNaN(v) &&
+    isFinite(u) && isFinite(v)
+  );
+}
+
+/**
+ * UV坐标格式化为字符串
+ * @param uv UV坐标对象
+ * @returns 格式化的字符串
+ */
+export function uvToString({ u, v }: UV): string {
+  return `uv(${u.toFixed(6)}, ${v.toFixed(6)})`;
+}
+
+/**
+ * XYZ转UV的CSS格式字符串
+ * @param xyz XYZ颜色对象
+ * @returns CSS格式的UV字符串
+ */
+export function xyzToUvCss(xyz: XYZ): string {
+  const uv = xyzToUv(xyz);
+  return uvToString(uv);
 }

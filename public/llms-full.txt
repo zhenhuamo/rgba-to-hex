@@ -668,6 +668,95 @@ Additional background information can be added here without using headings. Keep
 
   This LAB to XYZ converter serves as both a precision conversion tool and a comprehensive technical resource, providing color management professionals with the accuracy, documentation, and implementation guidance required for professional color reproduction and scientific color research applications.
   Please visit the page for complete features and more information.]
+- [XYZ to UV Converter](https://rgbatohex.com/tools/xyz-to-uv)
+  [Detailed Description:
+  **XYZ to UV Coordinates Converter - CIE 1960 UCS Chromaticity Tool**
+
+  This professional online tool provided by rgbatohex.com is specifically designed to convert CIE XYZ tristimulus values to CIE 1960 UCS (Uniform Chromaticity Scale) coordinates (u, v) for professional color analysis, optical applications, and color temperature measurements. Essential for LED characterization, lighting design, and optical device calibration in the lighting industry, this converter bridges the gap between device-independent XYZ measurements and industry-standard chromaticity specifications.
+
+  **Primary User Groups:**
+  This tool primarily serves professionals working in color science, lighting technology, and optical applications:
+  *   **Lighting Engineers & LED Manufacturers:** Professionals who need to convert measured XYZ values to UV coordinates for LED binning, color temperature calculations, and quality control in LED production.
+  *   **Color Scientists & Researchers:** Specialists working with colorimetric analysis, color difference studies, and perceptual uniformity research requiring CIE 1960 UCS coordinates.
+  *   **Display Technology Engineers:** Professionals involved in monitor calibration, display characterization, and color gamut analysis for screens and projectors.
+  *   **Optical Instrument Technicians:** Specialists working with colorimeters, spectrophotometers, and other optical measurement devices requiring UV coordinate output.
+  *   **Quality Control Specialists:** Manufacturing professionals ensuring color consistency and compliance with industry standards like ANSI C78.377.
+
+  **Core Features & Technical Characteristics:**
+  *   **High-Precision XYZ to UV Conversion:** Uses official CIE 1960 UCS transformation formulas ensuring industry-standard accuracy for professional applications.
+  *   **Real-time Interactive Converter:** Professional embedded tool with XYZ input controls, instant UV coordinate output, and comprehensive color preview functionality.
+  *   **Color Temperature Integration:** Detailed explanation of how UV coordinates are used for Correlated Color Temperature (CCT) calculations using Robertson's method and Planckian locus analysis.
+  *   **LED Industry Applications:** Comprehensive coverage of LED binning, color consistency control, and ANSI C78.377 standard compliance using UV coordinates.
+  *   **Mathematical Formula Documentation:** Complete explanation of the CIE 1960 UCS transformation including coefficients derivation and perceptual uniformity principles.
+  *   **Multi-Language Implementation:** Production-ready code examples in Python (NumPy), JavaScript (ES6+), C++, and Rust with comprehensive error handling and batch processing capabilities.
+
+  **Professional Applications & Industry Standards:**
+  *   **LED Manufacturing & Binning:** Essential for grouping LEDs by color consistency using MacAdam ellipses and ensuring uniform color appearance in LED products.
+  *   **Color Temperature Calculations:** Foundation for calculating Correlated Color Temperature (CCT) in Kelvin using the Planckian locus in the UV diagram.
+  *   **Lighting Standards Compliance:** Critical for meeting ANSI C78.377, IES LM-79, and other lighting industry standards for color specification and quality control.
+  *   **Display Calibration:** Used in professional monitor and projector calibration for accurate color reproduction and gamut mapping.
+  *   **Optical Instrument Calibration:** Essential for colorimeter and spectrophotometer setup, ensuring measurement accuracy and traceability.
+  *   **Color Science Research:** Fundamental for studies involving color difference calculations, perceptual uniformity analysis, and color appearance modeling.
+
+  **Technical Implementation & Educational Content:**
+  *   **CIE 1960 UCS Theory:** Comprehensive explanation of the Uniform Chromaticity Scale developed by David MacAdam and its advantages over CIE 1931 xy chromaticity.
+  *   **Perceptual Uniformity Benefits:** Detailed analysis of how UV coordinates provide better visual uniformity compared to traditional xy chromaticity coordinates.
+  *   **Mathematical Derivation:** Complete mathematical breakdown of the transformation formulas u = 4X/(X+15Y+3Z) and v = 6Y/(X+15Y+3Z) with coefficient explanations.
+  *   **Programming Best Practices:** Professional implementation guidance with error handling, edge case management, and performance optimization for batch processing.
+  *   **Industry Applications Guide:** Extensive documentation of real-world applications in LED manufacturing, lighting design, and color science research.
+
+  **Advanced Features & Professional Tools:**
+  *   **Comprehensive FAQ Section:** Detailed answers to technical questions about CIE 1960 UCS vs CIE 1976 UCS, LED manufacturing applications, and conversion accuracy.
+  *   **Color Temperature Workflow:** Step-by-step guidance for using UV coordinates in CCT calculations and lighting industry applications.
+  *   **Batch Processing Support:** Programming interfaces for automated conversion of large datasets in manufacturing and research environments.
+  *   **Educational Resources:** Extensive technical content covering color science principles, industry standards, and practical implementation guidance.
+
+  This XYZ to UV converter serves as both a precision conversion tool and a comprehensive educational resource, providing lighting professionals and color scientists with the accuracy, technical depth, and industry knowledge required for professional color analysis and LED manufacturing applications.
+  Please visit the page for complete features and more information.]
+- [UV to XYZ Converter](https://rgbatohex.com/tools/uv-to-xyz)
+  [Detailed Description:
+  **UV to XYZ Converter - CIE 1960 UCS to Tristimulus Values**
+
+  This professional online tool provided by rgbatohex.com is specifically designed to convert CIE 1960 UCS chromaticity coordinates (u, v) back to CIE XYZ tristimulus values with luminance input requirement. Essential for reconstructing full color information from chromaticity data in lighting design, LED manufacturing, and color science applications, this converter addresses the fundamental challenge of recovering three-dimensional color information from two-dimensional chromaticity coordinates.
+
+  **Primary User Groups:**
+  This tool primarily serves professionals working with chromaticity data who need to reconstruct complete color specifications:
+  *   **LED Manufacturing Engineers:** Professionals who need to convert measured UV coordinates back to XYZ values for color reconstruction and quality control verification.
+  *   **Spectral Analysis Specialists:** Technicians working with spectrophotometer UV output who need to reconstruct colors from chromaticity measurements.
+  *   **Display Calibration Experts:** Professionals involved in monitor and projector calibration who need to convert chromaticity coordinates to display-compatible XYZ values.
+  *   **Color Science Researchers:** Specialists working with colorimetric data analysis and color matching applications requiring chromaticity reconstruction.
+  *   **Optical Instrument Technicians:** Professionals working with colorimeters and measurement devices that output UV coordinates requiring XYZ conversion.
+
+  **Core Features & Technical Characteristics:**
+  *   **Chromaticity Reconstruction Mathematics:** Implements advanced mathematical algorithms for converting two-dimensional UV coordinates to three-dimensional XYZ values with luminance input.
+  *   **Luminance Requirement Explanation:** Comprehensive documentation of why Y (luminance) value is required for complete color reconstruction and practical guidelines for Y value selection.
+  *   **Real-time Interactive Converter:** Professional embedded tool with UV coordinate input, luminance specification, and instant XYZ output with mathematical breakdown.
+  *   **Mathematical Formula Documentation:** Complete derivation of reconstruction formulas including X = (1.5 × u × Y) / v and Z = (6Y/v - X - 15Y) / 3 with step-by-step explanations.
+  *   **Edge Case Handling:** Comprehensive treatment of mathematical edge cases including v = 0 scenarios and appropriate error handling strategies.
+  *   **Multi-Language Implementation:** Production-ready code examples in Python and JavaScript with comprehensive error handling, input validation, and batch processing capabilities.
+
+  **Professional Applications & Use Cases:**
+  *   **LED Color Reconstruction:** Converting measured UV coordinates back to XYZ for LED color verification and quality control in manufacturing processes.
+  *   **Spectral Data Processing:** Processing spectrophotometer UV output to reconstruct complete color information for material analysis and color matching.
+  *   **Display Color Management:** Converting chromaticity coordinates to XYZ values for monitor calibration and color gamut analysis in professional display workflows.
+  *   **Color Matching Applications:** Reconstructing colors from chromaticity data for color matching and reproduction in various industrial applications.
+  *   **Research Data Analysis:** Converting measured chromaticity coordinates to XYZ for scientific color research and colorimetric analysis.
+
+  **Technical Implementation & Educational Content:**
+  *   **Chromaticity Theory:** Detailed explanation of why UV coordinates only contain chromaticity information and how luminance must be provided separately.
+  *   **Dimensionality Analysis:** Comprehensive coverage of the mathematical challenge of converting 2D chromaticity to 3D color space and the role of luminance in reconstruction.
+  *   **Practical Y Value Guidelines:** Professional guidance for selecting appropriate luminance values including typical ranges for different applications and materials.
+  *   **Mathematical Derivation:** Complete step-by-step derivation of the reconstruction formulas from the forward CIE 1960 UCS transformation equations.
+  *   **Programming Best Practices:** Professional implementation guidance with error handling, input validation, and performance optimization for production environments.
+
+  **Advanced Features & Professional Tools:**
+  *   **Comprehensive FAQ Section:** Detailed answers to technical questions about luminance requirements, conversion accuracy, and edge case handling.
+  *   **Professional Applications Guide:** Extensive documentation of real-world use cases in LED manufacturing, spectral analysis, and display calibration.
+  *   **Batch Processing Support:** Programming interfaces for automated conversion of large chromaticity datasets in research and manufacturing environments.
+  *   **Educational Resources:** Extensive technical content covering chromaticity reconstruction principles, mathematical foundations, and practical implementation guidance.
+
+  This UV to XYZ converter serves as both a precision reconstruction tool and a comprehensive educational resource, providing color professionals with the mathematical understanding and practical tools required for accurate chromaticity-to-color conversion in professional applications.
+  Please visit the page for complete features and more information.]
 - [XYZ to RGB Guide](https://rgbatohex.com/tools/xyz-to-rgb)
   [Detailed Description:
   **XYZ to RGB Comprehensive Color Science Guide**
