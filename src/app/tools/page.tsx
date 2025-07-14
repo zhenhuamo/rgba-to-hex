@@ -94,6 +94,7 @@ export default function ToolsIndex() {
       description: "Professional text processing, encoding conversion, and font beautification tools for designers and developers",
       icon: "📝",
       tools: [
+        { name: 'Text to Handwriting', href: '/tools/text-to-handwriting', color: 'from-indigo-500 to-indigo-600' },
         { name: 'Font Generator', href: '/tools/font-generator', color: 'from-purple-500 to-purple-600' },
         { name: 'Text to Binary', href: '/tools/text-to-binary', color: 'from-blue-500 to-blue-600' },
         { name: 'Binary to Text', href: '/tools/binary-to-text', color: 'from-green-500 to-green-600' }
