@@ -68,6 +68,7 @@ export default function Navigation() {
     {
       category: "color tools",
       tools: [
+        { name: 'EyeDropper Tool', href: '/tools/eyedropper-tool', color: 'bg-red-500' },
         { name: 'Color Name Finder', href: '/tools/color-name', color: 'bg-cyan-600' },
         { name: 'Color Wheel', href: '/tools/color-wheel', color: 'bg-amber-500' },
         { name: 'Color Picker', href: '/tools/color-picker-embed', color: 'bg-lime-600' },

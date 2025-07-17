@@ -54,6 +54,7 @@ export default function ToolsIndex() {
       description: "Professional color tools for palette generation, contrast checking, color wheels, and gradient creation to help designers and developers create and manage color schemes",
       icon: "🎨",
       tools: [
+        { name: 'EyeDropper Tool', href: '/tools/eyedropper-tool', color: 'from-red-500 to-red-600' },
         { name: 'Color Wheel', href: '/tools/color-wheel', color: 'from-amber-500 to-amber-600' },
         { name: 'Color Picker', href: '/tools/color-picker-embed', color: 'from-lime-500 to-lime-600' },
         { name: 'Color Name', href: '/tools/color-name', color: 'from-violet-500 to-violet-600' },

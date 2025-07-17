@@ -5,6 +5,7 @@
 Additional background information can be added here without using headings. Keep it concise and clear.
 
 ## Core Features
+- [EyeDropper Tool](https://rgbatohex.com/tools/eyedropper-tool): Professional online eyedropper tool for designers and developers to pick colors from anywhere on screen with pixel-perfect accuracy. Get HEX, RGB, HSL, OKLCH codes instantly using native browser EyeDropper API. Features color history, keyboard shortcuts (Ctrl+E), multiple format support, and works without installation in Chrome/Edge browsers. Alternative to Chrome extensions with enhanced privacy and security.
 - [HEX to RGBA Converter](https://rgbatohex.com/tools/hex-to-rgba): Convert hexadecimal color codes (with or without alpha) to RGBA format.
 - [HEX to HSL Converter](https://rgbatohex.com/tools/hex-to-hsl): Convert hexadecimal color codes to HSL (Hue, Saturation, Lightness) format for more intuitive color adjustments.
 - [HSL to HEX Converter](https://rgbatohex.com/tools/hsl-to-hex): Convert HSL color values to hexadecimal color codes.

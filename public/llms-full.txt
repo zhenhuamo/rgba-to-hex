@@ -5,6 +5,70 @@
 Additional background information can be added here without using headings. Keep it concise and clear.
 
 ## Core Features
+- [EyeDropper Tool](https://rgbatohex.com/tools/eyedropper-tool)
+  [Detailed Description:
+  **Professional Online EyeDropper Tool - Instant Color Picker**
+
+  This advanced online eyedropper tool provided by rgbatohex.com is designed for designers and developers who need to pick colors from anywhere on their screen with pixel-perfect accuracy. Using the native browser EyeDropper API, this tool provides instant access to color values in multiple professional formats including HEX, RGB, HSL, and OKLCH.
+
+  **Primary User Groups:**
+  This tool is perfectly suited for:
+  * Web Designers and UI/UX Designers: For color matching, brand color extraction, and design system creation
+  * Frontend Developers: For debugging CSS colors, extracting design colors, and color specification documentation
+  * Digital Artists and Illustrators: For color sampling from reference images and creating custom palettes
+  * Brand Designers and Marketers: For competitor color analysis and brand consistency maintenance
+  * Accessibility Specialists: For color contrast testing and WCAG compliance verification
+  * Print Designers: For converting screen colors to print specifications
+
+  **Core Features and Characteristics:**
+  * Native Browser API Integration: Uses the modern EyeDropper Web API for system-level color picking
+  * Multi-Format Support: Instantly get color values in HEX, RGB, HSL, and OKLCH formats
+  * Color History Management: Automatically saves up to 12 recent colors with local storage
+  * One-Click Copy: Copy any color format to clipboard with a single click
+  * Keyboard Shortcuts: Quick activation with Ctrl+E (Cmd+E on Mac) for faster workflow
+  * No Installation Required: Works directly in supported browsers without extensions
+  * Privacy-First Design: All data stored locally, no server uploads or tracking
+  * Responsive Design: Works perfectly on desktop, tablet, and mobile devices
+  * Accessibility Features: Full keyboard navigation and screen reader support
+
+  **Browser Compatibility:**
+  * Fully Supported: Chrome 95+, Edge 95+, Opera 81+, Brave Browser, Vivaldi
+  * Operating Systems: Windows 10/11, macOS 10.15+, Linux distributions, Chrome OS
+  * Alternative Solutions: For unsupported browsers, provides links to compatible color picker tools
+
+  **Advanced Technical Features:**
+  * Pixel-Perfect Accuracy: Native API provides exact color values from display
+  * Color Space Conversions: Real-time conversion using industry-standard algorithms
+  * Perceptually Uniform Colors: OKLCH support for modern color workflows
+  * Mathematical Precision: Accurate color space transformations with proper rounding
+
+  **Educational Content and Resources:**
+  The page includes comprehensive educational content:
+  * Step-by-step usage guide with visual examples
+  * Detailed comparison with Chrome extensions and desktop software
+  * Complete browser compatibility information and troubleshooting
+  * In-depth color format explanations (HEX, RGB, HSL, OKLCH)
+  * Professional use cases across different industries
+  * Frequently Asked Questions (FAQ) section
+  * Technical implementation details and API documentation
+  * Privacy and security features explanation
+
+  **Use Cases and Applications:**
+  * Web Development: Color matching from existing websites, CSS debugging, design implementation
+  * UI/UX Design: Design system creation, color palette development, accessibility testing
+  * Digital Art: Reference color sampling, mood board creation, color studies
+  * Brand Management: Competitor analysis, brand consistency verification, color documentation
+  * Print Design: Screen-to-print color conversion, color specification documentation
+  * Accessibility Testing: Color contrast verification, WCAG compliance checking
+
+  **Embedding and Integration:**
+  * Iframe Embedding: Easy integration into websites and applications
+  * Customizable Dimensions: Flexible sizing options for different use cases
+  * API Documentation: Complete implementation guides for developers
+  * No Registration Required: Immediate access without account creation
+
+  This tool represents a modern, secure, and professional alternative to browser extensions, providing enhanced functionality with better privacy protection and cross-platform compatibility.
+  Please visit the page for complete features and detailed documentation.]
 - [HEX to RGBA Converter](https://rgbatohex.com/tools/hex-to-rgba)
   [Detailed Description:
   **HEX to RGBA Color Converter**
