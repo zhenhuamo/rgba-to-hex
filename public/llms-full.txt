@@ -1595,6 +1595,89 @@ Additional background information can be added here without using headings. Keep
 
   This color harmony generator is not just a simple color matching tool, but a professional color system design platform that integrates education, creation, and practicality. By combining color theory with practical functionality, it helps users create professional color schemes that comply with aesthetic principles and suit specific application scenarios, thereby improving design quality and efficiency.
   Please visit the page for complete features and more information.]
+- [Image Inverter (EN)](https://rgbatohex.com/tools/en/invert-image)
+  [Detailed Description:
+  **Professional Online Image Color Inverter - Advanced Digital Image Processing Tool**
+
+  This comprehensive online image color inverter provided by rgbatohex.com is designed for photographers, designers, digital artists, and content creators who need professional-grade image color inversion capabilities. The tool combines advanced image processing algorithms with an intuitive user interface, offering multiple inversion modes and precise control over the color transformation process.
+
+  **Primary User Groups:**
+  *   **Digital Photographers:** Professional and amateur photographers creating artistic effects, film negative simulations, and creative photo manipulations.
+  *   **Graphic Designers:** Design professionals working on poster design, album covers, artistic projects, and visual effects requiring color inversion.
+  *   **Web Developers & UI Designers:** Frontend developers and designers creating dark mode interfaces, accessibility features, and visual effects for web applications.
+  *   **Digital Artists & Illustrators:** Creative professionals exploring artistic effects, creating unique visual styles, and experimenting with color transformations.
+  *   **Content Creators:** Social media creators, bloggers, and digital marketers creating eye-catching visual content and artistic effects.
+  *   **Accessibility Specialists:** Professionals working on high contrast interfaces and accessibility-compliant design solutions.
+
+  **Core Features & Advanced Capabilities:**
+  *   **Multiple Inversion Modes:** Comprehensive selection including negative effect, brightness inversion, partial inversion, and custom channel control for diverse creative needs.
+  *   **Individual RGB Channel Control:** Advanced feature allowing selective inversion of red, green, or blue channels for precise color manipulation and artistic effects.
+  *   **Transparency Preservation:** Intelligent alpha channel handling that maintains image transparency while applying color transformations.
+  *   **Real-time Preview:** Instant visual feedback with side-by-side comparison between original and processed images for accurate results.
+  *   **Intensity Control:** Adjustable inversion strength from 0-100% allowing for subtle effects and partial color transformations.
+  *   **High-Quality Processing:** Advanced algorithms ensuring professional-grade results with minimal quality loss and accurate color reproduction.
+  *   **Multiple Format Support:** Compatible with JPEG, PNG, WebP, and other common image formats with automatic format detection.
+  *   **Instant Download:** One-click download of processed images in original quality and format.
+
+  **Technical Implementation & Educational Content:**
+  *   **Color Inversion Theory:** Comprehensive explanation of color inversion principles, mathematical formulas, and technical implementation details.
+  *   **RGB Channel Mathematics:** Detailed documentation of individual channel processing algorithms and color space transformations.
+  *   **Browser-based Processing:** Client-side image processing ensuring privacy and security with no server uploads required.
+  *   **Performance Optimization:** Efficient algorithms supporting high-resolution images with fast processing times.
+
+  **Professional Applications:**
+  *   **Artistic Photography:** Creating film negative effects, surreal artistic images, and experimental photography styles.
+  *   **Dark Mode Design:** Generating inverted versions of images for dark theme interfaces and accessibility compliance.
+  *   **Print Design:** Creating high-contrast effects for posters, brochures, and artistic print materials.
+  *   **Digital Art Creation:** Exploring color relationships, creating unique visual effects, and artistic experimentation.
+  *   **Accessibility Enhancement:** Improving image visibility for users with visual impairments through high-contrast transformations.
+
+  This professional image inverter combines cutting-edge technology with user-friendly design, providing both casual users and professionals with powerful tools for creative image transformation and practical applications.
+  Please visit the page for complete features and more information.]
+- [Invertir Imagen (ES)](https://rgbatohex.com/tools/es/invertir-imagen)
+  [Detailed Description:
+  **Herramienta Profesional para Invertir Colores de Imagen - Procesamiento Digital Avanzado**
+
+  Esta herramienta integral para invertir colores de imagen en línea proporcionada por rgbatohex.com está diseñada para fotógrafos, diseñadores, artistas digitales y creadores de contenido que necesitan capacidades profesionales de inversión de colores de imagen. La herramienta combina algoritmos avanzados de procesamiento de imágenes con una interfaz de usuario intuitiva, ofreciendo múltiples modos de inversión y control preciso sobre el proceso de transformación de colores.
+
+  **Grupos de Usuarios Principales:**
+  *   **Fotógrafos Digitales:** Profesionales y aficionados creando efectos artísticos, simulaciones de negativos fotográficos y manipulaciones creativas de fotos.
+  *   **Diseñadores Gráficos:** Profesionales del diseño trabajando en diseño de carteles, portadas de álbumes, proyectos artísticos y efectos visuales que requieren inversión de colores.
+  *   **Desarrolladores Web y Diseñadores UI:** Desarrolladores frontend y diseñadores creando interfaces de modo oscuro, características de accesibilidad y efectos visuales para aplicaciones web.
+  *   **Artistas Digitales e Ilustradores:** Profesionales creativos explorando efectos artísticos, creando estilos visuales únicos y experimentando con transformaciones de color.
+  *   **Creadores de Contenido:** Creadores de redes sociales, bloggers y especialistas en marketing digital creando contenido visual llamativo y efectos artísticos.
+
+  **Características Principales y Capacidades Avanzadas:**
+  *   **Múltiples Modos de Inversión:** Selección integral incluyendo efecto negativo, inversión de brillo, inversión parcial y control de canales personalizados para diversas necesidades creativas.
+  *   **Control Individual de Canales RGB:** Característica avanzada que permite inversión selectiva de canales rojo, verde o azul para manipulación precisa de colores y efectos artísticos.
+  *   **Preservación de Transparencia:** Manejo inteligente del canal alfa que mantiene la transparencia de la imagen mientras aplica transformaciones de color.
+  *   **Vista Previa en Tiempo Real:** Retroalimentación visual instantánea con comparación lado a lado entre imágenes originales y procesadas para resultados precisos.
+  *   **Control de Intensidad:** Fuerza de inversión ajustable del 0-100% permitiendo efectos sutiles y transformaciones parciales de color.
+
+  Esta herramienta profesional para invertir imágenes combina tecnología de vanguardia con diseño fácil de usar, proporcionando tanto a usuarios casuales como profesionales herramientas poderosas para transformación creativa de imágenes y aplicaciones prácticas.
+  Por favor visite la página para características completas y más información.]
+- [Inverter Imagem (PT)](https://rgbatohex.com/tools/pt/inverter-imagem)
+  [Detailed Description:
+  **Ferramenta Profissional para Inverter Cores de Imagem - Processamento Digital Avançado**
+
+  Esta ferramenta abrangente para inverter cores de imagem online fornecida pelo rgbatohex.com é projetada para fotógrafos, designers, artistas digitais e criadores de conteúdo que precisam de capacidades profissionais de inversão de cores de imagem. A ferramenta combina algoritmos avançados de processamento de imagem com uma interface de usuário intuitiva, oferecendo múltiplos modos de inversão e controle preciso sobre o processo de transformação de cores.
+
+  **Grupos de Usuários Principais:**
+  *   **Fotógrafos Digitais:** Profissionais e amadores criando efeitos artísticos, simulações de negativos fotográficos e manipulações criativas de fotos.
+  *   **Designers Gráficos:** Profissionais de design trabalhando em design de pôsteres, capas de álbuns, projetos artísticos e efeitos visuais que requerem inversão de cores.
+  *   **Desenvolvedores Web e Designers UI:** Desenvolvedores frontend e designers criando interfaces de modo escuro, recursos de acessibilidade e efeitos visuais para aplicações web.
+  *   **Artistas Digitais e Ilustradores:** Profissionais criativos explorando efeitos artísticos, criando estilos visuais únicos e experimentando com transformações de cor.
+  *   **Criadores de Conteúdo:** Criadores de redes sociais, blogueiros e especialistas em marketing digital criando conteúdo visual atrativo e efeitos artísticos.
+
+  **Características Principais e Capacidades Avançadas:**
+  *   **Múltiplos Modos de Inversão:** Seleção abrangente incluindo efeito negativo, inversão de brilho, inversão parcial e controle de canais personalizados para diversas necessidades criativas.
+  *   **Controle Individual de Canais RGB:** Recurso avançado permitindo inversão seletiva de canais vermelho, verde ou azul para manipulação precisa de cores e efeitos artísticos.
+  *   **Preservação de Transparência:** Manuseio inteligente do canal alfa que mantém a transparência da imagem enquanto aplica transformações de cor.
+  *   **Visualização em Tempo Real:** Feedback visual instantâneo com comparação lado a lado entre imagens originais e processadas para resultados precisos.
+  *   **Controle de Intensidade:** Força de inversão ajustável de 0-100% permitindo efeitos sutis e transformações parciais de cor.
+
+  Esta ferramenta profissional para inverter imagens combina tecnologia de ponta com design fácil de usar, fornecendo tanto a usuários casuais quanto profissionais ferramentas poderosas para transformação criativa de imagens e aplicações práticas.
+  Por favor visite a página para recursos completos e mais informações.]
 - [Blog](https://rgbatohex.com/blog): Articles about color theory, color tool usage tips, and color conversion tutorials.
 
 ## Common Resources

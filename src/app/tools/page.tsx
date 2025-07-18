@@ -84,10 +84,13 @@ export default function ToolsIndex() {
     },
     {
       category: "Image Tools",
-      description: "Practical image processing tools offering cropping, adjustment, and optimization features",
+      description: "Practical image processing tools offering cropping, adjustment, color inversion, and optimization features",
       icon: "🖼️",
       tools: [
         { name: 'Image Crop Tool', href: '/tools/image-crop-landing', color: 'from-blue-600 to-blue-700' },
+        { name: 'Image Inverter (EN)', href: '/tools/en/invert-image', color: 'from-purple-600 to-purple-700' },
+        { name: 'Invertir Imagen (ES)', href: '/tools/es/invertir-imagen', color: 'from-red-600 to-red-700' },
+        { name: 'Inverter Imagem (PT)', href: '/tools/pt/inverter-imagem', color: 'from-green-600 to-green-700' },
       ]
     },
     {

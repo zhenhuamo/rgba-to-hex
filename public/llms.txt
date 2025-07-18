@@ -47,6 +47,9 @@ Additional background information can be added here without using headings. Keep
 - [Color Wheel Tool](https://rgbatohex.com/tools/color-wheel): Interactive color wheel to assist with color selection.
 - [Color Picker Embed](https://rgbatohex.com/tools/color-picker-embed): Embeddable color picker tool.
 - [Image Crop Tool](https://rgbatohex.com/tools/image-crop-landing): Online image cropping tool.
+- [Image Inverter (EN)](https://rgbatohex.com/tools/en/invert-image): Professional online image color inverter with advanced features including multiple inversion modes (negative, brightness, partial), individual RGB channel control, transparency preservation, and real-time preview. Supports various image formats with instant download capability.
+- [Invertir Imagen (ES)](https://rgbatohex.com/tools/es/invertir-imagen): Herramienta profesional para invertir colores de imagen en línea con características avanzadas incluyendo múltiples modos de inversión, control individual de canales RGB, preservación de transparencia y vista previa en tiempo real.
+- [Inverter Imagem (PT)](https://rgbatohex.com/tools/pt/inverter-imagem): Ferramenta profissional para inverter cores de imagem online com recursos avançados incluindo múltiplos modos de inversão, controle individual de canais RGB, preservação de transparência e visualização em tempo real.
 - [RGB to HSV Converter](https://rgbatohex.com/tools/rgb-to-hsv): Convert RGB color values to HSV format.
 - [RGB to HEX Converter](https://rgbatohex.com/tools/rgb-to-hex): Convert RGB color values to hexadecimal color codes.
 - [HSV to RGB Converter](https://rgbatohex.com/tools/hsv-to-rgb): Convert HSV color values to RGB format.
