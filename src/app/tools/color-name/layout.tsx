@@ -52,7 +52,10 @@ export const metadata: Metadata = {
     title: 'Color Name Finder: HEX to Name, RGB to Name & CSS Color List',
     description: 'The ultimate color name finder tool. Convert HEX or RGB to a color name, browse the complete HTML & CSS color name list, and find the perfect name for any color. Support for multiple color systems including Pantone, Matplotlib, and web safe colors.',
     type: 'website'
-  }
+  },
+  alternates: {
+    canonical: "/tools/color-name",
+  },
 };
 
 export default function ColorNameLayout({

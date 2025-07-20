@@ -1,27 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import Head from 'next/head';
 import Navigation from '@/components/Navigation';
 
 export default function ColorMixerPage() {
   const [showEmbedCode, setShowEmbedCode] = useState(false);
 
   return (
-    <>
-      <Head>
-        <title>Color Mixer Online | Mix & Blend Colors with Free RGB, HEX Color Tool</title>
-        <meta name="description" content="Free online color mixer tool to blend RGB, HEX colors for your design projects. Create perfect color combinations with our advanced color mixer chart and simulator." />
-        <meta name="keywords" content="color mixer, color mixer online, color mixer tool, color mixer hex, color mixer rgb, color mixer chart, color mixer game, color mixer for kids, color mixer online from image, color mixer photoshop, color mixer machine price" />
-        <meta property="og:title" content="Color Mixer Online | Mix & Blend Colors with Free RGB, HEX Color Tool" />
-        <meta property="og:description" content="Create custom color combinations with our free online color mixer. Mix RGB and HEX colors, save your palettes, and export for your design projects." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://rgbatohex.com/tools/color-mixer" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Color Mixer Online | Mix & Blend Colors with Free RGB, HEX Color Tool" />
-        <meta name="twitter:description" content="Create custom color combinations with our free online color mixer. Perfect for designers, artists, and educators." />
-        <link rel="canonical" href="https://rgbatohex.com/tools/color-mixer" />
-      </Head>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 py-8">
@@ -345,6 +330,5 @@ export default function ColorMixerPage() {
           </div>
         </div>
       </div>
-    </>
   );
 }

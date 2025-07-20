@@ -1,28 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import Head from 'next/head';
 import Navigation from '@/components/Navigation';
-
 
 export default function ColorBlindnessPage() {
   const [showEmbedCode, setShowEmbedCode] = useState(false);
 
   return (
-    <>
-      <Head>
-        <title>Color Blindness Simulator | Online Tool for Images and Design Testing</title>
-        <meta name="description" content="Free online color blindness simulator for images and designs. Upload images or test colors to see how they appear to people with protanopia, deuteranopia, tritanopia and other color vision deficiencies." />
-        <meta name="keywords" content="color blindness simulator, color blindness simulator online, color blindness simulator for images, color blindness simulator upload image, color blindness simulator app, color blindness simulator chrome, color blindness simulator extension, color blindness simulator plugin, color blindness simulator figma, color blindness simulator mac, color blindness simulator glasses" />
-        <meta property="og:title" content="Color Blindness Simulator | Online Tool for Images and Design Testing" />
-        <meta property="og:description" content="Upload images or test colors to see how they appear to people with various types of color vision deficiency." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://rgbatohex.com/tools/color-blindness-simulator" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Color Blindness Simulator | Online Testing Tool for Designers" />
-        <meta name="twitter:description" content="Free online color blindness simulator tool to test colors and images for accessibility" />
-        <link rel="canonical" href="https://rgbatohex.com/tools/color-blindness-simulator" />
-      </Head>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
         <div className="container mx-auto px-4 py-8">
@@ -315,6 +299,5 @@ export default function ColorBlindnessPage() {
           </div>
         </div>
       </div>
-    </>
   );
 }
