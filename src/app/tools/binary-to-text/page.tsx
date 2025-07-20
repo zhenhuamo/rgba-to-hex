@@ -1,19 +1,5 @@
 import Navigation from '@/components/Navigation';
 
-export const metadata = {
-  title: 'Binary to Text Converter & Binary Decoder - Convert Binary Code to English Text | Free Online Tool',
-  description: 'Convert binary to text instantly with our free binary decoder and converter. Decode binary code to English, translate binary language to readable text, and convert binary numbers online.',
-  keywords: 'binary to text converter, convert binary to text, binary decoder, decode binary code, binary language translator, binary code translator to text, binary to English translator, binary code converter, from binary to text',
-  openGraph: {
-    title: 'Binary to Text Converter & Binary Decoder - Convert Binary Code to English',
-    description: 'Free online binary to text converter and decoder. Convert binary code to readable English text instantly with our binary language translator.',
-    type: 'website',
-  },
-  alternates: {
-    canonical: 'https://rgba-to-hex.com/tools/binary-to-text'
-  }
-};
-
 export default function BinaryToText() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
