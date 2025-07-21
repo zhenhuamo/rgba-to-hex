@@ -286,22 +286,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
-    // 图像反转工具 - 新的多语言结构
-    // 英语版本
     {
       url: `${baseUrl}/tools/en/invert-image`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
-    // 西班牙语版本
     {
       url: `${baseUrl}/tools/es/invertir-imagen`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
-    // 葡萄牙语版本
+    
     {
       url: `${baseUrl}/tools/pt/inverter-imagem`,
       lastModified: new Date(),
