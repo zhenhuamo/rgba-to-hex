@@ -84,9 +84,10 @@ export default function ToolsIndex() {
     },
     {
       category: "Image Tools",
-      description: "Practical image processing tools offering cropping, adjustment, color inversion, and optimization features",
+      description: "Practical image processing tools offering blur effects, cropping, adjustment, color inversion, and optimization features",
       icon: "🖼️",
       tools: [
+        { name: 'Image Blur Tool', href: '/tools/image-blur', color: 'from-indigo-600 to-indigo-700' },
         { name: 'Image Crop Tool', href: '/tools/image-crop-landing', color: 'from-blue-600 to-blue-700' },
         { name: 'Image Inverter (EN)', href: '/tools/en/invert-image', color: 'from-purple-600 to-purple-700' },
         { name: 'Invertir Imagen (ES)', href: '/tools/es/invertir-imagen', color: 'from-red-600 to-red-700' },
@@ -167,7 +168,9 @@ export default function ToolsIndex() {
                       </h3>
                     </div>
                     <p className="text-gray-600 dark:text-gray-300">
-                      {tool.name === 'HSL to CMYK'
+                      {tool.name === 'Image Blur Tool'
+                        ? 'Professional online blur image tool with multiple blur effects including Gaussian blur, motion blur, background blur, and selective blur. Learn how to blur image online free with real-time preview, adjustable parameters, and instant download. Perfect for privacy protection, artistic effects, and professional photo editing.'
+                        : tool.name === 'HSL to CMYK'
                         ? 'Convert HSL colors to CMYK format for professional printing. Features intuitive HSL color selection with real-time CMYK output and ink coverage warnings for print-ready designs.'
                         : tool.name === 'HSV to RGBA'
                         ? 'Convert HSV colors to RGBA format with alpha transparency control. Perfect for web design with HSV color selection, real-time RGBA output, and CSS-ready transparent color values.'

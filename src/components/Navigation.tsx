@@ -97,6 +97,7 @@ export default function Navigation() {
     {
       category: "image tools",
       tools: [
+        { name: 'Image Blur Tool', href: '/tools/image-blur', color: 'bg-indigo-600' },
         { name: 'Image Crop Tool', href: '/tools/image-crop-landing', color: 'bg-blue-600' },
         { name: 'Image Inverter (EN)', href: '/tools/en/invert-image', color: 'bg-purple-600' },
         { name: 'Invertir Imagen (ES)', href: '/tools/es/invertir-imagen', color: 'bg-red-600' },

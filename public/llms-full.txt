@@ -69,6 +69,83 @@ Additional background information can be added here without using headings. Keep
 
   This tool represents a modern, secure, and professional alternative to browser extensions, providing enhanced functionality with better privacy protection and cross-platform compatibility.
   Please visit the page for complete features and detailed documentation.]
+- [Image Blur Tool](https://rgbatohex.com/tools/image-blur)
+  [Detailed Description:
+  **Professional Online Image Blur Tool - Multiple Blur Effects**
+
+  This comprehensive online image blur tool provided by rgbatohex.com is designed for users who need to apply professional blur effects to their images. The tool offers multiple blur algorithms including Gaussian blur, motion blur, background blur, and selective blur, providing a complete solution for privacy protection, artistic effects, and professional photo editing needs.
+
+  **Primary User Groups:**
+  This tool is perfectly suited for:
+  * Content Creators and Social Media Managers: For creating engaging visual content with artistic blur effects and privacy protection
+  * Photographers and Digital Artists: For adding professional blur effects, depth of field simulation, and creative artistic touches
+  * Privacy-Conscious Users: For blurring sensitive information like faces, license plates, and personal details in photos
+  * Web Designers and UI/UX Professionals: For creating background blur effects, hero images, and visual hierarchy in designs
+  * Marketing Professionals: For creating eye-catching promotional materials with selective focus and blur effects
+  * Bloggers and Content Writers: For enhancing article images with professional blur effects and privacy protection
+
+  **Core Features and Characteristics:**
+  * Multiple Blur Algorithms: Supports Gaussian blur, motion blur, stack blur, and selective blur for different creative needs
+  * Real-time Preview: Instant preview of blur effects with adjustable parameters for precise control
+  * Privacy Protection: Perfect for blurring faces, license plates, and sensitive information while maintaining image quality
+  * Professional Quality: High-quality blur algorithms that maintain image integrity and natural appearance
+  * No Upload Required: All processing happens locally in your browser for maximum privacy and security
+  * Instant Download: Immediate download of processed images in original quality and format
+  * Mobile Responsive: Works perfectly on desktop, tablet, and mobile devices with touch-friendly controls
+  * Multiple Format Support: Supports JPEG, PNG, WebP, and other common image formats
+
+  **Advanced Blur Effects:**
+  * Gaussian Blur: Professional smooth blur effect perfect for background blur and artistic effects
+  * Motion Blur: Dynamic movement effects with adjustable angle and distance for speed and action simulation
+  * Background Blur: Portrait-style background blur for creating depth of field and focus effects
+  * Stack Blur: Fast, high-quality blur processing optimized for performance and visual quality
+  * Selective Blur: Precise control over which parts of the image to blur while keeping other areas sharp
+
+  **Technical Features:**
+  * Client-side Processing: All image processing happens in your browser using advanced Canvas API and WebGL acceleration
+  * Real-time Parameter Adjustment: Interactive sliders for blur radius, angle, distance, and intensity with live preview
+  * Preset Effects: Quick-access presets for common blur effects like light blur, heavy blur, portrait blur, and speed effects
+  * Batch Processing Support: Efficient processing of multiple images with consistent blur settings
+  * High Performance: Optimized algorithms for fast processing even with large images
+  * Memory Management: Efficient memory usage and cleanup to prevent browser slowdowns
+
+  **Privacy and Security Features:**
+  * No Server Upload: Images never leave your device, ensuring complete privacy and data security
+  * Local Processing: All blur effects are applied locally using browser technology
+  * No Data Collection: No tracking, analytics, or data collection of any kind
+  * Secure by Design: No external dependencies or third-party services required
+  * GDPR Compliant: Fully compliant with privacy regulations as no personal data is processed
+
+  **Educational Content and Resources:**
+  The page includes comprehensive educational content:
+  * Step-by-step tutorials for each blur effect type with visual examples
+  * Best practices for privacy protection and sensitive information blurring
+  * Creative applications and artistic techniques using different blur effects
+  * Technical explanations of blur algorithms and their optimal use cases
+  * Comparison with professional software like Photoshop and GIMP
+  * Mobile photography tips and blur effect applications
+  * Accessibility considerations and inclusive design practices
+
+  **Use Cases and Applications:**
+  * Social Media Content: Create engaging posts with artistic blur effects and privacy protection
+  * Photography Enhancement: Add professional depth of field and focus effects to photos
+  * Privacy Protection: Blur faces, license plates, and sensitive information in shared images
+  * Web Design: Create background images and hero sections with professional blur effects
+  * Marketing Materials: Enhance promotional images with selective focus and artistic blur
+  * Blog Content: Improve article images with professional blur effects and visual hierarchy
+  * E-commerce: Create product images with background blur for better focus on items
+  * Documentation: Blur sensitive information in screenshots and documentation images
+
+  **Professional Applications:**
+  * Portrait Photography: Create professional background blur effects similar to expensive camera lenses
+  * Street Photography: Protect privacy while maintaining artistic integrity of urban photography
+  * Product Photography: Enhance product focus with background blur and selective sharpness
+  * Event Photography: Blur faces for privacy compliance while maintaining event atmosphere
+  * Real Estate: Create appealing property images with selective blur for visual enhancement
+  * Corporate Communications: Blur sensitive information in business documentation and presentations
+
+  This image blur tool represents a comprehensive solution for both creative and practical image blurring needs, combining professional-quality algorithms with user-friendly interface design and complete privacy protection.
+  Please visit the page for complete features and detailed documentation.]
 - [HEX to RGBA Converter](https://rgbatohex.com/tools/hex-to-rgba)
   [Detailed Description:
   **HEX to RGBA Color Converter**
