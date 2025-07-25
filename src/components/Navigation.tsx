@@ -81,7 +81,9 @@ export default function Navigation() {
         { name: 'Color Blindness Simulator', href: '/tools/color-blindness-simulator', color: 'bg-teal-500' },
         { name: 'Image Color Extractor', href: '/tools/image-color-extractor', color: 'bg-rose-500' },
         { name: 'Color Mixer', href: '/tools/color-mixer', color: 'bg-emerald-500' },
-        { name: 'Mixbox Paint Mixer', href: '/tools/mixer-painter', color: 'bg-violet-500' }
+        { name: 'Mixbox Paint Mixer', href: '/tools/mixer-painter', color: 'bg-violet-500' },
+        { name: 'Shades of Blue', href: '/color-shades/shades-of-blue', color: 'bg-blue-600' },
+        { name: 'Shades of Green', href: '/color-shades/shades-of-green', color: 'bg-green-600' }
       ]
     },
     {

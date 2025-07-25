@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Shades of Blue: 4000+ Blue Colors, Hex Codes & Blue Color Palette',
+  title: 'Best Shades of Blue: 4000+ Blue Colors, Hex Codes & Blue Color Palette',
   description: 'Explore 4000+ shades of blue with hex codes and color names. Complete blue color palette featuring different types of blue, blue tones, and specific blue colors. Perfect for designers and developers.',
   keywords: 'shades of blue, blue shades, blue color, types of blue, blue colors, shade of blue, blue color palette, different shades of blue, blue color shades, blue colour, blue color code, blue colours, specific blue colors, blue hex code, blue tones, blue hex codes, shades of blue hex codes, blue color codes',
   openGraph: {
