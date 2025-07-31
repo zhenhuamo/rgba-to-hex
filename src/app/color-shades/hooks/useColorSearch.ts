@@ -46,7 +46,7 @@ export function useColorSearch(
     return searchEngine.getPopularSearchTerms();
   }, [searchEngine]);
 
-  // 搜索函数
+  // 搜索函数 - 使用useCallback稳定函数引用
   const performSearch = useCallback((term: string) => {
     if (!searchEngine) {
       setSearchResults({
@@ -81,17 +81,9 @@ export function useColorSearch(
     }
   }, [searchEngine, options]);
 
-  // 防抖搜索
-  const debouncedSearch = useCallback(
-    debounce(performSearch, 300),
-    [performSearch]
-  );
-
-  // 执行搜索
+  // 处理空搜索状态 - 只依赖searchTerm避免循环
   useEffect(() => {
-    if (searchTerm.trim()) {
-      debouncedSearch(searchTerm);
-    } else {
+    if (!searchTerm.trim()) {
       setSearchResults({
         colors: [],
         totalCount: 0,
@@ -100,7 +92,19 @@ export function useColorSearch(
       });
       setIsSearching(false);
     }
-  }, [searchTerm, debouncedSearch]);
+  }, [searchTerm]);
+
+  // 执行搜索 - 只在有搜索词时执行
+  useEffect(() => {
+    if (searchTerm.trim()) {
+      // 添加简单的延迟来模拟防抖效果
+      const timeoutId = setTimeout(() => {
+        performSearch(searchTerm);
+      }, 300);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [searchTerm, performSearch]);
 
   // 清除搜索
   const clearSearch = useCallback(() => {
@@ -130,18 +134,5 @@ export function useColorSearch(
     suggestions,
     popularTerms,
     clearSearch,
-  };
-}
-
-// 防抖函数
-function debounce<T extends (...args: Parameters<T>) => ReturnType<T>>(
-  func: T,
-  wait: number
-): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout;
-  
-  return (...args: Parameters<T>) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), wait);
   };
 }

@@ -2,9 +2,9 @@
 
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { ColorData } from '../types/color';
-import { filterGreenColors } from '../utils/greenColorUtils';
+import { filterPurpleColors } from '../utils/purpleColorUtils';
 
-interface UseGreenColorDataReturn {
+interface UsePurpleColorDataReturn {
   colors: ColorData[];
   displayedColors: ColorData[];
   loading: boolean;
@@ -18,11 +18,11 @@ interface UseGreenColorDataReturn {
   resetPagination: () => void;
 }
 
-const CACHE_KEY = 'green-colors-processed';
+const CACHE_KEY = 'purple-colors-processed';
 const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24小时
 const ITEMS_PER_PAGE = 50; // 每页显示的颜色数量
 
-export function useGreenColorData(): UseGreenColorDataReturn {
+export function usePurpleColorData(): UsePurpleColorDataReturn {
   const [allColors, setAllColors] = useState<ColorData[]>([]);
   const [displayedColors, setDisplayedColors] = useState<ColorData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -31,7 +31,7 @@ export function useGreenColorData(): UseGreenColorDataReturn {
   const [currentPage, setCurrentPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-  const loadGreenColors = async () => {
+  const loadPurpleColors = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -49,12 +49,12 @@ export function useGreenColorData(): UseGreenColorDataReturn {
             return;
           }
         } catch (e) {
-          console.warn('Failed to parse cached green colors:', e);
+          console.warn('Failed to parse cached purple colors:', e);
           localStorage.removeItem(CACHE_KEY);
         }
       }
 
-      console.log('Loading green colors...');
+      console.log('Loading purple colors...');
 
       // 直接导入颜色数据
       const colorModule = await import('@/type/colornames.json');
@@ -65,9 +65,9 @@ export function useGreenColorData(): UseGreenColorDataReturn {
         throw new Error('Invalid color data format');
       }
 
-      // 处理绿色数据
-      const processedColors = await processGreenColorsInBatches(rawColors);
-      console.log('Green colors processed:', processedColors.length);
+      // 处理紫色数据
+      const processedColors = await processPurpleColorsInBatches(rawColors);
+      console.log('Purple colors processed:', processedColors.length);
 
       // 缓存处理后的数据
       try {
@@ -76,32 +76,32 @@ export function useGreenColorData(): UseGreenColorDataReturn {
           timestamp: Date.now()
         }));
       } catch (e) {
-        console.warn('Failed to cache green colors:', e);
+        console.warn('Failed to cache purple colors:', e);
       }
 
       setAllColors(processedColors);
       setDisplayedColors(processedColors.slice(0, ITEMS_PER_PAGE));
       setHasMore(processedColors.length > ITEMS_PER_PAGE);
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Failed to load green colors';
+      const errorMessage = err instanceof Error ? err.message : 'Failed to load purple colors';
       setError(errorMessage);
-      console.error('Error loading green colors:', err);
+      console.error('Error loading purple colors:', err);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   // 分批处理颜色数据以避免阻塞UI
-  const processGreenColorsInBatches = async (
+  const processPurpleColorsInBatches = async (
     rawColors: { name: string; hex: string }[]
   ): Promise<ColorData[]> => {
     const batchSize = 100;
-    const allGreenColors: ColorData[] = [];
+    const allPurpleColors: ColorData[] = [];
 
     for (let i = 0; i < rawColors.length; i += batchSize) {
       const batch = rawColors.slice(i, i + batchSize);
-      const batchGreenColors = filterGreenColors(batch);
-      allGreenColors.push(...batchGreenColors);
+      const batchPurpleColors = filterPurpleColors(batch);
+      allPurpleColors.push(...batchPurpleColors);
 
       // 让出控制权给浏览器
       if (i + batchSize < rawColors.length) {
@@ -110,7 +110,7 @@ export function useGreenColorData(): UseGreenColorDataReturn {
     }
 
     // 按流行度和名称排序
-    return allGreenColors.sort((a, b) => {
+    return allPurpleColors.sort((a, b) => {
       if (a.popularity !== b.popularity) {
         return (b.popularity || 0) - (a.popularity || 0);
       }
@@ -151,7 +151,7 @@ export function useGreenColorData(): UseGreenColorDataReturn {
   }, [allColors]);
 
   useEffect(() => {
-    loadGreenColors();
+    loadPurpleColors();
   }, []); // 移除依赖，只在组件挂载时执行一次
 
   // 当allColors变化时重置分页
@@ -172,7 +172,7 @@ export function useGreenColorData(): UseGreenColorDataReturn {
     totalCount,
     hasMore,
     currentPage,
-    reload: loadGreenColors,
+    reload: loadPurpleColors,
     loadMore,
     resetPagination,
   };

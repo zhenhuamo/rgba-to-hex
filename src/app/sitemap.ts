@@ -365,8 +365,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.7,
     },
-        {
+    {
       url: 'https://rgbatohex.com/color-shades/shades-of-green',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+    {
+      url: 'https://rgbatohex.com/color-shades/shades-of-purple',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.7,

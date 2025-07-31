@@ -148,7 +148,7 @@ export function useBlueColorData(): UseBlueColorDataReturn {
 
   useEffect(() => {
     loadBlueColors();
-  }, [loadBlueColors]);
+  }, []); // 移除依赖，只在组件挂载时执行一次
 
   // 当allColors变化时重置分页
   useEffect(() => {
