@@ -36,6 +36,8 @@ export default function ToolsIndex() {
         { name: 'HSV to RGBA', href: '/tools/hsv-to-rgba', color: 'from-purple-500 to-indigo-500' },
         { name: 'RGB to CMYK', href: '/tools/rgb-to-cmyk', color: 'from-cyan-500 to-cyan-600' },
         { name: 'RGB to LAB', href: '/tools/rgb-to-lab', color: 'from-rose-500 to-rose-600' },
+        { name: 'RGB to OKLCH', href: '/tools/rgb-to-oklch', color: 'from-pink-600 to-pink-700' },
+        { name: 'OKLCH to RGB', href: '/tools/oklch-to-rgb', color: 'from-blue-600 to-blue-700' },
         { name: 'XYZ to RGB', href: '/tools/xyz-to-rgb', color: 'from-blue-700 to-blue-800' },
         { name: 'XYZ to LAB', href: '/tools/xyz-to-lab', color: 'from-purple-700 to-purple-800' },
         { name: 'XYZ to UV', href: '/tools/xyz-to-uv', color: 'from-teal-700 to-teal-800' },

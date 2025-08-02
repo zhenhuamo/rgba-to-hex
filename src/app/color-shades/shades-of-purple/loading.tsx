@@ -41,39 +41,45 @@ export default function Loading() {
           ))}
         </div>
 
-        {/* 颜色网格骨架 */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-          {Array.from({ length: 48 }).map((_, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ 
-                duration: 0.3, 
-                delay: index * 0.02,
-                ease: "easeOut"
-              }}
-              className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm animate-pulse"
-            >
-              {/* 颜色块骨架 */}
-              <div className="aspect-square bg-gradient-to-br from-purple-200 to-violet-200 dark:from-purple-700 dark:to-violet-700 rounded-lg mb-3"></div>
-              
-              {/* 颜色名称骨架 */}
-              <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded mb-2"></div>
-              
-              {/* Hex代码骨架 */}
-              <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-16"></div>
-            </motion.div>
-          ))}
-        </div>
+        {/* 颜色网格骨架 - 固定容器 */}
+        <div className="bg-white/30 dark:bg-gray-800/30 rounded-2xl p-6 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
+          {/* 容器标题骨架 */}
+          <div className="flex items-center justify-between mb-6">
+            <div className="h-6 w-48 bg-white/50 dark:bg-gray-700/50 rounded animate-pulse"></div>
+            <div className="h-4 w-32 bg-white/50 dark:bg-gray-700/50 rounded animate-pulse"></div>
+          </div>
 
-        {/* 加载提示 */}
-        <div className="text-center mt-12">
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/80 dark:bg-gray-800/80 rounded-full shadow-lg">
-            <div className="w-5 h-5 border-2 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
-            <span className="text-gray-600 dark:text-gray-300 font-medium">
-              Loading purple colors...
-            </span>
+          {/* 固定高度的颜色网格容器 */}
+          <div className="h-[600px] overflow-hidden">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 h-full">
+              {Array.from({ length: 48 }).map((_, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.3,
+                    delay: index * 0.02,
+                    ease: "easeOut"
+                  }}
+                  className="aspect-square bg-white/50 dark:bg-gray-800/50 rounded-xl animate-pulse max-h-[120px]"
+                >
+                  <div className="w-full h-3/4 bg-purple-200/50 dark:bg-purple-800/50 rounded-t-xl animate-pulse"></div>
+                  <div className="p-2 space-y-1">
+                    <div className="h-3 bg-gray-300/50 dark:bg-gray-600/50 rounded animate-pulse"></div>
+                    <div className="h-2 bg-gray-300/50 dark:bg-gray-600/50 rounded w-3/4 animate-pulse"></div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* 底部加载提示 */}
+          <div className="mt-4 text-center">
+            <div className="inline-flex items-center gap-3">
+              <div className="w-4 h-4 border-2 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
+              <span className="text-gray-600 dark:text-gray-300 text-sm">Loading purple color palette...</span>
+            </div>
           </div>
         </div>
       </div>

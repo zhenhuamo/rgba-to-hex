@@ -33,24 +33,47 @@ export default function Loading() {
           ))}
         </div>
 
-        {/* 颜色网格骨架 */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {Array.from({ length: 24 }).map((_, index) => (
-            <div
-              key={index}
-              className="w-full h-32 bg-gray-200 dark:bg-gray-700 rounded-xl animate-pulse"
-              style={{
-                animationDelay: `${index * 50}ms`,
-              }}
-            ></div>
-          ))}
+        {/* 颜色网格骨架 - 固定容器 */}
+        <div className="bg-white/30 dark:bg-gray-800/30 rounded-2xl p-6 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
+          {/* 容器标题骨架 */}
+          <div className="flex items-center justify-between mb-6">
+            <div className="h-6 w-48 bg-white/50 dark:bg-gray-700/50 rounded animate-pulse"></div>
+            <div className="h-4 w-32 bg-white/50 dark:bg-gray-700/50 rounded animate-pulse"></div>
+          </div>
+
+          {/* 固定高度的颜色网格容器 */}
+          <div className="h-[600px] overflow-hidden">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 h-full">
+              {Array.from({ length: 48 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="aspect-square bg-white/50 dark:bg-gray-800/50 rounded-xl animate-pulse max-h-[120px]"
+                  style={{
+                    animationDelay: `${index * 50}ms`,
+                  }}
+                >
+                  <div className="w-full h-3/4 bg-blue-200/50 dark:bg-blue-800/50 rounded-t-xl animate-pulse"></div>
+                  <div className="p-2 space-y-1">
+                    <div className="h-3 bg-gray-300/50 dark:bg-gray-600/50 rounded animate-pulse"></div>
+                    <div className="h-2 bg-gray-300/50 dark:bg-gray-600/50 rounded w-3/4 animate-pulse"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 底部加载提示 */}
+          <div className="mt-4 text-center">
+            <div className="h-4 w-40 bg-white/50 dark:bg-gray-700/50 rounded mx-auto animate-pulse"></div>
+          </div>
         </div>
 
         {/* 加载指示器 */}
-        <div className="flex items-center justify-center mt-12">
-          <div className="flex items-center gap-3">
-            <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-            <span className="text-gray-600 dark:text-gray-300">Loading blue shades...</span>
+        <div className="flex justify-center items-center mt-12">
+          <div className="flex items-center space-x-2">
+            <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce"></div>
+            <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+            <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
           </div>
         </div>
       </div>

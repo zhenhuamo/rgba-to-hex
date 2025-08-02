@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import Navigation from '@/components/Navigation';
 
 export const metadata: Metadata = {
   title: 'Free Text to Handwriting Converter Online - Create Realistic Handwritten Text',
@@ -23,6 +24,9 @@ export default function TextToHandwritingPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+      {/* Navigation */}
+      <Navigation />
+
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Header */}
         <div id="top" className="text-center mb-12">

@@ -167,20 +167,49 @@ export default function ShadesOfPurplePage() {
           </div>
         )}
 
-        {/* 颜色网格 */}
+        {/* 颜色网格 - 固定容器 */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
+          className="bg-white/30 dark:bg-gray-800/30 rounded-2xl p-6 backdrop-blur-sm border border-white/20 dark:border-gray-700/20"
         >
-          <ColorGrid
-            colors={displayedFilteredColors}
-            onColorSelect={handleColorSelect}
-            loading={loading}
-            loadingMore={loadingMoreFiltered}
-            hasMore={hasMoreFiltered}
-            onLoadMore={loadMoreFiltered}
-          />
+          {/* 容器标题 */}
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+              Purple Color Collection
+            </h3>
+            <span className="text-sm text-gray-600 dark:text-gray-400">
+              {displayedFilteredColors.length} / {totalFilteredCount} colors
+            </span>
+          </div>
+
+          {/* 固定高度的颜色网格容器 */}
+          <div className="h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-purple-300 dark:scrollbar-thumb-purple-600 scrollbar-track-transparent">
+            <ColorGrid
+              colors={displayedFilteredColors}
+              onColorSelect={handleColorSelect}
+              loading={loading}
+              loadingMore={loadingMoreFiltered}
+              hasMore={hasMoreFiltered}
+              onLoadMore={loadMoreFiltered}
+            />
+          </div>
+
+          {/* 底部状态栏 */}
+          <div className="mt-4 pt-4 border-t border-white/20 dark:border-gray-700/20">
+            <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
+              <span>
+                {searchTerm ? `Search: "${searchTerm}"` : 'All purple colors'}
+                {selectedCategory !== 'all' && ` in ${PURPLE_SHADE_CATEGORIES.find(c => c.id === selectedCategory)?.displayName}`}
+              </span>
+              {hasMoreFiltered && (
+                <span className="text-purple-600 dark:text-purple-400">
+                  Scroll down for more colors
+                </span>
+              )}
+            </div>
+          </div>
         </motion.div>
 
         {/* SEO内容部分 */}

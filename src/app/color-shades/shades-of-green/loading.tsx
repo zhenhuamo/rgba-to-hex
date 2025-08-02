@@ -33,47 +33,47 @@ export default function Loading() {
           ))}
         </div>
 
-        {/* Loading Spinner */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="flex flex-col items-center justify-center py-12"
-        >
-          <div className="relative">
-            <div className="w-16 h-16 border-4 border-green-200 dark:border-green-800 rounded-full animate-spin border-t-green-600 dark:border-t-green-400"></div>
-            <div className="absolute inset-0 w-16 h-16 border-4 border-transparent rounded-full animate-ping border-t-green-400"></div>
+        {/* 颜色网格骨架 - 固定容器 */}
+        <div className="bg-white/30 dark:bg-gray-800/30 rounded-2xl p-6 backdrop-blur-sm border border-white/20 dark:border-gray-700/20">
+          {/* 容器标题骨架 */}
+          <div className="flex items-center justify-between mb-6">
+            <div className="h-6 w-48 bg-white/50 dark:bg-gray-700/50 rounded animate-pulse"></div>
+            <div className="h-4 w-32 bg-white/50 dark:bg-gray-700/50 rounded animate-pulse"></div>
           </div>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="mt-4 text-gray-600 dark:text-gray-300 font-medium"
-          >
-            Loading green color palette...
-          </motion.p>
-          
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-            className="mt-2 text-sm text-gray-500 dark:text-gray-400"
-          >
-            Discovering thousands of green shades
-          </motion.p>
-        </motion.div>
 
-        {/* Color Grid Skeleton */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 mt-8">
-          {Array.from({ length: 32 }).map((_, i) => (
+          {/* 固定高度的颜色网格容器 */}
+          <div className="h-[600px] overflow-hidden">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 h-full">
+              {Array.from({ length: 48 }).map((_, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.02, duration: 0.3 }}
+                  className="aspect-square bg-white/50 dark:bg-gray-800/50 rounded-xl animate-pulse max-h-[120px]"
+                >
+                  <div className="w-full h-3/4 bg-green-200/50 dark:bg-green-800/50 rounded-t-xl animate-pulse"></div>
+                  <div className="p-2 space-y-1">
+                    <div className="h-3 bg-gray-300/50 dark:bg-gray-600/50 rounded animate-pulse"></div>
+                    <div className="h-2 bg-gray-300/50 dark:bg-gray-600/50 rounded w-3/4 animate-pulse"></div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* 底部加载提示 */}
+          <div className="mt-4 text-center">
             <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.05, duration: 0.3 }}
-              className="aspect-square bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse"
-            ></motion.div>
-          ))}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="flex items-center justify-center gap-3"
+            >
+              <div className="w-4 h-4 border-2 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+              <span className="text-gray-600 dark:text-gray-300 text-sm">Loading green color palette...</span>
+            </motion.div>
+          </div>
         </div>
       </div>
     </div>
