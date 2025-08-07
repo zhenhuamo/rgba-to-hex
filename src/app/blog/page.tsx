@@ -6,10 +6,21 @@ import Navigation from '@/components/Navigation';
 export default function Blog() {
   const blogPosts = [
     {
+      title: 'BEST RGBA to HEX Converter 2024 - TOP Professional Color Tool',
+      description: 'Discover the BEST RGBA to HEX converter tool in 2024! Professional-grade color conversion with advanced algorithms, real-time preview, and accessibility features. The TOP choice for developers and designers.',
+      link: '/blog/rgba-to-hex',
+      date: '2024-12-07',
+      readTime: '20 min read',
+      category: 'Color Conversion',
+      featured: true,
+      image: '/images/blog/rgba-to-hex-featured.jpg',
+      tags: ['RGBA to HEX', 'color converter', 'web development', 'design tools', 'professional']
+    },
+    {
       title: 'RGBA to 8-Digit HEX: The Ultimate Guide to Modern Color Conversion',
       description: 'Explore the complete conversion process from RGBA to 8-digit HEX format (#RRGGBBAA), understand key differences between 8-digit and 16-digit HEX formats, and learn best practices for using transparent colors in modern web design.',
       link: '/blog/rgba-to-hex-8-digit-converter',
-      date: '2024-04-27',
+      date: '2025-04-27',
       readTime: '15 min read',
       category: 'Color Conversion',
     },
@@ -112,72 +123,179 @@ export default function Blog() {
         <Navigation />
 
         {/* Blog Header */}
-        <div className="max-w-4xl mx-auto mb-12">
+        <div className="max-w-6xl mx-auto mb-16">
           <div className="text-center">
-            <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500 mb-4">
-              Color Converter Tools Blog
-            </h1>
-            <p className="text-gray-600 dark:text-gray-300">
-              In-depth guides and tutorials about color conversion tools and techniques
+            <div className="inline-flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl flex items-center justify-center">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a4 4 0 004-4V5z" />
+                </svg>
+              </div>
+              <h1 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-blue-500">
+                Color Tools Blog
+              </h1>
+            </div>
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
+              Discover professional guides, advanced techniques, and expert insights about color conversion tools.
+              Master the art of color manipulation with our comprehensive tutorials and reviews.
             </p>
+
+            {/* Stats */}
+            <div className="flex justify-center gap-8 mb-8">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">{blogPosts.length}</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">Articles</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">50K+</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">Readers</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-green-600 dark:text-green-400">15+</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">Tools Covered</div>
+              </div>
+            </div>
+
+            {/* Categories Filter */}
+            <div className="flex flex-wrap justify-center gap-3">
+              {['All', 'Color Conversion', 'Accessibility', 'Color Theory', 'Digital Painting'].map((category) => (
+                <button
+                  key={category}
+                  className="px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-900/30 border border-gray-200 dark:border-gray-700"
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Blog Posts Grid */}
-        <div className="max-w-4xl mx-auto">
-          <div className="grid gap-8">
-            {blogPosts.map((post, index) => (
-              <article
-                key={index}
-                className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 transition-transform hover:scale-[1.02]"
-              >
-                <Link 
-                  href={post.link}
-                  className="block"
-                  prefetch={true}
-                >
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-start">
-                      <h2 className="text-2xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
-                        {post.title}
-                      </h2>
-                      <div className="text-right">
-                        <span className="text-sm text-gray-500 dark:text-gray-400 block">
-                          {post.date}
-                        </span>
-                        <span className="text-sm text-gray-500 dark:text-gray-400 block">
-                          {post.readTime}
-                        </span>
+        {/* Featured Post */}
+        {(() => {
+          const featuredPost = blogPosts.find(post => post.featured);
+          if (!featuredPost) return null;
+
+          return (
+            <div className="max-w-6xl mx-auto mb-16">
+              <h2 className="text-3xl font-bold text-center mb-8 text-gray-900 dark:text-white">
+                🌟 Featured Article
+              </h2>
+              <article className="bg-gradient-to-r from-purple-500 to-blue-500 rounded-3xl shadow-2xl overflow-hidden">
+                <Link href={featuredPost.link} className="block">
+                  <div className="p-8 text-white">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
+                        ⭐ FEATURED
+                      </span>
+                      <span className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm">
+                        {featuredPost.category}
+                      </span>
+                    </div>
+                    <h3 className="text-4xl font-bold mb-4 leading-tight">
+                      {featuredPost.title}
+                    </h3>
+                    <p className="text-xl text-white/90 mb-6 leading-relaxed">
+                      {featuredPost.description}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4 text-white/80">
+                        <span>{featuredPost.date}</span>
+                        <span>•</span>
+                        <span>{featuredPost.readTime}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-white font-semibold hover:text-white/80 transition-colors">
+                        <span>Read Article</span>
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
                       </div>
                     </div>
-                    <div className="flex items-center">
-                      <span className="px-3 py-1 text-sm bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 rounded-full">
+                  </div>
+                </Link>
+              </article>
+            </div>
+          );
+        })()}
+
+        {/* Blog Posts Grid */}
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">
+            📚 All Articles
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogPosts.filter(post => !post.featured).map((post, index) => (
+              <article
+                key={index}
+                className="group bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl border border-gray-100 dark:border-gray-700"
+              >
+                <Link href={post.link} className="block">
+                  {/* Image placeholder */}
+                  <div className="h-48 bg-gradient-to-br from-purple-400 via-blue-400 to-cyan-400 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-black/20"></div>
+                    <div className="absolute bottom-4 left-4">
+                      <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-gray-800 rounded-full text-sm font-medium">
                         {post.category}
                       </span>
                     </div>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      {post.description}
-                    </p>
-                    <div className="flex items-center text-blue-600 dark:text-blue-400">
-                      <span>Read Full Article</span>
-                      <svg
-                        className="w-4 h-4 ml-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
+                    <div className="absolute top-4 right-4">
+                      <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a4 4 0 004-4V5z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-6">
+                    <div className="space-y-4">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-tight">
+                        {post.title}
+                      </h3>
+
+                      <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed line-clamp-3">
+                        {post.description}
+                      </p>
+
+                      <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700">
+                        <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          <span>{post.readTime}</span>
+                        </div>
+
+                        <div className="flex items-center gap-1 text-blue-600 dark:text-blue-400 group-hover:gap-2 transition-all">
+                          <span className="text-sm font-medium">Read More</span>
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </Link>
               </article>
             ))}
+          </div>
+        </div>
+
+        {/* Newsletter Subscription */}
+        <div className="max-w-4xl mx-auto mt-20">
+          <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-3xl p-8 text-center text-white">
+            <h2 className="text-3xl font-bold mb-4">Stay Updated with Color Tools</h2>
+            <p className="text-xl mb-8 text-white/90">
+              Get the latest articles, tutorials, and tool updates delivered to your inbox
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="flex-1 px-4 py-3 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50"
+              />
+              <button className="px-6 py-3 bg-white text-purple-600 rounded-xl font-semibold hover:bg-gray-100 transition-colors">
+                Subscribe
+              </button>
+            </div>
           </div>
         </div>
       </div>
