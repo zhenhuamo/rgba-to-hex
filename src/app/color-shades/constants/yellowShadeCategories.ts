@@ -1,0 +1,143 @@
+import { YellowShadeCategory, YellowCategory } from '../types/yellowShades';
+
+// 黄色系分类定义
+export const YELLOW_SHADE_CATEGORIES: YellowShadeCategory[] = [
+  {
+    id: YellowCategory.LIGHT_YELLOW,
+    name: 'light-yellow',
+    displayName: 'Light Yellow',
+    hueRange: [50, 70],
+    saturationRange: [30, 80],
+    lightnessRange: [80, 95],
+    color: '#FFFFE0',
+    description: 'Soft, gentle light yellow shades perfect for delicate and cheerful designs',
+    examples: ['Light Yellow', 'Pale Yellow', 'Cream', 'Ivory'],
+    seoKeywords: ['light yellow', 'pale yellow', 'soft yellow', 'cream yellow', 'ivory yellow'],
+    psychologyEffect: 'Gentle, cheerful, optimistic, calming',
+    designUsage: ['Baby products', 'Spring themes', 'Gentle brands', 'Soft backgrounds'],
+  },
+  {
+    id: YellowCategory.MEDIUM_YELLOW,
+    name: 'medium-yellow',
+    displayName: 'Medium Yellow',
+    hueRange: [55, 65],
+    saturationRange: [70, 95],
+    lightnessRange: [50, 80],
+    color: '#FFD700',
+    description: 'Classic yellow tones that represent sunshine and happiness',
+    examples: ['Yellow', 'Gold', 'Sunshine Yellow', 'School Bus Yellow'],
+    seoKeywords: ['medium yellow', 'classic yellow', 'true yellow', 'sunshine yellow'],
+    psychologyEffect: 'Happy, energetic, optimistic, attention-grabbing',
+    designUsage: ['Brand logos', 'Warning signs', 'Children products', 'Summer themes'],
+  },
+  {
+    id: YellowCategory.DARK_YELLOW,
+    name: 'dark-yellow',
+    displayName: 'Dark Yellow',
+    hueRange: [45, 65],
+    saturationRange: [60, 100],
+    lightnessRange: [20, 50],
+    color: '#B8860B',
+    description: 'Deep, rich dark yellow shades for sophisticated and warm designs',
+    examples: ['Dark Yellow', 'Dark Goldenrod', 'Olive Yellow', 'Bronze Yellow'],
+    seoKeywords: ['dark yellow', 'deep yellow', 'olive yellow', 'bronze yellow'],
+    psychologyEffect: 'Sophisticated, warm, earthy, stable',
+    designUsage: ['Luxury brands', 'Autumn themes', 'Vintage designs', 'Corporate identity'],
+  },
+  {
+    id: YellowCategory.GOLDEN_YELLOW,
+    name: 'golden-yellow',
+    displayName: 'Golden Yellow',
+    hueRange: [45, 55],
+    saturationRange: [70, 100],
+    lightnessRange: [40, 70],
+    color: '#FFD700',
+    description: 'Rich golden yellow shades that evoke luxury and prosperity',
+    examples: ['Gold', 'Golden Yellow', 'Metallic Gold', 'Rich Gold'],
+    seoKeywords: ['golden yellow', 'gold yellow', 'metallic yellow', 'rich gold'],
+    psychologyEffect: 'Luxurious, prestigious, valuable, confident',
+    designUsage: ['Luxury brands', 'Awards', 'Premium products', 'Celebration themes'],
+  },
+  {
+    id: YellowCategory.LEMON_YELLOW,
+    name: 'lemon-yellow',
+    displayName: 'Lemon Yellow',
+    hueRange: [55, 70],
+    saturationRange: [80, 100],
+    lightnessRange: [60, 85],
+    color: '#FFFACD',
+    description: 'Fresh lemon-inspired yellow shades with bright, citrusy appeal',
+    examples: ['Lemon', 'Lemon Chiffon', 'Citrus Yellow', 'Bright Yellow'],
+    seoKeywords: ['lemon yellow', 'citrus yellow', 'bright yellow', 'fresh yellow'],
+    psychologyEffect: 'Fresh, energetic, clean, invigorating',
+    designUsage: ['Food brands', 'Fresh products', 'Summer designs', 'Health themes'],
+  },
+  {
+    id: YellowCategory.CREAM_YELLOW,
+    name: 'cream-yellow',
+    displayName: 'Cream Yellow',
+    hueRange: [50, 65],
+    saturationRange: [20, 60],
+    lightnessRange: [85, 98],
+    color: '#FFFDD0',
+    description: 'Warm cream yellow shades that blend yellow with neutral undertones',
+    examples: ['Cream', 'Vanilla', 'Beige Yellow', 'Champagne'],
+    seoKeywords: ['cream yellow', 'vanilla yellow', 'beige yellow', 'champagne yellow'],
+    psychologyEffect: 'Warm, comfortable, elegant, sophisticated',
+    designUsage: ['Interior design', 'Wedding themes', 'Elegant brands', 'Classic designs'],
+  },
+];
+
+// 获取黄色分类的辅助函数
+export function getYellowCategoryById(id: string): YellowShadeCategory | undefined {
+  return YELLOW_SHADE_CATEGORIES.find(category => category.id === id);
+}
+
+export function getYellowCategoriesByHue(hue: number): YellowShadeCategory[] {
+  return YELLOW_SHADE_CATEGORIES.filter(category => {
+    const [min, max] = category.hueRange;
+    return hue >= min && hue <= max;
+  });
+}
+
+// SEO相关的黄色关键词
+export const YELLOW_SEO_KEYWORDS = [
+  'shades of yellow',
+  'shades of yellow color palette',
+  'shades of yellow hex codes',
+  'shades of yellow color names',
+  'different shades of yellow',
+  'shades of yellow color chart',
+  'dark shades of yellow',
+  'light shades of yellow',
+  'golden shades of yellow',
+  'lemon shades of yellow variations',
+  'cream shades of yellow',
+  'shades of yellow color combination',
+  'shades of yellow color gradient',
+  'types of shades of yellow',
+  'shades of yellow color scheme',
+  'soft shades of yellow',
+  'shades of yellow color all shades',
+  'yellow color code',
+  'yellow css',
+  'font css soft yellow',
+  'yellow gold gradient css',
+  'yellow gradient',
+  'color shades',
+  'color shade of yellow',
+  'yellow colour shades',
+  'shades of yellow color',
+  'all shades of yellow',
+  'best shades of yellow',
+  'popular shades of yellow',
+  'beautiful shades of yellow',
+  'color shades palette',
+  'color shades collection',
+  'color shades combinations',
+  'color shades gradients',
+  'light color shades',
+  'dark color shades',
+  'vibrant color shades',
+  'soft color shades',
+];

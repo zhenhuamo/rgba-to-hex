@@ -65,6 +65,12 @@ export default function ColorShadesIndex() {
           href: '/color-shades/shades-of-pink',
           color: 'from-pink-500 to-pink-600',
           description: 'Comprehensive pink color palette featuring all shades of pink from light pink to dark pink. Discover 1000+ pink color codes, CSS codes for pink, and pink gradient colors. Perfect for feminine designs, romantic themes, and gentle color schemes with pink tones CSS and pink colour codes.'
+        },
+        {
+          name: 'Shades of Yellow',
+          href: '/color-shades/shades-of-yellow',
+          color: 'from-yellow-500 to-yellow-600',
+          description: 'Complete color shades palette featuring different color shades including golden color shades, lemon color shades, cream color shades, and amber color shades. Explore 2000+ color shades hex codes, color shades combinations, and color shades CSS gradients. Perfect for cheerful designs, sunny themes, and optimistic color schemes with all types of color shades.'
         }
       ]
     }
