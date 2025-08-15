@@ -351,7 +351,7 @@ export default function ShadesOfBrownPage() {
                 Our comprehensive shades of brown collection includes every type of brown color you need. From light shades of brown
                 to dark brown color, chocolate shades of brown to coffee brown, and wood shades of brown to earth brown - explore all
                 shades of brown with their exact brown color codes. Each shade of brown comes with detailed brown color names and
-                brown hex codes for professional use. Whether you're looking for specific shades of brown, brown colour codes,
+                brown hex codes for professional use. Whether you&apos;re looking for specific shades of brown, brown colour codes,
                 or brown color shades, our shades of brown palette provides the complete range of brown tones and brown variations
                 for your design projects. These beautiful shades of brown are perfect for any creative project requiring authentic brown colors.
               </p>
