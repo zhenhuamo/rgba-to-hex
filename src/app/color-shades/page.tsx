@@ -71,6 +71,12 @@ export default function ColorShadesIndex() {
           href: '/color-shades/shades-of-yellow',
           color: 'from-yellow-500 to-yellow-600',
           description: 'Complete color shades palette featuring different color shades including golden color shades, lemon color shades, cream color shades, and amber color shades. Explore 2000+ color shades hex codes, color shades combinations, and color shades CSS gradients. Perfect for cheerful designs, sunny themes, and optimistic color schemes with all types of color shades.'
+        },
+        {
+          name: 'Shades of Brown',
+          href: '/color-shades/shades-of-brown',
+          color: 'from-amber-600 to-orange-600',
+          description: 'Comprehensive brown color palette featuring all types of brown colors from light brown to dark brown color. Discover 3000+ shades of brown with brown hex codes, brown color names, and brown colour codes. Perfect for natural designs, rustic themes, and warm color schemes with chocolate brown, coffee brown, and wood brown variations.'
         }
       ]
     }
