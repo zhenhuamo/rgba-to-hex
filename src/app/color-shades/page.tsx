@@ -33,7 +33,7 @@ export default function ColorShadesIndex() {
   const colorShadeCategories = [
     {
       category: "Color Shades Collection",
-      description: "Explore comprehensive collections of color shades including blue, green, purple, red, and pink with detailed information, HEX codes, RGB values, and professional color palettes for design inspiration",
+      description: "Explore comprehensive collections of color shades including blue, green, purple, red, pink, and black with detailed information, HEX codes, RGB values, and professional color palettes for design inspiration",
       icon: "🎨",
       tools: [
         {
@@ -77,6 +77,12 @@ export default function ColorShadesIndex() {
           href: '/color-shades/shades-of-brown',
           color: 'from-amber-600 to-orange-600',
           description: 'Comprehensive brown color palette featuring all types of brown colors from light brown to dark brown color. Discover 3000+ shades of brown with brown hex codes, brown color names, and brown colour codes. Perfect for natural designs, rustic themes, and warm color schemes with chocolate brown, coffee brown, and wood brown variations.'
+        },
+        {
+          name: 'Shades of Black',
+          href: '/color-shades/shades-of-black',
+          color: 'from-gray-800 to-black',
+          description: 'Complete black color palette featuring all shades of black from pure black to charcoal black. Discover 2000+ black color codes, black hex codes, and black colour codes. Perfect for elegant designs, sophisticated themes, and professional color schemes with jet black, ebony black, and dark gray variations.'
         }
       ]
     }
@@ -114,8 +120,9 @@ export default function ColorShadesIndex() {
                 <span className="text-blue-600 dark:text-blue-400 font-semibold"> blue</span>,
                 <span className="text-green-600 dark:text-green-400 font-semibold"> green</span>,
                 <span className="text-purple-600 dark:text-purple-400 font-semibold"> purple</span>,
-                <span className="text-red-600 dark:text-red-400 font-semibold"> red</span>, and
-                <span className="text-pink-600 dark:text-pink-400 font-semibold"> pink</span> with detailed information, HEX codes, RGB values, and professional color palettes.
+                <span className="text-red-600 dark:text-red-400 font-semibold"> red</span>,
+                <span className="text-pink-600 dark:text-pink-400 font-semibold"> pink</span>, and
+                <span className="text-gray-800 dark:text-gray-300 font-semibold"> black</span> with detailed information, HEX codes, RGB values, and professional color palettes.
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
                 Perfect for designers, developers, and anyone working with colors in digital or print media.
@@ -178,7 +185,8 @@ export default function ColorShadesIndex() {
                           {tool.name.includes('Blue') ? '2000+' :
                            tool.name.includes('Green') ? '1500+' :
                            tool.name.includes('Purple') ? '1200+' :
-                           tool.name.includes('Red') ? '2000+' : '6000+'} shades
+                           tool.name.includes('Red') ? '2000+' :
+                           tool.name.includes('Black') ? '2000+' : '6000+'} shades
                         </span>
                         <div className="ml-2 flex space-x-1">
                           <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${tool.color}`}></div>
