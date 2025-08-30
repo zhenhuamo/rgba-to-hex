@@ -73,6 +73,12 @@ export default function ColorShadesIndex() {
           description: 'Complete color shades palette featuring different color shades including golden color shades, lemon color shades, cream color shades, and amber color shades. Explore 2000+ color shades hex codes, color shades combinations, and color shades CSS gradients. Perfect for cheerful designs, sunny themes, and optimistic color schemes with all types of color shades.'
         },
         {
+          name: 'Shades of Orange',
+          href: '/color-shades/shades-of-orange',
+          color: 'from-orange-500 to-red-500',
+          description: 'Comprehensive orange colors palette featuring all types of orange shades from light orange colors to dark orange color shades. Discover 2000+ shades of orange with hex code orange, orange color codes, and color orange names. Perfect for energetic designs, warm themes, and vibrant color schemes with peach orange, burnt orange, and coral orange variations.'
+        },
+        {
           name: 'Shades of Brown',
           href: '/color-shades/shades-of-brown',
           color: 'from-amber-600 to-orange-600',
@@ -121,7 +127,9 @@ export default function ColorShadesIndex() {
                 <span className="text-green-600 dark:text-green-400 font-semibold"> green</span>,
                 <span className="text-purple-600 dark:text-purple-400 font-semibold"> purple</span>,
                 <span className="text-red-600 dark:text-red-400 font-semibold"> red</span>,
-                <span className="text-pink-600 dark:text-pink-400 font-semibold"> pink</span>, and
+                <span className="text-pink-600 dark:text-pink-400 font-semibold"> pink</span>,
+                <span className="text-yellow-600 dark:text-yellow-400 font-semibold"> yellow</span>,
+                <span className="text-orange-600 dark:text-orange-400 font-semibold"> orange</span>, and
                 <span className="text-gray-800 dark:text-gray-300 font-semibold"> black</span> with detailed information, HEX codes, RGB values, and professional color palettes.
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">

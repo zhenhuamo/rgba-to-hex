@@ -401,8 +401,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.7,
     },
-        {
+    {
       url: 'https://rgbatohex.com/color-shades/shades-of-black',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+        {
+      url: 'https://rgbatohex.com/color-shades/shades-of-orange',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.7,
