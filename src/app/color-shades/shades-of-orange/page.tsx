@@ -381,7 +381,7 @@ export default function ShadesOfOrangePage() {
                     Choosing the Right Orange Color
                   </h4>
                   <p className="text-gray-600 dark:text-gray-300 mb-4">
-                    Selecting the perfect shades of orange depends on your project's goals and target audience.
+                    Selecting the perfect shades of orange depends on your project&apos;s goals and target audience.
                     Light orange colors work well for friendly, approachable designs, while dark orange shades
                     convey sophistication and premium quality. Consider the psychological impact of different
                     orange color shades when building your orange color palette.
