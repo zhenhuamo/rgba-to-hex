@@ -33,7 +33,7 @@ export default function ColorShadesIndex() {
   const colorShadeCategories = [
     {
       category: "Color Shades Collection",
-      description: "Explore comprehensive collections of color shades including blue, green, purple, red, pink, and black with detailed information, HEX codes, RGB values, and professional color palettes for design inspiration",
+      description: "Explore comprehensive collections of color shades including blue, green, purple, red, pink, black, and white with detailed information, HEX codes, RGB values, and professional color palettes for design inspiration",
       icon: "🎨",
       tools: [
         {
@@ -89,6 +89,12 @@ export default function ColorShadesIndex() {
           href: '/color-shades/shades-of-black',
           color: 'from-gray-800 to-black',
           description: 'Complete black color palette featuring all shades of black from pure black to charcoal black. Discover 2000+ black color codes, black hex codes, and black colour codes. Perfect for elegant designs, sophisticated themes, and professional color schemes with jet black, ebony black, and dark gray variations.'
+        },
+        {
+          name: 'Shades of White',
+          href: '/color-shades/shades-of-white',
+          color: 'from-gray-100 to-white',
+          description: 'Complete white color palette featuring all shades of white from pure white to cream and ivory. Discover 1000+ white color codes, white hex codes, and white colour codes. Perfect for clean designs, minimalist themes, and elegant color schemes with snow white, cream white, and off-white variations.'
         }
       ]
     }
@@ -129,8 +135,9 @@ export default function ColorShadesIndex() {
                 <span className="text-red-600 dark:text-red-400 font-semibold"> red</span>,
                 <span className="text-pink-600 dark:text-pink-400 font-semibold"> pink</span>,
                 <span className="text-yellow-600 dark:text-yellow-400 font-semibold"> yellow</span>,
-                <span className="text-orange-600 dark:text-orange-400 font-semibold"> orange</span>, and
-                <span className="text-gray-800 dark:text-gray-300 font-semibold"> black</span> with detailed information, HEX codes, RGB values, and professional color palettes.
+                <span className="text-orange-600 dark:text-orange-400 font-semibold"> orange</span>,
+                <span className="text-gray-800 dark:text-gray-300 font-semibold"> black</span>, and
+                <span className="text-gray-400 dark:text-gray-100 font-semibold"> white</span> with detailed information, HEX codes, RGB values, and professional color palettes.
               </p>
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
                 Perfect for designers, developers, and anyone working with colors in digital or print media.
