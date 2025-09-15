@@ -423,7 +423,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: 'https://rgbatohex.com/color-shades/shades-of-orange',
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: 0.7,
+      priority: 0.9,
     },
 
     {

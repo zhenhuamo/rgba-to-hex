@@ -76,7 +76,7 @@ export default function ColorShadesIndex() {
           name: 'Shades of Orange',
           href: '/color-shades/shades-of-orange',
           color: 'from-orange-500 to-red-500',
-          description: 'Comprehensive orange colors palette featuring all types of orange shades from light orange colors to dark orange color shades. Discover 2000+ shades of orange with hex code orange, orange color codes, and color orange names. Perfect for energetic designs, warm themes, and vibrant color schemes with peach orange, burnt orange, and coral orange variations.'
+          description: 'Complete collection of all shades of orange featuring 6000+ different shades of orange with orange hex codes, orange Pantone colors, and orange shade names. Includes professional guide for shades of red/orange hair colors, orangey yellow shades for interior design, and orange color variations from white to dark orange. Perfect for hair colorists, interior designers, and professional applications.'
         },
         {
           name: 'Shades of Brown',

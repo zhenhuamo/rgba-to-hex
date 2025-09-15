@@ -1,15 +1,40 @@
-# Shades of Orange - Complete Orange Color Collection
+# All Shades of Orange - Comprehensive Landing Page
 
-This page provides a comprehensive collection of orange color shades with hex codes, RGB values, and color names for designers and developers.
+This enhanced "Shades of Orange" landing page combines a functional color tool with comprehensive informative content optimized for multiple target keywords including hair colors, interior design, and professional applications.
 
-## Features
+## 🎯 Primary Target Keywords
 
-- **2000+ Orange Colors**: Complete collection of orange shades from light to dark
-- **Instant Copy**: Click any color to copy its hex code orange
-- **Multiple Formats**: Support for HEX, RGB, HSL, and CSS formats
-- **Smart Search**: Search by color name, hex code orange, or keywords
-- **Category Filtering**: Filter by orange color categories
-- **Responsive Design**: Works on all devices
+- **Primary:** "shades of orange"
+- **Secondary:** All shades of orange, different shades of orange, orange shade names
+- **Specialized:** Orangey yellow shades, red-orange shades, orange hex codes, orange Pantone colors
+- **Industry-specific:** Shades of red/orange (hair colors), orange color variations from white to dark orange
+
+## 🚀 Key Features
+
+### Interactive Color Tool
+- **6,945+ Orange Colors**: Complete collection from orangey yellow shades to dark orange
+- **Instant Copy**: Click any color to copy its orange hex codes
+- **Professional Categories**: Light, Medium, Dark, Red-Orange, Yellow-Orange, Peach
+- **Smart Search**: Search by orange shade names, hex codes, or keywords
+- **Orange Pantone Colors**: Professional color matching references
+- **Responsive Design**: Optimized for all devices
+
+### Comprehensive Content Areas
+
+#### Hair Color Applications
+- Professional guide to shades of red/orange for hair colors
+- Strawberry blonde, copper orange, auburn red-orange, ginger orange
+- Orange hex codes and orange Pantone colors for salon use
+
+#### Interior Design Applications
+- Orange accent chairs paired with turquoise sofas
+- Orangey yellow shades for kitchen and dining areas
+- Red-orange shades for accent walls and statement pieces
+
+#### Technical Specifications
+- Professional orange hex codes and orange Pantone colors
+- RGB values and CMYK breakdowns for print
+- Color accuracy across digital and print media
 
 ## Orange Color Categories
 
