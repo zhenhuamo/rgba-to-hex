@@ -15,6 +15,7 @@ export function middleware(request: NextRequest) {
     request.nextUrl.pathname.startsWith('/tools/rgb-to-cmyk-converter') ||
     request.nextUrl.pathname.startsWith('/tools/cmyk-to-rgb-converter') ||
     request.nextUrl.pathname.startsWith('/tools/color-contrast-checker') ||
+    request.nextUrl.pathname.startsWith('/tools/minecraft-color-codes') ||
     request.nextUrl.pathname.startsWith('/tools/gradient-generator-tool') ||
     request.nextUrl.pathname.startsWith('/tools/color-blindness-simulator') ||
     request.nextUrl.pathname.startsWith('/tools/image-color-extractor')
@@ -40,6 +41,7 @@ export const config = {
     '/tools/rgb-to-cmyk-converter',
     '/tools/cmyk-to-rgb-converter',
     '/tools/color-contrast-checker',
+    '/tools/minecraft-color-codes',
     '/tools/gradient-generator-tool',
     '/tools/color-blindness-simulator',
     '/tools/image-color-extractor',
