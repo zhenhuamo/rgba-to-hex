@@ -67,6 +67,7 @@ export default function ToolsIndex() {
         { name: 'Delta-E Calculator', href: '/tools/delta-e-calculator', color: 'from-blue-600 to-blue-700' },
         { name: 'Palette Generator', href: '/tools/palette-generator', color: 'from-pink-500 to-pink-600' },
         { name: 'Gradient Generator', href: '/tools/gradient-generator', color: 'from-blue-500 to-blue-600' },
+        { name: 'Minecraft Color Codes', href: '/tools/minecraft-color-codes', color: 'from-emerald-500 to-teal-500' },
         { name: 'Color Blindness Simulator', href: '/tools/color-blindness-simulator', color: 'from-teal-500 to-teal-600' },
         { name: 'Image Color Extractor', href: '/tools/image-color-extractor', color: 'from-rose-500 to-rose-600' },
         { name: 'Color Mixer', href: '/tools/color-mixer', color: 'from-emerald-500 to-emerald-600' },
@@ -177,6 +178,8 @@ export default function ToolsIndex() {
                         ? 'Convert HSL colors to CMYK format for professional printing. Features intuitive HSL color selection with real-time CMYK output and ink coverage warnings for print-ready designs.'
                         : tool.name === 'HSV to RGBA'
                         ? 'Convert HSV colors to RGBA format with alpha transparency control. Perfect for web design with HSV color selection, real-time RGBA output, and CSS-ready transparent color values.'
+                        : tool.name === 'Minecraft Color Codes'
+                        ? 'Free Minecraft color codes generator and guide: legacy § chat codes, JSON hex (1.16+), gradients, signs/MOTD. Copy codes with one click.'
                         : tool.name === 'XYZ to LAB'
                         ? 'Convert CIE XYZ tristimulus values to CIELAB (LAB) perceptual color space. Professional tool using D65 illuminant standard with step-by-step formulas, programming examples, and comprehensive technical documentation for color scientists and designers.'
                         : tool.name === 'XYZ to UV'

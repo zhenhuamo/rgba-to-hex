@@ -413,7 +413,7 @@ export default function MinecraftColorCodes() {
               </div>
 
               <p className="text-lg leading-relaxed">
-                This page is a practical guide and free <strong className="text-green-600 dark:text-green-400">minecraft color codes generator</strong>. It covers legacy <strong>§ minecraft color codes</strong> and formatting, how to type the <strong>minecraft color codes symbol</strong> (§), Java vs Bedrock differences, <strong>minecraft chat color codes</strong>, <strong>minecraft chat colors hex codes</strong> in JSON (1.16+), <strong>minecraft sign color codes</strong>, and even <strong>minecraft gradient color codes</strong> for stylish text. Many players also search variants like <em>color codes minecraft</em>, <em>color codes minecraft java</em>, and <em>minecraft rgb color codes</em>—you'll find them all here.
+                This page is a practical guide and free <strong className="text-green-600 dark:text-green-400">minecraft color codes generator</strong>. It covers legacy <strong>§ minecraft color codes</strong> and formatting, how to type the <strong>minecraft color codes symbol</strong> (§), Java vs Bedrock differences, <strong>minecraft chat color codes</strong>, <strong>minecraft chat colors hex codes</strong> in JSON (1.16+), <strong>minecraft sign color codes</strong>, and even <strong>minecraft gradient color codes</strong> for stylish text. Many players also search variants like <em>color codes minecraft</em>, <em>color codes minecraft java</em>, and <em>minecraft rgb color codes</em>—you&#39;ll find them all here.
               </p>
 
               <div className="not-prose my-8 p-6 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-xl border-l-4 border-blue-500">
@@ -421,7 +421,7 @@ export default function MinecraftColorCodes() {
                   <span>🎮</span> What Are Minecraft Color Codes?
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  Minecraft uses special <strong>color codes</strong> to style text. In legacy chat and many plugin contexts, a <strong>section sign (§)</strong> precedes a single character (0–9, a–f, k–o, r). For example, <code className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded">§a</code> makes text green and <code className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded">§l</code> makes it bold. In modern Java (1.16+), you can also use full <code className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded">#RRGGBB</code> hex colors in <strong>JSON text components</strong> (e.g. <code className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded">/tellraw</code>, signs, books). That's why some people search for <em>§ minecraft color codes</em> and others for <em>minecraft chat colors hex codes</em>—both are valid, just for different contexts.
+                  Minecraft uses special <strong>color codes</strong> to style text. In legacy chat and many plugin contexts, a <strong>section sign (§)</strong> precedes a single character (0–9, a–f, k–o, r). For example, <code className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded">§a</code> makes text green and <code className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded">§l</code> makes it bold. In modern Java (1.16+), you can also use full <code className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded">#RRGGBB</code> hex colors in <strong>JSON text components</strong> (e.g. <code className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded">/tellraw</code>, signs, books). That&#39;s why some people search for <em>§ minecraft color codes</em> and others for <em>minecraft chat colors hex codes</em>—both are valid, just for different contexts.
                 </p>
               </div>
 
@@ -439,13 +439,13 @@ export default function MinecraftColorCodes() {
                   <div className="flex gap-3">
                     <span className="text-2xl flex-shrink-0">💎</span>
                     <div>
-                      <strong className="text-blue-600 dark:text-blue-400">Java Edition (1.16+ JSON):</strong> supports hex colors with <code className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-sm">{'{'}"color":"#RRGGBB"{'}'}</code> in JSON components (e.g., <code className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-sm">/tellraw</code>). Hex does not work as <code className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-sm">§#RRGGBB</code> in chat.
+                      <strong className="text-blue-600 dark:text-blue-400">Java Edition (1.16+ JSON):</strong> supports hex colors with <code className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-sm">{'{'}&quot;color&quot;:&quot;#RRGGBB&quot;{'}'}</code> in JSON components (e.g., <code className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-sm">/tellraw</code>). Hex does not work as <code className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded text-sm">§#RRGGBB</code> in chat.
                     </div>
                   </div>
                   <div className="flex gap-3">
                     <span className="text-2xl flex-shrink-0">📱</span>
                     <div>
-                      <strong className="text-purple-600 dark:text-purple-400">Bedrock Edition:</strong> many UI texts support colors differently and may not accept Java's JSON/hex features the same way. If you search <em>minecraft bedrock color codes</em>, verify commands/resources for Bedrock specifically.
+                      <strong className="text-purple-600 dark:text-purple-400">Bedrock Edition:</strong> many UI texts support colors differently and may not accept Java&#39;s JSON/hex features the same way. If you search <em>minecraft bedrock color codes</em>, verify commands/resources for Bedrock specifically.
                     </div>
                   </div>
                 </div>
@@ -494,7 +494,7 @@ export default function MinecraftColorCodes() {
                 <span>🎨</span> Hex Colors in JSON (Java 1.16+)
               </h3>
               <p>
-                To use <strong>hex</strong>, switch to <strong>JSON text components</strong> (e.g. <code>/tellraw</code>). Example: <code>{'{'}"text":"Hello","color":"#FFAA00","bold":true{'}'}</code>. This is the correct way for <em>minecraft chat colors hex codes</em> in Java—chat itself still only supports 16 legacy colors.
+                To use <strong>hex</strong>, switch to <strong>JSON text components</strong> (e.g. <code>/tellraw</code>). Example: <code>{'{'}&quot;text&quot;:&quot;Hello&quot;,&quot;color&quot;:&quot;#FFAA00&quot;,&quot;bold&quot;:true{'}'}</code>. This is the correct way for <em>minecraft chat colors hex codes</em> in Java—chat itself still only supports 16 legacy colors.
               </p>
 
               <h3 className="text-2xl font-bold mt-10 mb-4 flex items-center gap-2">
@@ -516,14 +516,14 @@ export default function MinecraftColorCodes() {
                 <span>⚡</span> Color Codes Minecraft Java vs Bedrock
               </h3>
               <p>
-                If you search <em>color codes minecraft java</em> vs <em>minecraft bedrock color codes</em>, remember they're not fully identical. Java allows both legacy § codes and advanced JSON hex (1.16+). Bedrock's behavior differs and depends on context/UI—check Bedrock‑specific docs or tools before relying on hex.
+                If you search <em>color codes minecraft java</em> vs <em>minecraft bedrock color codes</em>, remember they&#39;re not fully identical. Java allows both legacy § codes and advanced JSON hex (1.16+). Bedrock&#39;s behavior differs and depends on context/UI—check Bedrock‑specific docs or tools before relying on hex.
               </p>
 
               <h3 className="text-2xl font-bold mt-10 mb-4 flex items-center gap-2">
                 <span>🔢</span> Minecraft RGB Color Codes
               </h3>
               <p>
-                Want <strong>minecraft rgb color codes</strong>? In JSON (Java 1.16+), just convert RGB to hex and set <code>"color":"#RRGGBB"</code>. For legacy chat only 16 colors exist, so our generator maps your target color to the closest of <code>§0–§f</code> and emits compact §/&amp; sequences.
+                Want <strong>minecraft rgb color codes</strong>? In JSON (Java 1.16+), just convert RGB to hex and set <code>&quot;color&quot;:&quot;#RRGGBB&quot;</code>. For legacy chat only 16 colors exist, so our generator maps your target color to the closest of <code>§0–§f</code> and emits compact §/&amp; sequences.
               </p>
 
               <div className="not-prose my-10 p-6 bg-gradient-to-r from-teal-50 to-green-50 dark:from-teal-900/20 dark:to-green-900/20 rounded-xl border-l-4 border-teal-500">
@@ -536,7 +536,7 @@ export default function MinecraftColorCodes() {
                     <p className="text-gray-700 dark:text-gray-300">No. Hex works in JSON (Java 1.16+). Chat uses 16 legacy colors only.</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-lg text-teal-700 dark:text-teal-400 mb-2">Why doesn't § work when I type it?</h4>
+                    <h4 className="font-semibold text-lg text-teal-700 dark:text-teal-400 mb-2">Why doesn&#39;t § work when I type it?</h4>
                     <p className="text-gray-700 dark:text-gray-300">Clients often block direct § input; copy/paste or use plugin aliases like <code className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded">&amp;</code>. Servers may require permissions to use colors.</p>
                   </div>
                   <div>
@@ -545,7 +545,7 @@ export default function MinecraftColorCodes() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-lg text-teal-700 dark:text-teal-400 mb-2">Can I embed this generator?</h4>
-                    <p className="text-gray-700 dark:text-gray-300">Yes. Use the iframe snippet in the "Embed This Tool" section above.</p>
+                    <p className="text-gray-700 dark:text-gray-300">Yes. Use the iframe snippet in the &quot;Embed This Tool&quot; section above.</p>
                   </div>
                 </div>
               </div>
