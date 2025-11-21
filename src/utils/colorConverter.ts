@@ -1242,3 +1242,9 @@ export function xyzToUvCss(xyz: XYZ): string {
   const uv = xyzToUv(xyz);
   return uvToString(uv);
 }
+
+// RGB直接转换为UV色度坐标（通过XYZ中间空间）
+export function rgbToUv(rgb: RGB): UV {
+  const xyz = rgbToXyz(rgb);
+  return xyzToUv(xyz);
+}
