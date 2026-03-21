@@ -1,4 +1,16 @@
-export const SITEMAP_ROUTES = [
+import type { MetadataRoute } from 'next';
+import { INVERT_IMAGE_LANGUAGE_ALTERNATES, INVERT_IMAGE_TOOL_LANGUAGE_ALTERNATES } from '@/lib/seo/hreflang';
+
+type SitemapRouteEntry = {
+  path: string;
+  changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'];
+  priority: number;
+  alternates?: {
+    languages: Record<string, string>;
+  };
+};
+
+export const SITEMAP_ROUTES: ReadonlyArray<SitemapRouteEntry> = [
   { path: '/', changeFrequency: 'monthly', priority: 1 },
   { path: '/tools/rgb-to-hexadecimal', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/tools/hex-to-rgba', changeFrequency: 'monthly', priority: 0.8 },
@@ -54,9 +66,12 @@ export const SITEMAP_ROUTES = [
   { path: '/tools/xyz-to-uv', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/tools/text-to-handwriting', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/tools/eyedropper-tool', changeFrequency: 'monthly', priority: 0.8 },
-  { path: '/tools/en/invert-image', changeFrequency: 'monthly', priority: 0.9 },
-  { path: '/tools/es/invertir-imagen', changeFrequency: 'monthly', priority: 0.9 },
-  { path: '/tools/pt/inverter-imagem', changeFrequency: 'monthly', priority: 0.9 },
+  { path: '/tools/en/invert-image', changeFrequency: 'monthly', priority: 0.9, alternates: { languages: INVERT_IMAGE_LANGUAGE_ALTERNATES } },
+  { path: '/tools/es/invertir-imagen', changeFrequency: 'monthly', priority: 0.9, alternates: { languages: INVERT_IMAGE_LANGUAGE_ALTERNATES } },
+  { path: '/tools/pt/inverter-imagem', changeFrequency: 'monthly', priority: 0.9, alternates: { languages: INVERT_IMAGE_LANGUAGE_ALTERNATES } },
+  { path: '/tools/en/invert-image/tool', changeFrequency: 'monthly', priority: 0.9, alternates: { languages: INVERT_IMAGE_TOOL_LANGUAGE_ALTERNATES } },
+  { path: '/tools/es/invertir-imagen/tool', changeFrequency: 'monthly', priority: 0.9, alternates: { languages: INVERT_IMAGE_TOOL_LANGUAGE_ALTERNATES } },
+  { path: '/tools/pt/inverter-imagem/tool', changeFrequency: 'monthly', priority: 0.9, alternates: { languages: INVERT_IMAGE_TOOL_LANGUAGE_ALTERNATES } },
   { path: '/blog', changeFrequency: 'weekly', priority: 0.7 },
   { path: '/blog/rgba-to-hex-converter', changeFrequency: 'monthly', priority: 0.6 },
   { path: '/blog/hex-to-rgba-converter', changeFrequency: 'monthly', priority: 0.6 },
@@ -83,4 +98,4 @@ export const SITEMAP_ROUTES = [
   { path: '/color-shades/shades-of-red', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/color-shades/shades-of-white', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/color-shades/shades-of-yellow', changeFrequency: 'monthly', priority: 0.7 },
-] as const;
+];
