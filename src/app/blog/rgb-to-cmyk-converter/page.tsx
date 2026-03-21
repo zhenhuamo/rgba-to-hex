@@ -36,9 +36,9 @@ export default function RgbToCmykBlog() {
 
         <article className="max-w-4xl mx-auto">
           {/* Enhanced SEO Meta Section */}
-          <div className="hidden">
-            <h1>RGB to CMYK Converter: Professional Color Space Transformation Tool</h1>
-            <h2>Convert RGB Colors to CMYK Format for Photoshop, Illustrator, InDesign and PDF</h2>
+          <div className="hidden" aria-hidden="true">
+            <div>RGB to CMYK Converter: Professional Color Space Transformation Tool</div>
+            <div>Convert RGB Colors to CMYK Format for Photoshop, Illustrator, InDesign and PDF</div>
             <p>Free online RGB to CMYK converter tool for converting RGB colors to CMYK format. Perfect for digital to print conversion, image color conversion, and professional print production.</p>
           </div>
 

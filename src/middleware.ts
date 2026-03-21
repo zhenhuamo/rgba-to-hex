@@ -1,9 +1,24 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+const noindexPaths = new Set([
+  '/tools/color-converter',
+  '/tools/hex-to-rgba-converter',
+  '/tools/hsl-to-hex-converter',
+  '/tools/cmyk-to-hex-converter',
+  '/tools/rgb-to-hsl-converter',
+  '/tools/rgb-to-cmyk-converter',
+  '/tools/cmyk-to-rgb-converter',
+  '/tools/color-contrast-checker',
+]);
+
 export function middleware(request: NextRequest) {
   // Get response object
   const response = NextResponse.next();
+
+  if (noindexPaths.has(request.nextUrl.pathname)) {
+    response.headers.set('X-Robots-Tag', 'noindex, follow');
+  }
   
   // Allow embedding tool pages from all origins
   if (

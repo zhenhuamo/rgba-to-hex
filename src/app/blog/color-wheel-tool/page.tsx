@@ -12,9 +12,9 @@ export default function ColorWheelBlog() {
 
         <article className="max-w-4xl mx-auto">
           {/* SEO Meta Section */}
-          <div className="hidden">
-            <h1>Color Wheel Tool - Interactive Color Harmony Generator | RGB Color Theory</h1>
-            <h2>Advanced Online Tool for Creating Perfect Color Combinations Using RGBA to HEX Conversion</h2>
+          <div className="hidden" aria-hidden="true">
+            <div>Color Wheel Tool - Interactive Color Harmony Generator | RGB Color Theory</div>
+            <div>Advanced Online Tool for Creating Perfect Color Combinations Using RGBA to HEX Conversion</div>
             <p>
               Master color relationships with our interactive color wheel tool. Create complementary, analogous, triadic, and split-complementary color schemes. 
               Convert between RGBA to HEX formats for web design. Free online color wheel generator with RGBA to HEX conversion, perfect for graphic design, 

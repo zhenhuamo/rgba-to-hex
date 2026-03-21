@@ -32,9 +32,9 @@ export default function CmykToHexBlog() {
 
         <article className="max-w-4xl mx-auto">
           {/* SEO Meta Section */}
-          <div className="hidden">
-            <h1>CMYK to HEX Color Converter - Convert CMYK Colors to Hexadecimal</h1>
-            <h2>Online CMYK to HEX Color Converter with Professional Print Support</h2>
+          <div className="hidden" aria-hidden="true">
+            <div>CMYK to HEX Color Converter - Convert CMYK Colors to Hexadecimal</div>
+            <div>Online CMYK to HEX Color Converter with Professional Print Support</div>
             <p>
               Free online CMYK to HEX converter tool. Convert CMYK (Cyan, Magenta, Yellow, Key) colors to HEX format. 
               Perfect for print design to web conversion. Professional color management system included.

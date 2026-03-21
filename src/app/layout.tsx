@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Dancing_Script, Kalam, Allura, Caveat, Crimson_Text } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Script from 'next/script';
 
@@ -13,42 +13,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Handwriting fonts for text-to-handwriting tool
-const dancingScript = Dancing_Script({
-  variable: "--font-dancing-script",
-  subsets: ["latin"],
-});
-
-const kalam = Kalam({
-  variable: "--font-kalam",
-  subsets: ["latin"],
-  weight: ["300", "400", "700"],
-});
-
-const allura = Allura({
-  variable: "--font-allura",
-  subsets: ["latin"],
-  weight: ["400"],
-});
-
-const caveat = Caveat({
-  variable: "--font-caveat",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const crimsonText = Crimson_Text({
-  variable: "--font-crimson-text",
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  style: ["normal", "italic"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://rgbatohex.com'),
   title: "RGBA to HEX Color Converter | Free Online Tool",
   description: "Convert RGBA to HEX color codes instantly with our free online tool. Easy-to-use RGBA to hexadecimal converter with real-time preview. Perfect for web developers and designers.",
   keywords: "rgba to hex, color converter, hex color codes, rgba converter, color tool, web development, design tools, rgba to hexadecimal, color conversion, free color converter",
+  alternates: {
+    canonical: 'https://rgbatohex.com/',
+  },
   icons: {
     icon: [
       { url: '/favicon/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
@@ -108,7 +81,7 @@ export default function RootLayout({
           `}
         </Script>
         {/* Microsoft Clarity */}
-        <Script id="microsoft-clarity" strategy="afterInteractive">
+        <Script id="microsoft-clarity" strategy="lazyOnload">
           {`
             (function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -119,7 +92,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${dancingScript.variable} ${kalam.variable} ${allura.variable} ${caveat.variable} ${crimsonText.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
         {/* Restore AdSense Script with lazyOnload strategy */}

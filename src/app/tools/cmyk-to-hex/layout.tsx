@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ToolSeoLayout from "@/components/seo/ToolSeoLayout";
 
 export const metadata: Metadata = {
   title: "CMYK to HEX Color Converter - Convert Print Colors to Web Format | Free Online Tool",
@@ -160,10 +161,22 @@ export const metadata: Metadata = {
   }
 };
 
+const toolPage = {
+  name: 'CMYK to HEX Converter',
+  description: 'Convert CMYK colors to HEX format instantly with our free online CMYK to HEX converter. Perfect for translating print-ready colors into web-friendly hexadecimal values.',
+  path: '/tools/cmyk-to-hex',
+};
+
+const faqItems = undefined;
+
 export default function CmykToHexLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <ToolSeoLayout name={toolPage.name} description={toolPage.description} path={toolPage.path} faqItems={faqItems}>
+      {children}
+    </ToolSeoLayout>
+  );
 }

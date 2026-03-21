@@ -1,10 +1,45 @@
-'use client';
-
 import Image from 'next/image';
 import Navigation from '@/components/Navigation';
+import CopyEmbedButton from '@/components/CopyEmbedButton';
+import InternalLinkSection from '@/components/seo/InternalLinkSection';
+import JsonLd from '@/components/seo/JsonLd';
+import { HOME_INTERNAL_LINK_GROUPS } from '@/lib/seo/internalLinks';
+import { buildWebSiteSchema, buildFaqSchema } from '@/lib/seo/schema';
+
+const websiteSchema = buildWebSiteSchema();
+
+const homeFaqSchema = buildFaqSchema([
+  {
+    question: 'What is RGBA color format?',
+    answer: 'RGBA is a color model that uses Red, Green, and Blue channels (0-255) with an Alpha channel (0-1) for transparency. It is commonly used in web development and digital design for creating colors with opacity.',
+  },
+  {
+    question: 'Why convert RGBA to HEX?',
+    answer: 'HEX color codes are widely used in CSS and web design. Converting from RGBA to HEX ensures compatibility across different platforms and maintains consistent color representation in your projects.',
+  },
+  {
+    question: 'How does RGBA to HEX conversion work?',
+    answer: 'RGBA to HEX conversion transforms RGBA color values (red, green, blue, alpha) into hexadecimal format. Our RGBA to HEX converter uses precise algorithms to ensure accurate color representation while handling transparency values for modern web development needs.',
+  },
+  {
+    question: 'What happens to alpha channel in RGBA to HEX conversion?',
+    answer: 'When converting RGBA to HEX, the alpha channel can be preserved in 8-digit HEX format (#RRGGBBAA) or converted to standard 6-digit HEX (#RRGGBB) for broader compatibility. Our RGBA to HEX tool supports both formats.',
+  },
+  {
+    question: 'Is RGBA to HEX conversion accurate?',
+    answer: 'Yes, our RGBA to HEX converter uses high-precision algorithms to ensure 100% accurate color conversion. The mathematical conversion from RGBA to HEX maintains exact color values without any loss of precision.',
+  },
+  {
+    question: 'Is this tool free to use?',
+    answer: 'Yes, our RGBA to HEX converter is completely free to use. All features, including professional color schemes and accessibility analysis, are available without any cost or registration.',
+  },
+]);
 
 export default function Home() {
   return (
+    <>
+      <JsonLd id="website-schema" data={websiteSchema} />
+      <JsonLd id="home-faq-schema" data={homeFaqSchema} />
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4 py-12">
         {/* Navigation Bar */}
@@ -476,15 +511,7 @@ export default function Home() {
   title="RGBA to HEX Color Converter"
 ></iframe>`}</code>
                 </pre>
-                <button 
-                  className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm"
-                  onClick={() => {
-                    const code = `<iframe src="https://rgbatohex.com/tools/color-converter?embed=true" width="100%" height="600" style="border:none;border-radius:12px;overflow:hidden;" title="RGBA to HEX Color Converter"></iframe>`;
-                    navigator.clipboard.writeText(code);
-                  }}
-                >
-                  Copy Code
-                </button>
+                <CopyEmbedButton code={`<iframe src="https://rgbatohex.com/tools/color-converter?embed=true" width="100%" height="600" style="border:none;border-radius:12px;overflow:hidden;" title="RGBA to HEX Color Converter"></iframe>`} />
               </div>
             </div>
             
@@ -708,7 +735,9 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <InternalLinkSection groups={HOME_INTERNAL_LINK_GROUPS} title="Explore More RGBA to HEX Workflows" />
       </div>
     </div>
+    </>
   );
 }

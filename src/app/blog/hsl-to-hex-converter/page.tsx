@@ -11,9 +11,9 @@ export default function HslToHexBlog() {
 
         <article className="max-w-4xl mx-auto">
           {/* SEO Meta Section */}
-          <div className="hidden">
-            <h1>HSL to HEX Color Converter - Convert HSL Colors to Hexadecimal</h1>
-            <h2>Online HSL to HEX Color Converter with Interactive Preview</h2>
+          <div className="hidden" aria-hidden="true">
+            <div>HSL to HEX Color Converter - Convert HSL Colors to Hexadecimal</div>
+            <div>Online HSL to HEX Color Converter with Interactive Preview</div>
             <p>
               Free online HSL to HEX converter tool. Convert HSL (Hue, Saturation, Lightness) colors to HEX format. 
               JavaScript, TypeScript, Python, and React implementations available. NPM package for easy integration.

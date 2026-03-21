@@ -11,9 +11,9 @@ export default function RgbaToHex8DigitBlog() {
 
         <article className="max-w-4xl mx-auto">
           {/* SEO Meta Section */}
-          <div className="hidden">
-            <h1>RGBA to 8-Digit HEX Converter - Convert Colors with Alpha Transparency</h1>
-            <h2>Professional RGBA to 8-Digit HEX Color Converter with Full Opacity Support</h2>
+          <div className="hidden" aria-hidden="true">
+            <div>RGBA to 8-Digit HEX Converter - Convert Colors with Alpha Transparency</div>
+            <div>Professional RGBA to 8-Digit HEX Color Converter with Full Opacity Support</div>
             <p>
               Convert RGBA colors to 8-digit HEX format (#RRGGBBAA) with alpha transparency support. Free online color converter 
               for web developers, designers, and digital artists. Learn about the conversion process and implementation, and understand 

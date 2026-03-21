@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ToolSeoLayout from "@/components/seo/ToolSeoLayout";
 
 export const metadata: Metadata = {
   title: "CMYK to RGB Color Converter - Convert Print Colors to Digital Format | Professional Tool",
@@ -179,10 +180,22 @@ export const metadata: Metadata = {
   }
 };
 
+const toolPage = {
+  name: 'CMYK to RGB Converter',
+  description: 'Convert CMYK to RGB colors instantly with our professional color converter. Transform print-ready CMYK colors to digital RGB format for web, Photoshop, Illustrator, and digital displays.',
+  path: '/tools/cmyk-to-rgb',
+};
+
+const faqItems = undefined;
+
 export default function CmykToRgbLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <ToolSeoLayout name={toolPage.name} description={toolPage.description} path={toolPage.path} faqItems={faqItems}>
+      {children}
+    </ToolSeoLayout>
+  );
 }

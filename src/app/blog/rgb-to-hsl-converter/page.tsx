@@ -11,9 +11,9 @@ export default function RgbToHslBlog() {
 
         <article className="max-w-4xl mx-auto">
           {/* SEO Meta Section */}
-          <div className="hidden">
-            <h1>RGB to HSL Converter - Convert RGB Colors to HSL Format Online</h1>
-            <h2>Free RGB to HSL Color Converter with Complete RGB to HSL Formula and Code Examples</h2>
+          <div className="hidden" aria-hidden="true">
+            <div>RGB to HSL Converter - Convert RGB Colors to HSL Format Online</div>
+            <div>Free RGB to HSL Color Converter with Complete RGB to HSL Formula and Code Examples</div>
             <p>
               Easy RGB to HSL converter tool. Convert RGB colors to HSL format online. Learn the RGB to HSL formula, RGB to HSL algorithm, and implementation in JavaScript, Python, CSS, C++ and more.
               Free online RGB to HSL converter with complete RGB to HSL code examples for web developers and designers.

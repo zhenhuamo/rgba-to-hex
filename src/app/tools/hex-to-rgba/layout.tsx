@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import ToolSeoLayout from '@/components/seo/ToolSeoLayout';
 
 export const metadata: Metadata = {
   title: 'HEX to RGBA Converter - Free Online Color Conversion Tool',
@@ -90,14 +91,27 @@ export const metadata: Metadata = {
   },
 };
 
+const toolPage = {
+  name: 'HEX to RGBA Converter',
+  description: 'Convert HEX color codes to RGBA format instantly. Professional HEX to RGBA converter with transparency support, real-time preview, and accurate color conversion for web developers and designers.',
+  path: '/tools/hex-to-rgba',
+};
+
+const faqItems = [
+  { question: 'What is the difference between HEX and RGBA color formats?', answer: 'HEX colors use hexadecimal notation (#RRGGBB) to represent colors, while RGBA uses decimal values (0-255) for red, green, and blue channels, plus an alpha value (0-1) for transparency. Converting from HEX to RGBA allows for more intuitive opacity control and better browser support in some cases.' },
+  { question: 'Why should I convert HEX to RGBA?', answer: 'Converting HEX to RGBA offers several advantages: Easy transparency control with the alpha channel. Better browser compatibility for certain features. More intuitive color value manipulation. Simplified color animations in CSS.' },
+  { question: 'How do I convert 8-digit HEX colors to RGBA?', answer: '8-digit HEX colors (#RRGGBBAA) include an alpha channel. The last two digits (AA) represent opacity, where FF is fully opaque (1) and 00 is fully transparent (0). Our converter automatically handles this conversion, translating the alpha value to a decimal between 0 and 1.' },
+  { question: 'Are there browser compatibility issues with RGBA colors?', answer: "RGBA colors are widely supported in all modern browsers. However, for older browsers, it's good practice to provide a fallback HEX color." },
+] as const;
+
 export default function HexToRgbaLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <ToolSeoLayout name={toolPage.name} description={toolPage.description} path={toolPage.path} faqItems={faqItems}>
       {children}
-    </>
+    </ToolSeoLayout>
   );
 }

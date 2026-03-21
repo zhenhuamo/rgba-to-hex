@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { INVERT_IMAGE_LANGUAGE_ALTERNATES } from '@/lib/seo/hreflang';
 
 export const metadata: Metadata = {
   title: 'Inverter Imagem Online - Ferramenta Profissional para Inverter Imagem Online | Grátis',
@@ -12,11 +13,7 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: '/tools/pt/inverter-imagem',
-    languages: {
-      'en': '/tools/en/invert-image',
-      'es': '/tools/es/invertir-imagen',
-      'pt': '/tools/pt/inverter-imagem',
-    },
+    languages: INVERT_IMAGE_LANGUAGE_ALTERNATES,
   },
   robots: {
     index: true,

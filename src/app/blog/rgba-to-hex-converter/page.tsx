@@ -11,9 +11,9 @@ export default function RgbaToHexBlog() {
 
         <article className="max-w-4xl mx-auto">
           {/* SEO Meta Section */}
-          <div className="hidden">
-            <h1>RGBA to HEX Converter - Convert RGBA Colors to Hexadecimal</h1>
-            <h2>Online RGBA to HEX Color Converter with Opacity Support</h2>
+          <div className="hidden" aria-hidden="true">
+            <div>RGBA to HEX Converter - Convert RGBA Colors to Hexadecimal</div>
+            <div>Online RGBA to HEX Color Converter with Opacity Support</div>
             <p>
               Convert RGBA colors to HEX format online. Support for 6-digit and 8-digit hex codes.
               Handle opacity in RGBA to HEX conversion. Free online color converter tool.

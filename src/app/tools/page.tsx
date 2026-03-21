@@ -1,8 +1,8 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
+import InternalLinkSection from '@/components/seo/InternalLinkSection';
+import { TOOLS_HUB_INTERNAL_LINK_GROUPS } from '@/lib/seo/internalLinks';
 
 export default function ToolsIndex() {
   // Tool categories copied from Navigation component
@@ -353,6 +353,8 @@ export default function ToolsIndex() {
               </div>
             </div>
           </div>
+
+          <InternalLinkSection groups={TOOLS_HUB_INTERNAL_LINK_GROUPS} title="Next Steps Across The Tool Library" />
 
           {/* Footer CTA */}
           <div className="text-center py-12">

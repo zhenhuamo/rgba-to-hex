@@ -12,9 +12,9 @@ export default function ColorBlindnessSimulatorBlog() {
 
         <article className="max-w-4xl mx-auto">
           {/* SEO Meta Section */}
-          <div className="hidden">
-            <h1>Color Blindness Simulator - Visualize Colors as Seen by the Color Blind</h1>
-            <h2>Interactive Online Tool for Simulating Different Types of Color Vision Deficiency</h2>
+          <div className="hidden" aria-hidden="true">
+            <div>Color Blindness Simulator - Visualize Colors as Seen by the Color Blind</div>
+            <div>Interactive Online Tool for Simulating Different Types of Color Vision Deficiency</div>
             <p>
               Test your designs and images for color accessibility with our color blindness simulator. Simulate protanopia, deuteranopia, tritanopia, and other
               color vision deficiencies to create more inclusive designs. Free online color blindness simulator tool with image upload support and multi-platform availability.

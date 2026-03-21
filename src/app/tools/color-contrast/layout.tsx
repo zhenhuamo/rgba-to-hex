@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ToolSeoLayout from "@/components/seo/ToolSeoLayout";
 
 export const metadata: Metadata = {
   title: "Color Contrast Checker | WCAG Accessibility Tool | Free Online Contrast Analyzer",
@@ -162,10 +163,27 @@ export const metadata: Metadata = {
   }
 };
 
+const toolPage = {
+  name: 'Color Contrast Checker',
+  description: 'Free online color contrast checker tool for WCAG accessibility compliance. Test color combinations, check ADA requirements, and ensure web accessibility with our professional contrast checker. Supports HEX, RGB, RGBA formats with real-time analysis.',
+  path: '/tools/color-contrast',
+};
+
+const faqItems = [
+  { question: 'What is a color contrast checker?', answer: 'A color contrast checker is a tool that measures the contrast ratio between two colors to ensure they meet accessibility standards. Our tool provides comprehensive contrast checking capabilities for web accessibility compliance.' },
+  { question: 'Why should I use a color contrast checker?', answer: "Using a color contrast checker helps ensure your content is readable by all users, including those with visual impairments. It's essential for meeting accessibility standards and legal requirements for web content." },
+  { question: 'How does the color contrast checker work?', answer: 'Our tool calculates the contrast ratio between two colors using the WCAG algorithm. It supports multiple color formats (HEX, RGB, RGBA) and provides instant feedback on accessibility compliance.' },
+  { question: 'Is this color contrast checker free?', answer: 'Yes, our color contrast checker is completely free to use and provides professional-grade features including WCAG compliance checking, color blindness simulation, and accessibility reporting.' },
+] as const;
+
 export default function ColorContrastLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <ToolSeoLayout name={toolPage.name} description={toolPage.description} path={toolPage.path} faqItems={faqItems}>
+      {children}
+    </ToolSeoLayout>
+  );
 }
