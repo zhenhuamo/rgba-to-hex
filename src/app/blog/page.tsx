@@ -23,6 +23,22 @@ export default function Blog() {
       category: 'Color Conversion',
     },
     {
+      title: 'APCA vs WCAG: What Changes in Modern Contrast Checking?',
+      description: 'Learn when APCA adds better readability insight than a classic WCAG ratio, how polarity changes decisions, and how to review text, button, and dark-surface pairs with our APCA Contrast Checker.',
+      link: '/blog/apca-vs-wcag',
+      date: '2026-03-22',
+      readTime: '9 min read',
+      category: 'Accessibility',
+    },
+    {
+      title: 'OKLCH Color Scale: Why It Creates Better 50-950 Palettes',
+      description: 'See why OKLCH produces smoother 50-950 ramps for product UI, design tokens, and Tailwind-style palettes, and learn how to move from one base color to export-ready scale output.',
+      link: '/blog/oklch-color-scale',
+      date: '2026-03-22',
+      readTime: '11 min read',
+      category: 'Design Systems',
+    },
+    {
       title: 'Color Wheel Tool: Master Color Theory and Create Perfect Harmonies',
       description: 'Explore our comprehensive guide to using the interactive color wheel tool. Learn about color harmonies, RGB vs RYB color systems, and how to create stunning color combinations for your design projects.',
       link: '/blog/color-wheel-tool',
@@ -156,7 +172,7 @@ export default function Blog() {
 
             {/* Categories Filter */}
             <div className="flex flex-wrap justify-center gap-3">
-              {['All', 'Color Conversion', 'Accessibility', 'Color Theory', 'Digital Painting'].map((category) => (
+              {['All', 'Color Conversion', 'Accessibility', 'Design Systems', 'Color Theory', 'Digital Painting'].map((category) => (
                 <button
                   key={category}
                   className="px-4 py-2 rounded-full text-sm font-medium transition-all hover:scale-105 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-900/30 border border-gray-200 dark:border-gray-700"

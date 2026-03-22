@@ -2,9 +2,26 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import InternalLinkSection from '@/components/seo/InternalLinkSection';
+import { getFeaturedTools, type ToolRegistryCategory, type ToolRegistryStatus } from '@/data/toolRegistry';
 import { TOOLS_HUB_INTERNAL_LINK_GROUPS } from '@/lib/seo/internalLinks';
 
+const CATEGORY_LABELS: Record<ToolRegistryCategory, string> = {
+  accessibility: 'Accessibility',
+  'color-scale': 'Color Scale',
+  'design-tokens': 'Design Tokens',
+  'color-conversion': 'Color Conversion',
+  'color-tools': 'Color Tools',
+};
+
+const STATUS_LABELS: Record<ToolRegistryStatus, string> = {
+  live: 'Live',
+  planned: 'Planned',
+  draft: 'Draft',
+};
+
 export default function ToolsIndex() {
+  const featuredTools = getFeaturedTools();
+
   // Tool categories copied from Navigation component
   const toolCategories = [
     {
@@ -122,7 +139,94 @@ export default function ToolsIndex() {
 
         {/* Main Content */}
         <div className="max-w-6xl mx-auto">
-          {/* Hero Section */}
+          <section className="max-w-6xl mx-auto mb-16">
+          <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 md:p-10">
+            <div className="max-w-3xl mb-8">
+              <div className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700 dark:bg-blue-900/40 dark:text-blue-300">
+                Registry Driven Preview
+              </div>
+              <h2 className="mt-4 text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">
+                Featured Color Workflows
+              </h2>
+              <p className="mt-3 text-lg text-gray-600 dark:text-gray-300">
+                These are the core workflows we are actively building around: production-ready tools that support accessibility, modern color systems, and design-token exports.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+              {featuredTools.map((tool) => {
+                const isLive = tool.status === 'live';
+                const cardContent = (
+                  <>
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <div className="flex flex-wrap gap-2 mb-3">
+                          <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-200">
+                            {CATEGORY_LABELS[tool.category]}
+                          </span>
+                          <span className="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 text-xs font-semibold text-purple-700 dark:bg-purple-900/50 dark:text-purple-200">
+                            {tool.priority}
+                          </span>
+                          <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${
+                            isLive
+                              ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-200'
+                              : 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-200'
+                          }`}>
+                            {STATUS_LABELS[tool.status]}
+                          </span>
+                        </div>
+                        <h3 className="text-xl font-semibold text-gray-800 dark:text-white">{tool.name}</h3>
+                      </div>
+                    </div>
+
+                    <div className="mt-5 text-sm text-gray-500 dark:text-gray-400">
+                      <div className="font-medium text-gray-600 dark:text-gray-300">Route</div>
+                      <div className="mt-1 break-all">{tool.href}</div>
+                    </div>
+
+                    <div className="mt-6">
+                      {isLive ? (
+                        <span className="inline-flex items-center text-sm font-medium text-blue-600 dark:text-blue-400">
+                          Open workflow
+                          <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-600 dark:bg-gray-700 dark:text-gray-300">
+                          Coming soon
+                        </span>
+                      )}
+                    </div>
+                  </>
+                );
+
+                if (isLive) {
+                  return (
+                    <Link
+                      key={tool.href}
+                      href={tool.href}
+                      className="group block rounded-2xl border border-gray-200 bg-gradient-to-br from-white to-gray-50 p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl dark:border-gray-700 dark:from-gray-800 dark:to-gray-700"
+                    >
+                      {cardContent}
+                    </Link>
+                  );
+                }
+
+                return (
+                  <div
+                    key={tool.href}
+                    className="rounded-2xl border border-dashed border-gray-300 bg-gradient-to-br from-gray-50 to-white p-6 opacity-95 dark:border-gray-600 dark:from-gray-800/80 dark:to-gray-700/80"
+                  >
+                    {cardContent}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Hero Section */}
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-4 mb-8">
               <Image src="/rgb.svg" alt="Professional Online Color Tool Collection" width={56} height={56} priority />
