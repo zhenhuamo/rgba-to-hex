@@ -9,6 +9,14 @@
 - 新工具继续围绕 `Web Color`、`Accessibility`、`Design Tokens` 主线推进
 - 优先做能形成“工具 → 内容 → SEO → 导出”闭环的功能
 
+## 当前真实已完成能力
+
+- `APCA Contrast Checker` 已上线，并已完成工具页、SEO、sitemap、博客承接页闭环
+- `OKLCH Scale Generator` 已上线，并已完成色阶生成、导出基础、SEO、博客承接页
+- `Design Token Color Exporter` 已上线，并已完成独立工具页、OKLCH 串联、SEO、博客承接页
+- 上述三条能力已进入 `toolRegistry`、`siteRoutes`、`internalLinks`、`/tools` 与 `/blog` 分发体系
+- 当前下一主工具应进入 `S4-1 Accessible Palette Generator`
+
 ---
 
 ## 一、执行原则
@@ -69,7 +77,7 @@
 ### S0-1 新增 `toolRegistry`
 
 - **优先级**：P0
-- **状态**：待开始
+- **状态**：已完成
 - **目标**：把工具目录、导航、工具索引、后续 sitemap 驱动统一到一份配置
 - **涉及文件**：
   - `src/data/toolRegistry.ts`
@@ -91,7 +99,7 @@
 ### S0-2 抽离颜色工具共享组件目录
 
 - **优先级**：P0
-- **状态**：待开始
+- **状态**：已完成
 - **目标**：为 APCA、OKLCH、Token Exporter 复用 UI 骨架
 - **涉及文件**：
   - `src/components/color-tools/ColorInputPanel.tsx`
@@ -111,7 +119,7 @@
 ### S0-3 约定新工具目录结构
 
 - **优先级**：P0
-- **状态**：待开始
+- **状态**：已完成
 - **目标**：避免新工具继续出现多种不一致实现模式
 - **涉及目录**：
 
@@ -137,7 +145,7 @@ src/app/tools/<slug>/layout.tsx
 ### S1-1 新增 APCA 算法工具函数
 
 - **优先级**：P0
-- **状态**：待开始
+- **状态**：已完成
 - **工具路由**：`/tools/apca-contrast-checker`
 - **涉及文件**：
   - `src/utils/apcaContrast.ts`
@@ -154,7 +162,7 @@ src/app/tools/<slug>/layout.tsx
 ### S1-2 新增 APCA 工具页面骨架
 
 - **优先级**：P0
-- **状态**：待开始
+- **状态**：已完成
 - **涉及文件**：
   - `src/app/tools/apca-contrast-checker/page.tsx`
   - `src/app/tools/apca-contrast-checker/client.tsx`
@@ -180,7 +188,7 @@ src/app/tools/<slug>/layout.tsx
 ### S1-3 新增 APCA 结果卡片组件
 
 - **优先级**：P0
-- **状态**：待开始
+- **状态**：已完成
 - **涉及文件**：
   - `src/components/color-tools/ContrastScoreCard.tsx`
 - **执行动作**：
@@ -195,7 +203,7 @@ src/app/tools/<slug>/layout.tsx
 ### S1-4 接入导航、工具索引与 sitemap
 
 - **优先级**：P0
-- **状态**：待开始
+- **状态**：已完成
 - **涉及文件**：
   - `src/data/toolRegistry.ts`
   - `src/components/Navigation.tsx`
@@ -212,7 +220,7 @@ src/app/tools/<slug>/layout.tsx
 ### S1-5 配套内容承接页
 
 - **优先级**：P1
-- **状态**：待开始
+- **状态**：已完成
 - **建议博客页**：`/blog/apca-vs-wcag`
 - **执行动作**：
   - 新增一篇解释 APCA 和 WCAG 区别的博客页
@@ -228,7 +236,7 @@ src/app/tools/<slug>/layout.tsx
 ### S2-1 新增 OKLCH 色阶算法模块
 
 - **优先级**：P0
-- **状态**：待开始
+- **状态**：已完成
 - **工具路由**：`/tools/oklch-scale-generator`
 - **涉及文件**：
   - `src/utils/oklchScale.ts`
@@ -242,7 +250,7 @@ src/app/tools/<slug>/layout.tsx
 ### S2-2 新增 OKLCH 工具页
 
 - **优先级**：P0
-- **状态**：待开始
+- **状态**：已完成
 - **涉及文件**：
   - `src/app/tools/oklch-scale-generator/page.tsx`
   - `src/app/tools/oklch-scale-generator/client.tsx`
@@ -259,7 +267,7 @@ src/app/tools/<slug>/layout.tsx
 ### S2-3 抽象色阶预览组件
 
 - **优先级**：P0
-- **状态**：待开始
+- **状态**：已完成
 - **涉及文件**：
   - `src/components/color-tools/ScalePreview.tsx`
 - **执行动作**：
@@ -271,7 +279,7 @@ src/app/tools/<slug>/layout.tsx
 ### S2-4 接入 Token 导出能力预留接口
 
 - **优先级**：P1
-- **状态**：待开始
+- **状态**：已完成
 - **涉及文件**：
   - `src/components/color-tools/TokenExportPanel.tsx`
   - `src/utils/designTokens.ts`
@@ -286,7 +294,7 @@ src/app/tools/<slug>/layout.tsx
 ### S2-5 配套内容承接页
 
 - **优先级**：P1
-- **状态**：待开始
+- **状态**：已完成
 - **建议博客页**：`/blog/oklch-color-scale`
 - **验收标准**：
   - 页面解释为何 OKLCH 更适合色阶生成
@@ -299,7 +307,7 @@ src/app/tools/<slug>/layout.tsx
 ### S3-1 新增 Design Token 生成模块
 
 - **优先级**：P0
-- **状态**：待开始
+- **状态**：已完成
 - **工具路由**：`/tools/design-token-color-exporter`
 - **涉及文件**：
   - `src/utils/designTokens.ts`
@@ -321,7 +329,7 @@ src/app/tools/<slug>/layout.tsx
 ### S3-2 新增导出器页面
 
 - **优先级**：P0
-- **状态**：待开始
+- **状态**：已完成
 - **涉及文件**：
   - `src/app/tools/design-token-color-exporter/page.tsx`
   - `src/app/tools/design-token-color-exporter/client.tsx`
@@ -336,7 +344,7 @@ src/app/tools/<slug>/layout.tsx
 ### S3-3 连接 OKLCH 色阶生成器
 
 - **优先级**：P1
-- **状态**：待开始
+- **状态**：下一主工具 / 待开始
 - **执行动作**：
   - 允许 OKLCH 色阶生成器的输出直接进入导出器
   - 后续可通过 query state 或复制 JSON 方式串联
@@ -346,7 +354,7 @@ src/app/tools/<slug>/layout.tsx
 ### S3-4 配套内容承接页
 
 - **优先级**：P1
-- **状态**：待开始
+- **状态**：依赖 S4-1 结果 / 未开始
 - **建议博客页**：`/blog/design-token-color-system`
 - **验收标准**：
   - 用实际前端场景解释 token 输出价值
@@ -358,7 +366,7 @@ src/app/tools/<slug>/layout.tsx
 ### S4-1 可访问性色板生成器
 
 - **优先级**：P1
-- **状态**：待开始
+- **状态**：依赖 S4-1 + S4-2 / 未开始
 - **建议路由**：`/tools/accessible-palette-generator`
 - **目标**：从一个基础色生成满足 `AA / AAA / APCA` 的文本、背景、按钮、边框组合
 - **关键依赖**：
@@ -485,24 +493,22 @@ src/app/tools/<slug>/layout.tsx
 
 ---
 
-## 六、当前最推荐的直接开工顺序
+## 六、当前最推荐的后续开工顺序
 
-如果马上进入开发，建议按下面顺序执行，不要跳步：
+当前仓库已经完成 `S0` 到 `S3` 的核心交付，接下来建议按下面顺序继续推进：
 
-1. `S0-1` 新增 `toolRegistry`
-2. `S0-2` 抽离共享组件骨架
-3. `S1-1` + `S1-2` 开发 APCA 对比度检查器
-4. `S1-4` 接入导航、工具索引、sitemap
-5. `S1-5` 新增 APCA 配套博客页
-6. `S2-1` + `S2-2` 开发 OKLCH 色阶生成器
-7. `S2-4` 接入导出能力
-8. `S3` 上线 Design Token 导出器
+1. `S4-1` 上线 `Accessible Palette Generator`
+2. `S4-2` 基于可访问角色生成 light / dark 主题
+3. `S4-3` 做品牌颜色审计与风险提示
+4. `S5-1` 把通用色阶 / 深浅变化能力独立工具化
+5. `S5-2` 视资源情况再做截图转 UI 色板工具
 
-这条顺序的核心目标不是“工具数量变多”，而是尽快形成：
+这条顺序的核心目标不是“工具数量变多”，而是继续强化：
 
 - 可访问性能力
 - 现代颜色能力
 - 设计令牌导出能力
+- 主题生成与品牌审计能力
 - 导航 / sitemap / 内容承接的统一机制
 
 这样后面每新增一个工具，都会越来越轻，而不是越来越乱。

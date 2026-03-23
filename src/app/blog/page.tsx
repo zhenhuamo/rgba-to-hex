@@ -31,11 +31,27 @@ export default function Blog() {
       category: 'Accessibility',
     },
     {
+      title: 'Accessible Color Palette: From Brand Color to Readable UI',
+      description: 'Learn how to turn one brand color into accessible roles for text, surfaces, borders, and actions, then move those decisions into a token workflow.',
+      link: '/blog/accessible-color-palette',
+      date: '2026-03-23',
+      readTime: '10 min read',
+      category: 'Accessibility',
+    },
+    {
       title: 'OKLCH Color Scale: Why It Creates Better 50-950 Palettes',
       description: 'See why OKLCH produces smoother 50-950 ramps for product UI, design tokens, and Tailwind-style palettes, and learn how to move from one base color to export-ready scale output.',
       link: '/blog/oklch-color-scale',
       date: '2026-03-22',
       readTime: '11 min read',
+      category: 'Design Systems',
+    },
+    {
+      title: 'Design Token Color System: From Palette to Production',
+      description: 'Learn how to move from color scales to semantic roles, export CSS variables, Tailwind config, and JSON tokens, and keep design and front-end teams aligned.',
+      link: '/blog/design-token-color-system',
+      date: '2026-03-22',
+      readTime: '10 min read',
       category: 'Design Systems',
     },
     {

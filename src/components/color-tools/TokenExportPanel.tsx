@@ -7,6 +7,8 @@ type TokenExportPanelProps = {
   cssVariables: string;
   tailwindConfig: string;
   jsonTokens: string;
+  eyebrow?: string;
+  title?: string;
 };
 
 type ExportTab = 'css' | 'tailwind' | 'json';
@@ -17,7 +19,14 @@ const TAB_LABELS: Record<ExportTab, string> = {
   json: 'JSON Tokens',
 };
 
-export default function TokenExportPanel({ tokenName, cssVariables, tailwindConfig, jsonTokens }: TokenExportPanelProps) {
+export default function TokenExportPanel({
+  tokenName,
+  cssVariables,
+  tailwindConfig,
+  jsonTokens,
+  eyebrow = 'Token Export',
+  title,
+}: TokenExportPanelProps) {
   const [activeTab, setActiveTab] = useState<ExportTab>('css');
   const [copied, setCopied] = useState(false);
 
@@ -26,6 +35,8 @@ export default function TokenExportPanel({ tokenName, cssVariables, tailwindConf
     if (activeTab === 'tailwind') return tailwindConfig;
     return jsonTokens;
   }, [activeTab, cssVariables, tailwindConfig, jsonTokens]);
+
+  const resolvedTitle = title ?? `Export ${tokenName || 'brand'} scale`;
 
   const handleCopy = async () => {
     try {
@@ -41,8 +52,8 @@ export default function TokenExportPanel({ tokenName, cssVariables, tailwindConf
     <section className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-violet-600 dark:text-violet-300">Token Export</p>
-          <h2 className="mt-2 text-2xl font-bold text-gray-900 dark:text-white">Export {tokenName || 'brand'} scale</h2>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-violet-600 dark:text-violet-300">{eyebrow}</p>
+          <h2 className="mt-2 text-2xl font-bold text-gray-900 dark:text-white">{resolvedTitle}</h2>
         </div>
         <button
           type="button"

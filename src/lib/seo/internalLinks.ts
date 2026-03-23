@@ -239,6 +239,28 @@ const toolRelatedLinksMap: Record<string, ReadonlyArray<InternalLinkGroup>> = {
       ],
     },
   ],
+  '/tools/design-token-color-exporter': [
+    {
+      title: 'Token Delivery Workflow',
+      links: [
+        { href: '/tools/oklch-scale-generator', label: 'OKLCH Scale Generator', description: 'Start with a smooth 50-950 ramp before exporting production tokens.' },
+        { href: '/tools/accessible-palette-generator', label: 'Accessible Palette Generator', description: 'Generate semantic UI roles before exporting them into CSS variables, Tailwind, and JSON tokens.' },
+        { href: '/tools/apca-contrast-checker', label: 'APCA Contrast Checker', description: 'Validate text and surface pairs after your token structure is defined.' },
+        { href: '/blog/design-token-color-system', label: 'Design Token System Guide', description: 'Read how semantic roles and export formats fit into real product workflows.' },
+      ],
+    },
+  ],
+  '/tools/accessible-palette-generator': [
+    {
+      title: 'Accessible Workflow',
+      links: [
+        { href: '/tools/apca-contrast-checker', label: 'APCA Contrast Checker', description: 'Double-check critical foreground and background combinations once semantic roles are generated.' },
+        { href: '/tools/oklch-scale-generator', label: 'OKLCH Scale Generator', description: 'Create a full 50-950 ramp when you need a broader system behind the accessible role set.' },
+        { href: '/tools/design-token-color-exporter', label: 'Design Token Color Exporter', description: 'Move the generated primary, surface, text, and border roles into production token formats.' },
+        { href: '/blog/accessible-color-palette', label: 'Accessible Color Palette Guide', description: 'Read how one brand color becomes readable UI roles, token output, and practical accessibility reviews.' },
+      ],
+    },
+  ],
   '/tools/oklch-scale-generator': [
     {
       title: 'Scale Building Workflow',
@@ -246,6 +268,7 @@ const toolRelatedLinksMap: Record<string, ReadonlyArray<InternalLinkGroup>> = {
         { href: '/tools/palette-generator', label: 'Palette Generator', description: 'Start from a base color idea, then turn it into a full OKLCH ramp.' },
         { href: '/tools/color-wheel', label: 'Color Wheel', description: 'Review hue relationships before locking your 50-950 scale.' },
         { href: '/blog/oklch-color-scale', label: 'OKLCH Scale Guide', description: 'Read why OKLCH produces cleaner 50-950 ramps for modern product systems.' },
+        { href: '/tools/design-token-color-exporter', label: 'Design Token Color Exporter', description: 'Move the generated ramp into CSS variables, Tailwind fragments, and JSON tokens.' },
         { href: '/tools/apca-contrast-checker', label: 'APCA Contrast Checker', description: 'Pressure-test the generated steps for readable text and dark surfaces.' },
       ],
     },
@@ -390,6 +413,26 @@ const blogRelatedLinksMap: Record<string, ReadonlyArray<InternalLinkGroup>> = {
         { href: '/tools/apca-contrast-checker', label: 'APCA Contrast Checker', description: 'Test the exact foreground/background pair discussed in this guide.' },
         { href: '/tools/color-contrast', label: 'Color Contrast Checker', description: 'Compare the traditional WCAG ratio workflow against APCA results.' },
         { href: '/tools/color-blindness-simulator', label: 'Color Blindness Simulator', description: 'Check whether readable contrast also survives different vision conditions.' },
+      ],
+    },
+  ],
+  '/blog/accessible-color-palette': [
+    {
+      title: 'Accessible Palette Workflow',
+      links: [
+        { href: '/tools/accessible-palette-generator', label: 'Accessible Palette Generator', description: 'Generate the semantic UI roles described in this guide from a single base color.' },
+        { href: '/tools/apca-contrast-checker', label: 'APCA Contrast Checker', description: 'Validate the exact text, surface, and action pairs after the role palette is created.' },
+        { href: '/tools/design-token-color-exporter', label: 'Design Token Color Exporter', description: 'Export the stable semantic colors into CSS variables, Tailwind config, and JSON tokens.' },
+      ],
+    },
+  ],
+  '/blog/design-token-color-system': [
+    {
+      title: 'Token Workflow',
+      links: [
+        { href: '/tools/design-token-color-exporter', label: 'Design Token Color Exporter', description: 'Export scales or semantic roles into CSS variables, Tailwind config, and JSON tokens.' },
+        { href: '/tools/oklch-scale-generator', label: 'OKLCH Scale Generator', description: 'Generate the scale that will later become a production token set.' },
+        { href: '/tools/apca-contrast-checker', label: 'APCA Contrast Checker', description: 'Validate important text and surface combinations before rollout.' },
       ],
     },
   ],

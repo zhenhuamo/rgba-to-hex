@@ -36,6 +36,24 @@ export default function OklchScaleGeneratorClient() {
   const tailwindConfig = useMemo(() => (scale ? buildTailwindColorExport(scale, tokenName) : ''), [scale, tokenName]);
   const jsonTokens = useMemo(() => (scale ? buildJsonTokenExport(scale, tokenName) : ''), [scale, tokenName]);
 
+  const exporterHref = useMemo(() => {
+    if (!scale) {
+      return '/tools/design-token-color-exporter';
+    }
+
+    const scalePayload = Object.fromEntries(
+      scale.steps.map((step) => [String(step.key), step.hex]),
+    );
+
+    const params = new URLSearchParams({
+      source: 'oklch',
+      tokenName,
+      scale: JSON.stringify(scalePayload),
+    });
+
+    return `/tools/design-token-color-exporter?${params.toString()}`;
+  }, [scale, tokenName]);
+
   const handleCopyValue = async (value: string, label: string) => {
     try {
       await navigator.clipboard.writeText(value);
@@ -162,12 +180,29 @@ export default function OklchScaleGeneratorClient() {
           </section>
 
           {scale ? (
-            <TokenExportPanel
-              tokenName={tokenName}
-              cssVariables={cssVariables}
-              tailwindConfig={tailwindConfig}
-              jsonTokens={jsonTokens}
-            />
+            <>
+              <TokenExportPanel
+                tokenName={tokenName}
+                cssVariables={cssVariables}
+                tailwindConfig={tailwindConfig}
+                jsonTokens={jsonTokens}
+              />
+              <section className="rounded-3xl border border-indigo-200 bg-indigo-50 p-6 shadow-sm dark:border-indigo-900/50 dark:bg-indigo-950/30">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700 dark:text-indigo-300">Next step</p>
+                <h2 className="mt-3 text-2xl font-bold text-gray-900 dark:text-white">Move this scale into the token workflow</h2>
+                <p className="mt-4 text-sm leading-7 text-gray-600 dark:text-gray-300">
+                  Send the current 50-950 ramp into the dedicated exporter to keep working with semantic roles, code-ready token output, and production-focused handoff.
+                </p>
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <Link href={exporterHref} className="inline-flex items-center justify-center rounded-full bg-indigo-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-indigo-700">
+                    Open in Token Exporter
+                  </Link>
+                  <Link href="/blog/design-token-color-system" className="inline-flex items-center justify-center rounded-full border border-indigo-200 bg-white px-5 py-3 text-sm font-semibold text-indigo-700 transition hover:border-indigo-300 hover:bg-indigo-50 dark:border-indigo-900/40 dark:bg-gray-900 dark:text-indigo-300 dark:hover:bg-indigo-950/20">
+                    Read the token system guide
+                  </Link>
+                </div>
+              </section>
+            </>
           ) : null}
 
           <section className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
