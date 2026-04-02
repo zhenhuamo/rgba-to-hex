@@ -9,6 +9,7 @@ type TokenExportPanelProps = {
   jsonTokens: string;
   eyebrow?: string;
   title?: string;
+  tabLabels?: Partial<Record<ExportTab, string>>;
 };
 
 type ExportTab = 'css' | 'tailwind' | 'json';
@@ -26,6 +27,7 @@ export default function TokenExportPanel({
   jsonTokens,
   eyebrow = 'Token Export',
   title,
+  tabLabels,
 }: TokenExportPanelProps) {
   const [activeTab, setActiveTab] = useState<ExportTab>('css');
   const [copied, setCopied] = useState(false);
@@ -37,6 +39,7 @@ export default function TokenExportPanel({
   }, [activeTab, cssVariables, tailwindConfig, jsonTokens]);
 
   const resolvedTitle = title ?? `Export ${tokenName || 'brand'} scale`;
+  const resolvedTabLabels = { ...TAB_LABELS, ...tabLabels };
 
   const handleCopy = async () => {
     try {
@@ -79,7 +82,7 @@ export default function TokenExportPanel({
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700'
             }`}
           >
-            {TAB_LABELS[tab]}
+            {resolvedTabLabels[tab]}
           </button>
         ))}
       </div>

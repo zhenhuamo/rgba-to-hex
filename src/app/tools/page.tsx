@@ -77,6 +77,7 @@ export default function ToolsIndex() {
       description: "Professional color tools for palette generation, contrast checking, color wheels, and gradient creation to help designers and developers create and manage color schemes",
       icon: "🎨",
       tools: [
+        { name: 'Light & Dark Theme Generator', href: '/tools/light-dark-theme-generator', color: 'from-cyan-500 to-blue-600' },
         { name: 'EyeDropper Tool', href: '/tools/eyedropper-tool', color: 'from-red-500 to-red-600' },
         { name: 'Color Wheel', href: '/tools/color-wheel', color: 'from-amber-500 to-amber-600' },
         { name: 'Color Picker', href: '/tools/color-picker-embed', color: 'from-lime-500 to-lime-600' },
@@ -279,7 +280,9 @@ export default function ToolsIndex() {
                       </h3>
                     </div>
                     <p className="text-gray-600 dark:text-gray-300">
-                      {tool.name === 'Image Blur Tool'
+                      {tool.name === 'Light & Dark Theme Generator'
+                        ? 'Generate accessible light and dark theme tokens from one brand color. Preview semantic UI roles, validate WCAG and APCA contrast, and export CSS variables, shadcn-compatible values, and JSON tokens.'
+                        : tool.name === 'Image Blur Tool'
                         ? 'Professional online blur image tool with multiple blur effects including Gaussian blur, motion blur, background blur, and selective blur. Learn how to blur image online free with real-time preview, adjustable parameters, and instant download. Perfect for privacy protection, artistic effects, and professional photo editing.'
                         : tool.name === 'HSL to CMYK'
                         ? 'Convert HSL colors to CMYK format for professional printing. Features intuitive HSL color selection with real-time CMYK output and ink coverage warnings for print-ready designs.'

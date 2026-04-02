@@ -104,6 +104,21 @@ function buildStep(base: OKLCH, config: StepConfig): OklchScaleStep {
   };
 }
 
+export function generateOklchScaleFromOklch(base: OKLCH): OklchScaleResult {
+  const normalizedBase: OKLCH = {
+    l: round(clamp(base.l, 0, 1), 3),
+    c: round(clamp(base.c, 0, 0.32), 3),
+    h: round((base.h + 360) % 360, 0),
+  };
+
+  const steps = STEP_CONFIGS.map((config) => buildStep(normalizedBase, config));
+
+  return {
+    baseHex: oklchToHex(normalizedBase).toUpperCase(),
+    steps,
+  };
+}
+
 export function generateOklchScale(baseHex: string): OklchScaleResult | null {
   const normalized = normalizeHex(baseHex);
 
@@ -112,10 +127,10 @@ export function generateOklchScale(baseHex: string): OklchScaleResult | null {
   }
 
   const base = hexToOklch(normalized);
-  const steps = STEP_CONFIGS.map((config) => buildStep(base, config));
+  const scale = generateOklchScaleFromOklch(base);
 
   return {
+    ...scale,
     baseHex: normalized,
-    steps,
   };
 }

@@ -1,5 +1,10 @@
 import { isValidHex } from '@/utils/colorConverter';
 import type { OklchScaleResult } from '@/utils/oklchScale';
+import {
+  THEME_ALIAS_KEYS,
+  type LightDarkThemeResult,
+  type ThemeAliasRole,
+} from '@/utils/themeGenerator';
 
 export const TOKEN_SCALE_STEP_KEYS = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950'] as const;
 
@@ -19,6 +24,10 @@ export type TokenSemanticInput = {
     border: string;
   };
 };
+
+function toThemeCssKey(key: string) {
+  return key.replace(/[A-Z]/g, (character) => `-${character.toLowerCase()}`);
+}
 
 function normalizeTokenName(tokenName: string) {
   const normalized = tokenName
@@ -142,4 +151,57 @@ export function buildTailwindColorExport(scale: OklchScaleResult, tokenName: str
 
 export function buildJsonTokenExport(scale: OklchScaleResult, tokenName: string): string {
   return buildJsonTokenExportFromScale(toScaleInput(scale, tokenName));
+}
+
+function buildThemeSectionLines(aliases: Record<ThemeAliasRole, string>) {
+  return THEME_ALIAS_KEYS.map((key) => `  --${toThemeCssKey(key)}: ${aliases[key]};`);
+}
+
+function buildThemeInlineMappings() {
+  return THEME_ALIAS_KEYS.map((key) => `  --color-${toThemeCssKey(key)}: var(--${toThemeCssKey(key)});`);
+}
+
+function buildThemeVariableBlocks(theme: LightDarkThemeResult) {
+  return [
+    ':root {',
+    ...buildThemeSectionLines(theme.themes.light.aliases),
+    '}',
+    '',
+    '.dark {',
+    ...buildThemeSectionLines(theme.themes.dark.aliases),
+    '}',
+  ];
+}
+
+export function buildThemeCssVariableExport(theme: LightDarkThemeResult): string {
+  return [
+    `/* theme: ${normalizeTokenName(theme.tokenName)} */`,
+    ...buildThemeVariableBlocks(theme),
+  ].join('\n');
+}
+
+export function buildShadcnThemeExport(theme: LightDarkThemeResult): string {
+  return [
+    `/* theme: ${normalizeTokenName(theme.tokenName)} */`,
+    ...buildThemeVariableBlocks(theme),
+    '',
+    '@theme inline {',
+    ...buildThemeInlineMappings(),
+    '}',
+  ].join('\n');
+}
+
+export function buildThemeJsonExport(theme: LightDarkThemeResult): string {
+  const payload = {
+    themes: {
+      light: Object.fromEntries(
+        THEME_ALIAS_KEYS.map((key) => [toThemeCssKey(key), { value: theme.themes.light.aliases[key] }]),
+      ),
+      dark: Object.fromEntries(
+        THEME_ALIAS_KEYS.map((key) => [toThemeCssKey(key), { value: theme.themes.dark.aliases[key] }]),
+      ),
+    },
+  };
+
+  return JSON.stringify(payload, null, 2);
 }

@@ -14,6 +14,11 @@ export const HOME_INTERNAL_LINK_GROUPS: ReadonlyArray<InternalLinkGroup> = [
     title: 'Popular Tools',
     links: [
       {
+        href: '/tools/light-dark-theme-generator',
+        label: 'Light & Dark Theme Generator',
+        description: 'Turn one brand color into accessible light and dark theme tokens with export-ready output.',
+      },
+      {
         href: '/tools/hex-to-rgba',
         label: 'HEX to RGBA Converter',
         description: 'Convert HEX values back to RGBA with alpha transparency support.',
@@ -261,6 +266,17 @@ const toolRelatedLinksMap: Record<string, ReadonlyArray<InternalLinkGroup>> = {
       ],
     },
   ],
+  '/tools/light-dark-theme-generator': [
+    {
+      title: 'Theme Workflow',
+      links: [
+        { href: '/tools/apca-contrast-checker', label: 'APCA Contrast Checker', description: 'Double-check high-risk text, button, and dark surface pairs after the theme is generated.' },
+        { href: '/tools/oklch-scale-generator', label: 'OKLCH Scale Generator', description: 'Start from a smoother brand ramp if you want to explore the color family before mapping theme roles.' },
+        { href: '/tools/design-token-color-exporter', label: 'Design Token Color Exporter', description: 'Move back into the dedicated token output workflow when you want to edit export formats separately.' },
+        { href: '/blog/light-dark-theme-generator', label: 'Light & Dark Theme Guide', description: 'Read why one brand color still needs a real semantic theme system before it is safe to ship.' },
+      ],
+    },
+  ],
   '/tools/oklch-scale-generator': [
     {
       title: 'Scale Building Workflow',
@@ -433,6 +449,16 @@ const blogRelatedLinksMap: Record<string, ReadonlyArray<InternalLinkGroup>> = {
         { href: '/tools/design-token-color-exporter', label: 'Design Token Color Exporter', description: 'Export scales or semantic roles into CSS variables, Tailwind config, and JSON tokens.' },
         { href: '/tools/oklch-scale-generator', label: 'OKLCH Scale Generator', description: 'Generate the scale that will later become a production token set.' },
         { href: '/tools/apca-contrast-checker', label: 'APCA Contrast Checker', description: 'Validate important text and surface combinations before rollout.' },
+      ],
+    },
+  ],
+  '/blog/light-dark-theme-generator': [
+    {
+      title: 'Theme Workflow',
+      links: [
+        { href: '/tools/light-dark-theme-generator', label: 'Light & Dark Theme Generator', description: 'Generate the dual-theme token set described in this article from one base brand color.' },
+        { href: '/tools/apca-contrast-checker', label: 'APCA Contrast Checker', description: 'Validate risky text and action pairs after the light and dark themes are generated.' },
+        { href: '/tools/design-token-color-exporter', label: 'Design Token Color Exporter', description: 'Continue into the standalone token export workflow if you want to manage output formats separately.' },
       ],
     },
   ],

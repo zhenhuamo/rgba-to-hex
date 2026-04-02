@@ -55,6 +55,14 @@ export default function Blog() {
       category: 'Design Systems',
     },
     {
+      title: 'Light & Dark Theme Generator: From One Brand Color to Real UI Tokens',
+      description: 'Learn how to turn one brand color into accessible light and dark themes, map semantic roles, validate contrast, and export theme tokens for modern web apps.',
+      link: '/blog/light-dark-theme-generator',
+      date: '2026-04-01',
+      readTime: '12 min read',
+      category: 'Design Systems',
+    },
+    {
       title: 'Color Wheel Tool: Master Color Theory and Create Perfect Harmonies',
       description: 'Explore our comprehensive guide to using the interactive color wheel tool. Learn about color harmonies, RGB vs RYB color systems, and how to create stunning color combinations for your design projects.',
       link: '/blog/color-wheel-tool',
