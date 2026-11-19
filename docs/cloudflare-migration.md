@@ -256,6 +256,7 @@ curl -sI "https://rgbatohex.com/_next/static/chunks/$(ls out/_next/static/chunks
 - 在 Vercel 项目的 Settings → Domains 里移除了 `rgbatohex.com`，弹窗提示会连同指向它的 `www.rgbatohex.com` 一起移除，确认后两者都已解绑；账号级 Domains 列表里已搜不到 `rgbatohex.com`。
 - 项目本身按你的选择**保留**（未删除，方便随时回滚）。它当前被 Vercel 暂停，原因不是欠费，而是 **Hobby 公平使用额度超限**：`Fluid Active CPU 7h36m / 4h`、`Fast Origin Transfer 7.5GB / 10GB`、`CDN Requests 505K / 1M`、`Edge Middleware 91K / 1M`，暂停开始 2026-11-18，**自动恢复时间 2026-12-18**。
 - 保留项目的唯一副作用：12/18 恢复后 `rgba-to-hex.vercel.app`（Vercel 默认别名）会重新可访问。它有 canonical 指向 `https://rgbatohex.com`，不会和主站抢流量；想彻底清掉，随时删除项目即可。
+- 同时在项目 **Settings → Git** 里移除了 `zhenhuamo/rgba-to-hex` 的 Git 连接（Disconnect → Remove Connection）。之后 push 到 GitHub 不会再触发 Vercel 构建，也就不会再消耗 Hobby 的用量额度；需要回滚时随时可以在同一页面重新连接仓库。
 
 ---
 
