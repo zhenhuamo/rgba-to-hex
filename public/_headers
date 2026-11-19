@@ -1,0 +1,84 @@
+# Cloudflare 静态托管响应头配置（替代原来的 src/middleware.ts）。
+#
+# 规则按文件顺序执行：先由 /* 设置默认的防点击劫持头，
+# 再用 ! 语法先删掉默认头，可嵌入的工具页只保留 CSP frame-ancestors *（原 middleware 里
+# 的 X-Frame-Options: ALLOWALL 是非法值，浏览器会忽略，这里直接不输出该头）。
+# 详见 docs/cloudflare-migration.md。
+
+/*
+  X-Frame-Options: SAMEORIGIN
+  Content-Security-Policy: frame-ancestors 'self'
+
+# 可嵌入 + noindex 的工具（对应原 middleware 的两个分支同时命中）
+/tools/color-converter*
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  Content-Security-Policy: frame-ancestors *
+  X-Robots-Tag: noindex, follow
+
+/tools/hex-to-rgba-converter*
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  Content-Security-Policy: frame-ancestors *
+  X-Robots-Tag: noindex, follow
+
+/tools/hsl-to-hex-converter*
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  Content-Security-Policy: frame-ancestors *
+  X-Robots-Tag: noindex, follow
+
+/tools/cmyk-to-hex-converter*
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  Content-Security-Policy: frame-ancestors *
+  X-Robots-Tag: noindex, follow
+
+/tools/rgb-to-hsl-converter*
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  Content-Security-Policy: frame-ancestors *
+  X-Robots-Tag: noindex, follow
+
+/tools/rgb-to-cmyk-converter*
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  Content-Security-Policy: frame-ancestors *
+  X-Robots-Tag: noindex, follow
+
+/tools/cmyk-to-rgb-converter*
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  Content-Security-Policy: frame-ancestors *
+  X-Robots-Tag: noindex, follow
+
+/tools/color-contrast-checker*
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  Content-Security-Policy: frame-ancestors *
+  X-Robots-Tag: noindex, follow
+
+# 仅允许被任意站点嵌入、不加 noindex 的工具
+/tools/minecraft-color-codes*
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  Content-Security-Policy: frame-ancestors *
+
+/tools/gradient-generator-tool*
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  Content-Security-Policy: frame-ancestors *
+
+/tools/color-blindness-simulator*
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  Content-Security-Policy: frame-ancestors *
+
+/tools/image-color-extractor*
+  ! X-Frame-Options
+  ! Content-Security-Policy
+  Content-Security-Policy: frame-ancestors *
+
+# Next.js 带 hash 的构建产物可以长期缓存（Vercel 也是这么做的）
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable

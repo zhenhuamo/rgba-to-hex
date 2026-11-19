@@ -1,6 +1,9 @@
 import { MetadataRoute } from 'next';
 import { SITEMAP_ROUTES } from '@/lib/seo/siteRoutes';
 
+// 静态导出（Cloudflare 部署）要求 metadata 路由显式声明为静态生成。
+export const dynamic = 'force-static';
+
 const BASE_URL = 'https://rgbatohex.com';
 
 function toAbsoluteUrl(path: string) {

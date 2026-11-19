@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "wrangler dev",
+    "preview": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy && wrangler deploy -c wrangler.www.jsonc",
+    "deploy:dry-run": "npm run build && wrangler deploy --dry-run && wrangler deploy -c wrangler.www.jsonc --dry-run",
     "lint": "next lint"
   },
   "dependencies": {
@@ -36,6 +39,7 @@
     "eslint-config-next": "^15.5.9",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.165.0"
   }
 }

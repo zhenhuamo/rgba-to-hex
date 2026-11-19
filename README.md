@@ -24,11 +24,11 @@ A professional online color conversion tool that provides multiple color format 
 
 ### Tech Stack
 
-- Next.js 15
+- Next.js 15（`output: 'export'` 静态导出）
 - React
 - TypeScript
 - Tailwind CSS
-- Vercel deployment
+- Cloudflare Workers 静态资源托管
 
 ## Local Development
 
@@ -39,12 +39,35 @@ npm install
 # Run development server
 npm run dev
 
-# Build for production
+# Build static export (outputs to out/)
 npm run build
 
-# Start production server
-npm start
+# Preview the real static build locally on http://localhost:8787
+npm run preview
 ```
+
+## Deployment
+
+The site is deployed to Cloudflare Workers as an assets-only Worker (no runtime
+script), and takes over `rgbatohex.com/*` through a **Workers route** — the
+existing proxied DNS records are kept as-is, so there is no DNS cutover and no
+downtime. `www.rgbatohex.com/*` is handled by a second tiny Worker that 301s to
+the apex domain.
+
+```bash
+# one-off: authenticate wrangler (the account that owns the rgbatohex.com zone)
+npx wrangler login
+
+# build + deploy both Workers
+npm run deploy
+```
+
+Pushing to `master` also deploys automatically via
+`.github/workflows/deploy-cloudflare.yml` (requires `CLOUDFLARE_API_TOKEN` and
+`CLOUDFLARE_ACCOUNT_ID` repository secrets).
+
+Full migration notes, verification checklist and rollback procedure:
+[docs/cloudflare-migration.md](docs/cloudflare-migration.md).
 
 ## Online Tools
 

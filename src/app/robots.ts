@@ -1,5 +1,8 @@
 import { MetadataRoute } from 'next';
 
+// 静态导出（Cloudflare 部署）要求 metadata 路由显式声明为静态生成。
+export const dynamic = 'force-static';
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [

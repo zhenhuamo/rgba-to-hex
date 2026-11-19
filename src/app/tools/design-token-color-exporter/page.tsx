@@ -1,29 +1,13 @@
 import { metadata } from './metadata';
-import DesignTokenColorExporterClient from './client';
+import ClientEntry from './ClientEntry';
 
 export { metadata };
 
-type PageProps = {
-  searchParams?: Promise<Record<string, string | string[] | undefined>>;
-};
-
-function getFirstParamValue(value: string | string[] | undefined) {
-  if (Array.isArray(value)) {
-    return value[0];
-  }
-
-  return value;
-}
-
-export default async function DesignTokenColorExporterPage({ searchParams }: PageProps) {
-  const resolvedSearchParams = searchParams ? await searchParams : undefined;
-
-  return (
-    <DesignTokenColorExporterClient
-      initialSource={getFirstParamValue(resolvedSearchParams?.source)}
-      initialTokenName={getFirstParamValue(resolvedSearchParams?.tokenName)}
-      initialScale={getFirstParamValue(resolvedSearchParams?.scale)}
-      initialRoles={getFirstParamValue(resolvedSearchParams?.roles)}
-    />
-  );
+/**
+ * 之前这个页面在服务端 await `searchParams`，会强制动态渲染并阻塞静态导出。
+ * 现在服务端只渲染默认状态（HTML 里带完整工具 UI），query 参数在客户端挂载后
+ * 由 ClientEntry 读入，行为对整个工具链路保持不变。
+ */
+export default function DesignTokenColorExporterPage() {
+  return <ClientEntry />;
 }

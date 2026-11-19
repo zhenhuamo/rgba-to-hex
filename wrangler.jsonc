@@ -1,0 +1,19 @@
+{
+  // Cloudflare Workers 静态资源部署配置（assets-only，没有 main 脚本）。
+  // 请求全部由 Workers 静态资源层直接返回，不消耗 Worker 请求额度，也没有冷启动。
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "rgba-to-hex",
+  "compatibility_date": "2026-11-18",
+  "assets": {
+    "directory": "./out",
+    // out/ 里有 Next.js 导出的 404.html，缺失路径返回真正的 404 状态码
+    "not_found_handling": "404-page"
+  },
+  // 用「Workers 路由」而不是「自定义域名」接管流量：
+  // 自定义域名要求该主机名没有已存在的 DNS 记录，而 rgbatohex.com 的 A 记录
+  // 是 Vercel 当初写进去的（需要 DNS 编辑权限才能删）；Workers 路由直接覆盖
+  // 已代理（橙云）主机名的回源目标，无需改动任何 DNS 记录，切换零停机。
+  "routes": [
+    { "pattern": "rgbatohex.com/*", "zone_name": "rgbatohex.com" }
+  ]
+}

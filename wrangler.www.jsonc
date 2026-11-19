@@ -1,0 +1,12 @@
+{
+  // www.rgbatohex.com → rgbatohex.com 的 301 跳转（一个极小的 Worker）。
+  // 用独立 Worker 而不是 Redirect Rule，是为了不依赖面板/额外的 API 权限，
+  // 也能跟着 git 一起版本化、一条命令部署。
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "rgba-to-hex-www",
+  "main": "./scripts/www-redirect.js",
+  "compatibility_date": "2026-11-18",
+  "routes": [
+    { "pattern": "www.rgbatohex.com/*", "zone_name": "rgbatohex.com" }
+  ]
+}
