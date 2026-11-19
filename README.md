@@ -62,9 +62,10 @@ npx wrangler login
 npm run deploy
 ```
 
-Pushing to `master` also deploys automatically via
-`.github/workflows/deploy-cloudflare.yml` (requires `CLOUDFLARE_API_TOKEN` and
-`CLOUDFLARE_ACCOUNT_ID` repository secrets).
+A GitHub Actions workflow (`.github/workflows/deploy-cloudflare.yml`) is ready
+for push-to-deploy, but it is **not enabled yet**: add `CLOUDFLARE_API_TOKEN`
+and `CLOUDFLARE_ACCOUNT_ID` repository secrets first. Until then, deploy from
+this machine with `npm run deploy`.
 
 Full migration notes, verification checklist and rollback procedure:
 [docs/cloudflare-migration.md](docs/cloudflare-migration.md).

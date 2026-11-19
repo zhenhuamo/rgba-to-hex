@@ -232,6 +232,25 @@ curl -sI "https://rgbatohex.com/_next/static/chunks/$(ls out/_next/static/chunks
 2. **回 Vercel**：切换前把当前 DNS 记录截图/导出（`rgbatohex.com` 与 `www` 的 A/CNAME 目标值）。Vercel 恢复计费后，把自定义域名的解析改回 Vercel 提供的目标（通常是 `cname.vercel-dns.com` 或 `76.76.21.21`），TTL 建议提前降到 300s。
 3. **域名本身**：注册商和 NS 都在 Cloudflare，Cloudflare 挂掉才会影响解析；这与是否用 Vercel 无关，不属于本次迁移风险。
 
+### 7.1 Vercel 项目怎么收尾（会不会出现"两个项目"）
+
+**不会出现两个站点同时对外服务。** Cloudflare 的 Workers 路由是在边缘按主机名+路径截流的：`rgbatohex.com/*`、`www.rgbatohex.com/*` 的请求会直接进入 Workers 静态资源，**根本不会发到 Vercel**。Vercel 那边即使恢复计费/解除停用，也"抢不回"域名——它只是 DNS 记录里的旧回源，而路由优先级高于回源。
+
+但它确实还是"两套部署并存"，建议按下面顺序收尾：
+
+| 顺序 | 操作 | 说明 |
+| --- | --- | --- |
+| 1 | 先观察 2~3 天 | 目前线上已全绿（180 条路由 200、404/301/缓存都对） |
+| 2 | Vercel → 项目 → Settings → Domains | 删掉 `rgbatohex.com` 和 `www.rgbatohex.com` 两个绑定，避免以后误点 Redeploy / 改 DNS |
+| 3 | 项目 Pause（想留回滚）或 Delete（彻底） | Pause 后不消耗构建/带宽，也还能一键恢复 |
+| 4 | （可选）Cloudflare DNS 清理 | 删掉 apex/www 那两条旧的代理 A 记录，再把 `wrangler.jsonc` 换回 `custom_domain: true`（或在面板加 Custom Domain），让 Cloudflare 自己管理 DNS。需要 DNS 编辑权限，不做也完全不影响访问 |
+
+注意两点：
+
+- **不要先删 Worker 路由**：路由一删，流量会回落到 DNS 旧回源（Vercel）。如果那时 Vercel 已经恢复，站点会突然变回旧版本，很容易误判。正确顺序是「先 pause Vercel，再考虑动路由」。
+- 顺带发现：`rgba-to-hex.vercel.app` 是本项目的部署别名（当前 402，已不对外）；`rgbatohex.vercel.app` 是一个无关的 "Create Next App" 空项目。不需要的话可以一起清掉。
+- 邮件（MX/SPF/DKIM/TXT）一条都没动，迁移不影响收发信。
+
 ---
 
 ## 8. 成本
